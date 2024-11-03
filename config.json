@@ -1,6 +1,17 @@
 {
-    "title":"Blog Title",
-    "subTitle":"Blog description",
-    "avatarUrl":"https://github.githubassets.com/favicons/favicon.svg",
+    "title":"GJKen",
+    "subTitle":"<script>document.getElementById('content').innerHTML = `<div style='text-align: center;'><p>CV工程师,</p><p>一个又菜又爱玩, 喜欢瞎折腾的流浪者.</p></div>`;</script>",
+    "displayTitle":"GJKen",
+    "avatarUrl":"https://cdn.img2ipfs.com/ipfs/QmNxVNBanHixYmaMsLHZjuxBUyW4dasM12E5KGUpYPDVPH",
+    "startSite":"11/01/2024",
+    "onePageListNum":15,
+    "i18n":"CN",
+    "iconList":{"TG群":"M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"},
+    "exlink":{"TG群":"https://t.me/GJK_chat"},
+    "urlMode":"issue",
+    "bottomText":"🥰转载请注明,谢谢!🥰",
+    "script":"<script src='../ImgLazyLoad.main.js'></script><script src='../ArticleToc.main.js'></script><script src='https://blog.meekdai.com/Gmeek/plugins/lightbox.js'></script>",
+    "indexScript":"<script src='https://gjken.github.io/gjkdemo.github.io/NumPagination.js'></script>",
+    "allHead":"<script src='https://gjken.github.io/gjkdemo.github.io/GmeekVercount_uv.main.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script><script src='https://gjken.github.io/gjkdemo.github.io/theme.js'></script>",
     "GMEEK_VERSION":"last"
 }
