@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     let currentUrl = window.location.pathname;
     if (currentUrl.includes('/index.html') || currentUrl === "/") {
+		console.log('')
         //应用主页主题------------------------------------------------------------------------------
         let style = document.createElement("style");
         style.innerHTML = `
