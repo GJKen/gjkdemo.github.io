@@ -13,6 +13,6 @@
     "script":"<script src='../ImgLazyLoad.main.js'></script><script src='../ArticleToc.main.js'></script><script src='https://blog.meekdai.com/Gmeek/plugins/lightbox.js'></script>",
     "indexScript":"<script src='https://gjken.github.io/gjkdemo.github.io/NumPagination.js'></script>",
     "allHead":"<script src='https://gjken.github.io/gjkdemo.github.io/GmeekVercount_uv.main.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script><script src='https://gjken.github.io/gjkdemo.github.io/theme.js'></script>",
-	"primerCSS":"<link href='https://cdnjs.cloudflare.com/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />",
+    "primerCSS":"<link href='https://cdnjs.cloudflare.com/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />",
     "GMEEK_VERSION":"last"
 }
