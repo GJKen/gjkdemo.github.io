@@ -19,7 +19,7 @@ for (let meta of metaTags) {
 // 通用样式
 applyStyles(`
 	html {
-		background: url('https://ipfs.decentralized-content.com/ipfs/QmQn8HcHeutmaH2qEbPK8PT6TXEpj58VizavBxanCiQcYv') no-repeat center center fixed;
+		background: url('https://ipfs.decentralized-content.com/ipfs/QmQn8HcHeutmaH2qEbPK8PT6TXEpj58VizavBxanCiQcYv') no-repeat center center fixed !important;
 		background-size: cover;
 	}
 `);
