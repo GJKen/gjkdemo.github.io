@@ -8,10 +8,10 @@ function applyStyles(styles) {
 // 获取所有 meta 标签并查找 `og:type`, 找到后直接退出循环
 const metaTags = document.getElementsByTagName("meta");
 let ogTypeContent = null;
-
 for (let meta of metaTags) {
     if (meta.getAttribute("property") === "og:type") {
         ogTypeContent = meta.getAttribute("content");
+		console.log("[Indextheme]这里是循环判断,当前ogTypeContent值是::" + ogTypeContent)
         break;
     }
 }
@@ -64,4 +64,5 @@ if (ogTypeContent === "blog") {
     `);
 } else {
 	console.log("[Indextheme]未找到特定页面")
+	console.log("[Indextheme]当前ogTypeContent值是::" + ogTypeContent)
 }
