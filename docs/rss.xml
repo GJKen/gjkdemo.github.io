@@ -1,10 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>GJKen</title><link>https://GJKen.github.io/gjkdemo.github.io</link><description>&lt;script&gt;document.getElementById('content').innerHTML = `&lt;div style='text-align: center;'&gt;&lt;p&gt;CV工程师,&lt;/p&gt;&lt;p&gt;一个又菜又爱玩, 喜欢瞎折腾的流浪者.&lt;/p&gt;&lt;/div&gt;`;&lt;/script&gt;</description><copyright>GJKen</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.img2ipfs.com/ipfs/QmNxVNBanHixYmaMsLHZjuxBUyW4dasM12E5KGUpYPDVPH</url><title>avatar</title><link>https://GJKen.github.io/gjkdemo.github.io</link></image><lastBuildDate>Mon, 04 Nov 2024 07:09:39 +0000</lastBuildDate><managingEditor>GJKen</managingEditor><ttl>60</ttl><webMaster>GJKen</webMaster><item><title>Adobe PhotoShop - 插件导出ICO格式</title><link>https://GJKen.github.io/gjkdemo.github.io/post/2.html</link><description>Adobe Photoshop默认不能输出为这个格式, 想要这个格式的话可能需要其他软件进行转换, 其实PS装一个插件就可以另存为ICO格式的图标文件.&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>GJKen</title><link>https://GJKen.github.io/gjkdemo.github.io</link><description>&lt;script&gt;document.getElementById('content').innerHTML = `&lt;div style='text-align: center;'&gt;&lt;p&gt;CV工程师,&lt;/p&gt;&lt;p&gt;一个又菜又爱玩, 喜欢瞎折腾的流浪者.&lt;/p&gt;&lt;/div&gt;`;&lt;/script&gt;</description><copyright>GJKen</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.img2ipfs.com/ipfs/QmNxVNBanHixYmaMsLHZjuxBUyW4dasM12E5KGUpYPDVPH</url><title>avatar</title><link>https://GJKen.github.io/gjkdemo.github.io</link></image><lastBuildDate>Mon, 04 Nov 2024 09:54:22 +0000</lastBuildDate><managingEditor>GJKen</managingEditor><ttl>60</ttl><webMaster>GJKen</webMaster><item><title>Adobe PhotoShop - 插件导出ICO格式</title><link>https://GJKen.github.io/gjkdemo.github.io/post/2.html</link><description>Adobe Photoshop默认不能输出为这个格式, 想要这个格式的话可能需要其他软件进行转换, 其实PS装一个插件就可以另存为ICO格式的图标文件.&#13;
 &#13;
 # 文件下载&#13;
 先下载文件, 解压缩&#13;
-ICOFormat64.8bi&#13;
-[蓝奏云](https://www.lanzouj.com/iVf1l2e80z5a)&#13;
+ICOFormat64.8bi [蓝奏云](https://www.lanzouj.com/iVf1l2e80z5a)&#13;
 &#13;
 # 安装路径&#13;
 &#13;

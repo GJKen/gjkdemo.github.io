@@ -2,8 +2,7 @@ Adobe Photoshop默认不能输出为这个格式, 想要这个格式的话可能
 
 # 文件下载
 先下载文件, 解压缩
-ICOFormat64.8bi
-[蓝奏云](https://www.lanzouj.com/iVf1l2e80z5a)
+ICOFormat64.8bi [蓝奏云](https://www.lanzouj.com/iVf1l2e80z5a)
 
 # 安装路径
 
