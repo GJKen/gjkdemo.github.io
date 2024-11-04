@@ -12,6 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			background: url('https://ipfs.decentralized-content.com/ipfs/QmQn8HcHeutmaH2qEbPK8PT6TXEpj58VizavBxanCiQcYv') no-repeat center center fixed;
 			background-size: cover;
 		}
+		body {
+			max-width:1000px;
+			border-radius: 10px;
+		}
 	`);
 	// 获取所有 meta 标签并查找 `og:type`
 	const metaTags = document.getElementsByTagName("meta");
@@ -46,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 			.title-right{
 				margin:unset;
-				
 			}
 			.avatar:hover {
 				transform: scale(1.5) rotate(720deg);
