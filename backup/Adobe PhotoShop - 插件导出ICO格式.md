@@ -1,7 +1,8 @@
 Adobe Photoshop默认不能输出为这个格式, 想要这个格式的话可能需要其他软件进行转换, 其实PS装一个插件就可以另存为ICO格式的图标文件.
 
 # 文件下载
-先下载文件, 解压缩, 只有
+先下载文件, 解压缩
+ICOFormat64.8bi
 [蓝奏云](https://www.lanzouj.com/iVf1l2e80z5a)
 
 # 安装路径
