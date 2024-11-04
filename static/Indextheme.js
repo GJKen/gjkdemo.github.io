@@ -17,4 +17,3 @@ let currentUrl = window.location.pathname;
         }
     `;
     document.head.appendChild(style);
-}
