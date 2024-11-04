@@ -60,4 +60,4 @@ document.addEventListener('DOMContentLoaded', function() {
 		console.log("[Indextheme] 未找到特定页面");
 		console.log("[Indextheme] 当前 ogTypeContent 值是: " + ogTypeContent);
 	}
-))
+})
