@@ -6,6 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.head.appendChild(style);
 	}
 
+	// 通用样式
+	applyStyles(`
+		html {
+			background: url('https://ipfs.decentralized-content.com/ipfs/QmQn8HcHeutmaH2qEbPK8PT6TXEpj58VizavBxanCiQcYv') no-repeat center center fixed;
+			background-size: cover;
+		}
+	`);
 	// 获取所有 meta 标签并查找 `og:type`
 	const metaTags = document.getElementsByTagName("meta");
 	let ogTypeContent = null;
