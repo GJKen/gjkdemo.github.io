@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>GJKen</title><link>https://GJKen.github.io/gjkdemo.github.io</link><description>&lt;script&gt;document.getElementById('content').innerHTML = `&lt;div style='text-align: center;'&gt;&lt;p&gt;CV工程师,&lt;/p&gt;&lt;p&gt;一个又菜又爱玩, 喜欢瞎折腾的流浪者.&lt;/p&gt;&lt;/div&gt;`;&lt;/script&gt;</description><copyright>GJKen</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.img2ipfs.com/ipfs/QmNxVNBanHixYmaMsLHZjuxBUyW4dasM12E5KGUpYPDVPH</url><title>avatar</title><link>https://GJKen.github.io/gjkdemo.github.io</link></image><lastBuildDate>Mon, 04 Nov 2024 07:06:04 +0000</lastBuildDate><managingEditor>GJKen</managingEditor><ttl>60</ttl><webMaster>GJKen</webMaster><item><title>Adobe PhotoShop - 插件导出ICO格式</title><link>https://GJKen.github.io/gjkdemo.github.io/post/2.html</link><description>Adobe Photoshop默认不能输出为这个格式, 想要这个格式的话可能需要其他软件进行转换, 其实PS装一个插件就可以另存为ICO格式的图标文件.&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>GJKen</title><link>https://GJKen.github.io/gjkdemo.github.io</link><description>&lt;script&gt;document.getElementById('content').innerHTML = `&lt;div style='text-align: center;'&gt;&lt;p&gt;CV工程师,&lt;/p&gt;&lt;p&gt;一个又菜又爱玩, 喜欢瞎折腾的流浪者.&lt;/p&gt;&lt;/div&gt;`;&lt;/script&gt;</description><copyright>GJKen</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.img2ipfs.com/ipfs/QmNxVNBanHixYmaMsLHZjuxBUyW4dasM12E5KGUpYPDVPH</url><title>avatar</title><link>https://GJKen.github.io/gjkdemo.github.io</link></image><lastBuildDate>Mon, 04 Nov 2024 07:09:39 +0000</lastBuildDate><managingEditor>GJKen</managingEditor><ttl>60</ttl><webMaster>GJKen</webMaster><item><title>Adobe PhotoShop - 插件导出ICO格式</title><link>https://GJKen.github.io/gjkdemo.github.io/post/2.html</link><description>Adobe Photoshop默认不能输出为这个格式, 想要这个格式的话可能需要其他软件进行转换, 其实PS装一个插件就可以另存为ICO格式的图标文件.&#13;
 &#13;
 # 文件下载&#13;
 先下载文件, 解压缩&#13;
@@ -8,15 +8,17 @@ ICOFormat64.8bi&#13;
 &#13;
 # 安装路径&#13;
 &#13;
-下面举一个我的ps安装路径的例子, 自己根据需要修改安放插件的路径&#13;
+下面举一个我的ps安装路径的例子, 自己根据需要修改安放插件的路径, 放入`Plug-ins`文件夹下面就行&#13;
 `E:\Program\Adobe\Adobe Photoshop CC (64 Bit)\Adobe Photoshop CC (64 Bit)\Plug-ins`&#13;
 &#13;
 `Gmeek-html&lt;img src='https://cdn.img2ipfs.com/ipfs/QmeXhTy477aNcmBrb9KqGhYNK2RAMcw3NCMT8PW7C8hFoe'&gt;`&#13;
 &#13;
 # 导出图示&#13;
+&#13;
 `Gmeek-html&lt;img src='https://cdn.img2ipfs.com/ipfs/QmSCS8joKgcj5ufdt9vDuBdQZgAe1EfMxBsgRiisNBFBw7'&gt;`&#13;
 &#13;
-还有一个选项, 这个默认选第一个就好.&#13;
+这个默认选第一个就好.&#13;
+&#13;
 `Gmeek-html&lt;img src='https://cdn.img2ipfs.com/ipfs/QmeaG2ShJUcW5EzC8d3jeSa2d36TdzZpeuKjMeB65k2dbw'&gt;`。</description><guid isPermaLink="true">https://GJKen.github.io/gjkdemo.github.io/post/2.html</guid><pubDate>Mon, 04 Nov 2024 06:56:42 +0000</pubDate></item><item><title>Gmeek - 记录使用过程</title><link>https://GJKen.github.io/gjkdemo.github.io/post/1.html</link><description>[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.&#13;
 &#13;
 # 搭建博客&#13;
