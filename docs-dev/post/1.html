@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
-    <script src='https://gjken.github.io/gjkdemo.github.io/GmeekVercount_uv.main.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script><script src='https://gjken.github.io/gjkdemo.github.io/Indextheme.js'></script>
+    <script src='https://gjken.github.io/gjkdemo.github.io/GmeekVercount_uv.main.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script><script src='https://gjken.github.io/gjkdemo.github.io/Indextheme.main.js'></script>
     <link rel="icon" href="https://cdn.img2ipfs.com/ipfs/QmRtULS1Gmf3Phh84o9SVWhdc52AuJJ2NA24zMiFMeqdpf"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
@@ -63,7 +63,12 @@ Github在issues插入的图片也会自动转换为github的地址.
 实际展示:
 
 `Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb' style='text-align: center;'>`
-。">
+
+# 添加自定义单篇文章代码
+
+```html
+<span id='busuanzi'>
+:heart:感谢第<span></span>小伙伴的<span></span>次访问关于页面。">
 <meta property="og:title" content="Gmeek - 记录使用过程">
 <meta property="og:description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
@@ -118,7 +123,12 @@ Github在issues插入的图片也会自动转换为github的地址.
 实际展示:
 
 `Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb' style='text-align: center;'>`
-。">
+
+# 添加自定义单篇文章代码
+
+```html
+<span id='busuanzi'>
+:heart:感谢第<span></span>小伙伴的<span></span>次访问关于页面。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://GJKen.github.io/gjkdemo.github.io/post/1.html">
 <meta property="og:image" content="https://cdn.img2ipfs.com/ipfs/QmNxVNBanHixYmaMsLHZjuxBUyW4dasM12E5KGUpYPDVPH">
@@ -225,7 +235,18 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 示例代码:</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-html<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://img.jpg</span>" <span class="pl-c1">style</span>="<span class="pl-s">text-align: center;</span>"<span class="pl-kos">&gt;</span>`</pre></div>
 <p>实际展示:</p>
-<p><img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb" style="text-align: center;"></p></div>
+<p><img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb" style="text-align: center;"></p>
+<h1>添加自定义单篇文章代码</h1>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">id</span>="<span class="pl-s">busuanzi</span>"<span class="pl-kos">&gt;</span>
+:heart:感谢第<span class="pl-kos">&lt;</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>小伙伴的<span class="pl-kos">&lt;</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>次访问关于页面。
+<span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>
+
+<span class="pl-c">&lt;!-- ##{"script":"&lt;script&gt;document.getElementById('user-content-busuanzi').id='busuanzi_container_site_uv';busuanzi=document.getElementById('busuanzi_container_site_uv');busuanzi.style.display='none';busuanzi.childNodes[1].id='busuanzi_value_site_uv';busuanzi.childNodes[3].id='busuanzi_value_site_pv';&lt;/script&gt;&lt;script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'&gt;&lt;/script&gt;","style":"&lt;style&gt;#busuanzi_value_site_uv{color:red}#busuanzi_value_site_pv{color:red}&lt;/style&gt;"}## --&gt;</span></pre></div>
+<h1>Readme.md</h1>
+<p>📄 &gt; 文章总数<br>
+💬 &gt; 评论总数<br>
+🌺 &gt; 是统计的所有文章的字符数<br>
+⏰ &gt; 最后一次Actions的时间</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">🥰转载请注明,谢谢!🥰</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
@@ -389,6 +410,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script src='../ImgLazyLoad.main.js'></script><script src='../ArticleToc.main.js'></script><script src='https://blog.meekdai.com/Gmeek/plugins/lightbox.js'></script>
+<script src='https://gjken.github.io/gjkdemo.github.io/ImgLazyLoad.main.js'></script><script src='https://gjken.github.io/gjkdemo.github.io/ArticleToc.main.js'></script><script src='https://blog.meekdai.com/Gmeek/plugins/lightbox.js'></script>
 
 </html>
