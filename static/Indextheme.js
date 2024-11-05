@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		body {
 			max-width:1000px;
 			border-radius: 10px;
-			box-shadow: 0 0 100px #0000001c;
+			box-shadow: 0 0 100px #4a9bd726;
 		}
 	`);
 	// 获取所有 meta 标签并查找 `og:type`

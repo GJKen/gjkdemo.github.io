@@ -8,9 +8,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// 通用样式
 	applyStyles(`
-		html {
-			background: url('https://ipfs.decentralized-content.com/ipfs/QmQn8HcHeutmaH2qEbPK8PT6TXEpj58VizavBxanCiQcYv') no-repeat center center fixed;
-			background-size: cover;
+		/*:root{
+			--bgColor-default: rgb(255, 255, 255, 0.93);
+			--color-canvas-default: rgb(255, 255, 255, 0.93);
+		}*/
+		/*html {background: url('https://ipfs.decentralized-content.com/ipfs/QmQn8HcHeutmaH2qEbPK8PT6TXEpj58VizavBxanCiQcYv') center / cover no-repeat fixed;}*/
+		body {
+			max-width:1000px;
+			border-radius: 10px;
+			box-shadow: 0 0 100px #4a9bd726;
 		}
 	`);
 	// 获取所有 meta 标签并查找 `og:type`
@@ -28,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// 根据 `og:type` 的内容应用不同的样式
 	if (ogTypeContent === "blog") {
 		applyStyles(`
+			/* 主页-header样式 */
 			#header {
 				display: flex;
 				flex-direction: column;
@@ -52,6 +59,12 @@ document.addEventListener('DOMContentLoaded', function() {
 				transform: scale(1.5) rotate(720deg);
 				box-shadow: 0 0 10px rgb(45 250 255 / 74%);
 			}
+			/* 主页-文章列表样式 */
+			.SideNav.border{
+				border-radius: 10px;
+				min-width: unset;
+			}
+			.SideNav-item:last-child{box-shadow: unset;}
 		`);
 	} else if (ogTypeContent === "article") {
 		applyStyles(`
