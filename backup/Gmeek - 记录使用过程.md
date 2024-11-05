@@ -7,7 +7,7 @@
 > 利用 Github Page 搭建的网站内容是完全公开的, 请注意不要上传自己的隐私!!!
 
 # Config.json 小妙用
-## subTitle
+## subTitle - js插入
 代码:
 ```json
 "subTitle":"<script>document.getElementById('content').innerHTML = `<div style='text-align: center;'><p>CV工程师,</p><p>一个又菜又爱玩, 喜欢瞎折腾的流浪者.</p></div>`;</script>",
@@ -18,7 +18,15 @@
 
 从图中可以看到, 可用js插入html实现修改文字
 
+## subTitle - 隐藏
 
+"subTitle":" ",
+
+效果图:
+
+`Gmeek-html<img src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy">`
+
+可以用空白字符的方式, 隐藏subTitle必须字段, 无需使用js隐藏
 
 # 记录功能块代码
 

@@ -19,7 +19,7 @@
 > 利用 Github Page 搭建的网站内容是完全公开的, 请注意不要上传自己的隐私!!!
 
 # Config.json 小妙用
-## subTitle
+## subTitle - js插入
 代码:
 ```json
 'subTitle':'<script>document.getElementById('content').innerHTML = `<div style='text-align: center;'><p>CV工程师,</p><p>一个又菜又爱玩, 喜欢瞎折腾的流浪者.</p></div>`;</script>',
@@ -30,7 +30,15 @@
 
 从图中可以看到, 可用js插入html实现修改文字
 
+## subTitle - 隐藏
 
+'subTitle':' ',
+
+效果图:
+
+`Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'>`
+
+可以用空白字符的方式, 隐藏subTitle必须字段, 无需使用js隐藏
 
 # 记录功能块代码
 
@@ -79,7 +87,7 @@ Github在issues插入的图片也会自动转换为github的地址.
 > 利用 Github Page 搭建的网站内容是完全公开的, 请注意不要上传自己的隐私!!!
 
 # Config.json 小妙用
-## subTitle
+## subTitle - js插入
 代码:
 ```json
 'subTitle':'<script>document.getElementById('content').innerHTML = `<div style='text-align: center;'><p>CV工程师,</p><p>一个又菜又爱玩, 喜欢瞎折腾的流浪者.</p></div>`;</script>',
@@ -90,7 +98,15 @@ Github在issues插入的图片也会自动转换为github的地址.
 
 从图中可以看到, 可用js插入html实现修改文字
 
+## subTitle - 隐藏
 
+'subTitle':' ',
+
+效果图:
+
+`Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'>`
+
+可以用空白字符的方式, 隐藏subTitle必须字段, 无需使用js隐藏
 
 # 记录功能块代码
 
@@ -206,12 +222,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title"><svg class="octicon octicon-alert mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p><p>利用 Github Page 搭建的网站内容是完全公开的, 请注意不要上传自己的隐私!!!</p>
 </div>
 <h1>Config.json 小妙用</h1>
-<h2>subTitle</h2>
+<h2>subTitle - js插入</h2>
 <p>代码:</p>
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"subTitle"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script&gt;document.getElementById('content').innerHTML = `&lt;div style='text-align: center;'&gt;&lt;p&gt;CV工程师,&lt;/p&gt;&lt;p&gt;一个又菜又爱玩, 喜欢瞎折腾的流浪者.&lt;/p&gt;&lt;/div&gt;`;&lt;/script&gt;<span class="pl-pds">"</span></span>,</pre></div>
 <p>效果图:</p>
 <p><img src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
 <p>从图中可以看到, 可用js插入html实现修改文字</p>
+<h2>subTitle - 隐藏</h2>
+<p>"subTitle":" ",</p>
+<p>效果图:</p>
+<p><img src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"></p>
+<p>可以用空白字符的方式, 隐藏subTitle必须字段, 无需使用js隐藏</p>
 <h1>记录功能块代码</h1>
 <p>代码摘抄自网络, 有删改</p>
 <h2>ArticleToc.js - 文章增加目录列表+一键返回顶部按钮</h2>
