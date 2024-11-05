@@ -41,11 +41,22 @@
 
 `Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1">`
 
+## lightbox-gjken.js - 灯箱
+
+可以放大浏览文章中的图片, 适合一些图片较多的文章.
+
+> 来源: [Github](https://github.com/tiengming/tiengming.github.io)
+修改-增加图片拖动, ~~代码能力实在是太菜了,写的有点问题~~
+
 ## ImgLazyLoad.js - 图片懒加载
+
+未实际测试过
 
 > 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
 
 ## NumPagination.js - 主页添加数字分页条
+
+未实际测试过
 
 > 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
 
