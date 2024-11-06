@@ -5454,11 +5454,10 @@
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
-	--body-bgColor: #000000bf;
+	--body-bgColor: #000000eb;
 	--body-shadow-color: #52afff3d;
 	--markdown-code-color: #3bf6ff52;
 	--SideNav-bgColor: #ffffff21;
-	--markdown-img-bgshadowColor: #fff;
 	--title-right-btnbg-color: #46ffff61;
 	--color-canvas-default-transparent: rgba(13, 17, 23, 0);
 	--color-page-header-bg: #0d1117;
@@ -16257,7 +16256,9 @@ input.FormControl-radio[type=radio]:focus-visible {
 	--markdown-code-color: #4d4d4d38;
 	--title-right-btnbg-color: #46ffff61;
 	--SideNav-bgColor: #ffffff99;
-	--SideNav-hover-bgColor: #6ec3ff52
+	--SideNav-hover-bgColor: #6ec3ff52;
+	--markdown-imgShadow-light: 0 4px 8px 0 rgb(0 0 0 / 12%), 0 6px 20px 0 rgb(0 0 0 / 15%);
+	--markdown-imgShadow-dark: 0 4px 8px 0 rgb(255 255 255 / 15%), 0 6px 20px 0 rgb(255 255 255 / 20%);
 }
 
 .PageLayout {
@@ -27482,7 +27483,15 @@ a.branch-name .octicon {
 .markdown-body img {
 	max-width: 100%;
 	box-sizing: content-box;
-	box-shadow: 0 0 100px var(--markdown-img-bgshadowColor);
+	box-shadow: var(--markdown-imgShadow-light)
+}
+
+@media(prefers-color-scheme: dark) {
+	[data-color-mode=dark]{
+		.markdown-body img {
+			box-shadow: 0 4px 8px 0 rgb(255 255 255 / 15%), 0 6px 20px 0 rgb(255 255 255 / 20%) !important;
+		}
+	}
 }
 
 .markdown-body img[align=right] {
