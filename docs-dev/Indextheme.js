@@ -8,26 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// 通用样式
 	applyStyles(`
-		/*:root{
-			--bgColor-default: rgb(255, 255, 255, 0.93);
-			--color-canvas-default: rgb(255, 255, 255, 0.93);
-		}*/
-		/*html {background: url('https://ipfs.decentralized-content.com/ipfs/QmQn8HcHeutmaH2qEbPK8PT6TXEpj58VizavBxanCiQcYv') center / cover no-repeat fixed;}*/
+		html {background: url('https://ipfs.decentralized-content.com/ipfs/QmQn8HcHeutmaH2qEbPK8PT6TXEpj58VizavBxanCiQcYv') center / cover no-repeat fixed;}
 		body {
 			max-width:1000px;
-			border-radius: 10px;
-			box-shadow: 0 0 100px #4a9bd726;
-		}
-		/* 优化header样式 */
-		#header {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			gap: 10px;
-			padding: 15px 0;
-		}
-		.title-right,.title-right .circle{
-			margin:unset;
 		}
 	`);
 	// 获取所有 meta 标签并查找 `og:type`
@@ -40,33 +23,5 @@ document.addEventListener('DOMContentLoaded', function() {
 			console.log("[Indextheme] 找到的 ogTypeContent 值为: " + ogTypeContent);
 			break;
 		}
-	}
-
-	// 根据 `og:type` 的内容应用不同的样式
-	if (ogTypeContent === "blog") {
-		applyStyles(`
-			#header h1{
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 15px;
-			}
-			#header h1 a{
-				margin:unset;
-			}
-			.avatar:hover {
-				transform: scale(1.5) rotate(720deg);
-				box-shadow: 0 0 10px rgb(45 250 255 / 74%);
-			}
-			/* 主页-文章列表样式 */
-			.SideNav.border{
-				border-radius: 10px;
-				min-width: unset;
-			}
-			.SideNav-item:last-child{box-shadow: unset;}
-		`);
-	} else {
-		console.log("[Indextheme] 未找到特定页面");
-		console.log("[Indextheme] 当前 ogTypeContent 值是: " + ogTypeContent);
 	}
 })
