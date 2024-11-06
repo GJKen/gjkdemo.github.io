@@ -58,9 +58,14 @@
 
 未实际测试过
 
+# primer.css - 修改网站样式
+
+这个文件用来控制网站的整体样式, 由于改动很多就不展示了
+放入了我的仓库primer.css, 并通过
+
 > 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
 
-# 插入图片优化小细节
+# 使用Gmeek-html自定义标签, 给博客插入图片, 防止链接自动转换
 Github在issues插入的图片也会自动转换为github的地址.
 为了文章的多样性, 在Gmeek的 `v2.19` 版本中添加了支持 html 标签的功能.
 示例代码:
