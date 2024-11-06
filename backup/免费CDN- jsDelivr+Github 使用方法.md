@@ -14,8 +14,7 @@
 `Gmeek-html<img src="https://i-blog.csdnimg.cn/blog_migrate/8f0f8725b4bfbbb54aedee44e93f1a9f.png;">`
 
 # 使用方法
-例如, 你可能有一个名为 project 的 GitHub 仓库, 里面有一个 static 文件夹, 存储了一些文件.
-
+例如:
 `https://cdn.jsdelivr.net/gh/[GitHub用户名]/[仓库名]@[标签或分支]/[文件路径]`
 https://cdn.jsdelivr.net/gh/gjken/gjken.github.io/static/primer.min.css
 
