@@ -16,18 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		body {
 			max-width:1000px;
 			border-radius: 10px;
-			box-shadow: 0 0 100px #4a9bd726;
-		}
-		/* 优化header样式 */
-		#header {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			gap: 10px;
-			padding: 15px 0;
-		}
-		.title-right,.title-right .circle{
-			margin:unset;
+			box-shadow: 0 0 100px #0000001c;
 		}
 	`);
 	// 获取所有 meta 标签并查找 `og:type`
@@ -45,6 +34,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	// 根据 `og:type` 的内容应用不同的样式
 	if (ogTypeContent === "blog") {
 		applyStyles(`
+			/* 主页-header样式 */
+			#header {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 10px;
+				padding: 15px 0;
+			}
 			#header h1{
 				display: flex;
 				flex-direction: column;
@@ -53,6 +50,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 			#header h1 a{
 				margin:unset;
+			}
+			.title-right{
+				margin:unset;
+				
 			}
 			.avatar:hover {
 				transform: scale(1.5) rotate(720deg);
@@ -64,6 +65,16 @@ document.addEventListener('DOMContentLoaded', function() {
 				min-width: unset;
 			}
 			.SideNav-item:last-child{box-shadow: unset;}
+		`);
+	} else if (ogTypeContent === "article") {
+		applyStyles(`
+			#header {
+				display: flex;
+				flex-direction: row;
+				align-items: flex-start;
+				gap: 30px;
+				padding: 25px 10px;
+			}
 		`);
 	} else {
 		console.log("[Indextheme] 未找到特定页面");
