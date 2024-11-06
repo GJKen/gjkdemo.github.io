@@ -65,16 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 			.SideNav-item:last-child{box-shadow: unset;}
 		`);
-	} else if (ogTypeContent === "article") {
-		applyStyles(`
-			#header {
-				display: flex;
-				flex-direction: row;
-				align-items: flex-start;
-				gap: 30px;
-				padding: 25px 10px;
-			}
-		`);
 	} else {
 		console.log("[Indextheme] 未找到特定页面");
 		console.log("[Indextheme] 当前 ogTypeContent 值是: " + ogTypeContent);
