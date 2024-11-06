@@ -11,15 +11,9 @@
     "exlink":{"TG群":"https://t.me/GJK_chat"},
     "urlMode":"issue",
     "bottomText":"🥰转载请注明,谢谢!🥰",
-<<<<<<< HEAD
     "script":"<script src='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@main/static/ImgLazyLoad.min.js'></script><script src='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@main/static/lightbox-gjken.min.js'></script>",
     "indexScript":"<script src='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@main/static/NumPagination.js'></script>",
     "allHead":"<script src='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@main/static/Indextheme.min.js'></script><script src='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@main/static/GmeekVercount_uv.min.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script>",
-=======
-    "script":"<script src='https://gjken.github.io/gjkdemo.github.io/ArticleToc.main.js'></script><script src='https://gjken.github.io/gjkdemo.github.io/lightbox-gjken.main.js'></script>",
-    "indexScript":"<script src='https://gjken.github.io/gjkdemo.github.io/NumPagination.js'></script>",
-    "allHead":"<script src='https://gjken.github.io/gjkdemo.github.io/Indextheme.main.js'></script><script src='https://gjken.github.io/gjkdemo.github.io/GmeekVercount_uv.main.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script>",
->>>>>>> 81cb532fb056a56996fa174169325cb6aded4c54
     "primerCSS":"<link href='https://cdnjs.cloudflare.com/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />",
     "GMEEK_VERSION":"last"
 }
