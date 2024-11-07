@@ -48,6 +48,15 @@
 > 来源: [Github](https://github.com/tiengming/tiengming.github.io)
 修改-增加图片拖动, ~~代码能力实在是太菜了,写的有点问题~~
 
+## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
+> Vercount [Github](https://github.com/EvanNotFound/vercount)
+> pv修改成uv计数
+
+建议放入 `allHead` 里全站添加js
+```json
+"allHead":"<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script>"
+```
+
 ## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
 
 未实际测试过
@@ -55,6 +64,7 @@
 > 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
 
 ## [NumPagination.js](https://github.com/GJKen/gjken.github.io/blob/main/static/NumPagination.js) - 主页添加数字分页条
+> 来源 [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
 
 未实际测试过
 
@@ -91,5 +101,3 @@ Github在issues插入的图片也会自动转换为github的地址.
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次Actions的时间
-
-
