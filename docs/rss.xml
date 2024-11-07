@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>GJKen</title><link>https://GJKen.github.io/gjkdemo.github.io</link><description> </description><copyright>GJKen</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://ipfs.mbzj.org/ipfs/QmNxVNBanHixYmaMsLHZjuxBUyW4dasM12E5KGUpYPDVPH</url><title>avatar</title><link>https://GJKen.github.io/gjkdemo.github.io</link></image><lastBuildDate>Thu, 07 Nov 2024 01:55:18 +0000</lastBuildDate><managingEditor>GJKen</managingEditor><ttl>60</ttl><webMaster>GJKen</webMaster><item><title>免费CDN: jsDelivr+Github 使用方法</title><link>https://GJKen.github.io/gjkdemo.github.io/post/3.html</link><description># jsDelivr 官网&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>GJKen</title><link>https://GJKen.github.io/gjkdemo.github.io</link><description> </description><copyright>GJKen</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://ipfs.mbzj.org/ipfs/QmNxVNBanHixYmaMsLHZjuxBUyW4dasM12E5KGUpYPDVPH</url><title>avatar</title><link>https://GJKen.github.io/gjkdemo.github.io</link></image><lastBuildDate>Thu, 07 Nov 2024 02:22:57 +0000</lastBuildDate><managingEditor>GJKen</managingEditor><ttl>60</ttl><webMaster>GJKen</webMaster><item><title>免费CDN: jsDelivr+Github 使用方法</title><link>https://GJKen.github.io/gjkdemo.github.io/post/3.html</link><description># jsDelivr 官网&#13;
 &gt; https://www.jsdelivr.com&#13;
 &#13;
 # 先决条件&#13;
@@ -8,11 +8,11 @@
 # 创建版本号&#13;
 进入仓库点击releases&#13;
 &#13;
-`Gmeek-html&lt;img src='https://i-blog.csdnimg.cn/blog_migrate/892df7caefcecddf3e6b2f3bf82fc04c.png;'&gt;`&#13;
+`Gmeek-html&lt;img src='https://i-blog.csdnimg.cn/blog_migrate/892df7caefcecddf3e6b2f3bf82fc04c.png'&gt;`&#13;
 &#13;
-`Gmeek-html&lt;img src='https://i-blog.csdnimg.cn/blog_migrate/794fb441ed73a15334e6865d29e5e328.png;'&gt;`&#13;
+`Gmeek-html&lt;img src='https://i-blog.csdnimg.cn/blog_migrate/794fb441ed73a15334e6865d29e5e328.png'&gt;`&#13;
 &#13;
-`Gmeek-html&lt;img src='https://i-blog.csdnimg.cn/blog_migrate/8f0f8725b4bfbbb54aedee44e93f1a9f.png;'&gt;`&#13;
+`Gmeek-html&lt;img src='https://i-blog.csdnimg.cn/blog_migrate/8f0f8725b4bfbbb54aedee44e93f1a9f.png'&gt;`&#13;
 &#13;
 # 使用方法&#13;
 例如:&#13;
