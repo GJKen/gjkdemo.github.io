@@ -7,7 +7,7 @@
 # 创建版本号
 进入仓库点击releases
 
-`Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmSizFgiHSnQR9p3jSAGYjFxMnX5692dDooLyh3jFnsEP8">`
+`Gmeek-html<img src="https://i0.img2ipfs.com/ipfs/QmU1czFFqTS8kx6nkc52dxxdJHw3ASpeGGHCYmUgRxcBxM">`
 
 `Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmcPKqqhyTPZrsbvDW5KcibNfEFN55t6yecS71yAL8Nh7F">`
 
