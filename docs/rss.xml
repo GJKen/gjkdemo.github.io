@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>GJKen</title><link>https://GJKen.github.io/gjkdemo.github.io</link><description> </description><copyright>GJKen</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://ipfs.mbzj.org/ipfs/QmWdwjYEWh1CfZe7NtbJcBp658tWbs7PqeaxgLh46NwxRZ</url><title>avatar</title><link>https://GJKen.github.io/gjkdemo.github.io</link></image><lastBuildDate>Thu, 07 Nov 2024 03:37:36 +0000</lastBuildDate><managingEditor>GJKen</managingEditor><ttl>60</ttl><webMaster>GJKen</webMaster><item><title>免费CDN: jsDelivr+Github 使用方法</title><link>https://GJKen.github.io/gjkdemo.github.io/post/3.html</link><description># jsDelivr 官网&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>GJKen</title><link>https://GJKen.github.io/gjkdemo.github.io</link><description> </description><copyright>GJKen</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://ipfs.mbzj.org/ipfs/QmWdwjYEWh1CfZe7NtbJcBp658tWbs7PqeaxgLh46NwxRZ</url><title>avatar</title><link>https://GJKen.github.io/gjkdemo.github.io</link></image><lastBuildDate>Thu, 07 Nov 2024 07:52:27 +0000</lastBuildDate><managingEditor>GJKen</managingEditor><ttl>60</ttl><webMaster>GJKen</webMaster><item><title>免费CDN: jsDelivr+Github 使用方法</title><link>https://GJKen.github.io/gjkdemo.github.io/post/3.html</link><description># jsDelivr 官网&#13;
 &gt; https://www.jsdelivr.com&#13;
 &#13;
 # 先决条件&#13;
@@ -19,8 +19,8 @@
 `https://cdn.jsdelivr.net/gh/[GitHub用户名]/[仓库名]@[标签或分支]/[文件路径]`&#13;
 https://cdn.jsdelivr.net/gh/gjken/gjken.github.io/static/primer.min.css&#13;
 &#13;
-| 字段 | 对应&#13;
-|-|-|&#13;
+| Key | Value&#13;
+|-|-&#13;
 [GitHub用户名] | 写你的 GitHub 用户名&#13;
 [仓库名] | 写你的 GitHub 仓库名称&#13;
 [标签或分支] | 例如 `https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js`&lt;br&gt;都不写默认访问最新版本.&lt;/br&gt;&#13;
