@@ -20,7 +20,7 @@ https://cdn.jsdelivr.net/gh/gjken/gjken.github.io/static/primer.min.css
 
 | 字段 | 对应
 |-|-|
-[GitHub用户名] | 对应你的 GitHub 用户名
-[仓库名] | 对应你的 GitHub 仓库名称
-[标签或分支] | GitHub 标签或分支, 例如 `https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js`<br>都不写默认访问最新版本.</br>
-[文件路径] | 对应你的 GitHub 仓库文件路径
+[GitHub用户名] | 写你的 GitHub 用户名
+[仓库名] | 写你的 GitHub 仓库名称
+[标签或分支] | 例如 `https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js`<br>都不写默认访问最新版本.</br>
+[文件路径] | 写你的 GitHub 仓库文件路径
