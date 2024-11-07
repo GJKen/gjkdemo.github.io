@@ -30,9 +30,9 @@
 
 # 记录功能块代码
 
-代码摘抄自网络, 有删改
+代码摘抄自网络, 有删改, 基本上都存放在仓库
 
-## ArticleToc.js - 文章增加目录列表+一键返回顶部按钮
+## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
 > 来源: [Github](https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file)
 修改-切换博客主题时颜色不一致
@@ -41,27 +41,27 @@
 
 `Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1">`
 
-## lightbox-gjken.js - 灯箱
+## [lightbox-gjken.js](https://github.com/GJKen/gjken.github.io/blob/main/static/lightbox-gjken.js) - 灯箱
 
 可以放大浏览文章中的图片, 适合一些图片较多的文章.
 
 > 来源: [Github](https://github.com/tiengming/tiengming.github.io)
 修改-增加图片拖动, ~~代码能力实在是太菜了,写的有点问题~~
 
-## ImgLazyLoad.js - 图片懒加载
+## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
 
 未实际测试过
 
 > 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
 
-## NumPagination.js - 主页添加数字分页条
+## [NumPagination.js](https://github.com/GJKen/gjken.github.io/blob/main/static/NumPagination.js) - 主页添加数字分页条
 
 未实际测试过
 
-# primer.css - 修改网站样式
+## [primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css) - 修改网站样式
 
 这个文件用来控制网站的整体样式, 由于改动很多就不展示了
-放入了我的仓库[primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css)
+放入了我的仓库
 并使用 jsdelivr CDN 加速
 
 # 使用Gmeek-html自定义标签, 给博客插入图片, 防止链接自动转换
