@@ -4,8 +4,10 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@main/static/primer.min.css' rel='stylesheet' />
-    <script src='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@main/static/Indextheme.min.js'></script><script src='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@main/static/GmeekVercount_uv.min.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script>
+    <link href='../primer.css' rel='stylesheet' />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/2Indextheme.min.js'></script><script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script>
     <link rel="icon" href="https://ipfs.mbzj.org/ipfs/QmRtULS1Gmf3Phh84o9SVWhdc52AuJJ2NA24zMiFMeqdpf"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
@@ -70,9 +72,14 @@
 
 未实际测试过
 
-> 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
+# primer.css - 修改网站样式
 
-# 插入图片优化小细节
+这个文件用来控制网站的整体样式, 由于改动很多就不展示了
+放入了我的仓库[primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css)
+并使用 jsdelivr CDN 加速
+
+# 使用Gmeek-html自定义标签, 给博客插入图片, 防止链接自动转换
+
 Github在issues插入的图片也会自动转换为github的地址.
 为了文章的多样性, 在Gmeek的 `v2.19` 版本中添加了支持 html 标签的功能.
 示例代码:
@@ -149,9 +156,14 @@ Github在issues插入的图片也会自动转换为github的地址.
 
 未实际测试过
 
-> 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
+# primer.css - 修改网站样式
 
-# 插入图片优化小细节
+这个文件用来控制网站的整体样式, 由于改动很多就不展示了
+放入了我的仓库[primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css)
+并使用 jsdelivr CDN 加速
+
+# 使用Gmeek-html自定义标签, 给博客插入图片, 防止链接自动转换
+
 Github在issues插入的图片也会自动转换为github的地址.
 为了文章的多样性, 在Gmeek的 `v2.19` 版本中添加了支持 html 标签的功能.
 示例代码:
@@ -277,10 +289,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </blockquote>
 <h2>NumPagination.js - 主页添加数字分页条</h2>
 <p>未实际测试过</p>
-<blockquote>
-<p>来源: <a href="https://github.com/liyifanniubi/liyifanniubi.github.io">Github</a></p>
-</blockquote>
-<h1>插入图片优化小细节</h1>
+<h1>primer.css - 修改网站样式</h1>
+<p>这个文件用来控制网站的整体样式, 由于改动很多就不展示了<br>
+放入了我的仓库<a href="https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css">primer.css</a><br>
+并使用 jsdelivr CDN 加速</p>
+<h1>使用Gmeek-html自定义标签, 给博客插入图片, 防止链接自动转换</h1>
 <p>Github在issues插入的图片也会自动转换为github的地址.<br>
 为了文章的多样性, 在Gmeek的 <code class="notranslate">v2.19</code> 版本中添加了支持 html 标签的功能.<br>
 示例代码:</p>
@@ -461,6 +474,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script src='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@main/static/lightbox-gjken.min.js'></script>
+<script src='./ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/lightbox-gjken.min.js'></script>
 
 </html>

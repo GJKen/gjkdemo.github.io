@@ -2,7 +2,7 @@
     "title":"GJKen",
     "subTitle":" ",
     "displayTitle":"GJKen",
-    "avatarUrl":"https://ipfs.mbzj.org/ipfs/QmNxVNBanHixYmaMsLHZjuxBUyW4dasM12E5KGUpYPDVPH",
+    "avatarUrl":"https://ipfs.mbzj.org/ipfs/QmWdwjYEWh1CfZe7NtbJcBp658tWbs7PqeaxgLh46NwxRZ",
     "faviconUrl":"https://ipfs.mbzj.org/ipfs/QmRtULS1Gmf3Phh84o9SVWhdc52AuJJ2NA24zMiFMeqdpf",
     "startSite":"11/01/2024",
     "onePageListNum":15,
@@ -12,7 +12,7 @@
     "urlMode":"issue",
     "bottomText":"🥰转载请注明,谢谢!🥰",
     "script":"<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/lightbox-gjken.min.js'></script>",
-    "indexScript":"<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/NumPagination.js'></script>",
+    "indexScript":"<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/NumPagination.min.js'></script>",
     "allHead":"<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/Indextheme.min.js'></script><script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script>",
     "primerCSS":"<link href='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/primer.min.css' rel='stylesheet' />",
     "GMEEK_VERSION":"last"
