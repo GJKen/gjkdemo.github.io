@@ -1,0 +1,13 @@
+{
+  "name": "gjkdemo.github.io",
+  "version": "1.0.0",
+  "description": "A demo repository for hosting static files",
+  "main": "static/lightbox-gjken.min2.js",
+  "keywords": ["viewer", "lightbox", "demo"],
+  "author": "gjken",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gjken/gjkdemo.github.io.git"
+  }
+}
