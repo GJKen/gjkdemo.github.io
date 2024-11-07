@@ -59,9 +59,9 @@
 
 ## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
 
-未实际测试过
-
 > 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
+
+未实际测试过
 
 ## [NumPagination.js](https://github.com/GJKen/gjken.github.io/blob/main/static/NumPagination.js) - 主页添加数字分页条
 > 来源 [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
