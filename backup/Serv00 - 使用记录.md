@@ -56,14 +56,14 @@ mkdir -p ~/domains/alist && cd ~/domains/alist && curl -L -o alist.tar.gz https:
 ```
 
 ### 第一次启动Alist生成配置文件
-然后需要先启动一次 Alist 让它生成配置文件，此次启动一定会失败，请不用在意：
+然后需要先启动一次 Alist 让它生成配置文件, 此次启动一定会失败, 请不用在意：
 
 ```bash
 ./alist server
 ```
 
 ### 创建Alist所需数据库
-回到 Panel 面板，找到 MySQL 选项卡，使用 Add database 功能新建一个数据库：
+回到 Panel 面板, 找到 MySQL 选项卡, 使用 Add database 功能新建一个数据库：
 
 `Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r">`
 
@@ -80,8 +80,7 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 我主要修改了`CDN` `database` `scheme`三个部分,
 
-`Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmXi3o5ViZPbK89z2bRmi71FVBvDPZaqFpXDEYy9jeH7j9">`
-
+`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/QmXLJa8YMr9KufMYVNQjVW1wXCjWmJ3Q9V1PqR5BRXHtHU">`
 <table>
   <tr>
     <td><p>CDN</p></td>
@@ -125,7 +124,10 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
   </tr>
 </table>
 
-改完之后，点击save保存，接着回到SSH窗口中进行操作。
+改完之后, 点击save保存
+
+### 再次启动Alist
+回到SSH窗口中进行操作.
 
 ```bash
 ./alist server
@@ -133,5 +135,19 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 `Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmYL72sd2Wyb5C6WrJe6G7w1NvAdpqXiUwFWUEm6FCSGxt">`
 
-运行正常，记得把管理员用户的密码记住。接着使用Ctrl+c停止运行。
+运行正常, 记得把管理员用户的密码记住.接着使用Ctrl+c停止运行.
 
+### 使用 Cloudflare 和域名绑定
+
+> 因为 serv00 的域名基本上都会被墙, 没办法只能用~~cf减速器~~跨墙了
+
+我们进入 https://dash.cloudflare.com
+
+`Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD">`
+
+
+### 收尾工作
+
+Serv00会不定时杀进程, 我们需要
+
+Serv00会不定时杀进程, 所以我们把pm2添加开机自启, 可以保证每次重启都能由pm2调动Alist和Cloudflared.而且Serv00每三个月内必须要有一次登录面板或者SSH连接, 不然会删号, 也可以通过一个脚本解决问题, 接下来我会详细说明.
