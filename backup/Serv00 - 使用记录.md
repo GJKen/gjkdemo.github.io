@@ -1,4 +1,4 @@
-# 注册serv00
+# 注册Serv00
 注册没什么好说的, gmail+干净一点的ip基本上都可以成功, 这里不多做展开.
 收不到邮件信息的估计是邮箱问题.比如 https://mail.proton.me
 
@@ -21,10 +21,10 @@
 
 ### 创建网站
 
-这里可以用自己的域名或者用serv00的域名.
-serv00的域名一般是`USERNAME.serv00.net`, 这个域名账号创建好之后默认就有, 可以删除后再手动创建, 再按照下图创建网站.
+> Serv00 账号创建好之后默认就有一个网站, 一般是`USERNAME.serv00.net`, 可以随意删除.
 
-这里我写的是自己的域名, 后续可以通过自定义域名访问.
+这里可以用自己的域名或者用 Serv00 的域名.
+下图我写的是自己的域名, 后续可以通过自定义域名访问.
 
 `Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC">`
 
@@ -47,9 +47,10 @@ serv00的域名一般是`USERNAME.serv00.net`, 这个域名账号创建好之后
 > [!TIP]
 > Alist 官方在 24年8月17日, 增加了 [beta](https://github.com/AlistGo/alist/releases/tag/beta) 版本, 支持 FreeBSD 系统下能够运行的 Alist 可执行文件🎉
 
-Serv00本身提供的网站托管在 `~/domains` 路径下, 所以我建议把Alist也部署到这个路径下的子目录.
+Serv00 本身提供的网站托管在 `~/domains` 路径下, 所以我建议把 Alist 也部署到这个路径下的子目录.
 
-一键创建目录并下载 Alist, 增加执行权限, 复制到终端粘贴使用
+复制到终端粘贴使用:
+> 一键创建目录并下载 Alist, 增加执行权限
 
 ```bash
 mkdir -p ~/domains/alist && cd ~/domains/alist && curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz && tar -xzf alist.tar.gz && chomd +x alist
@@ -76,7 +77,7 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 `Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmXmXQRv5AfHqy2sRYS4dNCPQL2xPiGfaGtgTJjwGsX5Et">`
 
-我们需要双击编辑这个`config.json`文件.
+双击编辑这个`config.json`文件.
 
 我主要修改了`CDN` `database` `scheme`三个部分,
 
@@ -142,9 +143,30 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 > 因为 serv00 的域名基本上都会被墙, 没办法只能用~~cf减速器~~跨墙了
 
 我们进入 https://dash.cloudflare.com
+点击添加域
 
 `Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD">`
 
+输入自己的域名
+
+`Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmWEwsF7kjqWYZET8AbyPbVizciT3pLDbi6Pjm4xkYZvCS">`
+
+选择 free 计划
+
+`Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmeYbZ48awUqAPApdLrRckVqbtLB71XWTpCafpHCwE2hHG">`
+
+复制 dns 名称服务器
+
+`Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmakCvRG52FLk2NV1XFjmWmz5LZuhPg3oD2SdiTunQH8TU">`
+
+然后转到你的域名提供服务商, 添加dns记录
+`Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a">`
+
+如果没问题就可以通过自定义域名访问了
+
+### Alist 保活
+
+11
 
 ### 收尾工作
 
