@@ -68,11 +68,53 @@
 
 未实际测试过
 
-## [primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css) - 修改网站样式
-
-这个文件用来控制网站的整体样式, 由于改动很多就不展示了
-放入了我的仓库
+# 修改网站样式
+[primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css)
+这个文件用来控制网站的整体样式, 存放在我的git仓库,
 并使用 jsdelivr CDN 加速
+
+## 修改 a 标签链接的样式
+修改 dark 主题下的链接颜色, 去掉原下划线, 增加下划线动画
+
+<details><summary>修改前</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--color-accent-fg: #2f81f7;
+}
+a {
+	background-color: rgba(0, 0, 0, 0)
+}
+a:hover {
+	text-decoration: underline
+}
+```
+</details>
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--color-accent-fg: #20d4ff;
+}
+a {
+	text-decoration: none !important;
+	background: #0000;
+	background: linear-gradient(#90d1ff, #90d1ff) no-repeat left bottom;
+	background-size: 0 2px;
+	-webkit-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+}
+a:hover{
+	background-size: 100% 2px;
+}
+```
+</details>
 
 # 使用Gmeek-html自定义标签, 给博客插入图片, 防止链接自动转换
 

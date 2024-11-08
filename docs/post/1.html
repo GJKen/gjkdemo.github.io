@@ -80,11 +80,53 @@
 
 未实际测试过
 
-## [primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css) - 修改网站样式
-
-这个文件用来控制网站的整体样式, 由于改动很多就不展示了
-放入了我的仓库
+# 修改网站样式
+[primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css)
+这个文件用来控制网站的整体样式, 存放在我的git仓库,
 并使用 jsdelivr CDN 加速
+
+## 修改 a 标签链接的样式
+修改 dark 主题下的链接颜色, 去掉原下划线, 增加下划线动画
+
+<details><summary>修改前</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--color-accent-fg: #2f81f7;
+}
+a {
+	background-color: rgba(0, 0, 0, 0)
+}
+a:hover {
+	text-decoration: underline
+}
+```
+</details>
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--color-accent-fg: #20d4ff;
+}
+a {
+	text-decoration: none !important;
+	background: #0000;
+	background: linear-gradient(#90d1ff, #90d1ff) no-repeat left bottom;
+	background-size: 0 2px;
+	-webkit-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+}
+a:hover{
+	background-size: 100% 2px;
+}
+```
+</details>
 
 # 使用Gmeek-html自定义标签, 给博客插入图片, 防止链接自动转换
 
@@ -174,11 +216,53 @@ Github在issues插入的图片也会自动转换为github的地址.
 
 未实际测试过
 
-## [primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css) - 修改网站样式
-
-这个文件用来控制网站的整体样式, 由于改动很多就不展示了
-放入了我的仓库
+# 修改网站样式
+[primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css)
+这个文件用来控制网站的整体样式, 存放在我的git仓库,
 并使用 jsdelivr CDN 加速
+
+## 修改 a 标签链接的样式
+修改 dark 主题下的链接颜色, 去掉原下划线, 增加下划线动画
+
+<details><summary>修改前</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--color-accent-fg: #2f81f7;
+}
+a {
+	background-color: rgba(0, 0, 0, 0)
+}
+a:hover {
+	text-decoration: underline
+}
+```
+</details>
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--color-accent-fg: #20d4ff;
+}
+a {
+	text-decoration: none !important;
+	background: #0000;
+	background: linear-gradient(#90d1ff, #90d1ff) no-repeat left bottom;
+	background-size: 0 2px;
+	-webkit-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+}
+a:hover{
+	background-size: 100% 2px;
+}
+```
+</details>
 
 # 使用Gmeek-html自定义标签, 给博客插入图片, 防止链接自动转换
 
@@ -317,10 +401,45 @@ pv修改成uv计数</p>
 <p>来源 <a href="https://github.com/liyifanniubi/liyifanniubi.github.io">Github</a></p>
 </blockquote>
 <p>未实际测试过</p>
-<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css">primer.css</a> - 修改网站样式</h2>
-<p>这个文件用来控制网站的整体样式, 由于改动很多就不展示了<br>
-放入了我的仓库<br>
+<h1>修改网站样式</h1>
+<p><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css">primer.css</a><br>
+这个文件用来控制网站的整体样式, 存放在我的git仓库,<br>
 并使用 jsdelivr CDN 加速</p>
+<h2>修改 a 标签链接的样式</h2>
+<p>修改 dark 主题下的链接颜色, 去掉原下划线, 增加下划线动画</p>
+<details><summary>修改前</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+	<span class="pl-c1">--color-accent-fg</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>2f81f7</span>;
+}
+<span class="pl-ent">a</span> {
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">rgba</span>(<span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span>)
+}
+<span class="pl-ent">a</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> {
+	<span class="pl-c1">text-decoration</span><span class="pl-kos">:</span> underline
+}</pre></div>
+</details>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+	<span class="pl-c1">--color-accent-fg</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>20d4ff</span>;
+}
+<span class="pl-ent">a</span> {
+	<span class="pl-c1">text-decoration</span><span class="pl-kos">:</span> none <span class="pl-k">!important</span>;
+	<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>0000</span>;
+	<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">linear-gradient</span>(<span class="pl-pds"><span class="pl-kos">#</span>90d1ff</span><span class="pl-kos">,</span> <span class="pl-pds"><span class="pl-kos">#</span>90d1ff</span>) no-repeat left bottom;
+	<span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> all <span class="pl-c1">0.25<span class="pl-smi">s</span></span> ease;
+	<span class="pl-c1">transition</span><span class="pl-kos">:</span> all <span class="pl-c1">0.25<span class="pl-smi">s</span></span> ease;
+}
+<span class="pl-ent">a</span><span class="pl-kos">:</span><span class="pl-c1">hover</span>{
+	<span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;
+}</pre></div>
+</details>
 <h1>使用Gmeek-html自定义标签, 给博客插入图片, 防止链接自动转换</h1>
 <p>Github在issues插入的图片也会自动转换为github的地址.<br>
 为了文章的多样性, 在Gmeek的 <code class="notranslate">v2.19</code> 版本中添加了支持 html 标签的功能.<br>
@@ -502,6 +621,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/lightbox-gjken.min2.js'></script>
+<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/lightbox-gjken.min.js'></script>
 
 </html>
