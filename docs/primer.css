@@ -12516,18 +12516,19 @@ body {
 
 /* 优化header样式 */
 #header {
-	display: flex;
 	flex-direction: column !important;
 	align-items: center !important;
 	gap: 10px;
 	padding-bottom: 0 !important;
-	margin-bottom: 24px !important;
+	margin-bottom: 24px !important
 }
 
 /* 优化头像样式 */
 #header h1 {
 	display: flex;
-	gap: 15px;
+	flex-direction: column !important;
+	align-items: center !important;
+	gap: 15px
 }
 
 #header h1 a {

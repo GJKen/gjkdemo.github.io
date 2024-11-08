@@ -5770,7 +5770,7 @@
 	--color-neutral-emphasis: #6e7681;
 	--color-neutral-muted: rgba(110, 118, 129, 0.4);
 	--color-neutral-subtle: rgba(110, 118, 129, 0.1);
-	--color-accent-fg: #2f81f7;
+	--color-accent-fg: #20d4ff;
 	--color-accent-emphasis: #1f6feb;
 	--color-accent-muted: rgba(56, 139, 253, 0.4);
 	--color-accent-subtle: rgba(56, 139, 253, 0.1);
@@ -12338,7 +12338,12 @@ template,
 }
 
 a {
-	background-color: rgba(0, 0, 0, 0)
+	text-decoration: none !important;
+	background: #0000;
+	background: linear-gradient(#90d1ff, #90d1ff) no-repeat left bottom;
+	background-size: 0 2px;
+	-webkit-transition: all 0.25s ease;
+	transition: all 0.25s ease;
 }
 
 abbr[title] {
@@ -12517,18 +12522,19 @@ body {
 
 /* 优化header样式 */
 #header {
-	display: flex;
 	flex-direction: column !important;
 	align-items: center !important;
 	gap: 10px;
 	padding-bottom: 0 !important;
-	margin-bottom: 24px !important;
+	margin-bottom: 24px !important
 }
 
 /* 优化头像样式 */
 #header h1 {
 	display: flex;
-	gap: 15px;
+	flex-direction: column !important;
+	align-items: center !important;
+	gap: 15px
 }
 
 #header h1 a {
@@ -12553,8 +12559,8 @@ a {
 	text-decoration: none
 }
 
-a:hover {
-	text-decoration: underline
+.markdown-body a:hover {
+	background-size: 100% 2px;
 }
 
 b,
@@ -13408,7 +13414,13 @@ a.btn-primary:focus-visible {
 .btn-block {
 	display: block;
 	width: 100%;
-	text-align: center
+	text-align: center;
+	transition: all 0.25s;
+	top: 0;
+}
+
+.btn-block:active {
+	top: 4px;
 }
 
 .BtnGroup {
@@ -16259,6 +16271,7 @@ input.FormControl-radio[type=radio]:focus-visible {
 	--markdown-imgShadow-light: 0 4px 8px 0 rgb(0 0 0 / 12%), 0 6px 20px 0 rgb(0 0 0 / 15%);
 	/* --markdown-imgShadow-dark: 0 4px 8px 0 rgb(255 255 255 / 15%), 0 6px 20px 0 rgb(255 255 255 / 20%); 不知道怎么改 */
 	--markdown-h1-bgColor: #c8e5ff7a;
+	--a-Link-Color: blue;
 }
 
 .PageLayout {
@@ -27335,11 +27348,13 @@ a.branch-name .octicon {
 .markdown-body h2 {
 	font-size: 1.5em;
 	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
-	background: linear-gradient(45deg, black, transparent) no-repeat left bottom;
+	background: linear-gradient(45deg, #90d1ff, transparent) no-repeat left bottom;
 	background-size: 0 2px;
-	transition: .3s ease
+	-webkit-transition: all 0.25s ease;
+	transition: all 0.25s ease;
 }
-.markdown-body h2:hover{
+
+.markdown-body h2:hover {
 	background-size: 100% 2px;
 }
 
