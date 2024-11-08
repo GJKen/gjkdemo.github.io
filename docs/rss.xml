@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>GJKen</title><link>https://GJKen.github.io/gjkdemo.github.io</link><description> </description><copyright>GJKen</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://ipfs.mbzj.org/ipfs/QmWdwjYEWh1CfZe7NtbJcBp658tWbs7PqeaxgLh46NwxRZ</url><title>avatar</title><link>https://GJKen.github.io/gjkdemo.github.io</link></image><lastBuildDate>Thu, 07 Nov 2024 16:18:19 +0000</lastBuildDate><managingEditor>GJKen</managingEditor><ttl>60</ttl><webMaster>GJKen</webMaster><item><title>Serv00 - 使用记录</title><link>https://GJKen.github.io/gjkdemo.github.io/post/4.html</link><description># 注册serv00&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>GJKen</title><link>https://GJKen.github.io/gjkdemo.github.io</link><description> </description><copyright>GJKen</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://ipfs.mbzj.org/ipfs/QmWdwjYEWh1CfZe7NtbJcBp658tWbs7PqeaxgLh46NwxRZ</url><title>avatar</title><link>https://GJKen.github.io/gjkdemo.github.io</link></image><lastBuildDate>Fri, 08 Nov 2024 02:50:01 +0000</lastBuildDate><managingEditor>GJKen</managingEditor><ttl>60</ttl><webMaster>GJKen</webMaster><item><title>Serv00 - 使用记录</title><link>https://GJKen.github.io/gjkdemo.github.io/post/4.html</link><description># 注册serv00&#13;
 注册没什么好说的, gmail+干净一点的ip基本上都可以成功, 这里不多做展开.&#13;
 &#13;
 # 准备工作&#13;
@@ -29,7 +29,7 @@ serv00的域名一般是`USERNAME.serv00.net`, 这个域名账号创建好之后
 &#13;
 ![](https://ipfs.mbzj.org/ipfs/QmetkYuCRLDcUEGo2SGBs3YFqbDDGbr84SnViiqbrBeyMS)&#13;
 &#13;
-&gt; 其中26666这个端口是alist`config.json`里需要填写的端口, 后续会说到&#13;
+其中26666这个端口是 alist 服务的端口.&#13;
 &#13;
 ### 网站添加SSL证书&#13;
 站点创建完成后, 点击上方的 Manage SSL certificates&#13;

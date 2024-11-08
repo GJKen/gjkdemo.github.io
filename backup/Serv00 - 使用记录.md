@@ -28,7 +28,7 @@ serv00的域名一般是`USERNAME.serv00.net`, 这个域名账号创建好之后
 
 ![](https://ipfs.mbzj.org/ipfs/QmetkYuCRLDcUEGo2SGBs3YFqbDDGbr84SnViiqbrBeyMS)
 
-> 其中26666这个端口是alist`config.json`里需要填写的端口, 后续会说到
+其中26666这个端口是 alist 服务的端口.
 
 ### 网站添加SSL证书
 站点创建完成后, 点击上方的 Manage SSL certificates
