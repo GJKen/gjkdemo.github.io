@@ -8,8 +8,8 @@ var custompages = 0;
 //---------------------------------------------------------------------
 
 // XML文件路径
-//var xmlUrl = `${window.location.origin}/rss.xml`;
-var xmlUrl = `https://gjken.github.io/gjkdemo.github.io/rss.xml`;
+var xmlUrl = `${window.location.origin}/rss.xml`;
+//var xmlUrl = `https://gjken.github.io/gjkdemo.github.io/rss.xml`;
 
 // 获取当前页数
 function getCurrentPage() {
