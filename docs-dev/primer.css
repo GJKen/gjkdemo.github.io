@@ -5459,6 +5459,7 @@
 	--markdown-code-color: #3bf6ff52;
 	--SideNav-bgColor: #ffffff21;
 	--title-right-btnbg-color: #46ffff61;
+	--markdown-h1-bgColor: #7dc2ff7a;
 	--color-canvas-default-transparent: rgba(13, 17, 23, 0);
 	--color-page-header-bg: #0d1117;
 	--color-marketing-icon-primary: #79c0ff;
@@ -16256,7 +16257,8 @@ input.FormControl-radio[type=radio]:focus-visible {
 	--SideNav-bgColor: #ffffff99;
 	--SideNav-hover-bgColor: #6ec3ff52;
 	--markdown-imgShadow-light: 0 4px 8px 0 rgb(0 0 0 / 12%), 0 6px 20px 0 rgb(0 0 0 / 15%);
-	--markdown-imgShadow-dark: 0 4px 8px 0 rgb(255 255 255 / 15%), 0 6px 20px 0 rgb(255 255 255 / 20%);
+	/* --markdown-imgShadow-dark: 0 4px 8px 0 rgb(255 255 255 / 15%), 0 6px 20px 0 rgb(255 255 255 / 20%); 不知道怎么改 */
+	--markdown-h1-bgColor: #c8e5ff7a;
 }
 
 .PageLayout {
@@ -27271,6 +27273,7 @@ a.branch-name .octicon {
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
+	padding: .22em;
 	margin-top: 24px;
 	margin-bottom: 16px;
 	font-weight: var(--base-text-weight-semibold, 600);
@@ -27294,7 +27297,7 @@ a.branch-name .octicon {
 .markdown-body h4:hover .anchor,
 .markdown-body h5:hover .anchor,
 .markdown-body h6:hover .anchor {
-	text-decoration: none
+	text-decoration: none;
 }
 
 .markdown-body h1:hover .anchor .octicon-link,
@@ -27323,15 +27326,21 @@ a.branch-name .octicon {
 }
 
 .markdown-body h1 {
-	padding-bottom: .3em;
+	background: var(--markdown-h1-bgColor);
+	border-radius: 10px;
 	font-size: 2em;
-	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted))
+	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
 }
 
 .markdown-body h2 {
-	padding-bottom: .3em;
 	font-size: 1.5em;
-	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted))
+	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
+	background: linear-gradient(45deg, black, transparent) no-repeat left bottom;
+	background-size: 0 2px;
+	transition: .3s ease
+}
+.markdown-body h2:hover{
+	background-size: 100% 2px;
 }
 
 .markdown-body h3 {
@@ -27485,7 +27494,7 @@ a.branch-name .octicon {
 }
 
 @media(prefers-color-scheme: dark) {
-	[data-color-mode=dark]{
+	[data-color-mode=dark] {
 		.markdown-body img {
 			box-shadow: 0 4px 8px 0 rgb(255 255 255 / 15%), 0 6px 20px 0 rgb(255 255 255 / 20%) !important;
 		}
