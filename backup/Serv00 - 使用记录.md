@@ -78,4 +78,60 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 我们需要双击编辑这个`config.json`文件.
 
-我主要修改了`CDN` `database` `scheme`三个部分，其中 CDN 可以在 [Alist](https://alist.nn.ci/zh/config/configuration.html#cdn) 的官方文档找到，请选择你本地网络连接速度最快的一个。
+我主要修改了`CDN` `database` `scheme`三个部分,
+
+`Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmXi3o5ViZPbK89z2bRmi71FVBvDPZaqFpXDEYy9jeH7j9">`
+
+<table>
+  <tr>
+    <td><p>CDN</p></td>
+    <td colspan="2">
+      <p><span>可以在 <a href="https://alist.nn.ci/zh/config/configuration.html#cdn">Alist</a> 的官方文档找到, 请选择你本地网络连接速度最快的一个.</span></p>
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="6">database</td>
+    <td>type</td>
+    <td>因为我们创建的数据库类型是 mysql, 所以这里写<code class="notranslate">mysql</code>.</td>
+  </tr>
+  <tr>
+    <td>host</td>
+    <td>例如我的 serv00 是12, 就写<code class="notranslate">mysql12.serv00.com</code>, 自己看着写.</td>
+  </tr>
+  <tr>
+    <td>port</td>
+    <td>mysql 端口, 默认<code class="notranslate">3306</code>.</td>
+  </tr>
+  <tr>
+    <td>user</td>
+    <td>填写创建的数据库用户名</td>
+  </tr>
+  <tr>
+    <td>passdowd</td>
+    <td>填写创建的数据密码</td>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>填写创建的数据表名称</td>
+  </tr>
+  <tr>
+    <td rowspan="2">database</td>
+    <td>scheme</td>
+    <td>0.0.0.0</td>
+  </tr>
+  <tr>
+    <td>http_port</td>
+    <td>填写创建的端口</td>
+  </tr>
+</table>
+
+改完之后，点击save保存，接着回到SSH窗口中进行操作。
+
+```bash
+./alist server
+```
+
+`Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmYL72sd2Wyb5C6WrJe6G7w1NvAdpqXiUwFWUEm6FCSGxt">`
+
+运行正常，记得把管理员用户的密码记住。接着使用Ctrl+c停止运行。
+
