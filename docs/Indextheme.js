@@ -1,3 +1,4 @@
+// 此脚本用于直接检测不同博客页面修改css
 document.addEventListener('DOMContentLoaded', function() {
 	// 定义应用样式的函数
 	function applyStyles(styles) {
