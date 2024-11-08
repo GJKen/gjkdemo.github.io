@@ -19,7 +19,6 @@
 如下图所示, 必须要设置成如图所示的 Enabled.
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmUg8VV61q7DApUWcijdA1xdZar5wE5TUhcfMq5femCMYs'>`
-![](https://ipfs.mbzj.org/ipfs/QmUg8VV61q7DApUWcijdA1xdZar5wE5TUhcfMq5femCMYs)
 
 如果不开启这一项, 自己的用户目录下的所有文件都无法添加可执行权限.
 
@@ -31,7 +30,6 @@
 其中一个用来反代本地搭建 Alist 的端口, 这里我用26666
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmNSXAsz4QFnkTp3JRHGLuUJStNoPaK7yERRqPj9spXSc9'>`
-![](https://ipfs.mbzj.org/ipfs/QmNSXAsz4QFnkTp3JRHGLuUJStNoPaK7yERRqPj9spXSc9.jpg)
 
 ### 创建网站
 
@@ -41,7 +39,6 @@ serv00的域名一般是`USERNAME.serv00.net`, 这个域名账号创建好之后
 这里我写的是自己的域名, 后续可以通过自定义域名访问.
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC'>`
-![](https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC)
 
 其中26666这个端口是 alist 服务的端口.
 
@@ -49,17 +46,14 @@ serv00的域名一般是`USERNAME.serv00.net`, 这个域名账号创建好之后
 站点创建完成后, 点击上方的 Manage SSL certificates
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw'>`
-![](https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw)
 
 点击 Manage
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx'>`
-![](https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx)
 
 点击 Add certificate
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6'>`
-![](https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6)
 
 ### 安装Alist
 > [!TIP]
@@ -67,13 +61,36 @@ serv00的域名一般是`USERNAME.serv00.net`, 这个域名账号创建好之后
 
 Serv00本身提供的网站托管在 `~/domains` 路径下, 所以我建议把Alist也部署到这个路径下的子目录.
 
-下面的命令是创建`~/domain/alist`文件夹, 并切换到创建的目录同时下载 `alist-freebsd` 版本的文件, 解压缩后给alist二进制增加执行权限
+一键创建目录并下载 Alist, 增加执行权限, 复制到终端粘贴使用
 
 ```bash
-mkdir -p ~/domain/alist && cd ~/domain/alist && curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz && tar -xzf alist.tar.gz && chomd +x alist
+mkdir -p ~/domains/alist && cd ~/domains/alist && curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz && tar -xzf alist.tar.gz && chomd +x alist
 ```
 
-。">
+### 第一次启动Alist生成配置文件
+然后需要先启动一次 Alist 让它生成配置文件，此次启动一定会失败，请不用在意：
+
+```bash
+./alist server
+```
+
+### 创建Alist所需数据库
+回到 Panel 面板，找到 MySQL 选项卡，使用 Add database 功能新建一个数据库：
+
+`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r'>`
+
+Database name 和 Username 字段为了方便好记就写 Alist 就行了.
+
+> 密码要求含有大写字母, 小写字母和数字三种字符, 且长度必须超过6个字符.
+
+### 修改配置文件
+进入 Panel 面板, 找到 File manager 选项卡, 会如下图的进入文件管理器
+
+`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmXmXQRv5AfHqy2sRYS4dNCPQL2xPiGfaGtgTJjwGsX5Et'>`
+
+我们需要双击编辑这个`config.json`文件.
+
+我主要修改了`CDN` `database` `scheme`三个部分，其中 CDN 可以在 [Alist](https://alist.nn.ci/zh/config/configuration.html#cdn) 的官方文档找到，请选择你本地网络连接速度最快的一个。">
 <meta property="og:title" content="Serv00 - 使用记录">
 <meta property="og:description" content="# 注册serv00
 注册没什么好说的, gmail+干净一点的ip基本上都可以成功, 这里不多做展开.
@@ -84,7 +101,6 @@ mkdir -p ~/domain/alist && cd ~/domain/alist && curl -L -o alist.tar.gz https://
 如下图所示, 必须要设置成如图所示的 Enabled.
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmUg8VV61q7DApUWcijdA1xdZar5wE5TUhcfMq5femCMYs'>`
-![](https://ipfs.mbzj.org/ipfs/QmUg8VV61q7DApUWcijdA1xdZar5wE5TUhcfMq5femCMYs)
 
 如果不开启这一项, 自己的用户目录下的所有文件都无法添加可执行权限.
 
@@ -96,7 +112,6 @@ mkdir -p ~/domain/alist && cd ~/domain/alist && curl -L -o alist.tar.gz https://
 其中一个用来反代本地搭建 Alist 的端口, 这里我用26666
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmNSXAsz4QFnkTp3JRHGLuUJStNoPaK7yERRqPj9spXSc9'>`
-![](https://ipfs.mbzj.org/ipfs/QmNSXAsz4QFnkTp3JRHGLuUJStNoPaK7yERRqPj9spXSc9.jpg)
 
 ### 创建网站
 
@@ -106,7 +121,6 @@ serv00的域名一般是`USERNAME.serv00.net`, 这个域名账号创建好之后
 这里我写的是自己的域名, 后续可以通过自定义域名访问.
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC'>`
-![](https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC)
 
 其中26666这个端口是 alist 服务的端口.
 
@@ -114,17 +128,14 @@ serv00的域名一般是`USERNAME.serv00.net`, 这个域名账号创建好之后
 站点创建完成后, 点击上方的 Manage SSL certificates
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw'>`
-![](https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw)
 
 点击 Manage
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx'>`
-![](https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx)
 
 点击 Add certificate
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6'>`
-![](https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6)
 
 ### 安装Alist
 > [!TIP]
@@ -132,13 +143,36 @@ serv00的域名一般是`USERNAME.serv00.net`, 这个域名账号创建好之后
 
 Serv00本身提供的网站托管在 `~/domains` 路径下, 所以我建议把Alist也部署到这个路径下的子目录.
 
-下面的命令是创建`~/domain/alist`文件夹, 并切换到创建的目录同时下载 `alist-freebsd` 版本的文件, 解压缩后给alist二进制增加执行权限
+一键创建目录并下载 Alist, 增加执行权限, 复制到终端粘贴使用
 
 ```bash
-mkdir -p ~/domain/alist && cd ~/domain/alist && curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz && tar -xzf alist.tar.gz && chomd +x alist
+mkdir -p ~/domains/alist && cd ~/domains/alist && curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz && tar -xzf alist.tar.gz && chomd +x alist
 ```
 
-。">
+### 第一次启动Alist生成配置文件
+然后需要先启动一次 Alist 让它生成配置文件，此次启动一定会失败，请不用在意：
+
+```bash
+./alist server
+```
+
+### 创建Alist所需数据库
+回到 Panel 面板，找到 MySQL 选项卡，使用 Add database 功能新建一个数据库：
+
+`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r'>`
+
+Database name 和 Username 字段为了方便好记就写 Alist 就行了.
+
+> 密码要求含有大写字母, 小写字母和数字三种字符, 且长度必须超过6个字符.
+
+### 修改配置文件
+进入 Panel 面板, 找到 File manager 选项卡, 会如下图的进入文件管理器
+
+`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmXmXQRv5AfHqy2sRYS4dNCPQL2xPiGfaGtgTJjwGsX5Et'>`
+
+我们需要双击编辑这个`config.json`文件.
+
+我主要修改了`CDN` `database` `scheme`三个部分，其中 CDN 可以在 [Alist](https://alist.nn.ci/zh/config/configuration.html#cdn) 的官方文档找到，请选择你本地网络连接速度最快的一个。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://GJKen.github.io/gjkdemo.github.io/post/4.html">
 <meta property="og:image" content="https://ipfs.mbzj.org/ipfs/QmWdwjYEWh1CfZe7NtbJcBp658tWbs7PqeaxgLh46NwxRZ">
@@ -215,39 +249,48 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h1>准备工作</h1>
 <p>进入 Additional services 选项卡中找到 Run your own applications 项目,<br>
 如下图所示, 必须要设置成如图所示的 Enabled.</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmUg8VV61q7DApUWcijdA1xdZar5wE5TUhcfMq5femCMYs"><br>
-<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/544b0af6de4f07641febbbfe6f3729869c3bc7f63b4fda8b413f39d5b4a67ec3/68747470733a2f2f697066732e6d627a6a2e6f72672f697066732f516d556738565636317137444170555763696a64413178645a61723577453554556863664d713566656d434d5973"><img src="https://camo.githubusercontent.com/544b0af6de4f07641febbbfe6f3729869c3bc7f63b4fda8b413f39d5b4a67ec3/68747470733a2f2f697066732e6d627a6a2e6f72672f697066732f516d556738565636317137444170555763696a64413178645a61723577453554556863664d713566656d434d5973" alt="" data-canonical-src="https://ipfs.mbzj.org/ipfs/QmUg8VV61q7DApUWcijdA1xdZar5wE5TUhcfMq5femCMYs" style="max-width: 100%;"></a></p>
+<p><img src="https://ipfs.mbzj.org/ipfs/QmUg8VV61q7DApUWcijdA1xdZar5wE5TUhcfMq5femCMYs"></p>
 <p>如果不开启这一项, 自己的用户目录下的所有文件都无法添加可执行权限.</p>
 <h1>部署记录</h1>
 <h2>Alist</h2>
 <h3>创建端口</h3>
 <p>每个账户只能创建3个端口.<br>
 其中一个用来反代本地搭建 Alist 的端口, 这里我用26666</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmNSXAsz4QFnkTp3JRHGLuUJStNoPaK7yERRqPj9spXSc9"><br>
-<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/50d73b8c31d98916adba21908148f890b9fab7deaf4d24c442d713f42fd44bb1/68747470733a2f2f697066732e6d627a6a2e6f72672f697066732f516d4e535841737a3451466e6b5470334a5248474c75554a53744e6f50614b377945525271506a397370585363392e6a7067"><img src="https://camo.githubusercontent.com/50d73b8c31d98916adba21908148f890b9fab7deaf4d24c442d713f42fd44bb1/68747470733a2f2f697066732e6d627a6a2e6f72672f697066732f516d4e535841737a3451466e6b5470334a5248474c75554a53744e6f50614b377945525271506a397370585363392e6a7067" alt="" data-canonical-src="https://ipfs.mbzj.org/ipfs/QmNSXAsz4QFnkTp3JRHGLuUJStNoPaK7yERRqPj9spXSc9.jpg" style="max-width: 100%;"></a></p>
+<p><img src="https://ipfs.mbzj.org/ipfs/QmNSXAsz4QFnkTp3JRHGLuUJStNoPaK7yERRqPj9spXSc9"></p>
 <h3>创建网站</h3>
 <p>这里可以用自己的域名或者用serv00的域名.<br>
 serv00的域名一般是<code class="notranslate">USERNAME.serv00.net</code>, 这个域名账号创建好之后默认就有, 可以删除后再手动创建, 再按照下图创建网站.</p>
 <p>这里我写的是自己的域名, 后续可以通过自定义域名访问.</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC"><br>
-<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7a81ecdce91e76e606873b6465e63e5fa3478fc62399d9e8685aa38aa36ff1e3/68747470733a2f2f697066732e6d627a6a2e6f72672f697066732f516d58336d6b6272763545667a73437a4a58545447714b64594469586332657535424a4d754b376f7a4433504e43"><img src="https://camo.githubusercontent.com/7a81ecdce91e76e606873b6465e63e5fa3478fc62399d9e8685aa38aa36ff1e3/68747470733a2f2f697066732e6d627a6a2e6f72672f697066732f516d58336d6b6272763545667a73437a4a58545447714b64594469586332657535424a4d754b376f7a4433504e43" alt="" data-canonical-src="https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC" style="max-width: 100%;"></a></p>
+<p><img src="https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC"></p>
 <p>其中26666这个端口是 alist 服务的端口.</p>
 <h3>网站添加SSL证书</h3>
 <p>站点创建完成后, 点击上方的 Manage SSL certificates</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw"><br>
-<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/05b4cc35ac561374d98d2f31d0871e67e4a808b99bf926a5b9351ece94843cba/68747470733a2f2f697066732e6d627a6a2e6f72672f697066732f516d57526b706669647359324b476b58343764415734744b6d4e65326853745736767a6f64526537475547326477"><img src="https://camo.githubusercontent.com/05b4cc35ac561374d98d2f31d0871e67e4a808b99bf926a5b9351ece94843cba/68747470733a2f2f697066732e6d627a6a2e6f72672f697066732f516d57526b706669647359324b476b58343764415734744b6d4e65326853745736767a6f64526537475547326477" alt="" data-canonical-src="https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw" style="max-width: 100%;"></a></p>
+<p><img src="https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw"></p>
 <p>点击 Manage</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx"><br>
-<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/12a20031e73eecf0d36ef4f67d038de538423e2fd3fd2ae90ae73a6b329909b8/68747470733a2f2f697066732e6d627a6a2e6f72672f697066732f516d6358644c51537932504a7075574d43567a4d5a65624e467064743277335036507831775138345069396a6278"><img src="https://camo.githubusercontent.com/12a20031e73eecf0d36ef4f67d038de538423e2fd3fd2ae90ae73a6b329909b8/68747470733a2f2f697066732e6d627a6a2e6f72672f697066732f516d6358644c51537932504a7075574d43567a4d5a65624e467064743277335036507831775138345069396a6278" alt="" data-canonical-src="https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx" style="max-width: 100%;"></a></p>
+<p><img src="https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx"></p>
 <p>点击 Add certificate</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6"><br>
-<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4be9988e4a1e78512f5c01fb664b16c0a878fd065aecbb16246ad238a640c070/68747470733a2f2f697066732e6d627a6a2e6f72672f697066732f516d64394356384278746a534d5a69765a6e43517256643164714279616a36486f55574b6938554d7243385a5836"><img src="https://camo.githubusercontent.com/4be9988e4a1e78512f5c01fb664b16c0a878fd065aecbb16246ad238a640c070/68747470733a2f2f697066732e6d627a6a2e6f72672f697066732f516d64394356384278746a534d5a69765a6e43517256643164714279616a36486f55574b6938554d7243385a5836" alt="" data-canonical-src="https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6" style="max-width: 100%;"></a></p>
+<p><img src="https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6"></p>
 <h3>安装Alist</h3>
 <div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p>Alist 官方在 24年8月17日, 增加了 <a href="https://github.com/AlistGo/alist/releases/tag/beta">beta</a> 版本, 支持 FreeBSD 系统下能够运行的 Alist 可执行文件🎉</p>
 </div>
 <p>Serv00本身提供的网站托管在 <code class="notranslate">~/domains</code> 路径下, 所以我建议把Alist也部署到这个路径下的子目录.</p>
-<p>下面的命令是创建<code class="notranslate">~/domain/alist</code>文件夹, 并切换到创建的目录同时下载 <code class="notranslate">alist-freebsd</code> 版本的文件, 解压缩后给alist二进制增加执行权限</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">mkdir -p <span class="pl-k">~</span>/domain/alist <span class="pl-k">&amp;&amp;</span> <span class="pl-c1">cd</span> <span class="pl-k">~</span>/domain/alist <span class="pl-k">&amp;&amp;</span> curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz <span class="pl-k">&amp;&amp;</span> tar -xzf alist.tar.gz <span class="pl-k">&amp;&amp;</span> chomd +x alist</pre></div></div>
+<p>一键创建目录并下载 Alist, 增加执行权限, 复制到终端粘贴使用</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">mkdir -p <span class="pl-k">~</span>/domains/alist <span class="pl-k">&amp;&amp;</span> <span class="pl-c1">cd</span> <span class="pl-k">~</span>/domains/alist <span class="pl-k">&amp;&amp;</span> curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz <span class="pl-k">&amp;&amp;</span> tar -xzf alist.tar.gz <span class="pl-k">&amp;&amp;</span> chomd +x alist</pre></div>
+<h3>第一次启动Alist生成配置文件</h3>
+<p>然后需要先启动一次 Alist 让它生成配置文件，此次启动一定会失败，请不用在意：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">./alist server</pre></div>
+<h3>创建Alist所需数据库</h3>
+<p>回到 Panel 面板，找到 MySQL 选项卡，使用 Add database 功能新建一个数据库：</p>
+<p><img src="https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r"></p>
+<p>Database name 和 Username 字段为了方便好记就写 Alist 就行了.</p>
+<blockquote>
+<p>密码要求含有大写字母, 小写字母和数字三种字符, 且长度必须超过6个字符.</p>
+</blockquote>
+<h3>修改配置文件</h3>
+<p>进入 Panel 面板, 找到 File manager 选项卡, 会如下图的进入文件管理器</p>
+<p><img src="https://ipfs.mbzj.org/ipfs/QmXmXQRv5AfHqy2sRYS4dNCPQL2xPiGfaGtgTJjwGsX5Et"></p>
+<p>我们需要双击编辑这个<code class="notranslate">config.json</code>文件.</p>
+<p>我主要修改了<code class="notranslate">CDN</code> <code class="notranslate">database</code> <code class="notranslate">scheme</code>三个部分，其中 CDN 可以在 <a href="https://alist.nn.ci/zh/config/configuration.html#cdn" rel="nofollow">Alist</a> 的官方文档找到，请选择你本地网络连接速度最快的一个。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">🥰转载请注明,谢谢!🥰</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

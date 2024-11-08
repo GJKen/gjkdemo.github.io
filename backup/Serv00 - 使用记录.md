@@ -7,7 +7,6 @@
 如下图所示, 必须要设置成如图所示的 Enabled.
 
 `Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmUg8VV61q7DApUWcijdA1xdZar5wE5TUhcfMq5femCMYs">`
-![](https://ipfs.mbzj.org/ipfs/QmUg8VV61q7DApUWcijdA1xdZar5wE5TUhcfMq5femCMYs)
 
 如果不开启这一项, 自己的用户目录下的所有文件都无法添加可执行权限.
 
@@ -19,7 +18,6 @@
 其中一个用来反代本地搭建 Alist 的端口, 这里我用26666
 
 `Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmNSXAsz4QFnkTp3JRHGLuUJStNoPaK7yERRqPj9spXSc9">`
-![](https://ipfs.mbzj.org/ipfs/QmNSXAsz4QFnkTp3JRHGLuUJStNoPaK7yERRqPj9spXSc9.jpg)
 
 ### 创建网站
 
@@ -29,7 +27,6 @@ serv00的域名一般是`USERNAME.serv00.net`, 这个域名账号创建好之后
 这里我写的是自己的域名, 后续可以通过自定义域名访问.
 
 `Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC">`
-![](https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC)
 
 其中26666这个端口是 alist 服务的端口.
 
@@ -37,17 +34,14 @@ serv00的域名一般是`USERNAME.serv00.net`, 这个域名账号创建好之后
 站点创建完成后, 点击上方的 Manage SSL certificates
 
 `Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw">`
-![](https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw)
 
 点击 Manage
 
 `Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx">`
-![](https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx)
 
 点击 Add certificate
 
 `Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6">`
-![](https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6)
 
 ### 安装Alist
 > [!TIP]
@@ -55,9 +49,33 @@ serv00的域名一般是`USERNAME.serv00.net`, 这个域名账号创建好之后
 
 Serv00本身提供的网站托管在 `~/domains` 路径下, 所以我建议把Alist也部署到这个路径下的子目录.
 
-下面的命令是创建`~/domain/alist`文件夹, 并切换到创建的目录同时下载 `alist-freebsd` 版本的文件, 解压缩后给alist二进制增加执行权限
+一键创建目录并下载 Alist, 增加执行权限, 复制到终端粘贴使用
 
 ```bash
-mkdir -p ~/domain/alist && cd ~/domain/alist && curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz && tar -xzf alist.tar.gz && chomd +x alist
+mkdir -p ~/domains/alist && cd ~/domains/alist && curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz && tar -xzf alist.tar.gz && chomd +x alist
 ```
 
+### 第一次启动Alist生成配置文件
+然后需要先启动一次 Alist 让它生成配置文件，此次启动一定会失败，请不用在意：
+
+```bash
+./alist server
+```
+
+### 创建Alist所需数据库
+回到 Panel 面板，找到 MySQL 选项卡，使用 Add database 功能新建一个数据库：
+
+`Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r">`
+
+Database name 和 Username 字段为了方便好记就写 Alist 就行了.
+
+> 密码要求含有大写字母, 小写字母和数字三种字符, 且长度必须超过6个字符.
+
+### 修改配置文件
+进入 Panel 面板, 找到 File manager 选项卡, 会如下图的进入文件管理器
+
+`Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmXmXQRv5AfHqy2sRYS4dNCPQL2xPiGfaGtgTJjwGsX5Et">`
+
+我们需要双击编辑这个`config.json`文件.
+
+我主要修改了`CDN` `database` `scheme`三个部分，其中 CDN 可以在 [Alist](https://alist.nn.ci/zh/config/configuration.html#cdn) 的官方文档找到，请选择你本地网络连接速度最快的一个。
