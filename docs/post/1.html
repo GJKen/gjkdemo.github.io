@@ -455,17 +455,17 @@ Fork 👉 https://github.com/Meekdai/Gmeek
 
 `Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV'>`
 
-fork 之后, 转到搭建博客的 github 源码, 找到 `config.json`
+fork 之后, 转到搭建博客的 github 源码,
 
-修改 `'GMEEK_VERSION':'main'`
+打开`config.json`文件, 修改`'GMEEK_VERSION':'main'`
 
-如果值是 `last` 的话, Action 会失败, 因为默认值 `last` 是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
-
-~~创建新的 tag 也可以, 但是挺麻烦.~~
+> [!NOTE]
+> 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
+> ~~创建新的 tag 也可以, 但是挺麻烦.~~
 
 ## Gmeek.py
 
-开始修改构建网站的部分样式.
+打开`Gmeek.py`, 开始修改~
 
 ### 网站下方的文字
 
@@ -475,11 +475,11 @@ fork 之后, 转到搭建博客的 github 源码, 找到 `config.json`
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v'>`
 
-这里我直接写改成我存放的链接 https://gjken.github.io/primer.css'
+这里我直接写改成我存放的链接 https://gjken.github.io/primer.css
 
 ## 修改页面头部样式
 
-打开`post.html`文件.
+### 打开 post.html 文件
 
 定位样式`.title-right`, 其内容全部修改为flex布局`.title-right{display:flex;}`
 
@@ -489,12 +489,11 @@ fork 之后, 转到搭建博客的 github 源码, 找到 `config.json`
 
 定位样式`.avatar:hover`,其内容全部修改`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
 
+### 打开 plist.html 文件
+
+定位样式`.title-right .circle`, 删除`margin-right:8px;`
+
 到这里我的自定义 header 就修改完成了, 包括了 头像, 文字的修改.
-
-## plist.html
-和 `plist.html`这两个文件.
-
-src='https://ipfs.mbzj.org/ipfs/QmdFtjzfQJWcBYWxcodHbPGPWZUD6DUcVHdBmTe4CEaYfv'>`
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
@@ -973,17 +972,17 @@ Fork 👉 https://github.com/Meekdai/Gmeek
 
 `Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV'>`
 
-fork 之后, 转到搭建博客的 github 源码, 找到 `config.json`
+fork 之后, 转到搭建博客的 github 源码,
 
-修改 `'GMEEK_VERSION':'main'`
+打开`config.json`文件, 修改`'GMEEK_VERSION':'main'`
 
-如果值是 `last` 的话, Action 会失败, 因为默认值 `last` 是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
-
-~~创建新的 tag 也可以, 但是挺麻烦.~~
+> [!NOTE]
+> 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
+> ~~创建新的 tag 也可以, 但是挺麻烦.~~
 
 ## Gmeek.py
 
-开始修改构建网站的部分样式.
+打开`Gmeek.py`, 开始修改~
 
 ### 网站下方的文字
 
@@ -993,11 +992,11 @@ fork 之后, 转到搭建博客的 github 源码, 找到 `config.json`
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v'>`
 
-这里我直接写改成我存放的链接 https://gjken.github.io/primer.css'
+这里我直接写改成我存放的链接 https://gjken.github.io/primer.css
 
 ## 修改页面头部样式
 
-打开`post.html`文件.
+### 打开 post.html 文件
 
 定位样式`.title-right`, 其内容全部修改为flex布局`.title-right{display:flex;}`
 
@@ -1007,12 +1006,11 @@ fork 之后, 转到搭建博客的 github 源码, 找到 `config.json`
 
 定位样式`.avatar:hover`,其内容全部修改`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
 
+### 打开 plist.html 文件
+
+定位样式`.title-right .circle`, 删除`margin-right:8px;`
+
 到这里我的自定义 header 就修改完成了, 包括了 头像, 文字的修改.
-
-## plist.html
-和 `plist.html`这两个文件.
-
-src='https://ipfs.mbzj.org/ipfs/QmdFtjzfQJWcBYWxcodHbPGPWZUD6DUcVHdBmTe4CEaYfv'>`
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
@@ -1418,27 +1416,27 @@ pv修改成uv计数</p>
 <h2>Fork Gmeek 仓库</h2>
 <p>Fork 👉 <a href="https://github.com/Meekdai/Gmeek">https://github.com/Meekdai/Gmeek</a></p>
 <p><img src="https://cdn.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV"></p>
-<p>fork 之后, 转到搭建博客的 github 源码, 找到 <code class="notranslate">config.json</code></p>
-<p>修改 <code class="notranslate">"GMEEK_VERSION":"main"</code></p>
-<p>如果值是 <code class="notranslate">last</code> 的话, Action 会失败, 因为默认值 <code class="notranslate">last</code> 是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.</p>
-<p><del>创建新的 tag 也可以, 但是挺麻烦.</del></p>
+<p>fork 之后, 转到搭建博客的 github 源码,</p>
+<p>打开<code class="notranslate">config.json</code>文件, 修改<code class="notranslate">"GMEEK_VERSION":"main"</code></p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>如果值是<code class="notranslate">last</code>的话, Action 会失败, 因为默认值<code class="notranslate">last</code>是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.<br>
+<del>创建新的 tag 也可以, 但是挺麻烦.</del></p>
+</div>
 <h2>Gmeek.py</h2>
-<p>开始修改构建网站的部分样式.</p>
+<p>打开<code class="notranslate">Gmeek.py</code>, 开始修改~</p>
 <h3>网站下方的文字</h3>
 <p><img src="https://ipfs.mbzj.org/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh"></p>
 <h3>修改默认 primer.css 链接</h3>
 <p><img src="https://ipfs.mbzj.org/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"></p>
-<p>这里我直接写改成我存放的链接 <a href="https://gjken.github.io/primer.css" rel="nofollow">https://gjken.github.io/primer.css</a>'</p>
+<p>这里我直接写改成我存放的链接 <a href="https://gjken.github.io/primer.css" rel="nofollow">https://gjken.github.io/primer.css</a></p>
 <h2>修改页面头部样式</h2>
-<p>打开<code class="notranslate">post.html</code>文件.</p>
+<h3>打开 post.html 文件</h3>
 <p>定位样式<code class="notranslate">.title-right</code>, 其内容全部修改为flex布局<code class="notranslate">.title-right{display:flex;}</code></p>
 <p>增加样式<code class="notranslate">.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}</code>,</p>
 <p>定位样式<code class="notranslate">.title-left a</code>, 删除<code class="notranslate">margin-left:8px;</code></p>
 <p>定位样式<code class="notranslate">.avatar:hover</code>,其内容全部修改<code class="notranslate">.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}</code></p>
+<h3>打开 plist.html 文件</h3>
+<p>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code></p>
 <p>到这里我的自定义 header 就修改完成了, 包括了 头像, 文字的修改.</p>
-<h2>plist.html</h2>
-<p>和 <code class="notranslate">plist.html</code>这两个文件.</p>
-<p>src="<a href="https://ipfs.mbzj.org/ipfs/QmdFtjzfQJWcBYWxcodHbPGPWZUD6DUcVHdBmTe4CEaYfv%22%3E%60" rel="nofollow">https://ipfs.mbzj.org/ipfs/QmdFtjzfQJWcBYWxcodHbPGPWZUD6DUcVHdBmTe4CEaYfv"&gt;`</a></p>
 <h1>使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换</h1>
 <p>Github 在 issues 插入的图片也会自动转换为 Github 的地址.<br>
 为了文章的多样性, 在 Gmeek 的 <code class="notranslate">v2.19</code> 版本中添加了支持 html 标签的功能.<br>

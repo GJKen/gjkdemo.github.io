@@ -443,17 +443,17 @@ Fork 👉 https://github.com/Meekdai/Gmeek
 
 `Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV">`
 
-fork 之后, 转到搭建博客的 github 源码, 找到 `config.json`
+fork 之后, 转到搭建博客的 github 源码,
 
-修改 `"GMEEK_VERSION":"main"`
+打开`config.json`文件, 修改`"GMEEK_VERSION":"main"`
 
-如果值是 `last` 的话, Action 会失败, 因为默认值 `last` 是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
-
-~~创建新的 tag 也可以, 但是挺麻烦.~~
+> [!NOTE]
+> 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
+> ~~创建新的 tag 也可以, 但是挺麻烦.~~
 
 ## Gmeek.py
 
-开始修改构建网站的部分样式.
+打开`Gmeek.py`, 开始修改~
 
 ### 网站下方的文字
 
@@ -463,11 +463,11 @@ fork 之后, 转到搭建博客的 github 源码, 找到 `config.json`
 
 `Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v">`
 
-这里我直接写改成我存放的链接 https://gjken.github.io/primer.css'
+这里我直接写改成我存放的链接 https://gjken.github.io/primer.css
 
 ## 修改页面头部样式
 
-打开`post.html`文件.
+### 打开 post.html 文件
 
 定位样式`.title-right`, 其内容全部修改为flex布局`.title-right{display:flex;}`
 
@@ -477,12 +477,11 @@ fork 之后, 转到搭建博客的 github 源码, 找到 `config.json`
 
 定位样式`.avatar:hover`,其内容全部修改`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
 
+### 打开 plist.html 文件
+
+定位样式`.title-right .circle`, 删除`margin-right:8px;`
+
 到这里我的自定义 header 就修改完成了, 包括了 头像, 文字的修改.
-
-## plist.html
-和 `plist.html`这两个文件.
-
-src="https://ipfs.mbzj.org/ipfs/QmdFtjzfQJWcBYWxcodHbPGPWZUD6DUcVHdBmTe4CEaYfv">`
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
