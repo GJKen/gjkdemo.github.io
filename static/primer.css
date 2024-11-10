@@ -12521,6 +12521,7 @@ body {
 	background: var(--body-bgColor);
 	box-shadow: 0 0 100px var(--body-shadow-color);
 }
+
 /*
 
 #header {
@@ -12543,19 +12544,19 @@ body {
 	margin: unset !important;
 }
 
-.avatar:hover {
-	transform: scale(1.5) rotate(720deg) !important;
-	box-shadow: 0 0 10px rgb(45 250 255 / 74%);
-}
-
-
 .title-right,
 .title-right.circle,
 .title-right a {
 	margin: unset !important;
 	transition: 0.25s;
 }
+
+.avatar:hover {
+	transform: scale(1.5) rotate(720deg) !important;
+	box-shadow: 0 0 10px rgb(45 250 255 / 74%);
+}
 */
+
 a {
 	color: var(--fgColor-accent, var(--color-accent-fg));
 	text-decoration: none
@@ -30838,7 +30839,7 @@ html {
 	z-index: -2 !important
 }
 
-@keyframes heartBeatScale  {
+@keyframes heartBeatScale {
 	0% {
 		-webkit-transform: scale(1);
 		transform: scale(1)
@@ -30864,13 +30865,22 @@ html {
 		transform: scale(1)
 	}
 }
+
 @keyframes heartBeatColor {
-    0%, 28%, 70%, 100% {
-        fill: #ff5a5a; /* 初始颜色 */
-    }
-    14%, 42% {
-        fill: red; /* 放大时颜色变化 */
-    }
+
+	0%,
+	28%,
+	70%,
+	100% {
+		fill: #ff5a5a;
+		/* 初始颜色 */
+	}
+
+	14%,
+	42% {
+		fill: red;
+		/* 放大时颜色变化 */
+	}
 }
 
 .animate_heartBeatScale {
