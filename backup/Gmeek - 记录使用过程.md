@@ -88,6 +88,43 @@ Android 端可通过滑动屏幕左右切换图片.
 [primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css), 这个文件用来控制网站的整体样式, 存放在我的git仓库, 使用 jsdelivr CDN 加速.
 对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
 
+##  \<html> 样式
+
+`[data-color-mode]`
+
+> [!NOTE]
+> 优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+[data-color-mode] {
+    color: var(--fgColor-default, var(--color-fg-default));
+    background-color: var(--bgColor-default, var(--color-canvas-default))
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+    --html-bgColor: #151c2f;/* 增加 */
+}
+:root {
+    --html-bgColor: #fff;/* 增加 */
+}
+[data-color-mode] {
+    background-color: var(--html-bgColor)
+}
+```
+
+</details>
+
 ## 博客 滚动条 样式
 
 因为默认的 primer.css 里没有写, 所以下面都是增加代码.
@@ -114,7 +151,7 @@ html {
 
 </details>
 
-## #header 样式
+## \#header 样式
 
 `#header`
 
@@ -157,7 +194,7 @@ html {
 
 </details>
 
-## #header 图标样式
+## \#header 图标样式
 
 `.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
 
@@ -189,43 +226,6 @@ html {
     background-color: var(--title-right-btnbg-color);
     outline: none;
     box-shadow: none
-}
-```
-
-</details>
-
-## 文章 \<html> 标签样式
-
-`[data-color-mode]`
-
-> [!NOTE]
-> 优化 light & dark 主题下的背景色.
-
-<details><summary>修改前</summary>
-
-```css
-[data-color-mode] {
-    color: var(--fgColor-default, var(--color-fg-default));
-    background-color: var(--bgColor-default, var(--color-canvas-default))
-}
-```
-
-</details>
-
-<details><summary>修改后</summary>
-
-```css
-[data-color-mode=light][data-light-theme=dark],
-[data-color-mode=light][data-light-theme=dark]::selection,
-[data-color-mode=dark][data-dark-theme=dark],
-[data-color-mode=dark][data-dark-theme=dark]::selection {
-    --html-bgColor: #151c2f;/* 增加 */
-}
-:root {
-    --html-bgColor: #fff;/* 增加 */
-}
-[data-color-mode] {
-    background-color: var(--html-bgColor)
 }
 ```
 
@@ -473,13 +473,15 @@ fork 之后, 转到搭建博客的 github 源码,
 
 增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`, 
 
-定位样式`.title-left a`, 删除`margin-left:8px;`
+定位样式`.title-left a`, 删除`margin-left:8px;`, 设置flex布局之后取消图标多余的间距, 样式则通过 <a href="## \#header 图标样式">primer.css</a> 来修改
 
 定位样式`.avatar:hover`,其内容全部修改`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
 
 ### 打开 plist.html 文件
 
 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+
+定位样式`.title-right button`, 删除`margin-right:8px;'`, 和上面一样, 删除多余间距.
 
 到这里我的自定义 header 就修改完成了, 包括了头像+文字的修改.
 
