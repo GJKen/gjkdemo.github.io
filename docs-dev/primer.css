@@ -12521,8 +12521,8 @@ body {
 	background: var(--body-bgColor);
 	box-shadow: 0 0 100px var(--body-shadow-color);
 }
-/*
 
+/*
 #header {
 	flex-direction: column !important;
 	align-items: center !important;
@@ -12543,19 +12543,19 @@ body {
 	margin: unset !important;
 }
 
-.avatar:hover {
-	transform: scale(1.5) rotate(720deg) !important;
-	box-shadow: 0 0 10px rgb(45 250 255 / 74%);
-}
-
-
 .title-right,
 .title-right.circle,
 .title-right a {
 	margin: unset !important;
 	transition: 0.25s;
 }
+
+.avatar:hover {
+	transform: scale(1.5) rotate(720deg) !important;
+	box-shadow: 0 0 10px rgb(45 250 255 / 74%);
+}
 */
+
 a {
 	color: var(--fgColor-accent, var(--color-accent-fg));
 	text-decoration: none
