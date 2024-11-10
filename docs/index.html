@@ -31,7 +31,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 .avatar {transition: 0.8s;width:64px;height:64px;object-fit: cover;}
 .avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}
 .title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}
-.title-left a{color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;font-weight: bold;font-family:Monaco;margin-left:8px;}
+.title-left a{color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;font-weight: bold;font-family:Monaco;}
 .title-right{display:flex;}
 .title-right button{margin-right:8px;padding:16px;}
 .title-right .circle{padding: 14px 16px;}
@@ -86,7 +86,18 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 <div style="margin-bottom: 16px;"> </div>
 <nav class="SideNav border">
-
+<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/1.html">
+    <div class="d-flex flex-items-center">
+        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        </svg>
+        <span class="listTitle">Gmeek - 记录使用过程</span>
+    </div>
+    <div class="listLabels">
+        
+        <span class="Label LabelName" style="background-color:#218155"><object><a style="color:#fff" href="tag.html#CSS">CSS</a></object></span><span class="Label LabelName" style="background-color:#333333"><object><a style="color:#fff" href="tag.html#Github">Github</a></object></span><span class="Label LabelName" style="background-color:#AD3152"><object><a style="color:#fff" href="tag.html#JS">JS</a></object></span><span class="Label LabelName" style="background-color:#7057ff"><object><a style="color:#fff" href="tag.html#网站">网站</a></object></span>
+        <span class="Label LabelTime" style="background-color:#bc4c00">2024-11-11</span>
+    </div>
+</a>
 </nav>
 </div>
     <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://GJKen.github.io/demo">demo</a></div>
