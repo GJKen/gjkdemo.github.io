@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://ipfs.mbzj.org/ipfs/QmWdwjYEWh1CfZe7NtbJcBp658tWbs7PqeaxgLh46NwxRZ</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Sun, 10 Nov 2024 19:01:04 +0000</lastBuildDate><managingEditor>demo</managingEditor><ttl>60</ttl><webMaster>demo</webMaster><item><title>Gmeek - 记录使用过程</title><link>https://GJKen.github.io/demo/post/1.html</link><description>[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://ipfs.mbzj.org/ipfs/QmWdwjYEWh1CfZe7NtbJcBp658tWbs7PqeaxgLh46NwxRZ</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Sun, 10 Nov 2024 19:19:13 +0000</lastBuildDate><managingEditor>demo</managingEditor><ttl>60</ttl><webMaster>demo</webMaster><item><title>Gmeek - 记录使用过程</title><link>https://GJKen.github.io/demo/post/1.html</link><description>[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.&#13;
 &#13;
 # 搭建博客&#13;
 &#13;
@@ -482,7 +482,7 @@ fork 之后, 转到搭建博客的 github 源码,&#13;
 &#13;
 定位样式`.title-right .circle`, 删除`margin-right:8px;`&#13;
 &#13;
-到这里我的自定义 header 就修改完成了, 包括了 头像, 文字的修改.&#13;
+到这里我的自定义 header 就修改完成了, 包括了头像+文字的修改.&#13;
 &#13;
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换&#13;
 &#13;

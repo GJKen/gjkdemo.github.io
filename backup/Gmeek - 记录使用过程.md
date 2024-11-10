@@ -481,7 +481,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 定位样式`.title-right .circle`, 删除`margin-right:8px;`
 
-到这里我的自定义 header 就修改完成了, 包括了 头像, 文字的修改.
+到这里我的自定义 header 就修改完成了, 包括了头像+文字的修改.
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
