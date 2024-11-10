@@ -12531,7 +12531,6 @@ body {
 	margin-bottom: 24px !important
 }
 
-
 #header h1 {
 	display: flex;
 	flex-direction: column !important;
@@ -30838,7 +30837,7 @@ html {
 	z-index: -2 !important
 }
 
-@keyframes heartBeatScale {
+@keyframes heartBeatScale  {
 	0% {
 		-webkit-transform: scale(1);
 		transform: scale(1)
@@ -30864,22 +30863,13 @@ html {
 		transform: scale(1)
 	}
 }
-
 @keyframes heartBeatColor {
-
-	0%,
-	28%,
-	70%,
-	100% {
-		fill: #ff5a5a;
-		/* 初始颜色 */
-	}
-
-	14%,
-	42% {
-		fill: red;
-		/* 放大时颜色变化 */
-	}
+    0%, 28%, 70%, 100% {
+        fill: #ff5a5a; /* 初始颜色 */
+    }
+    14%, 42% {
+        fill: red; /* 放大时颜色变化 */
+    }
 }
 
 .animate_heartBeatScale {
