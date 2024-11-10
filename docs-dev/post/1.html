@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/primer.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/Indextheme.min.js'></script><script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script>
+    <link rel="icon" href="https://ipfs.mbzj.org/ipfs/QmRtULS1Gmf3Phh84o9SVWhdc52AuJJ2NA24zMiFMeqdpf"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
+
+# 搭建博客
+
+**如何搭建博客我就不写了, 这里主要记录一些js和css的修改.**
+搭建详情请看官方文档: https://blog.meekdai.com/tag.html#gmeek
+
+> [!WARNING]
+> 利用 Github Page 搭建的网站内容是完全公开的, 请注意不要上传自己的隐私!!!
+
+# Config.json 小妙用
+
+## subTitle - js插入
+
+代码:
+
+```json
+'subTitle':'<script>document.getElementById('content').innerHTML = `<div style='text-align: center;'><p>CV工程师,</p><p>一个又菜又爱玩, 喜欢瞎折腾的流浪者.</p></div>`;</script>',
+```
+
+效果图:
+
+`Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'>`
+
+从图中可以看到, 可用js插入html实现修改文字.
+
+## subTitle - 隐藏
+
+'subTitle':' ',
+
+效果图:
+
+`Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'>`
+
+可以用空白字符的方式, 隐藏subTitle必须字段, 无需使用js隐藏.
+
+# 记录功能块代码
+
+代码摘抄自网络, 有删改, 都存放在仓库, 使用 jsdelivr CDN 加速.
+
+## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
+
+> 来源: [Github](https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file)
+> 修改-切换博客主题时颜色不一致, 增加滚动同步定位章节, 修改动画和样式.
+> 已知bug: 给body增加`backdrop-filter: blur(30px);`样式时, 会出现滚动错误. 待后续修复.
+
+图示:
+
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1'>`
+
+## [lightbox-gjken.js](https://github.com/GJKen/gjken.github.io/blob/main/static/lightbox-gjken.js) - 灯箱
+
+> 来源: [Github](https://github.com/tiengming/tiengming.github.io)
+> 修改-增加图片拖动, 增加点击图片外部退出灯箱.
+> 已知bug: 当图片缩放过后,再对图片拖动会有微小偏差,~~我代码能力实在是太菜了😭~~.
+
+通过点击可大图浏览文章中的图片, 适合一些图片较多的文章.
+
+Windows 端通过 Ctrl+滚轮放大, 同时滚轮可左右切换图片.
+
+Android 端可通过滑动屏幕左右切换图片.
+
+## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
+
+> Vercount [Github](https://github.com/EvanNotFound/vercount)
+> pv修改成uv计数
+
+建议放入 `allHead` 里全站添加js.
+
+```json
+'allHead':'<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script>'
+```
+
+## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
+
+> 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
+
+未实际测试过.
+
+## [NumPagination.js](https://github.com/GJKen/gjken.github.io/blob/main/static/NumPagination.js) - 主页添加数字分页条
+
+> 来源 [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
+
+未实际测试过.
+
+# 修改网站样式
+
+[primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css), 这个文件用来控制网站的整体样式, 存放在我的git仓库, 使用 jsdelivr CDN 加速.
+对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
+
+## 文章 \<html> 标签样式
+
+`[data-color-mode]`
+优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+[data-color-mode] {
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--bgColor-default, var(--color-canvas-default))
+}
+```
+
+</details>
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--html-bgColor: #151c2f;/* 增加 */
+}
+:root {
+	--html-bgColor: #fff;/* 增加 */
+}
+[data-color-mode] {
+	background-color: var(--html-bgColor)
+}
+```
+
+</details>
+
+## 博客 滚动条 样式
+
+因为默认的 primer.css 里没有写, 所以下面都是增加代码.
+
+<details><summary>CSS Code</summary>
+
+```css
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: #9fc6e3;
+}
+
+/* Firefox */
+html {
+	scrollbar-color: #9fc6e3 transparent;
+	scrollbar-width: thin;
+}
+```
+
+</details>
+
+## 文章 \<code> 标签样式
+
+`.markdown-body code, .markdown-body tt`
+优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body code,
+.markdown-body tt {
+	background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted));
+}
+```
+
+</details>
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--markdown-code-color: #3bf6ff52;/* 增加 */
+}
+:root {
+	--markdown-code-color: #4d4d4d38;/* 增加 */
+}
+.markdown-body code,
+.markdown-body tt {
+	background-color: var(--markdown-code-color);
+}
+```
+
+</details>
+
+## 文章 \<h1> 标签的样式
+
+`.markdown-body h1`
+优化 light & dark 主题下的背景色
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body h1 {
+	padding-bottom: .3em;
+	font-size: 2em;
+	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted))
+}
+```
+
+</details>
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--markdown-h1-bgColor: #7dc2ff7a;/* 增加 */
+}
+:root {
+	--markdown-h1-bgColor: #c8e5ff7a;/* 增加 */
+}
+.markdown-body h1 {
+	background: var(--markdown-h1-bgColor);
+	border-radius: 10px;
+	font-size: 2em;
+	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
+}
+```
+
+</details>
+
+## 文章 \<h2> 标签样式
+
+`.markdown-body h2`
+增加下划线动画
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body h2 {
+	padding-bottom: .3em;
+	font-size: 1.5em;
+	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted))
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+.markdown-body h2 {
+	font-size: 1.5em;
+	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
+	background: linear-gradient(45deg, #90d1ff, transparent) no-repeat left bottom;
+	background-size: 0 2px;
+	-webkit-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+}
+/* 增加hover */
+.markdown-body h2:hover {
+	background-size: 100% 2px;
+}
+```
+
+</details>
+
+## 文章 \<img> 标签样式
+
+`.markdown-body img`
+
+优化 light & dark 主题下的阴影色
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body img {
+	background-color: var(--bgColor-default, var(--color-canvas-default))
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection 
+	--markdown-imgShadow: #b8fffc29;/* 增加 */
+}
+:root {
+	--markdown-imgShadow: #0000000d;/* 增加 */
+}
+.markdown-body img {
+	box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);
+}
+```
+
+</details>
+
+## 文章 \<a> 标签样式
+
+`a`
+优化 dark 主题下的链接色, 去掉原下划线, 增加下划线动画
+
+<details><summary>修改前</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--color-accent-fg: #2f81f7;
+}
+a {
+	background-color: rgba(0, 0, 0, 0)
+}
+a:hover {
+	text-decoration: underline
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--color-accent-fg: #20d4ff;
+}
+a {
+	text-decoration: none !important;
+	background: #0000;
+	background: linear-gradient(#90d1ff, #90d1ff) no-repeat left bottom;
+	background-size: 0 2px;
+	-webkit-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+}
+a:hover {
+	background-size: 100% 2px;
+}
+```
+
+</details>
+
+# 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
+
+Github 在issues 插入的图片也会自动转换为 Github 的地址.
+为了文章的多样性, 在Gmeek的 `v2.19` 版本中添加了支持 html 标签的功能.
+示例代码:
+
+```html
+`Gmeek-html<img src='https://img.jpg' style='text-align: center;'>`
+```
+
+实际展示:
+
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb' style='text-align: center;'>`
+
+# 添加自定义单篇文章代码
+
+```html
+<span id='busuanzi'>
+:heart:感谢第<span></span>小伙伴的<span></span>次访问关于页面.
+</span>
+
+<!-- ##{'script':'<script>document.getElementById('user-content-busuanzi').id='busuanzi_container_site_uv';busuanzi=document.getElementById('busuanzi_container_site_uv');busuanzi.style.display='none';busuanzi.childNodes[1].id='busuanzi_value_site_uv';busuanzi.childNodes[3].id='busuanzi_value_site_pv';</script><script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>','style':'<style>#busuanzi_value_site_uv{color:red}#busuanzi_value_site_pv{color:red}</style>'}## -->
+```
+
+# Readme.md
+
+📄 > 文章总数
+💬 > 评论总数
+🌺 > 是统计的所有文章的字符数
+⏰ > 最后一次 Actions 的时间
+。">
+<meta property="og:title" content="Gmeek - 记录使用过程">
+<meta property="og:description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
+
+# 搭建博客
+
+**如何搭建博客我就不写了, 这里主要记录一些js和css的修改.**
+搭建详情请看官方文档: https://blog.meekdai.com/tag.html#gmeek
+
+> [!WARNING]
+> 利用 Github Page 搭建的网站内容是完全公开的, 请注意不要上传自己的隐私!!!
+
+# Config.json 小妙用
+
+## subTitle - js插入
+
+代码:
+
+```json
+'subTitle':'<script>document.getElementById('content').innerHTML = `<div style='text-align: center;'><p>CV工程师,</p><p>一个又菜又爱玩, 喜欢瞎折腾的流浪者.</p></div>`;</script>',
+```
+
+效果图:
+
+`Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'>`
+
+从图中可以看到, 可用js插入html实现修改文字.
+
+## subTitle - 隐藏
+
+'subTitle':' ',
+
+效果图:
+
+`Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'>`
+
+可以用空白字符的方式, 隐藏subTitle必须字段, 无需使用js隐藏.
+
+# 记录功能块代码
+
+代码摘抄自网络, 有删改, 都存放在仓库, 使用 jsdelivr CDN 加速.
+
+## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
+
+> 来源: [Github](https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file)
+> 修改-切换博客主题时颜色不一致, 增加滚动同步定位章节, 修改动画和样式.
+> 已知bug: 给body增加`backdrop-filter: blur(30px);`样式时, 会出现滚动错误. 待后续修复.
+
+图示:
+
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1'>`
+
+## [lightbox-gjken.js](https://github.com/GJKen/gjken.github.io/blob/main/static/lightbox-gjken.js) - 灯箱
+
+> 来源: [Github](https://github.com/tiengming/tiengming.github.io)
+> 修改-增加图片拖动, 增加点击图片外部退出灯箱.
+> 已知bug: 当图片缩放过后,再对图片拖动会有微小偏差,~~我代码能力实在是太菜了😭~~.
+
+通过点击可大图浏览文章中的图片, 适合一些图片较多的文章.
+
+Windows 端通过 Ctrl+滚轮放大, 同时滚轮可左右切换图片.
+
+Android 端可通过滑动屏幕左右切换图片.
+
+## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
+
+> Vercount [Github](https://github.com/EvanNotFound/vercount)
+> pv修改成uv计数
+
+建议放入 `allHead` 里全站添加js.
+
+```json
+'allHead':'<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script>'
+```
+
+## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
+
+> 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
+
+未实际测试过.
+
+## [NumPagination.js](https://github.com/GJKen/gjken.github.io/blob/main/static/NumPagination.js) - 主页添加数字分页条
+
+> 来源 [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
+
+未实际测试过.
+
+# 修改网站样式
+
+[primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css), 这个文件用来控制网站的整体样式, 存放在我的git仓库, 使用 jsdelivr CDN 加速.
+对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
+
+## 文章 \<html> 标签样式
+
+`[data-color-mode]`
+优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+[data-color-mode] {
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--bgColor-default, var(--color-canvas-default))
+}
+```
+
+</details>
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--html-bgColor: #151c2f;/* 增加 */
+}
+:root {
+	--html-bgColor: #fff;/* 增加 */
+}
+[data-color-mode] {
+	background-color: var(--html-bgColor)
+}
+```
+
+</details>
+
+## 博客 滚动条 样式
+
+因为默认的 primer.css 里没有写, 所以下面都是增加代码.
+
+<details><summary>CSS Code</summary>
+
+```css
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: #9fc6e3;
+}
+
+/* Firefox */
+html {
+	scrollbar-color: #9fc6e3 transparent;
+	scrollbar-width: thin;
+}
+```
+
+</details>
+
+## 文章 \<code> 标签样式
+
+`.markdown-body code, .markdown-body tt`
+优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body code,
+.markdown-body tt {
+	background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted));
+}
+```
+
+</details>
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--markdown-code-color: #3bf6ff52;/* 增加 */
+}
+:root {
+	--markdown-code-color: #4d4d4d38;/* 增加 */
+}
+.markdown-body code,
+.markdown-body tt {
+	background-color: var(--markdown-code-color);
+}
+```
+
+</details>
+
+## 文章 \<h1> 标签的样式
+
+`.markdown-body h1`
+优化 light & dark 主题下的背景色
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body h1 {
+	padding-bottom: .3em;
+	font-size: 2em;
+	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted))
+}
+```
+
+</details>
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--markdown-h1-bgColor: #7dc2ff7a;/* 增加 */
+}
+:root {
+	--markdown-h1-bgColor: #c8e5ff7a;/* 增加 */
+}
+.markdown-body h1 {
+	background: var(--markdown-h1-bgColor);
+	border-radius: 10px;
+	font-size: 2em;
+	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
+}
+```
+
+</details>
+
+## 文章 \<h2> 标签样式
+
+`.markdown-body h2`
+增加下划线动画
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body h2 {
+	padding-bottom: .3em;
+	font-size: 1.5em;
+	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted))
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+.markdown-body h2 {
+	font-size: 1.5em;
+	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
+	background: linear-gradient(45deg, #90d1ff, transparent) no-repeat left bottom;
+	background-size: 0 2px;
+	-webkit-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+}
+/* 增加hover */
+.markdown-body h2:hover {
+	background-size: 100% 2px;
+}
+```
+
+</details>
+
+## 文章 \<img> 标签样式
+
+`.markdown-body img`
+
+优化 light & dark 主题下的阴影色
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body img {
+	background-color: var(--bgColor-default, var(--color-canvas-default))
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection 
+	--markdown-imgShadow: #b8fffc29;/* 增加 */
+}
+:root {
+	--markdown-imgShadow: #0000000d;/* 增加 */
+}
+.markdown-body img {
+	box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);
+}
+```
+
+</details>
+
+## 文章 \<a> 标签样式
+
+`a`
+优化 dark 主题下的链接色, 去掉原下划线, 增加下划线动画
+
+<details><summary>修改前</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--color-accent-fg: #2f81f7;
+}
+a {
+	background-color: rgba(0, 0, 0, 0)
+}
+a:hover {
+	text-decoration: underline
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--color-accent-fg: #20d4ff;
+}
+a {
+	text-decoration: none !important;
+	background: #0000;
+	background: linear-gradient(#90d1ff, #90d1ff) no-repeat left bottom;
+	background-size: 0 2px;
+	-webkit-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+}
+a:hover {
+	background-size: 100% 2px;
+}
+```
+
+</details>
+
+# 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
+
+Github 在issues 插入的图片也会自动转换为 Github 的地址.
+为了文章的多样性, 在Gmeek的 `v2.19` 版本中添加了支持 html 标签的功能.
+示例代码:
+
+```html
+`Gmeek-html<img src='https://img.jpg' style='text-align: center;'>`
+```
+
+实际展示:
+
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb' style='text-align: center;'>`
+
+# 添加自定义单篇文章代码
+
+```html
+<span id='busuanzi'>
+:heart:感谢第<span></span>小伙伴的<span></span>次访问关于页面.
+</span>
+
+<!-- ##{'script':'<script>document.getElementById('user-content-busuanzi').id='busuanzi_container_site_uv';busuanzi=document.getElementById('busuanzi_container_site_uv');busuanzi.style.display='none';busuanzi.childNodes[1].id='busuanzi_value_site_uv';busuanzi.childNodes[3].id='busuanzi_value_site_pv';</script><script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>','style':'<style>#busuanzi_value_site_uv{color:red}#busuanzi_value_site_pv{color:red}</style>'}## -->
+```
+
+# Readme.md
+
+📄 > 文章总数
+💬 > 评论总数
+🌺 > 是统计的所有文章的字符数
+⏰ > 最后一次 Actions 的时间
+。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://GJKen.github.io/gjkdemo.github.io/post/1.html">
+<meta property="og:image" content="https://ipfs.mbzj.org/ipfs/QmWdwjYEWh1CfZe7NtbJcBp658tWbs7PqeaxgLh46NwxRZ">
+<title>Gmeek - 记录使用过程</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+<style>.markdown-alert{padding:0.5rem 1rem;margin-bottom:1rem;border-left:.25em solid var(--borderColor-default,var(--color-border-default));}.markdown-alert .markdown-alert-title {display:flex;font-weight:var(--base-text-weight-medium,500);align-items:center;line-height:1;}.markdown-alert>:first-child {margin-top:0;}.markdown-alert>:last-child {margin-bottom:0;}</style><style>.markdown-alert.markdown-alert-warning {border-left-color:var(--borderColor-attention-emphasis, var(--color-attention-emphasis));background-color:var(--color-attention-subtle);}.markdown-alert.markdown-alert-warning .markdown-alert-title {color: var(--fgColor-attention,var(--color-attention-fg));}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Gmeek - 记录使用过程</h1>
+<div class="title-right">
+    <a href="https://GJKen.github.io/gjkdemo.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/GJKen/gjkdemo.github.io/issues/1" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p><a href="https://github.com/Meekdai/Gmeek">Gmeek</a> 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.</p>
+<h1>搭建博客</h1>
+<p><strong>如何搭建博客我就不写了, 这里主要记录一些js和css的修改.</strong><br>
+搭建详情请看官方文档: <a href="https://blog.meekdai.com/tag.html#gmeek" rel="nofollow">https://blog.meekdai.com/tag.html#gmeek</a></p>
+<div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title"><svg class="octicon octicon-alert mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p><p>利用 Github Page 搭建的网站内容是完全公开的, 请注意不要上传自己的隐私!!!</p>
+</div>
+<h1>Config.json 小妙用</h1>
+<h2>subTitle - js插入</h2>
+<p>代码:</p>
+<div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"subTitle"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script&gt;document.getElementById('content').innerHTML = `&lt;div style='text-align: center;'&gt;&lt;p&gt;CV工程师,&lt;/p&gt;&lt;p&gt;一个又菜又爱玩, 喜欢瞎折腾的流浪者.&lt;/p&gt;&lt;/div&gt;`;&lt;/script&gt;<span class="pl-pds">"</span></span>,</pre></div>
+<p>效果图:</p>
+<p><img src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
+<p>从图中可以看到, 可用js插入html实现修改文字.</p>
+<h2>subTitle - 隐藏</h2>
+<p>"subTitle":" ",</p>
+<p>效果图:</p>
+<p><img src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"></p>
+<p>可以用空白字符的方式, 隐藏subTitle必须字段, 无需使用js隐藏.</p>
+<h1>记录功能块代码</h1>
+<p>代码摘抄自网络, 有删改, 都存放在仓库, 使用 jsdelivr CDN 加速.</p>
+<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js">ArticleToc.js</a> - 文章增加目录列表+一键返回顶部按钮</h2>
+<blockquote>
+<p>来源: <a href="https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file">Github</a><br>
+修改-切换博客主题时颜色不一致, 增加滚动同步定位章节, 修改动画和样式.<br>
+已知bug: 给body增加<code class="notranslate">backdrop-filter: blur(30px);</code>样式时, 会出现滚动错误. 待后续修复.</p>
+</blockquote>
+<p>图示:</p>
+<p><img src="https://cdn.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1"></p>
+<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/lightbox-gjken.js">lightbox-gjken.js</a> - 灯箱</h2>
+<blockquote>
+<p>来源: <a href="https://github.com/tiengming/tiengming.github.io">Github</a><br>
+修改-增加图片拖动, 增加点击图片外部退出灯箱.<br>
+已知bug: 当图片缩放过后,再对图片拖动会有微小偏差,<del>我代码能力实在是太菜了😭</del>.</p>
+</blockquote>
+<p>通过点击可大图浏览文章中的图片, 适合一些图片较多的文章.</p>
+<p>Windows 端通过 Ctrl+滚轮放大, 同时滚轮可左右切换图片.</p>
+<p>Android 端可通过滑动屏幕左右切换图片.</p>
+<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
+<blockquote>
+<p>Vercount <a href="https://github.com/EvanNotFound/vercount">Github</a><br>
+pv修改成uv计数</p>
+</blockquote>
+<p>建议放入 <code class="notranslate">allHead</code> 里全站添加js.</p>
+<div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"allHead"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'&gt;&lt;/script&gt;<span class="pl-pds">"</span></span></pre></div>
+<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js">ImgLazyLoad.js</a> - 图片懒加载</h2>
+<blockquote>
+<p>来源: <a href="https://github.com/liyifanniubi/liyifanniubi.github.io">Github</a></p>
+</blockquote>
+<p>未实际测试过.</p>
+<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/NumPagination.js">NumPagination.js</a> - 主页添加数字分页条</h2>
+<blockquote>
+<p>来源 <a href="https://github.com/liyifanniubi/liyifanniubi.github.io">Github</a></p>
+</blockquote>
+<p>未实际测试过.</p>
+<h1>修改网站样式</h1>
+<p><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css">primer.css</a>, 这个文件用来控制网站的整体样式, 存放在我的git仓库, 使用 jsdelivr CDN 加速.<br>
+对应的选择器只张贴出关键 CSS 部分的修改, <del>不然代码太多了.</del></p>
+<h2>文章 &lt;html&gt; 标签样式</h2>
+<p><code class="notranslate">[data-color-mode]</code><br>
+优化 light &amp; dark 主题下的背景色.</p>
+<details><summary>修改前</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span>] {
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--bgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-canvas-default</span>))
+}</pre></div>
+</details>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+	<span class="pl-c1">--html-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>151c2f</span>;<span class="pl-c">/* 增加 */</span>
+}
+<span class="pl-kos">:</span><span class="pl-c1">root</span> {
+	<span class="pl-c1">--html-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>fff</span>;<span class="pl-c">/* 增加 */</span>
+}
+[<span class="pl-c1">data-color-mode</span>] {
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--html-bgColor</span>)
+}</pre></div>
+</details>
+<h2>博客 滚动条 样式</h2>
+<p>因为默认的 primer.css 里没有写, 所以下面都是增加代码.</p>
+<details><summary>CSS Code</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">::<span class="pl-ent">-webkit-scrollbar</span> {
+	<span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">height</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;
+}
+
+::<span class="pl-ent">-webkit-scrollbar-thumb</span> {
+	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>9fc6e3</span>;
+}
+
+<span class="pl-c">/* Firefox */</span>
+<span class="pl-ent">html</span> {
+	<span class="pl-c1">scrollbar-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>9fc6e3</span> transparent;
+	<span class="pl-c1">scrollbar-width</span><span class="pl-kos">:</span> thin;
+}</pre></div>
+</details>
+<h2>文章 &lt;code&gt; 标签样式</h2>
+<p><code class="notranslate">.markdown-body code, .markdown-body tt</code><br>
+优化 light &amp; dark 主题下的背景色.</p>
+<details><summary>修改前</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">code</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">tt</span> {
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--bgColor-neutral-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-neutral-muted</span>));
+}</pre></div>
+</details>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+	<span class="pl-c1">--markdown-code-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>3bf6ff52</span>;<span class="pl-c">/* 增加 */</span>
+}
+<span class="pl-kos">:</span><span class="pl-c1">root</span> {
+	<span class="pl-c1">--markdown-code-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>4d4d4d38</span>;<span class="pl-c">/* 增加 */</span>
+}
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">code</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">tt</span> {
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-code-color</span>);
+}</pre></div>
+</details>
+<h2>文章 &lt;h1&gt; 标签的样式</h2>
+<p><code class="notranslate">.markdown-body h1</code><br>
+优化 light &amp; dark 主题下的背景色</p>
+<details><summary>修改前</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h1</span> {
+	<span class="pl-c1">padding-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">.3<span class="pl-smi">em</span></span>;
+	<span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">2<span class="pl-smi">em</span></span>;
+	<span class="pl-c1">border-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">1<span class="pl-smi">px</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-muted</span>))
+}</pre></div>
+</details>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+	<span class="pl-c1">--markdown-h1-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>7dc2ff7a</span>;<span class="pl-c">/* 增加 */</span>
+}
+<span class="pl-kos">:</span><span class="pl-c1">root</span> {
+	<span class="pl-c1">--markdown-h1-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>c8e5ff7a</span>;<span class="pl-c">/* 增加 */</span>
+}
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h1</span> {
+	<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-h1-bgColor</span>);
+	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">2<span class="pl-smi">em</span></span>;
+	<span class="pl-c1">border-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">1<span class="pl-smi">px</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-muted</span>));
+}</pre></div>
+</details>
+<h2>文章 &lt;h2&gt; 标签样式</h2>
+<p><code class="notranslate">.markdown-body h2</code><br>
+增加下划线动画</p>
+<details><summary>修改前</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h2</span> {
+	<span class="pl-c1">padding-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">.3<span class="pl-smi">em</span></span>;
+	<span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">1.5<span class="pl-smi">em</span></span>;
+	<span class="pl-c1">border-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">1<span class="pl-smi">px</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-muted</span>))
+}</pre></div>
+</details>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h2</span> {
+	<span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">1.5<span class="pl-smi">em</span></span>;
+	<span class="pl-c1">border-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">1<span class="pl-smi">px</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-muted</span>));
+	<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">linear-gradient</span>(<span class="pl-c1">45<span class="pl-smi">deg</span></span><span class="pl-kos">,</span> <span class="pl-pds"><span class="pl-kos">#</span>90d1ff</span><span class="pl-kos">,</span> transparent) no-repeat left bottom;
+	<span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> all <span class="pl-c1">0.25<span class="pl-smi">s</span></span> ease;
+	<span class="pl-c1">transition</span><span class="pl-kos">:</span> all <span class="pl-c1">0.25<span class="pl-smi">s</span></span> ease;
+}
+<span class="pl-c">/* 增加hover */</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h2</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> {
+	<span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;
+}</pre></div>
+</details>
+<h2>文章 &lt;img&gt; 标签样式</h2>
+<p><code class="notranslate">.markdown-body img</code></p>
+<p>优化 light &amp; dark 主题下的阴影色</p>
+<details><summary>修改前</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">img</span> {
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--bgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-canvas-default</span>))
+}</pre></div>
+</details>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> 
+	<span class="pl-ent">--markdown-imgShadow</span><span class="pl-kos">:</span> <span class="pl-kos">#</span><span class="pl-c1">b8fffc29</span>;<span class="pl-c">/* 增加 */</span>
+}
+<span class="pl-kos">:</span><span class="pl-ent">root</span> {
+	<span class="pl-c1">--markdown-imgShadow</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>0000000d</span>;<span class="pl-c">/* 增加 */</span>
+}
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">img</span> {
+	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">4<span class="pl-smi">px</span></span> <span class="pl-c1">8<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-imgShadow</span>)<span class="pl-kos">,</span> <span class="pl-c1">0</span> <span class="pl-c1">-4<span class="pl-smi">px</span></span> <span class="pl-c1">8<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-imgShadow</span>);
+}</pre></div>
+</details>
+<h2>文章 &lt;a&gt; 标签样式</h2>
+<p><code class="notranslate">a</code><br>
+优化 dark 主题下的链接色, 去掉原下划线, 增加下划线动画</p>
+<details><summary>修改前</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+	<span class="pl-c1">--color-accent-fg</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>2f81f7</span>;
+}
+<span class="pl-ent">a</span> {
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">rgba</span>(<span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span>)
+}
+<span class="pl-ent">a</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> {
+	<span class="pl-c1">text-decoration</span><span class="pl-kos">:</span> underline
+}</pre></div>
+</details>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+	<span class="pl-c1">--color-accent-fg</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>20d4ff</span>;
+}
+<span class="pl-ent">a</span> {
+	<span class="pl-c1">text-decoration</span><span class="pl-kos">:</span> none <span class="pl-k">!important</span>;
+	<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>0000</span>;
+	<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">linear-gradient</span>(<span class="pl-pds"><span class="pl-kos">#</span>90d1ff</span><span class="pl-kos">,</span> <span class="pl-pds"><span class="pl-kos">#</span>90d1ff</span>) no-repeat left bottom;
+	<span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> all <span class="pl-c1">0.25<span class="pl-smi">s</span></span> ease;
+	<span class="pl-c1">transition</span><span class="pl-kos">:</span> all <span class="pl-c1">0.25<span class="pl-smi">s</span></span> ease;
+}
+<span class="pl-ent">a</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> {
+	<span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;
+}</pre></div>
+</details>
+<h1>使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换</h1>
+<p>Github 在issues 插入的图片也会自动转换为 Github 的地址.<br>
+为了文章的多样性, 在Gmeek的 <code class="notranslate">v2.19</code> 版本中添加了支持 html 标签的功能.<br>
+示例代码:</p>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-html<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://img.jpg</span>" <span class="pl-c1">style</span>="<span class="pl-s">text-align: center;</span>"<span class="pl-kos">&gt;</span>`</pre></div>
+<p>实际展示:</p>
+<p><img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb" style="text-align: center;"></p>
+<h1>添加自定义单篇文章代码</h1>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">id</span>="<span class="pl-s">busuanzi</span>"<span class="pl-kos">&gt;</span>
+:heart:感谢第<span class="pl-kos">&lt;</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>小伙伴的<span class="pl-kos">&lt;</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>次访问关于页面.
+<span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>
+
+<span class="pl-c">&lt;!-- ##{"script":"&lt;script&gt;document.getElementById('user-content-busuanzi').id='busuanzi_container_site_uv';busuanzi=document.getElementById('busuanzi_container_site_uv');busuanzi.style.display='none';busuanzi.childNodes[1].id='busuanzi_value_site_uv';busuanzi.childNodes[3].id='busuanzi_value_site_pv';&lt;/script&gt;&lt;script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'&gt;&lt;/script&gt;","style":"&lt;style&gt;#busuanzi_value_site_uv{color:red}#busuanzi_value_site_pv{color:red}&lt;/style&gt;"}## --&gt;</span></pre></div>
+<h1>Readme.md</h1>
+<p>📄 &gt; 文章总数<br>
+💬 &gt; 评论总数<br>
+🌺 &gt; 是统计的所有文章的字符数<br>
+⏰ &gt; 最后一次 Actions 的时间</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">🥰转载请注明,谢谢!🥰</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://GJKen.github.io/gjkdemo.github.io">GJKen</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("11/01/2024"!=""){
+    var startSite=new Date("11/01/2024");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","GJKen/gjkdemo.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/lightbox-gjken.min.js'></script>
+
+</html>
