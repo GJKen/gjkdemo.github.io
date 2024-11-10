@@ -433,7 +433,7 @@ a:hover {
 
 </details>
 
-## 直接修改Gmeek仓库源码
+# 通过 Gmeek 仓库, 修改 CSS
 
 为什么这样做? ~~自娱自乐.~~
 
@@ -465,7 +465,7 @@ fork 之后, 转到搭建博客的 github 源码, 找到 `config.json`
 
 这里我直接写改成我存放的链接 https://gjken.github.io/primer.css'
 
-### 修改页面头部样式
+## 修改页面头部样式
 
 打开`post.html`文件.
 
@@ -475,11 +475,11 @@ fork 之后, 转到搭建博客的 github 源码, 找到 `config.json`
 
 定位样式`.title-left a`, 删除`margin-left:8px;`
 
-定位样式`.avatar:hover `,其内容全部修改`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
+定位样式`.avatar:hover`,其内容全部修改`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
 
-到这里我的自定义 header 就修改完成了, 包括了 头像, 文字, 图标的修改.
+到这里我的自定义 header 就修改完成了, 包括了 头像, 文字的修改.
 
-### 
+## plist.html
 和 `plist.html`这两个文件.
 
 src="https://ipfs.mbzj.org/ipfs/QmdFtjzfQJWcBYWxcodHbPGPWZUD6DUcVHdBmTe4CEaYfv">`
