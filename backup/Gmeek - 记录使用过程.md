@@ -234,6 +234,13 @@ html {
 
 </details>
 
+## 主页文章列表样式
+
+`.SideNav-item:last-child`
+
+> [!NOTE]
+> 直接移除这个选择器的所有样式
+
 ## 文章 \<code> 标签样式
 
 `.markdown-body code, .markdown-body tt`
