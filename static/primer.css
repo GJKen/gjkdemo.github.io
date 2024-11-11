@@ -17369,10 +17369,6 @@ a.tabnav-extra:hover {
 	border-top: 0
 }
 
-.SideNav-item:last-child {
-	box-shadow: 0 1px 0 var(--borderColor-default, var(--color-border-default))
-}
-
 .SideNav-item::before {
 	position: absolute;
 	top: 0;
