@@ -456,6 +456,10 @@ a:hover {
 
 fork 之后, 转到搭建博客的 github 源码,
 
+打开`.github/workflows/Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址
+
+`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav">`
+
 打开`config.json`文件, 修改成`"GMEEK_VERSION":"main"`
 
 > [!NOTE]
