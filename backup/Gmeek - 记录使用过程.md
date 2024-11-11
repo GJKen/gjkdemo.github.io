@@ -258,21 +258,30 @@ html {
 ```
 
 </details>
-<details><summary>修改后</summary>
+
+## 文章代码块样式
+
+> [!NOTE]
+> 给代码块增加 hover, 使其显示&隐藏一键复制按钮, 文末增加 CSS 即可.
+
+<details><summary>CSS Code</summary>
 
 ```css
-[data-color-mode=light][data-light-theme=dark],
-[data-color-mode=light][data-light-theme=dark]::selection,
-[data-color-mode=dark][data-dark-theme=dark],
-[data-color-mode=dark][data-dark-theme=dark]::selection {
-    --markdown-code-color: #3bf6ff52;/* 增加 */
+/* 一键复制出入动画 */
+.clipboard-container {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0.3s;
 }
-:root {
-    --markdown-code-color: #4d4d4d38;/* 增加 */
-}
-.markdown-body code,
-.markdown-body tt {
-    background-color: var(--markdown-code-color);
+
+.highlight:hover .clipboard-container {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.3s ease, visibility 0s 0s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0s;
 }
 ```
 
@@ -460,7 +469,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 `Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav">`
 
-打开`config.json`文件, 修改成`"GMEEK_VERSION":"main"`
+打开`config.json`文件, 修改右边字段值为main`"GMEEK_VERSION":"main"`
 
 > [!NOTE]
 > 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.

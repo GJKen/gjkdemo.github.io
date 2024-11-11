@@ -270,21 +270,30 @@ html {
 ```
 
 </details>
-<details><summary>修改后</summary>
+
+## 文章代码块样式
+
+> [!NOTE]
+> 给代码块增加 hover, 使其显示&隐藏一键复制按钮, 文末增加 CSS 即可.
+
+<details><summary>CSS Code</summary>
 
 ```css
-[data-color-mode=light][data-light-theme=dark],
-[data-color-mode=light][data-light-theme=dark]::selection,
-[data-color-mode=dark][data-dark-theme=dark],
-[data-color-mode=dark][data-dark-theme=dark]::selection {
-    --markdown-code-color: #3bf6ff52;/* 增加 */
+/* 一键复制出入动画 */
+.clipboard-container {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0.3s;
 }
-:root {
-    --markdown-code-color: #4d4d4d38;/* 增加 */
-}
-.markdown-body code,
-.markdown-body tt {
-    background-color: var(--markdown-code-color);
+
+.highlight:hover .clipboard-container {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.3s ease, visibility 0s 0s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0s;
 }
 ```
 
@@ -472,7 +481,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 `Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav'>`
 
-打开`config.json`文件, 修改成`'GMEEK_VERSION':'main'`
+打开`config.json`文件, 修改右边字段值为main`'GMEEK_VERSION':'main'`
 
 > [!NOTE]
 > 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
@@ -806,21 +815,30 @@ html {
 ```
 
 </details>
-<details><summary>修改后</summary>
+
+## 文章代码块样式
+
+> [!NOTE]
+> 给代码块增加 hover, 使其显示&隐藏一键复制按钮, 文末增加 CSS 即可.
+
+<details><summary>CSS Code</summary>
 
 ```css
-[data-color-mode=light][data-light-theme=dark],
-[data-color-mode=light][data-light-theme=dark]::selection,
-[data-color-mode=dark][data-dark-theme=dark],
-[data-color-mode=dark][data-dark-theme=dark]::selection {
-    --markdown-code-color: #3bf6ff52;/* 增加 */
+/* 一键复制出入动画 */
+.clipboard-container {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0.3s;
 }
-:root {
-    --markdown-code-color: #4d4d4d38;/* 增加 */
-}
-.markdown-body code,
-.markdown-body tt {
-    background-color: var(--markdown-code-color);
+
+.highlight:hover .clipboard-container {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.3s ease, visibility 0s 0s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0s;
 }
 ```
 
@@ -1008,7 +1026,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 `Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav'>`
 
-打开`config.json`文件, 修改成`'GMEEK_VERSION':'main'`
+打开`config.json`文件, 修改右边字段值为main`'GMEEK_VERSION':'main'`
 
 > [!NOTE]
 > 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
@@ -1325,19 +1343,25 @@ pv 修改成 uv 计数</p>
     <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--bgColor-neutral-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-neutral-muted</span>));
 }</pre></div>
 </details>
-<details><summary>修改后</summary>
-<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
-    <span class="pl-c1">--markdown-code-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>3bf6ff52</span>;<span class="pl-c">/* 增加 */</span>
+<h2>文章代码块样式</h2>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>给代码块增加 hover, 使其显示&amp;隐藏一键复制按钮, 文末增加 CSS 即可.</p>
+</div>
+<details><summary>CSS Code</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-c">/* 一键复制出入动画 */</span>
+.<span class="pl-c1">clipboard-container</span> {
+    <span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;
+    <span class="pl-c1">visibility</span><span class="pl-kos">:</span> hidden;
+    <span class="pl-c1">pointer-events</span><span class="pl-kos">:</span> none;
+    <span class="pl-c1">transition</span><span class="pl-kos">:</span> opacity <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> visibility <span class="pl-c1">0<span class="pl-smi">s</span></span> <span class="pl-c1">0.3<span class="pl-smi">s</span></span>;
+	<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> opacity <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> visibility <span class="pl-c1">0<span class="pl-smi">s</span></span> <span class="pl-c1">0.3<span class="pl-smi">s</span></span>;
 }
-<span class="pl-kos">:</span><span class="pl-c1">root</span> {
-    <span class="pl-c1">--markdown-code-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>4d4d4d38</span>;<span class="pl-c">/* 增加 */</span>
-}
-.<span class="pl-c1">markdown-body</span> <span class="pl-ent">code</span><span class="pl-kos">,</span>
-.<span class="pl-c1">markdown-body</span> <span class="pl-ent">tt</span> {
-    <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-code-color</span>);
+
+.<span class="pl-c1">highlight</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> .<span class="pl-c1">clipboard-container</span> {
+    <span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">1</span>;
+    <span class="pl-c1">visibility</span><span class="pl-kos">:</span> visible;
+    <span class="pl-c1">pointer-events</span><span class="pl-kos">:</span> auto;
+    <span class="pl-c1">transition</span><span class="pl-kos">:</span> opacity <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> visibility <span class="pl-c1">0<span class="pl-smi">s</span></span> <span class="pl-c1">0<span class="pl-smi">s</span></span>;
+	<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> opacity <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> visibility <span class="pl-c1">0<span class="pl-smi">s</span></span> <span class="pl-c1">0<span class="pl-smi">s</span></span>;
 }</pre></div>
 </details>
 <h2>文章 &lt;h1&gt; 标签的样式</h2>
@@ -1463,7 +1487,7 @@ pv 修改成 uv 计数</p>
 <p>fork 之后, 转到搭建博客的 github 源码,</p>
 <p>打开<code class="notranslate">.github/workflows/Gmeek.yml</code>文件, 修改构建博客仓库的地址为你自己的仓库地址</p>
 <p><img src="https://cdn.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav"></p>
-<p>打开<code class="notranslate">config.json</code>文件, 修改成<code class="notranslate">"GMEEK_VERSION":"main"</code></p>
+<p>打开<code class="notranslate">config.json</code>文件, 修改右边字段值为main<code class="notranslate">"GMEEK_VERSION":"main"</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>如果值是<code class="notranslate">last</code>的话, Action 会失败, 因为默认值<code class="notranslate">last</code>是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.<br>
 <del>创建新的 tag 也可以, 但是挺麻烦.</del></p>
 </div>
