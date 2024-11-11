@@ -12522,7 +12522,7 @@ body {
 	box-shadow: 0 0 100px var(--body-shadow-color);
 }
 
-/* static
+/* docs
 #header {
 	flex-direction: column !important;
 	align-items: center !important;
@@ -27341,11 +27341,17 @@ a.branch-name .octicon {
 
 .markdown-body h1 {
 	background: var(--markdown-h1-bgColor);
-	border-radius: 10px;
+	border-radius: 6px;
 	font-size: 2em;
 	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
+	border-left: .25em solid #32c7dd;
 }
-
+.markdown-body h2 {
+    padding-bottom: .3em;
+    font-size: 1.5em;
+    border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted))
+}
+/*
 .markdown-body h2 {
 	font-size: 1.5em;
 	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
@@ -27354,6 +27360,7 @@ a.branch-name .octicon {
 	-webkit-transition: all 0.25s ease;
 	transition: all 0.25s ease;
 }
+*/
 
 .markdown-body h2:hover {
 	background-size: 100% 2px;

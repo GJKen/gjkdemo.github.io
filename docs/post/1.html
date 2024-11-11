@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href='https://gjken.github.io/primer.css' rel='stylesheet' />
+    <link href='https://gjken.github.io/demo/primer.css' rel='stylesheet' />
     <script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/Indextheme.min.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script>
     <link rel="icon" href="https://ipfs.mbzj.org/ipfs/QmRtULS1Gmf3Phh84o9SVWhdc52AuJJ2NA24zMiFMeqdpf"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
@@ -14,8 +14,11 @@
 
 # 搭建博客
 
-**如何搭建博客我就不写了, 这里主要记录一些js和css的修改.**
+**如何搭建博客我就不写了, 强烈建议看完官方的文档**
+
 搭建详情请看官方文档: https://blog.meekdai.com/tag.html#gmeek
+
+**这里主要记录一些 js 和 CSS 的修改.**
 
 > [!WARNING]
 > 利用 Github Page 搭建的网站内容是完全公开的, 请注意不要上传自己的隐私!!!
@@ -34,7 +37,7 @@
 
 `Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'>`
 
-从图中可以看到, 可用js插入html实现修改文字.
+从图中可以看到, 可用 js 插入 html 实现修改文字.
 
 ## subTitle - 隐藏
 
@@ -44,7 +47,7 @@
 
 `Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'>`
 
-可以用空白字符的方式, 隐藏subTitle必须字段, 无需使用js隐藏.
+可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.
 
 # 记录功能块代码
 
@@ -64,7 +67,7 @@
 
 > 来源: [Github](https://github.com/tiengming/tiengming.github.io)
 > 修改-增加图片拖动, 增加点击图片外部退出灯箱.
-> 已知bug: 当图片缩放过后,再对图片拖动会有微小偏差,~~我代码能力实在是太菜了😭~~.
+> 已知 bug: 当图片缩放过后,再对图片拖动会有微小偏差,~~我代码能力实在是太菜了😭~~.
 
 通过点击可大图浏览文章中的图片, 适合一些图片较多的文章.
 
@@ -75,9 +78,9 @@ Android 端可通过滑动屏幕左右切换图片.
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
 > Vercount [Github](https://github.com/EvanNotFound/vercount)
-> pv修改成uv计数
+> pv 修改成 uv 计数
 
-建议放入 `allHead` 里全站添加js.
+建议放入`allHead`里全站添加 js.
 
 ```json
 'allHead':'<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script>'
@@ -97,8 +100,45 @@ Android 端可通过滑动屏幕左右切换图片.
 
 # 修改网站样式
 
-[primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css), 这个文件用来控制网站的整体样式, 存放在我的git仓库, 使用 jsdelivr CDN 加速.
+[primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css), 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.
 对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
+
+##  \<html> 样式
+
+`[data-color-mode]`
+
+> [!NOTE]
+> 优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+[data-color-mode] {
+    color: var(--fgColor-default, var(--color-fg-default));
+    background-color: var(--bgColor-default, var(--color-canvas-default))
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+    --html-bgColor: #151c2f;/* 增加 */
+}
+:root {
+    --html-bgColor: #fff;/* 增加 */
+}
+[data-color-mode] {
+    background-color: var(--html-bgColor)
+}
+```
+
+</details>
 
 ## 博客 滚动条 样式
 
@@ -126,7 +166,7 @@ html {
 
 </details>
 
-## #header 样式
+## \#header 样式
 
 `#header`
 
@@ -169,7 +209,7 @@ html {
 
 </details>
 
-## #header 图标样式
+## \#header 图标样式
 
 `.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
 
@@ -201,43 +241,6 @@ html {
     background-color: var(--title-right-btnbg-color);
     outline: none;
     box-shadow: none
-}
-```
-
-</details>
-
-## 文章 \<html> 标签样式
-
-`[data-color-mode]`
-
-> [!NOTE]
-> 优化 light & dark 主题下的背景色.
-
-<details><summary>修改前</summary>
-
-```css
-[data-color-mode] {
-    color: var(--fgColor-default, var(--color-fg-default));
-    background-color: var(--bgColor-default, var(--color-canvas-default))
-}
-```
-
-</details>
-
-<details><summary>修改后</summary>
-
-```css
-[data-color-mode=light][data-light-theme=dark],
-[data-color-mode=light][data-light-theme=dark]::selection,
-[data-color-mode=dark][data-dark-theme=dark],
-[data-color-mode=dark][data-dark-theme=dark]::selection {
-    --html-bgColor: #151c2f;/* 增加 */
-}
-:root {
-    --html-bgColor: #fff;/* 增加 */
-}
-[data-color-mode] {
-    background-color: var(--html-bgColor)
 }
 ```
 
@@ -312,9 +315,10 @@ html {
 }
 .markdown-body h1 {
     background: var(--markdown-h1-bgColor);
-    border-radius: 10px;
+    border-radius: 6px;
     font-size: 2em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
+	border-left: .25em solid #32c7dd;
 }
 ```
 
@@ -451,13 +455,13 @@ a:hover {
 
 ## Fork Gmeek 仓库
 
-Fork 👉 https://github.com/Meekdai/Gmeek
+仓库地址👉 https://github.com/Meekdai/Gmeek
 
 `Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV'>`
 
 fork 之后, 转到搭建博客的 github 源码,
 
-打开`config.json`文件, 修改`'GMEEK_VERSION':'main'`
+打开`config.json`文件, 修改成`'GMEEK_VERSION':'main'`
 
 > [!NOTE]
 > 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
@@ -483,17 +487,21 @@ fork 之后, 转到搭建博客的 github 源码,
 
 定位样式`.title-right`, 其内容全部修改为flex布局`.title-right{display:flex;}`
 
-增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`, 
+增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`
 
-定位样式`.title-left a`, 删除`margin-left:8px;`
+定位样式`.title-left a`, 删除`margin-left:8px;`, 设置flex布局之后取消图标多余的间距, 样式则通过 <a href='## \#header 图标样式'>primer.css</a> 来修改.
+
+定位样式`.title-right .circle`, 删除`margin-right:8px;`, 和上面一样, 删除多余间距.
 
 定位样式`.avatar:hover`,其内容全部修改`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
 
 ### 打开 plist.html 文件
 
-定位样式`.title-right .circle`, 删除`margin-right:8px;`
+定位样式`.title-right .circle`, 删除`margin-right:8px;`, 和上面一样, 删除多余间距.
 
-到这里我的自定义 header 就修改完成了, 包括了头像+文字的修改.
+到这里我的自定义 header 就修改完成了, 剩下的到 primer.css 改.
+
+## 修改 特殊警告格式 样式
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
@@ -531,8 +539,11 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
 # 搭建博客
 
-**如何搭建博客我就不写了, 这里主要记录一些js和css的修改.**
+**如何搭建博客我就不写了, 强烈建议看完官方的文档**
+
 搭建详情请看官方文档: https://blog.meekdai.com/tag.html#gmeek
+
+**这里主要记录一些 js 和 CSS 的修改.**
 
 > [!WARNING]
 > 利用 Github Page 搭建的网站内容是完全公开的, 请注意不要上传自己的隐私!!!
@@ -551,7 +562,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
 `Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'>`
 
-从图中可以看到, 可用js插入html实现修改文字.
+从图中可以看到, 可用 js 插入 html 实现修改文字.
 
 ## subTitle - 隐藏
 
@@ -561,7 +572,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
 `Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'>`
 
-可以用空白字符的方式, 隐藏subTitle必须字段, 无需使用js隐藏.
+可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.
 
 # 记录功能块代码
 
@@ -581,7 +592,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
 > 来源: [Github](https://github.com/tiengming/tiengming.github.io)
 > 修改-增加图片拖动, 增加点击图片外部退出灯箱.
-> 已知bug: 当图片缩放过后,再对图片拖动会有微小偏差,~~我代码能力实在是太菜了😭~~.
+> 已知 bug: 当图片缩放过后,再对图片拖动会有微小偏差,~~我代码能力实在是太菜了😭~~.
 
 通过点击可大图浏览文章中的图片, 适合一些图片较多的文章.
 
@@ -592,9 +603,9 @@ Android 端可通过滑动屏幕左右切换图片.
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
 > Vercount [Github](https://github.com/EvanNotFound/vercount)
-> pv修改成uv计数
+> pv 修改成 uv 计数
 
-建议放入 `allHead` 里全站添加js.
+建议放入`allHead`里全站添加 js.
 
 ```json
 'allHead':'<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script>'
@@ -614,8 +625,45 @@ Android 端可通过滑动屏幕左右切换图片.
 
 # 修改网站样式
 
-[primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css), 这个文件用来控制网站的整体样式, 存放在我的git仓库, 使用 jsdelivr CDN 加速.
+[primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css), 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.
 对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
+
+##  \<html> 样式
+
+`[data-color-mode]`
+
+> [!NOTE]
+> 优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+[data-color-mode] {
+    color: var(--fgColor-default, var(--color-fg-default));
+    background-color: var(--bgColor-default, var(--color-canvas-default))
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+    --html-bgColor: #151c2f;/* 增加 */
+}
+:root {
+    --html-bgColor: #fff;/* 增加 */
+}
+[data-color-mode] {
+    background-color: var(--html-bgColor)
+}
+```
+
+</details>
 
 ## 博客 滚动条 样式
 
@@ -643,7 +691,7 @@ html {
 
 </details>
 
-## #header 样式
+## \#header 样式
 
 `#header`
 
@@ -686,7 +734,7 @@ html {
 
 </details>
 
-## #header 图标样式
+## \#header 图标样式
 
 `.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
 
@@ -718,43 +766,6 @@ html {
     background-color: var(--title-right-btnbg-color);
     outline: none;
     box-shadow: none
-}
-```
-
-</details>
-
-## 文章 \<html> 标签样式
-
-`[data-color-mode]`
-
-> [!NOTE]
-> 优化 light & dark 主题下的背景色.
-
-<details><summary>修改前</summary>
-
-```css
-[data-color-mode] {
-    color: var(--fgColor-default, var(--color-fg-default));
-    background-color: var(--bgColor-default, var(--color-canvas-default))
-}
-```
-
-</details>
-
-<details><summary>修改后</summary>
-
-```css
-[data-color-mode=light][data-light-theme=dark],
-[data-color-mode=light][data-light-theme=dark]::selection,
-[data-color-mode=dark][data-dark-theme=dark],
-[data-color-mode=dark][data-dark-theme=dark]::selection {
-    --html-bgColor: #151c2f;/* 增加 */
-}
-:root {
-    --html-bgColor: #fff;/* 增加 */
-}
-[data-color-mode] {
-    background-color: var(--html-bgColor)
 }
 ```
 
@@ -829,9 +840,10 @@ html {
 }
 .markdown-body h1 {
     background: var(--markdown-h1-bgColor);
-    border-radius: 10px;
+    border-radius: 6px;
     font-size: 2em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
+	border-left: .25em solid #32c7dd;
 }
 ```
 
@@ -968,13 +980,13 @@ a:hover {
 
 ## Fork Gmeek 仓库
 
-Fork 👉 https://github.com/Meekdai/Gmeek
+仓库地址👉 https://github.com/Meekdai/Gmeek
 
 `Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV'>`
 
 fork 之后, 转到搭建博客的 github 源码,
 
-打开`config.json`文件, 修改`'GMEEK_VERSION':'main'`
+打开`config.json`文件, 修改成`'GMEEK_VERSION':'main'`
 
 > [!NOTE]
 > 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
@@ -1000,17 +1012,21 @@ fork 之后, 转到搭建博客的 github 源码,
 
 定位样式`.title-right`, 其内容全部修改为flex布局`.title-right{display:flex;}`
 
-增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`, 
+增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`
 
-定位样式`.title-left a`, 删除`margin-left:8px;`
+定位样式`.title-left a`, 删除`margin-left:8px;`, 设置flex布局之后取消图标多余的间距, 样式则通过 <a href='## \#header 图标样式'>primer.css</a> 来修改.
+
+定位样式`.title-right .circle`, 删除`margin-right:8px;`, 和上面一样, 删除多余间距.
 
 定位样式`.avatar:hover`,其内容全部修改`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
 
 ### 打开 plist.html 文件
 
-定位样式`.title-right .circle`, 删除`margin-right:8px;`
+定位样式`.title-right .circle`, 删除`margin-right:8px;`, 和上面一样, 删除多余间距.
 
-到这里我的自定义 header 就修改完成了, 包括了头像+文字的修改.
+到这里我的自定义 header 就修改完成了, 剩下的到 primer.css 改.
+
+## 修改 特殊警告格式 样式
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
@@ -1062,7 +1078,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <style>
 .postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 .title-right{display:flex;}
-.title-right .circle{padding: 14px 16px;margin-right:8px;}
+.title-right .circle{padding: 14px 16px;}
 #postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
 #postBody hr{height:2px;}
 #cmButton{height:48px;margin-top:48px;}
@@ -1084,7 +1100,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     font-size: 12px;
 }
 </style>
-<style>.markdown-alert{padding:0.5rem 1rem;margin-bottom:1rem;border-left:.25em solid var(--borderColor-default,var(--color-border-default));}.markdown-alert .markdown-alert-title {display:flex;font-weight:var(--base-text-weight-medium,500);align-items:center;line-height:1;}.markdown-alert>:first-child {margin-top:0;}.markdown-alert>:last-child {margin-bottom:0;}</style><style>.markdown-alert.markdown-alert-note {border-left-color:var(--borderColor-accent-emphasis, var(--color-accent-emphasis));background-color:var(--color-accent-subtle);}.markdown-alert.markdown-alert-note .markdown-alert-title {color: var(--fgColor-accent,var(--color-accent-fg));}</style><style>.markdown-alert.markdown-alert-warning {border-left-color:var(--borderColor-attention-emphasis, var(--color-attention-emphasis));background-color:var(--color-attention-subtle);}.markdown-alert.markdown-alert-warning .markdown-alert-title {color: var(--fgColor-attention,var(--color-attention-fg));}</style>
+<style>.markdown-alert{padding:0.5rem 1rem;margin-bottom:1rem;border-left:.25em solid var(--borderColor-default,var(--color-border-default));}.markdown-alert .markdown-alert-title {display:flex;font-weight:var(--base-text-weight-medium,500);align-items:center;line-height:1;}.markdown-alert>:first-child {margin-top:0;}.markdown-alert>:last-child {margin-bottom:0;}</style><style>.markdown-alert.markdown-alert-note {border-left-color:var(--borderColor-accent-emphasis, var(--color-accent-emphasis));border-radius:6px;background-color:var(--color-accent-subtle);}.markdown-alert.markdown-alert-note .markdown-alert-title {color: var(--fgColor-accent,var(--color-accent-fg));}</style><style>.markdown-alert.markdown-alert-warning {border-left-color:var(--borderColor-attention-emphasis, var(--color-attention-emphasis));border-radius:6px;background-color:var(--color-attention-subtle);}.markdown-alert.markdown-alert-warning .markdown-alert-title {color: var(--fgColor-attention,var(--color-attention-fg));}</style>
 
 
 
@@ -1116,8 +1132,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 <div class="markdown-body" id="postBody"><p><a href="https://github.com/Meekdai/Gmeek">Gmeek</a> 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.</p>
 <h1>搭建博客</h1>
-<p><strong>如何搭建博客我就不写了, 这里主要记录一些js和css的修改.</strong><br>
-搭建详情请看官方文档: <a href="https://blog.meekdai.com/tag.html#gmeek" rel="nofollow">https://blog.meekdai.com/tag.html#gmeek</a></p>
+<p><strong>如何搭建博客我就不写了, 强烈建议看完官方的文档</strong></p>
+<p>搭建详情请看官方文档: <a href="https://blog.meekdai.com/tag.html#gmeek" rel="nofollow">https://blog.meekdai.com/tag.html#gmeek</a></p>
+<p><strong>这里主要记录一些 js 和 CSS 的修改.</strong></p>
 <div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title"><svg class="octicon octicon-alert mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p><p>利用 Github Page 搭建的网站内容是完全公开的, 请注意不要上传自己的隐私!!!</p>
 </div>
 <h1>Config.json 小妙用</h1>
@@ -1126,12 +1143,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"subTitle"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script&gt;document.getElementById('content').innerHTML = `&lt;div style='text-align: center;'&gt;&lt;p&gt;CV工程师,&lt;/p&gt;&lt;p&gt;一个又菜又爱玩, 喜欢瞎折腾的流浪者.&lt;/p&gt;&lt;/div&gt;`;&lt;/script&gt;<span class="pl-pds">"</span></span>,</pre></div>
 <p>效果图:</p>
 <p><img src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
-<p>从图中可以看到, 可用js插入html实现修改文字.</p>
+<p>从图中可以看到, 可用 js 插入 html 实现修改文字.</p>
 <h2>subTitle - 隐藏</h2>
 <p>"subTitle":" ",</p>
 <p>效果图:</p>
 <p><img src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"></p>
-<p>可以用空白字符的方式, 隐藏subTitle必须字段, 无需使用js隐藏.</p>
+<p>可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.</p>
 <h1>记录功能块代码</h1>
 <p>代码摘抄自网络, 有删改, 都存放在仓库, 使用 jsdelivr CDN 加速.</p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js">ArticleToc.js</a> - 文章增加目录列表+一键返回顶部按钮</h2>
@@ -1146,7 +1163,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <blockquote>
 <p>来源: <a href="https://github.com/tiengming/tiengming.github.io">Github</a><br>
 修改-增加图片拖动, 增加点击图片外部退出灯箱.<br>
-已知bug: 当图片缩放过后,再对图片拖动会有微小偏差,<del>我代码能力实在是太菜了😭</del>.</p>
+已知 bug: 当图片缩放过后,再对图片拖动会有微小偏差,<del>我代码能力实在是太菜了😭</del>.</p>
 </blockquote>
 <p>通过点击可大图浏览文章中的图片, 适合一些图片较多的文章.</p>
 <p>Windows 端通过 Ctrl+滚轮放大, 同时滚轮可左右切换图片.</p>
@@ -1154,9 +1171,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
 <blockquote>
 <p>Vercount <a href="https://github.com/EvanNotFound/vercount">Github</a><br>
-pv修改成uv计数</p>
+pv 修改成 uv 计数</p>
 </blockquote>
-<p>建议放入 <code class="notranslate">allHead</code> 里全站添加js.</p>
+<p>建议放入<code class="notranslate">allHead</code>里全站添加 js.</p>
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"allHead"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'&gt;&lt;/script&gt;<span class="pl-pds">"</span></span></pre></div>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js">ImgLazyLoad.js</a> - 图片懒加载</h2>
 <blockquote>
@@ -1169,8 +1186,32 @@ pv修改成uv计数</p>
 </blockquote>
 <p>未实际测试过.</p>
 <h1>修改网站样式</h1>
-<p><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css">primer.css</a>, 这个文件用来控制网站的整体样式, 存放在我的git仓库, 使用 jsdelivr CDN 加速.<br>
+<p><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css">primer.css</a>, 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.<br>
 对应的选择器只张贴出关键 CSS 部分的修改, <del>不然代码太多了.</del></p>
+<h2>&lt;html&gt; 样式</h2>
+<p><code class="notranslate">[data-color-mode]</code></p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
+</div>
+<details><summary>修改前</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span>] {
+    <span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));
+    <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--bgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-canvas-default</span>))
+}</pre></div>
+</details>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+    <span class="pl-c1">--html-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>151c2f</span>;<span class="pl-c">/* 增加 */</span>
+}
+<span class="pl-kos">:</span><span class="pl-c1">root</span> {
+    <span class="pl-c1">--html-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>fff</span>;<span class="pl-c">/* 增加 */</span>
+}
+[<span class="pl-c1">data-color-mode</span>] {
+    <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--html-bgColor</span>)
+}</pre></div>
+</details>
 <h2>博客 滚动条 样式</h2>
 <p>因为默认的 primer.css 里没有写, 所以下面都是增加代码.</p>
 <details><summary>CSS Code</summary>
@@ -1248,30 +1289,6 @@ pv修改成uv计数</p>
     <span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> none
 }</pre></div>
 </details>
-<h2>文章 &lt;html&gt; 标签样式</h2>
-<p><code class="notranslate">[data-color-mode]</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
-</div>
-<details><summary>修改前</summary>
-<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span>] {
-    <span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));
-    <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--bgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-canvas-default</span>))
-}</pre></div>
-</details>
-<details><summary>修改后</summary>
-<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
-    <span class="pl-c1">--html-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>151c2f</span>;<span class="pl-c">/* 增加 */</span>
-}
-<span class="pl-kos">:</span><span class="pl-c1">root</span> {
-    <span class="pl-c1">--html-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>fff</span>;<span class="pl-c">/* 增加 */</span>
-}
-[<span class="pl-c1">data-color-mode</span>] {
-    <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--html-bgColor</span>)
-}</pre></div>
-</details>
 <h2>文章 &lt;code&gt; 标签样式</h2>
 <p><code class="notranslate">.markdown-body code, .markdown-body tt</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
@@ -1320,9 +1337,10 @@ pv修改成uv计数</p>
 }
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">h1</span> {
     <span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-h1-bgColor</span>);
-    <span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;
+    <span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span>;
     <span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">2<span class="pl-smi">em</span></span>;
     <span class="pl-c1">border-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">1<span class="pl-smi">px</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-muted</span>));
+	<span class="pl-c1">border-left</span><span class="pl-kos">:</span> <span class="pl-c1">.25<span class="pl-smi">em</span></span> solid <span class="pl-pds"><span class="pl-kos">#</span>32c7dd</span>;
 }</pre></div>
 </details>
 <h2>文章 &lt;h2&gt; 标签样式</h2>
@@ -1414,10 +1432,10 @@ pv修改成uv计数</p>
 <h1>通过 Gmeek 仓库, 修改 CSS</h1>
 <p>为什么这样做? <del>自娱自乐.</del></p>
 <h2>Fork Gmeek 仓库</h2>
-<p>Fork 👉 <a href="https://github.com/Meekdai/Gmeek">https://github.com/Meekdai/Gmeek</a></p>
+<p>仓库地址👉 <a href="https://github.com/Meekdai/Gmeek">https://github.com/Meekdai/Gmeek</a></p>
 <p><img src="https://cdn.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV"></p>
 <p>fork 之后, 转到搭建博客的 github 源码,</p>
-<p>打开<code class="notranslate">config.json</code>文件, 修改<code class="notranslate">"GMEEK_VERSION":"main"</code></p>
+<p>打开<code class="notranslate">config.json</code>文件, 修改成<code class="notranslate">"GMEEK_VERSION":"main"</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>如果值是<code class="notranslate">last</code>的话, Action 会失败, 因为默认值<code class="notranslate">last</code>是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.<br>
 <del>创建新的 tag 也可以, 但是挺麻烦.</del></p>
 </div>
@@ -1431,12 +1449,14 @@ pv修改成uv计数</p>
 <h2>修改页面头部样式</h2>
 <h3>打开 post.html 文件</h3>
 <p>定位样式<code class="notranslate">.title-right</code>, 其内容全部修改为flex布局<code class="notranslate">.title-right{display:flex;}</code></p>
-<p>增加样式<code class="notranslate">.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}</code>,</p>
-<p>定位样式<code class="notranslate">.title-left a</code>, 删除<code class="notranslate">margin-left:8px;</code></p>
+<p>增加样式<code class="notranslate">.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}</code></p>
+<p>定位样式<code class="notranslate">.title-left a</code>, 删除<code class="notranslate">margin-left:8px;</code>, 设置flex布局之后取消图标多余的间距, 样式则通过 <a href="## \#header 图标样式">primer.css</a> 来修改.</p>
+<p>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code>, 和上面一样, 删除多余间距.</p>
 <p>定位样式<code class="notranslate">.avatar:hover</code>,其内容全部修改<code class="notranslate">.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}</code></p>
 <h3>打开 plist.html 文件</h3>
-<p>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code></p>
-<p>到这里我的自定义 header 就修改完成了, 包括了头像+文字的修改.</p>
+<p>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code>, 和上面一样, 删除多余间距.</p>
+<p>到这里我的自定义 header 就修改完成了, 剩下的到 primer.css 改.</p>
+<h2>修改 特殊警告格式 样式</h2>
 <h1>使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换</h1>
 <p>Github 在 issues 插入的图片也会自动转换为 Github 的地址.<br>
 为了文章的多样性, 在 Gmeek 的 <code class="notranslate">v2.19</code> 版本中添加了支持 html 标签的功能.<br>
