@@ -5459,6 +5459,7 @@
 	--markdown-code-color: #3bf6ff52;
 	--SideNav-bgColor: #ffffff21;
 	--title-right-btnbg-color: #46ffff61;
+	--title-right-svg-color: #00f0ff;
 	--markdown-h1-bgColor: #7dc2ff7a;
 	--markdown-imgShadow: #b8fffc29;
 	--html-bgColor: #151c2f;
@@ -13580,6 +13581,10 @@ a.btn-primary:focus-visible {
 	outline: none;
 	box-shadow: none
 }
+.btn-invisible:hover svg,
+.btn-invisible.zeroclipboard-is-hover svg {
+    fill: var(--title-right-svg-color);
+}
 
 .btn-invisible:active,
 .btn-invisible.selected,
@@ -16266,7 +16271,8 @@ input.FormControl-radio[type=radio]:focus-visible {
 	--body-bgColor: #ffffffde;
 	--body-shadow-color: #50a8e726;
 	--markdown-code-color: #4d4d4d38;
-	--title-right-btnbg-color: #46ffff61;
+	--title-right-btnbg-color: #b7dbff61;
+	--title-right-svg-color: #71baff;
 	--SideNav-bgColor: #ffffff99;
 	--SideNav-hover-bgColor: #6ec3ff52;
 	--markdown-imgShadow: #0000000d;
