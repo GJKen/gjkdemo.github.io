@@ -171,7 +171,7 @@ html {
 > [!NOTE]
 > 修改顶部为 flex 居中布局, 更加美观.
 > 修改头像 hover 样式.
-> 修改之后无论是博客首页还是文章页都能生效.
+> 无论是博客首页还是文章页都能生效.
 
 因为默认的 primer.css 里没有写, 所以下面都是增加代码.
 
@@ -207,28 +207,6 @@ html {
 
 </details>
 
-## \#header 图标样式
-
-`.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
-
-> [!NOTE]
-> 修改图标 hover 样式.适配 light & dark 主题.
-> 修改之后无论是博客首页还是文章页都能生效.
-
-因为默认的 primer.css 里没有写, 所以下面都是增加代码.
-
-<details><summary>修改前</summary>
-
-```css
-.btn-invisible:hover,
-.btn-invisible.zeroclipboard-is-hover {
-    color: var(--fgColor-accent, var(--color-accent-fg));
-    background-color: var(--button-default-bgColor-hover, var(--color-btn-hover-bg));
-    outline: none;
-    box-shadow: none
-}
-```
-
 </details>
 <details><summary>修改后</summary>
 
@@ -246,17 +224,11 @@ html {
 	--title-right-btnbg-color: #46ffff61;
 	--title-right-svg-color: #71baff;
 }
-.btn-invisible:hover,
-.btn-invisible.zeroclipboard-is-hover {
-    color: var(--fgColor-accent, var(--color-accent-fg));
-    background-color: var(--title-right-btnbg-color);
-    outline: none;
-    box-shadow: none
-}
-/* 增加 */
-.btn-invisible:hover svg,
-.btn-invisible.zeroclipboard-is-hover svg {
-    fill: var(--title-right-svg-color);
+.markdown-body blockquote {
+	padding: 0 1em;
+	/* color: var(--fgColor-muted, var(--color-fg-muted)); */
+	color: var(--markdown-blockquote-color);
+	border-left: .25em solid var(--borderColor-default, var(--color-border-default))
 }
 ```
 
@@ -310,6 +282,52 @@ html {
     pointer-events: auto;
     transition: opacity 0.3s ease, visibility 0s 0s;
 	-webkit-transition: opacity 0.3s ease, visibility 0s 0s;
+}
+```
+
+</details>
+
+## 文章 <blockquote> 标签样式
+
+`.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
+
+> [!NOTE]
+> 修改文字颜色, 适配 light & dark 主题.
+> 修改之后无论是博客首页还是文章页都能生效.
+
+因为默认的 primer.css 里没有写, 所以下面都是增加代码.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body blockquote {
+	padding: 0 1em;
+	color: var(--fgColor-muted, var(--color-fg-muted));
+	border-left: .25em solid var(--borderColor-default, var(--color-border-default))
+}
+```
+
+</details>
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	/* 增加 */
+	--title-right-btnbg-color: #46ffff61;
+	--title-right-svg-color: #00f0ff;
+}
+:root {
+	/* 增加 */
+	--title-right-btnbg-color: #46ffff61;
+	--title-right-svg-color: #71baff;
+}
+.markdown-body blockquote {
+	padding: 0 1em;
+	color: var(--markdown-blockquote-color);
+	border-left: .25em solid var(--borderColor-default, var(--color-border-default))
 }
 ```
 
@@ -732,7 +750,7 @@ html {
 > [!NOTE]
 > 修改顶部为 flex 居中布局, 更加美观.
 > 修改头像 hover 样式.
-> 修改之后无论是博客首页还是文章页都能生效.
+> 无论是博客首页还是文章页都能生效.
 
 因为默认的 primer.css 里没有写, 所以下面都是增加代码.
 
@@ -768,28 +786,6 @@ html {
 
 </details>
 
-## \#header 图标样式
-
-`.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
-
-> [!NOTE]
-> 修改图标 hover 样式.适配 light & dark 主题.
-> 修改之后无论是博客首页还是文章页都能生效.
-
-因为默认的 primer.css 里没有写, 所以下面都是增加代码.
-
-<details><summary>修改前</summary>
-
-```css
-.btn-invisible:hover,
-.btn-invisible.zeroclipboard-is-hover {
-    color: var(--fgColor-accent, var(--color-accent-fg));
-    background-color: var(--button-default-bgColor-hover, var(--color-btn-hover-bg));
-    outline: none;
-    box-shadow: none
-}
-```
-
 </details>
 <details><summary>修改后</summary>
 
@@ -807,17 +803,11 @@ html {
 	--title-right-btnbg-color: #46ffff61;
 	--title-right-svg-color: #71baff;
 }
-.btn-invisible:hover,
-.btn-invisible.zeroclipboard-is-hover {
-    color: var(--fgColor-accent, var(--color-accent-fg));
-    background-color: var(--title-right-btnbg-color);
-    outline: none;
-    box-shadow: none
-}
-/* 增加 */
-.btn-invisible:hover svg,
-.btn-invisible.zeroclipboard-is-hover svg {
-    fill: var(--title-right-svg-color);
+.markdown-body blockquote {
+	padding: 0 1em;
+	/* color: var(--fgColor-muted, var(--color-fg-muted)); */
+	color: var(--markdown-blockquote-color);
+	border-left: .25em solid var(--borderColor-default, var(--color-border-default))
 }
 ```
 
@@ -871,6 +861,52 @@ html {
     pointer-events: auto;
     transition: opacity 0.3s ease, visibility 0s 0s;
 	-webkit-transition: opacity 0.3s ease, visibility 0s 0s;
+}
+```
+
+</details>
+
+## 文章 <blockquote> 标签样式
+
+`.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
+
+> [!NOTE]
+> 修改文字颜色, 适配 light & dark 主题.
+> 修改之后无论是博客首页还是文章页都能生效.
+
+因为默认的 primer.css 里没有写, 所以下面都是增加代码.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body blockquote {
+	padding: 0 1em;
+	color: var(--fgColor-muted, var(--color-fg-muted));
+	border-left: .25em solid var(--borderColor-default, var(--color-border-default))
+}
+```
+
+</details>
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	/* 增加 */
+	--title-right-btnbg-color: #46ffff61;
+	--title-right-svg-color: #00f0ff;
+}
+:root {
+	/* 增加 */
+	--title-right-btnbg-color: #46ffff61;
+	--title-right-svg-color: #71baff;
+}
+.markdown-body blockquote {
+	padding: 0 1em;
+	color: var(--markdown-blockquote-color);
+	border-left: .25em solid var(--borderColor-default, var(--color-border-default))
 }
 ```
 
@@ -1306,7 +1342,7 @@ pv 修改成 uv 计数</p>
 <p><code class="notranslate">#header</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改顶部为 flex 居中布局, 更加美观.<br>
 修改头像 hover 样式.<br>
-修改之后无论是博客首页还是文章页都能生效.</p>
+无论是博客首页还是文章页都能生效.</p>
 </div>
 <p>因为默认的 primer.css 里没有写, 所以下面都是增加代码.</p>
 <details><summary>CSS Code</summary>
@@ -1336,21 +1372,7 @@ pv 修改成 uv 计数</p>
     <span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span> <span class="pl-c1">10<span class="pl-smi">px</span></span> <span class="pl-en">rgb</span>(<span class="pl-c1">45</span> <span class="pl-c1">250</span> <span class="pl-c1">255</span> <span class="pl-c1">/</span> <span class="pl-c1">74<span class="pl-smi">%</span></span>);
 }</pre></div>
 </details>
-<h2>#header 图标样式</h2>
-<p><code class="notranslate">.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改图标 hover 样式.适配 light &amp; dark 主题.<br>
-修改之后无论是博客首页还是文章页都能生效.</p>
-</div>
-<p>因为默认的 primer.css 里没有写, 所以下面都是增加代码.</p>
-<details><summary>修改前</summary>
-<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span><span class="pl-kos">,</span>
-.<span class="pl-c1">btn-invisible</span>.<span class="pl-c1">zeroclipboard-is-hover</span> {
-    <span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-accent</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-accent-fg</span>));
-    <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--button-default-bgColor-hover</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-btn-hover-bg</span>));
-    <span class="pl-c1">outline</span><span class="pl-kos">:</span> none;
-    <span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> none
-}</pre></div>
-</details>
+
 <details><summary>修改后</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
@@ -1365,17 +1387,11 @@ pv 修改成 uv 计数</p>
 	<span class="pl-c1">--title-right-btnbg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>46ffff61</span>;
 	<span class="pl-c1">--title-right-svg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>71baff</span>;
 }
-.<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span><span class="pl-kos">,</span>
-.<span class="pl-c1">btn-invisible</span>.<span class="pl-c1">zeroclipboard-is-hover</span> {
-    <span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-accent</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-accent-fg</span>));
-    <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--title-right-btnbg-color</span>);
-    <span class="pl-c1">outline</span><span class="pl-kos">:</span> none;
-    <span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> none
-}
-<span class="pl-c">/* 增加 */</span>
-.<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> <span class="pl-ent">svg</span><span class="pl-kos">,</span>
-.<span class="pl-c1">btn-invisible</span>.<span class="pl-c1">zeroclipboard-is-hover</span> <span class="pl-ent">svg</span> {
-    <span class="pl-c1">fill</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--title-right-svg-color</span>);
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">blockquote</span> {
+	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">1<span class="pl-smi">em</span></span>;
+	<span class="pl-c">/* color: var(--fgColor-muted, var(--color-fg-muted)); */</span>
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-blockquote-color</span>);
+	<span class="pl-c1">border-left</span><span class="pl-kos">:</span> <span class="pl-c1">.25<span class="pl-smi">em</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-default</span>))
 }</pre></div>
 </details>
 <h2>主页文章列表样式</h2>
@@ -1411,6 +1427,39 @@ pv 修改成 uv 计数</p>
     <span class="pl-c1">pointer-events</span><span class="pl-kos">:</span> auto;
     <span class="pl-c1">transition</span><span class="pl-kos">:</span> opacity <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> visibility <span class="pl-c1">0<span class="pl-smi">s</span></span> <span class="pl-c1">0<span class="pl-smi">s</span></span>;
 	<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> opacity <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> visibility <span class="pl-c1">0<span class="pl-smi">s</span></span> <span class="pl-c1">0<span class="pl-smi">s</span></span>;
+}</pre></div>
+</details>
+<h2>文章 <blockquote> 标签样式</blockquote></h2>
+<p><code class="notranslate">.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover</code></p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改文字颜色, 适配 light &amp; dark 主题.<br>
+修改之后无论是博客首页还是文章页都能生效.</p>
+</div>
+<p>因为默认的 primer.css 里没有写, 所以下面都是增加代码.</p>
+<details><summary>修改前</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">blockquote</span> {
+	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">1<span class="pl-smi">em</span></span>;
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-fg-muted</span>));
+	<span class="pl-c1">border-left</span><span class="pl-kos">:</span> <span class="pl-c1">.25<span class="pl-smi">em</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-default</span>))
+}</pre></div>
+</details>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+	<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">--title-right-btnbg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>46ffff61</span>;
+	<span class="pl-c1">--title-right-svg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>00f0ff</span>;
+}
+<span class="pl-kos">:</span><span class="pl-c1">root</span> {
+	<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">--title-right-btnbg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>46ffff61</span>;
+	<span class="pl-c1">--title-right-svg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>71baff</span>;
+}
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">blockquote</span> {
+	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">1<span class="pl-smi">em</span></span>;
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-blockquote-color</span>);
+	<span class="pl-c1">border-left</span><span class="pl-kos">:</span> <span class="pl-c1">.25<span class="pl-smi">em</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-default</span>))
 }</pre></div>
 </details>
 <h2>文章 &lt;h1&gt; 标签的样式</h2>
