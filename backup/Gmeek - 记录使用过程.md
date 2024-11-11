@@ -200,7 +200,7 @@ html {
 `.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
 
 > [!NOTE]
-> 修改图标 hover 样式.
+> 修改图标 hover 样式.适配 light & dark 主题.
 > 修改之后无论是博客首页还是文章页都能生效.
 
 因为默认的 primer.css 里没有写, 所以下面都是增加代码.
@@ -221,12 +221,30 @@ html {
 <details><summary>修改后</summary>
 
 ```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	/* 增加 */
+	--title-right-btnbg-color: #46ffff61;
+	--title-right-svg-color: #00f0ff;
+}
+:root {
+	/* 增加 */
+	--title-right-btnbg-color: #46ffff61;
+	--title-right-svg-color: #71baff;
+}
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
     color: var(--fgColor-accent, var(--color-accent-fg));
     background-color: var(--title-right-btnbg-color);
     outline: none;
     box-shadow: none
+}
+/* 增加 */
+.btn-invisible:hover svg,
+.btn-invisible.zeroclipboard-is-hover svg {
+    fill: var(--title-right-svg-color);
 }
 ```
 

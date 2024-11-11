@@ -212,7 +212,7 @@ html {
 `.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
 
 > [!NOTE]
-> 修改图标 hover 样式.
+> 修改图标 hover 样式.适配 light & dark 主题.
 > 修改之后无论是博客首页还是文章页都能生效.
 
 因为默认的 primer.css 里没有写, 所以下面都是增加代码.
@@ -233,12 +233,30 @@ html {
 <details><summary>修改后</summary>
 
 ```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	/* 增加 */
+	--title-right-btnbg-color: #46ffff61;
+	--title-right-svg-color: #00f0ff;
+}
+:root {
+	/* 增加 */
+	--title-right-btnbg-color: #46ffff61;
+	--title-right-svg-color: #71baff;
+}
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
     color: var(--fgColor-accent, var(--color-accent-fg));
     background-color: var(--title-right-btnbg-color);
     outline: none;
     box-shadow: none
+}
+/* 增加 */
+.btn-invisible:hover svg,
+.btn-invisible.zeroclipboard-is-hover svg {
+    fill: var(--title-right-svg-color);
 }
 ```
 
@@ -755,7 +773,7 @@ html {
 `.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
 
 > [!NOTE]
-> 修改图标 hover 样式.
+> 修改图标 hover 样式.适配 light & dark 主题.
 > 修改之后无论是博客首页还是文章页都能生效.
 
 因为默认的 primer.css 里没有写, 所以下面都是增加代码.
@@ -776,12 +794,30 @@ html {
 <details><summary>修改后</summary>
 
 ```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	/* 增加 */
+	--title-right-btnbg-color: #46ffff61;
+	--title-right-svg-color: #00f0ff;
+}
+:root {
+	/* 增加 */
+	--title-right-btnbg-color: #46ffff61;
+	--title-right-svg-color: #71baff;
+}
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
     color: var(--fgColor-accent, var(--color-accent-fg));
     background-color: var(--title-right-btnbg-color);
     outline: none;
     box-shadow: none
+}
+/* 增加 */
+.btn-invisible:hover svg,
+.btn-invisible.zeroclipboard-is-hover svg {
+    fill: var(--title-right-svg-color);
 }
 ```
 
@@ -1302,7 +1338,7 @@ pv 修改成 uv 计数</p>
 </details>
 <h2>#header 图标样式</h2>
 <p><code class="notranslate">.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改图标 hover 样式.<br>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改图标 hover 样式.适配 light &amp; dark 主题.<br>
 修改之后无论是博客首页还是文章页都能生效.</p>
 </div>
 <p>因为默认的 primer.css 里没有写, 所以下面都是增加代码.</p>
@@ -1316,12 +1352,30 @@ pv 修改成 uv 计数</p>
 }</pre></div>
 </details>
 <details><summary>修改后</summary>
-<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span><span class="pl-kos">,</span>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+	<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">--title-right-btnbg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>46ffff61</span>;
+	<span class="pl-c1">--title-right-svg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>00f0ff</span>;
+}
+<span class="pl-kos">:</span><span class="pl-c1">root</span> {
+	<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">--title-right-btnbg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>46ffff61</span>;
+	<span class="pl-c1">--title-right-svg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>71baff</span>;
+}
+.<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span><span class="pl-kos">,</span>
 .<span class="pl-c1">btn-invisible</span>.<span class="pl-c1">zeroclipboard-is-hover</span> {
     <span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-accent</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-accent-fg</span>));
     <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--title-right-btnbg-color</span>);
     <span class="pl-c1">outline</span><span class="pl-kos">:</span> none;
     <span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> none
+}
+<span class="pl-c">/* 增加 */</span>
+.<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> <span class="pl-ent">svg</span><span class="pl-kos">,</span>
+.<span class="pl-c1">btn-invisible</span>.<span class="pl-c1">zeroclipboard-is-hover</span> <span class="pl-ent">svg</span> {
+    <span class="pl-c1">fill</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--title-right-svg-color</span>);
 }</pre></div>
 </details>
 <h2>主页文章列表样式</h2>
