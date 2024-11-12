@@ -1,6 +1,6 @@
 [Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
-# 搭建博客
+# 搭建博客**
 
 **如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#gmeek)**
 
@@ -693,11 +693,19 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 <!-- ##{"script":"<script>document.getElementById('user-content-busuanzi').id='busuanzi_container_site_uv';busuanzi=document.getElementById('busuanzi_container_site_uv');busuanzi.style.display='none';busuanzi.childNodes[1].id='busuanzi_value_site_uv';busuanzi.childNodes[3].id='busuanzi_value_site_pv';</script><script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>","style":"<style>#busuanzi_value_site_uv{color:red}#busuanzi_value_site_pv{color:red}</style>"}## -->
 ```
 
+# Issues Label 备份
+
+| Label Name | Color | 效果
+|-|-
+| 网站 | #7057ff | <button style="background:#218155;padding:6px;border-radius:20px;">CSS</button>
+| Win | #5AB3F3 | <button style="background:#5AB3F3;padding:6px;border-radius:20px;">Win</button>
+| Github | #333333 | <button style="background:#333333;padding:6px;border-radius:20px;">Github</button>
+| JS | #AD3152 | <button style="background:#AD3152;padding:6px;border-radius:20px;">JS</button>
+| Bug | #d73a4a | <button style="background:#d73a4a;padding:6px;border-radius:20px;">Bug</button>
+
 # Readme.md
 
 📄 > 文章总数
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间
-
-
