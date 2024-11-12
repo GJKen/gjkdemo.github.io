@@ -501,7 +501,6 @@ html {
 
 </details>
 
-
 ## 文章一键复制代码按钮样式
 
 > [!NOTE]
@@ -640,6 +639,16 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ## 修改[警报强调信息]样式
 
+定位代码`markdown-alert-{alert}`
+
+> 增加圆角6px
+
+`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS" style="text-align: center;">`
+
+效果图:
+
+`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW" style="text-align: center;">`
+
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
 Github 在 issues 插入的图片也会自动转换为 Github 的地址.
@@ -670,3 +679,4 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间
+
