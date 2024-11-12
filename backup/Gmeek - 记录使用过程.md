@@ -128,7 +128,7 @@ Android 端可通过滑动屏幕左右切换图片.
 
 ## 博客滚动条样式
 
-因为默认的 primer.css 里没有写, 所以下面都是增加代码.
+直接增加下面代码.
 
 <details><summary>CSS Code</summary>
 
@@ -160,7 +160,7 @@ html {
 > 修改顶部为 flex 居中布局, 更加美观.
 > 修改头像 hover 样式.
 > 无论是博客首页还是文章页都能生效.
-> 直接增加下面代码
+> 直接增加下面代码.
 
 <details><summary>CSS Code</summary>
 
@@ -295,7 +295,7 @@ html {
 `.SideNav-item:last-child`
 
 > [!NOTE]
-> 直接移除这个选择器的所有样式
+> 直接移除这个选择器的所有样式.
 
 ## 文章 \<h1> 标签的样式
 
@@ -506,7 +506,7 @@ html {
 
 > [!NOTE]
 > 给按钮增加 hover 动画, 使其显示&隐藏一键复制按钮.
-> 直接文末增加 CSS 即可.
+> 直接增加下面代码.
 
 <details><summary>CSS Code</summary>
 
