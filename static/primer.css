@@ -5464,7 +5464,7 @@
 	--title-right-btnbg-color: #46ffff61;
 	--title-right-svg-color: #00f0ff;
 	--markdown-h1-bgColor: #7dc2ff7a;
-	--markdown-imgShadow: #b8fffc29;
+	--markdown-imgShadow: #88d9ff47;
 	--html-bgColor: #151c2f;
 	--color-canvas-default-transparent: rgba(13, 17, 23, 0);
 	--color-page-header-bg: #0d1117;
@@ -27518,10 +27518,22 @@ a.branch-name .octicon {
 	background-color: rgba(0, 0, 0, 0)
 }
 
+/* 图片hover */
+.markdown-body p {
+	position: relative;
+	overflow: visible;
+	transition: box-shadow 0.3s ease;
+	clip-path: inset(0);
+}
 .markdown-body img {
 	max-width: 100%;
 	box-sizing: content-box;
-	box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow)
+	transition: transform 0.3s ease, clip-path 0.3s ease;
+}
+.markdown-body img:hover {
+	transform: scale(1.01);
+	clip-path: inset(-4%);
+	box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);
 }
 
 .markdown-body img[align=right] {

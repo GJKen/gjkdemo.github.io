@@ -14,9 +14,7 @@
 
 # 搭建博客
 
-**如何搭建博客我就不写了, 强烈建议看完官方的文档**
-
-搭建详情请看官方文档: https://blog.meekdai.com/tag.html#gmeek
+**如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#gmeek)**
 
 **这里主要记录一些 js 和 CSS 的修改.**
 
@@ -98,12 +96,12 @@ Android 端可通过滑动屏幕左右切换图片.
 
 未实际测试过.
 
-# 修改网站样式
+# 通过 primer.css, 修改博客样式
 
 [primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css), 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.
 对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
 
-##  \<html> 样式
+## \<html> 标签样式
 
 `[data-color-mode]`
 
@@ -140,9 +138,9 @@ Android 端可通过滑动屏幕左右切换图片.
 
 </details>
 
-## 博客 滚动条 样式
+## 博客滚动条样式
 
-因为默认的 primer.css 里没有写, 所以下面都是增加代码.
+直接增加下面代码.
 
 <details><summary>CSS Code</summary>
 
@@ -173,9 +171,8 @@ html {
 > [!NOTE]
 > 修改顶部为 flex 居中布局, 更加美观.
 > 修改头像 hover 样式.
-> 修改之后无论是博客首页还是文章页都能生效.
-
-因为默认的 primer.css 里没有写, 所以下面都是增加代码.
+> 无论是博客首页还是文章页都能生效.
+> 直接增加下面代码.
 
 <details><summary>CSS Code</summary>
 
@@ -215,9 +212,6 @@ html {
 
 > [!NOTE]
 > 修改图标 hover 样式.
-> 修改之后无论是博客首页还是文章页都能生效.
-
-因为默认的 primer.css 里没有写, 所以下面都是增加代码.
 
 <details><summary>修改前</summary>
 
@@ -235,12 +229,74 @@ html {
 <details><summary>修改后</summary>
 
 ```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	/* 增加 */
+	--title-right-btnbg-color: #46ffff61;
+	--title-right-svg-color: #00f0ff;
+}
+:root {
+	/* 增加 */
+	--title-right-btnbg-color: #46ffff61;
+	--title-right-svg-color: #71baff;
+}
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
-    color: var(--fgColor-accent, var(--color-accent-fg));
-    background-color: var(--title-right-btnbg-color);
-    outline: none;
-    box-shadow: none
+	color: var(--fgColor-accent, var(--color-accent-fg));
+	background-color: var(--title-right-btnbg-color);
+	outline: none;
+	box-shadow: none
+}
+/* 增加 */
+.btn-invisible:hover svg,
+.btn-invisible.zeroclipboard-is-hover svg {
+    fill: var(--title-right-svg-color);
+}
+```
+
+</details>
+
+## 文章 \<blockquote> 标签样式
+
+`.markdown-body blockquote a`
+
+> [!NOTE]
+> 修改文字颜色, 适配 light & dark 主题.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body blockquote{
+	padding: 0 1em;
+	color: var(--fgColor-muted, var(--color-fg-muted));
+	border-left: .25em solid var(--borderColor-default, var(--color-border-default))
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	/* 增加 */
+	--markdown-blockquote-color: #ffffff8c;
+	--markdown-blockquote-borderLeft-color: #bbbbbb8c;
+}
+:root {
+	/* 增加 */
+	--markdown-blockquote-color: #656d76;
+	--markdown-blockquote-borderLeft-color: #d0d7de;
+}
+.markdown-body blockquote {
+	padding: 0 1em;
+	color: var(--markdown-blockquote-color);
+	border-left: .25em solid var(--markdown-blockquote-borderLeft-color)
 }
 ```
 
@@ -251,50 +307,14 @@ html {
 `.SideNav-item:last-child`
 
 > [!NOTE]
-> 直接移除这个选择器的所有样式
-
-## 文章 \<code> 标签样式
-
-`.markdown-body code, .markdown-body tt`
-
-> [!NOTE]
-> 优化 light & dark 主题下的背景色.
-
-<details><summary>修改前</summary>
-
-```css
-.markdown-body code,
-.markdown-body tt {
-    background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted));
-}
-```
-
-</details>
-<details><summary>修改后</summary>
-
-```css
-[data-color-mode=light][data-light-theme=dark],
-[data-color-mode=light][data-light-theme=dark]::selection,
-[data-color-mode=dark][data-dark-theme=dark],
-[data-color-mode=dark][data-dark-theme=dark]::selection {
-    --markdown-code-color: #3bf6ff52;/* 增加 */
-}
-:root {
-    --markdown-code-color: #4d4d4d38;/* 增加 */
-}
-.markdown-body code,
-.markdown-body tt {
-    background-color: var(--markdown-code-color);
-}
-```
-
-</details>
+> 直接移除这个选择器的所有样式.
 
 ## 文章 \<h1> 标签的样式
 
 `.markdown-body h1`
 
 > [!NOTE]
+> 修改字体大小1.85em
 > 优化 light & dark 主题下的背景色.
 
 <details><summary>修改前</summary>
@@ -323,7 +343,7 @@ html {
 .markdown-body h1 {
     background: var(--markdown-h1-bgColor);
     border-radius: 6px;
-    font-size: 2em;
+    font-size: 1.85em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
 	border-left: .25em solid #32c7dd;
 }
@@ -405,6 +425,123 @@ html {
 
 </details>
 
+## 文章 \<code> 标签样式
+
+`.markdown-body code, .markdown-body tt`
+
+> [!NOTE]
+> 优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body code,
+.markdown-body tt {
+	background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted));
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--markdown-code-bgColor: #3bf6ff52;/* 增加 */
+}
+:root {
+	--markdown-code-bgColor: #4d4d4d38;/* 增加 */
+}
+.markdown-body code,
+.markdown-body tt {
+	background-color: var(--markdown-code-bgColor);
+}
+```
+
+</details>
+
+## 文章代码块样式
+
+`.markdown-body .highlight pre, .markdown-body pre {`
+
+> [!NOTE]
+> 优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body .highlight pre,
+.markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--bgColor-muted, var(--color-canvas-subtle));
+	border-radius: 6px
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--markdown-pre-bgColor: #27282d;/* 增加 */
+}
+:root {
+	--markdown-pre-bgColor: #f6f8fa;/* 增加 */
+}
+.markdown-body .highlight pre,
+.markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--markdown-pre-bgColor);
+	border-radius: 6px
+}
+```
+
+</details>
+
+## 文章一键复制代码按钮样式
+
+> [!NOTE]
+> 给按钮增加 hover 动画, 使其显示&隐藏一键复制按钮.
+> 直接增加下面代码.
+
+<details><summary>CSS Code</summary>
+
+```css
+/* 一键复制hover出入动画 */
+.clipboard-container {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0.3s;
+}
+
+.highlight:hover .clipboard-container {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.3s ease, visibility 0s 0s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0s;
+}
+```
+
+</details>
+
 ## 文章 \<a> 标签样式
 
 `a`
@@ -456,7 +593,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库, 修改 CSS
+# 通过 Gmeek 仓库, 修改博客样式
 
 为什么这样做? ~~自娱自乐.~~
 
@@ -468,7 +605,11 @@ a:hover {
 
 fork 之后, 转到搭建博客的 github 源码,
 
-打开`config.json`文件, 修改成`'GMEEK_VERSION':'main'`
+打开`.github/workflows/Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址
+
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav'>`
+
+打开`config.json`文件, 修改右边字段值为main`'GMEEK_VERSION':'main'`
 
 > [!NOTE]
 > 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
@@ -508,12 +649,22 @@ fork 之后, 转到搭建博客的 github 源码,
 
 到这里我的自定义 header 就修改完成了, 剩下的到 primer.css 改.
 
-## 修改 特殊警告格式 样式
+## 修改[警报强调信息]样式
+
+定位代码`markdown-alert-{alert}`
+
+> 增加圆角6px
+
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS' style='text-align: center;'>`
+
+效果图:
+
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW' style='text-align: center;'>`
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
 Github 在 issues 插入的图片也会自动转换为 Github 的地址.
-为了文章的多样性, 在 Gmeek 的 `v2.19` 版本中添加了支持 html 标签的功能.
+为了文章的多样性, 在 Gmeek 的`v2.19`版本中添加了支持 html 标签的功能.
 示例代码:
 
 ```html
@@ -540,15 +691,14 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间
+
 。">
 <meta property="og:title" content="Gmeek - 记录使用过程">
 <meta property="og:description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
 # 搭建博客
 
-**如何搭建博客我就不写了, 强烈建议看完官方的文档**
-
-搭建详情请看官方文档: https://blog.meekdai.com/tag.html#gmeek
+**如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#gmeek)**
 
 **这里主要记录一些 js 和 CSS 的修改.**
 
@@ -630,12 +780,12 @@ Android 端可通过滑动屏幕左右切换图片.
 
 未实际测试过.
 
-# 修改网站样式
+# 通过 primer.css, 修改博客样式
 
 [primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css), 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.
 对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
 
-##  \<html> 样式
+## \<html> 标签样式
 
 `[data-color-mode]`
 
@@ -672,9 +822,9 @@ Android 端可通过滑动屏幕左右切换图片.
 
 </details>
 
-## 博客 滚动条 样式
+## 博客滚动条样式
 
-因为默认的 primer.css 里没有写, 所以下面都是增加代码.
+直接增加下面代码.
 
 <details><summary>CSS Code</summary>
 
@@ -705,9 +855,8 @@ html {
 > [!NOTE]
 > 修改顶部为 flex 居中布局, 更加美观.
 > 修改头像 hover 样式.
-> 修改之后无论是博客首页还是文章页都能生效.
-
-因为默认的 primer.css 里没有写, 所以下面都是增加代码.
+> 无论是博客首页还是文章页都能生效.
+> 直接增加下面代码.
 
 <details><summary>CSS Code</summary>
 
@@ -747,9 +896,6 @@ html {
 
 > [!NOTE]
 > 修改图标 hover 样式.
-> 修改之后无论是博客首页还是文章页都能生效.
-
-因为默认的 primer.css 里没有写, 所以下面都是增加代码.
 
 <details><summary>修改前</summary>
 
@@ -767,12 +913,74 @@ html {
 <details><summary>修改后</summary>
 
 ```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	/* 增加 */
+	--title-right-btnbg-color: #46ffff61;
+	--title-right-svg-color: #00f0ff;
+}
+:root {
+	/* 增加 */
+	--title-right-btnbg-color: #46ffff61;
+	--title-right-svg-color: #71baff;
+}
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
-    color: var(--fgColor-accent, var(--color-accent-fg));
-    background-color: var(--title-right-btnbg-color);
-    outline: none;
-    box-shadow: none
+	color: var(--fgColor-accent, var(--color-accent-fg));
+	background-color: var(--title-right-btnbg-color);
+	outline: none;
+	box-shadow: none
+}
+/* 增加 */
+.btn-invisible:hover svg,
+.btn-invisible.zeroclipboard-is-hover svg {
+    fill: var(--title-right-svg-color);
+}
+```
+
+</details>
+
+## 文章 \<blockquote> 标签样式
+
+`.markdown-body blockquote a`
+
+> [!NOTE]
+> 修改文字颜色, 适配 light & dark 主题.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body blockquote{
+	padding: 0 1em;
+	color: var(--fgColor-muted, var(--color-fg-muted));
+	border-left: .25em solid var(--borderColor-default, var(--color-border-default))
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	/* 增加 */
+	--markdown-blockquote-color: #ffffff8c;
+	--markdown-blockquote-borderLeft-color: #bbbbbb8c;
+}
+:root {
+	/* 增加 */
+	--markdown-blockquote-color: #656d76;
+	--markdown-blockquote-borderLeft-color: #d0d7de;
+}
+.markdown-body blockquote {
+	padding: 0 1em;
+	color: var(--markdown-blockquote-color);
+	border-left: .25em solid var(--markdown-blockquote-borderLeft-color)
 }
 ```
 
@@ -783,50 +991,14 @@ html {
 `.SideNav-item:last-child`
 
 > [!NOTE]
-> 直接移除这个选择器的所有样式
-
-## 文章 \<code> 标签样式
-
-`.markdown-body code, .markdown-body tt`
-
-> [!NOTE]
-> 优化 light & dark 主题下的背景色.
-
-<details><summary>修改前</summary>
-
-```css
-.markdown-body code,
-.markdown-body tt {
-    background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted));
-}
-```
-
-</details>
-<details><summary>修改后</summary>
-
-```css
-[data-color-mode=light][data-light-theme=dark],
-[data-color-mode=light][data-light-theme=dark]::selection,
-[data-color-mode=dark][data-dark-theme=dark],
-[data-color-mode=dark][data-dark-theme=dark]::selection {
-    --markdown-code-color: #3bf6ff52;/* 增加 */
-}
-:root {
-    --markdown-code-color: #4d4d4d38;/* 增加 */
-}
-.markdown-body code,
-.markdown-body tt {
-    background-color: var(--markdown-code-color);
-}
-```
-
-</details>
+> 直接移除这个选择器的所有样式.
 
 ## 文章 \<h1> 标签的样式
 
 `.markdown-body h1`
 
 > [!NOTE]
+> 修改字体大小1.85em
 > 优化 light & dark 主题下的背景色.
 
 <details><summary>修改前</summary>
@@ -855,7 +1027,7 @@ html {
 .markdown-body h1 {
     background: var(--markdown-h1-bgColor);
     border-radius: 6px;
-    font-size: 2em;
+    font-size: 1.85em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
 	border-left: .25em solid #32c7dd;
 }
@@ -937,6 +1109,123 @@ html {
 
 </details>
 
+## 文章 \<code> 标签样式
+
+`.markdown-body code, .markdown-body tt`
+
+> [!NOTE]
+> 优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body code,
+.markdown-body tt {
+	background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted));
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--markdown-code-bgColor: #3bf6ff52;/* 增加 */
+}
+:root {
+	--markdown-code-bgColor: #4d4d4d38;/* 增加 */
+}
+.markdown-body code,
+.markdown-body tt {
+	background-color: var(--markdown-code-bgColor);
+}
+```
+
+</details>
+
+## 文章代码块样式
+
+`.markdown-body .highlight pre, .markdown-body pre {`
+
+> [!NOTE]
+> 优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body .highlight pre,
+.markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--bgColor-muted, var(--color-canvas-subtle));
+	border-radius: 6px
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--markdown-pre-bgColor: #27282d;/* 增加 */
+}
+:root {
+	--markdown-pre-bgColor: #f6f8fa;/* 增加 */
+}
+.markdown-body .highlight pre,
+.markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--markdown-pre-bgColor);
+	border-radius: 6px
+}
+```
+
+</details>
+
+## 文章一键复制代码按钮样式
+
+> [!NOTE]
+> 给按钮增加 hover 动画, 使其显示&隐藏一键复制按钮.
+> 直接增加下面代码.
+
+<details><summary>CSS Code</summary>
+
+```css
+/* 一键复制hover出入动画 */
+.clipboard-container {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0.3s;
+}
+
+.highlight:hover .clipboard-container {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.3s ease, visibility 0s 0s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0s;
+}
+```
+
+</details>
+
 ## 文章 \<a> 标签样式
 
 `a`
@@ -988,7 +1277,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库, 修改 CSS
+# 通过 Gmeek 仓库, 修改博客样式
 
 为什么这样做? ~~自娱自乐.~~
 
@@ -1000,7 +1289,11 @@ a:hover {
 
 fork 之后, 转到搭建博客的 github 源码,
 
-打开`config.json`文件, 修改成`'GMEEK_VERSION':'main'`
+打开`.github/workflows/Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址
+
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav'>`
+
+打开`config.json`文件, 修改右边字段值为main`'GMEEK_VERSION':'main'`
 
 > [!NOTE]
 > 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
@@ -1040,12 +1333,22 @@ fork 之后, 转到搭建博客的 github 源码,
 
 到这里我的自定义 header 就修改完成了, 剩下的到 primer.css 改.
 
-## 修改 特殊警告格式 样式
+## 修改[警报强调信息]样式
+
+定位代码`markdown-alert-{alert}`
+
+> 增加圆角6px
+
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS' style='text-align: center;'>`
+
+效果图:
+
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW' style='text-align: center;'>`
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
 Github 在 issues 插入的图片也会自动转换为 Github 的地址.
-为了文章的多样性, 在 Gmeek 的 `v2.19` 版本中添加了支持 html 标签的功能.
+为了文章的多样性, 在 Gmeek 的`v2.19`版本中添加了支持 html 标签的功能.
 示例代码:
 
 ```html
@@ -1072,6 +1375,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间
+
 。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://GJKen.github.io/demo/post/1.html">
@@ -1146,8 +1450,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 <div class="markdown-body" id="postBody"><p><a href="https://github.com/Meekdai/Gmeek">Gmeek</a> 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.</p>
 <h1>搭建博客</h1>
-<p><strong>如何搭建博客我就不写了, 强烈建议看完官方的文档</strong></p>
-<p>搭建详情请看官方文档: <a href="https://blog.meekdai.com/tag.html#gmeek" rel="nofollow">https://blog.meekdai.com/tag.html#gmeek</a></p>
+<p><strong>如何搭建博客我就不写了, 强烈建议看完<a href="https://blog.meekdai.com/tag.html#gmeek" rel="nofollow">官方文档</a></strong></p>
 <p><strong>这里主要记录一些 js 和 CSS 的修改.</strong></p>
 <div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title"><svg class="octicon octicon-alert mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p><p>利用 Github Page 搭建的网站内容是完全公开的, 请注意不要上传自己的隐私!!!</p>
 </div>
@@ -1199,10 +1502,10 @@ pv 修改成 uv 计数</p>
 <p>来源 <a href="https://github.com/liyifanniubi/liyifanniubi.github.io">Github</a></p>
 </blockquote>
 <p>未实际测试过.</p>
-<h1>修改网站样式</h1>
+<h1>通过 primer.css, 修改博客样式</h1>
 <p><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css">primer.css</a>, 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.<br>
 对应的选择器只张贴出关键 CSS 部分的修改, <del>不然代码太多了.</del></p>
-<h2>&lt;html&gt; 样式</h2>
+<h2>&lt;html&gt; 标签样式</h2>
 <p><code class="notranslate">[data-color-mode]</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
 </div>
@@ -1226,8 +1529,8 @@ pv 修改成 uv 计数</p>
     <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--html-bgColor</span>)
 }</pre></div>
 </details>
-<h2>博客 滚动条 样式</h2>
-<p>因为默认的 primer.css 里没有写, 所以下面都是增加代码.</p>
+<h2>博客滚动条样式</h2>
+<p>直接增加下面代码.</p>
 <details><summary>CSS Code</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">::<span class="pl-ent">-webkit-scrollbar</span> {
     <span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;
@@ -1249,9 +1552,9 @@ pv 修改成 uv 计数</p>
 <p><code class="notranslate">#header</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改顶部为 flex 居中布局, 更加美观.<br>
 修改头像 hover 样式.<br>
-修改之后无论是博客首页还是文章页都能生效.</p>
+无论是博客首页还是文章页都能生效.<br>
+直接增加下面代码.</p>
 </div>
-<p>因为默认的 primer.css 里没有写, 所以下面都是增加代码.</p>
 <details><summary>CSS Code</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-c">/* 优化header样式 */</span>
 <span class="pl-kos">#</span><span class="pl-c1">header</span> {
@@ -1281,10 +1584,8 @@ pv 修改成 uv 计数</p>
 </details>
 <h2>#header 图标样式</h2>
 <p><code class="notranslate">.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改图标 hover 样式.<br>
-修改之后无论是博客首页还是文章页都能生效.</p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改图标 hover 样式.</p>
 </div>
-<p>因为默认的 primer.css 里没有写, 所以下面都是增加代码.</p>
 <details><summary>修改前</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span><span class="pl-kos">,</span>
 .<span class="pl-c1">btn-invisible</span>.<span class="pl-c1">zeroclipboard-is-hover</span> {
@@ -1295,26 +1596,41 @@ pv 修改成 uv 计数</p>
 }</pre></div>
 </details>
 <details><summary>修改后</summary>
-<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span><span class="pl-kos">,</span>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+	<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">--title-right-btnbg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>46ffff61</span>;
+	<span class="pl-c1">--title-right-svg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>00f0ff</span>;
+}
+<span class="pl-kos">:</span><span class="pl-c1">root</span> {
+	<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">--title-right-btnbg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>46ffff61</span>;
+	<span class="pl-c1">--title-right-svg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>71baff</span>;
+}
+.<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span><span class="pl-kos">,</span>
 .<span class="pl-c1">btn-invisible</span>.<span class="pl-c1">zeroclipboard-is-hover</span> {
-    <span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-accent</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-accent-fg</span>));
-    <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--title-right-btnbg-color</span>);
-    <span class="pl-c1">outline</span><span class="pl-kos">:</span> none;
-    <span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> none
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-accent</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-accent-fg</span>));
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--title-right-btnbg-color</span>);
+	<span class="pl-c1">outline</span><span class="pl-kos">:</span> none;
+	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> none
+}
+<span class="pl-c">/* 增加 */</span>
+.<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> <span class="pl-ent">svg</span><span class="pl-kos">,</span>
+.<span class="pl-c1">btn-invisible</span>.<span class="pl-c1">zeroclipboard-is-hover</span> <span class="pl-ent">svg</span> {
+    <span class="pl-c1">fill</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--title-right-svg-color</span>);
 }</pre></div>
 </details>
-<h2>主页文章列表样式</h2>
-<p><code class="notranslate">.SideNav-item:last-child</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>直接移除这个选择器的所有样式</p>
-</div>
-<h2>文章 &lt;code&gt; 标签样式</h2>
-<p><code class="notranslate">.markdown-body code, .markdown-body tt</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
+<h2>文章 &lt;blockquote&gt; 标签样式</h2>
+<p><code class="notranslate">.markdown-body blockquote a</code></p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改文字颜色, 适配 light &amp; dark 主题.</p>
 </div>
 <details><summary>修改前</summary>
-<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">code</span><span class="pl-kos">,</span>
-.<span class="pl-c1">markdown-body</span> <span class="pl-ent">tt</span> {
-    <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--bgColor-neutral-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-neutral-muted</span>));
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">blockquote</span>{
+	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">1<span class="pl-smi">em</span></span>;
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-fg-muted</span>));
+	<span class="pl-c1">border-left</span><span class="pl-kos">:</span> <span class="pl-c1">.25<span class="pl-smi">em</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-default</span>))
 }</pre></div>
 </details>
 <details><summary>修改后</summary>
@@ -1322,19 +1638,29 @@ pv 修改成 uv 计数</p>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
-    <span class="pl-c1">--markdown-code-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>3bf6ff52</span>;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">--markdown-blockquote-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ffffff8c</span>;
+	<span class="pl-c1">--markdown-blockquote-borderLeft-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>bbbbbb8c</span>;
 }
 <span class="pl-kos">:</span><span class="pl-c1">root</span> {
-    <span class="pl-c1">--markdown-code-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>4d4d4d38</span>;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">--markdown-blockquote-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>656d76</span>;
+	<span class="pl-c1">--markdown-blockquote-borderLeft-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>d0d7de</span>;
 }
-.<span class="pl-c1">markdown-body</span> <span class="pl-ent">code</span><span class="pl-kos">,</span>
-.<span class="pl-c1">markdown-body</span> <span class="pl-ent">tt</span> {
-    <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-code-color</span>);
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">blockquote</span> {
+	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">1<span class="pl-smi">em</span></span>;
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-blockquote-color</span>);
+	<span class="pl-c1">border-left</span><span class="pl-kos">:</span> <span class="pl-c1">.25<span class="pl-smi">em</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--markdown-blockquote-borderLeft-color</span>)
 }</pre></div>
 </details>
+<h2>主页文章列表样式</h2>
+<p><code class="notranslate">.SideNav-item:last-child</code></p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>直接移除这个选择器的所有样式.</p>
+</div>
 <h2>文章 &lt;h1&gt; 标签的样式</h2>
 <p><code class="notranslate">.markdown-body h1</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改字体大小1.85em<br>
+优化 light &amp; dark 主题下的背景色.</p>
 </div>
 <details><summary>修改前</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h1</span> {
@@ -1356,7 +1682,7 @@ pv 修改成 uv 计数</p>
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">h1</span> {
     <span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-h1-bgColor</span>);
     <span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span>;
-    <span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">2<span class="pl-smi">em</span></span>;
+    <span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">1.85<span class="pl-smi">em</span></span>;
     <span class="pl-c1">border-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">1<span class="pl-smi">px</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-muted</span>));
 	<span class="pl-c1">border-left</span><span class="pl-kos">:</span> <span class="pl-c1">.25<span class="pl-smi">em</span></span> solid <span class="pl-pds"><span class="pl-kos">#</span>32c7dd</span>;
 }</pre></div>
@@ -1409,6 +1735,90 @@ pv 修改成 uv 计数</p>
     <span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">4<span class="pl-smi">px</span></span> <span class="pl-c1">8<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-imgShadow</span>)<span class="pl-kos">,</span> <span class="pl-c1">0</span> <span class="pl-c1">-4<span class="pl-smi">px</span></span> <span class="pl-c1">8<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-imgShadow</span>);
 }</pre></div>
 </details>
+<h2>文章 &lt;code&gt; 标签样式</h2>
+<p><code class="notranslate">.markdown-body code, .markdown-body tt</code></p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
+</div>
+<details><summary>修改前</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">code</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">tt</span> {
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--bgColor-neutral-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-neutral-muted</span>));
+}</pre></div>
+</details>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+	<span class="pl-c1">--markdown-code-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>3bf6ff52</span>;<span class="pl-c">/* 增加 */</span>
+}
+<span class="pl-kos">:</span><span class="pl-c1">root</span> {
+	<span class="pl-c1">--markdown-code-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>4d4d4d38</span>;<span class="pl-c">/* 增加 */</span>
+}
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">code</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">tt</span> {
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-code-bgColor</span>);
+}</pre></div>
+</details>
+<h2>文章代码块样式</h2>
+<p><code class="notranslate">.markdown-body .highlight pre, .markdown-body pre {</code></p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
+</div>
+<details><summary>修改前</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> .<span class="pl-c1">highlight</span> <span class="pl-ent">pre</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">pre</span> {
+	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">16<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">overflow</span><span class="pl-kos">:</span> auto;
+	<span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">85<span class="pl-smi">%</span></span>;
+	<span class="pl-c1">line-height</span><span class="pl-kos">:</span> <span class="pl-c1">1.45</span>;
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--bgColor-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-canvas-subtle</span>));
+	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span>
+}</pre></div>
+</details>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+	<span class="pl-c1">--markdown-pre-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>27282d</span>;<span class="pl-c">/* 增加 */</span>
+}
+<span class="pl-kos">:</span><span class="pl-c1">root</span> {
+	<span class="pl-c1">--markdown-pre-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>f6f8fa</span>;<span class="pl-c">/* 增加 */</span>
+}
+.<span class="pl-c1">markdown-body</span> .<span class="pl-c1">highlight</span> <span class="pl-ent">pre</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">pre</span> {
+	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">16<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">overflow</span><span class="pl-kos">:</span> auto;
+	<span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">85<span class="pl-smi">%</span></span>;
+	<span class="pl-c1">line-height</span><span class="pl-kos">:</span> <span class="pl-c1">1.45</span>;
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-pre-bgColor</span>);
+	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span>
+}</pre></div>
+</details>
+<h2>文章一键复制代码按钮样式</h2>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>给按钮增加 hover 动画, 使其显示&amp;隐藏一键复制按钮.<br>
+直接增加下面代码.</p>
+</div>
+<details><summary>CSS Code</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-c">/* 一键复制hover出入动画 */</span>
+.<span class="pl-c1">clipboard-container</span> {
+    <span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;
+    <span class="pl-c1">visibility</span><span class="pl-kos">:</span> hidden;
+    <span class="pl-c1">pointer-events</span><span class="pl-kos">:</span> none;
+    <span class="pl-c1">transition</span><span class="pl-kos">:</span> opacity <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> visibility <span class="pl-c1">0<span class="pl-smi">s</span></span> <span class="pl-c1">0.3<span class="pl-smi">s</span></span>;
+	<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> opacity <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> visibility <span class="pl-c1">0<span class="pl-smi">s</span></span> <span class="pl-c1">0.3<span class="pl-smi">s</span></span>;
+}
+
+.<span class="pl-c1">highlight</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> .<span class="pl-c1">clipboard-container</span> {
+    <span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">1</span>;
+    <span class="pl-c1">visibility</span><span class="pl-kos">:</span> visible;
+    <span class="pl-c1">pointer-events</span><span class="pl-kos">:</span> auto;
+    <span class="pl-c1">transition</span><span class="pl-kos">:</span> opacity <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> visibility <span class="pl-c1">0<span class="pl-smi">s</span></span> <span class="pl-c1">0<span class="pl-smi">s</span></span>;
+	<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> opacity <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> visibility <span class="pl-c1">0<span class="pl-smi">s</span></span> <span class="pl-c1">0<span class="pl-smi">s</span></span>;
+}</pre></div>
+</details>
 <h2>文章 &lt;a&gt; 标签样式</h2>
 <p><code class="notranslate">a</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.<br>
@@ -1447,13 +1857,15 @@ pv 修改成 uv 计数</p>
     <span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;
 }</pre></div>
 </details>
-<h1>通过 Gmeek 仓库, 修改 CSS</h1>
+<h1>通过 Gmeek 仓库, 修改博客样式</h1>
 <p>为什么这样做? <del>自娱自乐.</del></p>
 <h2>Fork Gmeek 仓库</h2>
 <p>仓库地址👉 <a href="https://github.com/Meekdai/Gmeek">https://github.com/Meekdai/Gmeek</a></p>
 <p><img src="https://cdn.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV"></p>
 <p>fork 之后, 转到搭建博客的 github 源码,</p>
-<p>打开<code class="notranslate">config.json</code>文件, 修改成<code class="notranslate">"GMEEK_VERSION":"main"</code></p>
+<p>打开<code class="notranslate">.github/workflows/Gmeek.yml</code>文件, 修改构建博客仓库的地址为你自己的仓库地址</p>
+<p><img src="https://cdn.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav"></p>
+<p>打开<code class="notranslate">config.json</code>文件, 修改右边字段值为main<code class="notranslate">"GMEEK_VERSION":"main"</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>如果值是<code class="notranslate">last</code>的话, Action 会失败, 因为默认值<code class="notranslate">last</code>是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.<br>
 <del>创建新的 tag 也可以, 但是挺麻烦.</del></p>
 </div>
@@ -1474,10 +1886,17 @@ pv 修改成 uv 计数</p>
 <h3>打开 plist.html 文件</h3>
 <p>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code>, 和上面一样, 删除多余间距.</p>
 <p>到这里我的自定义 header 就修改完成了, 剩下的到 primer.css 改.</p>
-<h2>修改 特殊警告格式 样式</h2>
+<h2>修改[警报强调信息]样式</h2>
+<p>定位代码<code class="notranslate">markdown-alert-{alert}</code></p>
+<blockquote>
+<p>增加圆角6px</p>
+</blockquote>
+<p><img src="https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS" style="text-align: center;"></p>
+<p>效果图:</p>
+<p><img src="https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW" style="text-align: center;"></p>
 <h1>使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换</h1>
 <p>Github 在 issues 插入的图片也会自动转换为 Github 的地址.<br>
-为了文章的多样性, 在 Gmeek 的 <code class="notranslate">v2.19</code> 版本中添加了支持 html 标签的功能.<br>
+为了文章的多样性, 在 Gmeek 的<code class="notranslate">v2.19</code>版本中添加了支持 html 标签的功能.<br>
 示例代码:</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-html<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://img.jpg</span>" <span class="pl-c1">style</span>="<span class="pl-s">text-align: center;</span>"<span class="pl-kos">&gt;</span>`</pre></div>
 <p>实际展示:</p>
