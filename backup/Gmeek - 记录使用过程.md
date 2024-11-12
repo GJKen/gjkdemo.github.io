@@ -302,6 +302,7 @@ html {
 `.markdown-body h1`
 
 > [!NOTE]
+> 修改字体大小1.85em
 > 优化 light & dark 主题下的背景色.
 
 <details><summary>修改前</summary>
@@ -330,7 +331,7 @@ html {
 .markdown-body h1 {
     background: var(--markdown-h1-bgColor);
     border-radius: 6px;
-    font-size: 2em;
+    font-size: 1.85em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
 	border-left: .25em solid #32c7dd;
 }
