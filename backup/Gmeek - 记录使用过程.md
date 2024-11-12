@@ -84,12 +84,12 @@ Android 端可通过滑动屏幕左右切换图片.
 
 未实际测试过.
 
-# 修改网站样式
+# 通过 primer.css, 修改博客样式
 
 [primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css), 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.
 对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
 
-##  \<html> 样式
+## \<html> 标签样式
 
 `[data-color-mode]`
 
@@ -126,7 +126,7 @@ Android 端可通过滑动屏幕左右切换图片.
 
 </details>
 
-## 博客 滚动条 样式
+## 博客滚动条样式
 
 因为默认的 primer.css 里没有写, 所以下面都是增加代码.
 
@@ -160,8 +160,7 @@ html {
 > 修改顶部为 flex 居中布局, 更加美观.
 > 修改头像 hover 样式.
 > 无论是博客首页还是文章页都能生效.
-
-因为默认的 primer.css 里没有写, 所以下面都是增加代码.
+> 直接增加下面代码
 
 <details><summary>CSS Code</summary>
 
@@ -195,6 +194,25 @@ html {
 
 </details>
 
+## \#header 图标样式
+
+`.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
+
+> [!NOTE]
+> 修改图标 hover 样式.
+
+<details><summary>修改前</summary>
+
+```css
+.btn-invisible:hover,
+.btn-invisible.zeroclipboard-is-hover {
+    color: var(--fgColor-accent, var(--color-accent-fg));
+    background-color: var(--button-default-bgColor-hover, var(--color-btn-hover-bg));
+    outline: none;
+    box-shadow: none
+}
+```
+
 </details>
 <details><summary>修改后</summary>
 
@@ -212,11 +230,61 @@ html {
 	--title-right-btnbg-color: #46ffff61;
 	--title-right-svg-color: #71baff;
 }
+.btn-invisible:hover,
+.btn-invisible.zeroclipboard-is-hover {
+	color: var(--fgColor-accent, var(--color-accent-fg));
+	background-color: var(--title-right-btnbg-color);
+	outline: none;
+	box-shadow: none
+}
+/* 增加 */
+.btn-invisible:hover svg,
+.btn-invisible.zeroclipboard-is-hover svg {
+    fill: var(--title-right-svg-color);
+}
+```
+
+</details>
+
+## 文章 \<blockquote> 标签样式
+
+`.markdown-body blockquote a`
+
+> [!NOTE]
+> 修改文字颜色, 适配 light & dark 主题.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body blockquote{
+	padding: 0 1em;
+	color: var(--fgColor-muted, var(--color-fg-muted));
+	border-left: .25em solid var(--borderColor-default, var(--color-border-default))
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	/* 增加 */
+	--markdown-blockquote-color: #ffffff8c;
+	--markdown-blockquote-borderLeft-color: #bbbbbb8c;
+}
+:root {
+	/* 增加 */
+	--markdown-blockquote-color: #656d76;
+	--markdown-blockquote-borderLeft-color: #d0d7de;
+}
 .markdown-body blockquote {
 	padding: 0 1em;
-	/* color: var(--fgColor-muted, var(--color-fg-muted)); */
 	color: var(--markdown-blockquote-color);
-	border-left: .25em solid var(--borderColor-default, var(--color-border-default))
+	border-left: .25em solid var(--markdown-blockquote-borderLeft-color)
 }
 ```
 
@@ -228,98 +296,6 @@ html {
 
 > [!NOTE]
 > 直接移除这个选择器的所有样式
-
-## 文章 \<code> 标签样式
-
-`.markdown-body code, .markdown-body tt`
-
-> [!NOTE]
-> 优化 light & dark 主题下的背景色.
-
-<details><summary>修改前</summary>
-
-```css
-.markdown-body code,
-.markdown-body tt {
-    background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted));
-}
-```
-
-</details>
-
-## 文章代码块样式
-
-> [!NOTE]
-> 给代码块增加 hover, 使其显示&隐藏一键复制按钮, 文末增加 CSS 即可.
-
-<details><summary>CSS Code</summary>
-
-```css
-/* 一键复制出入动画 */
-.clipboard-container {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0s 0.3s;
-	-webkit-transition: opacity 0.3s ease, visibility 0s 0.3s;
-}
-
-.highlight:hover .clipboard-container {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transition: opacity 0.3s ease, visibility 0s 0s;
-	-webkit-transition: opacity 0.3s ease, visibility 0s 0s;
-}
-```
-
-</details>
-
-## 文章 <blockquote> 标签样式
-
-`.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
-
-> [!NOTE]
-> 修改文字颜色, 适配 light & dark 主题.
-> 修改之后无论是博客首页还是文章页都能生效.
-
-因为默认的 primer.css 里没有写, 所以下面都是增加代码.
-
-<details><summary>修改前</summary>
-
-```css
-.markdown-body blockquote {
-	padding: 0 1em;
-	color: var(--fgColor-muted, var(--color-fg-muted));
-	border-left: .25em solid var(--borderColor-default, var(--color-border-default))
-}
-```
-
-</details>
-<details><summary>修改后</summary>
-
-```css
-[data-color-mode=light][data-light-theme=dark],
-[data-color-mode=light][data-light-theme=dark]::selection,
-[data-color-mode=dark][data-dark-theme=dark],
-[data-color-mode=dark][data-dark-theme=dark]::selection {
-	/* 增加 */
-	--title-right-btnbg-color: #46ffff61;
-	--title-right-svg-color: #00f0ff;
-}
-:root {
-	/* 增加 */
-	--title-right-btnbg-color: #46ffff61;
-	--title-right-svg-color: #71baff;
-}
-.markdown-body blockquote {
-	padding: 0 1em;
-	color: var(--markdown-blockquote-color);
-	border-left: .25em solid var(--borderColor-default, var(--color-border-default))
-}
-```
-
-</details>
 
 ## 文章 \<h1> 标签的样式
 
@@ -436,6 +412,73 @@ html {
 
 </details>
 
+## 文章 \<code> 标签样式
+
+`.markdown-body code, .markdown-body tt`
+
+> [!NOTE]
+> 优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body code,
+.markdown-body tt {
+	background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted));
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--markdown-code-bgColor: #3bf6ff52;/* 增加 */
+}
+:root {
+	--markdown-code-bgColor: #4d4d4d38;/* 增加 */
+}
+.markdown-body code,
+.markdown-body tt {
+	background-color: var(--markdown-code-bgColor);
+}
+```
+
+</details>
+
+## 文章一键复制代码样式
+
+> [!NOTE]
+> 给代码块增加 hover 动画, 使其显示&隐藏一键复制按钮.
+> 直接文末增加 CSS 即可.
+
+<details><summary>CSS Code</summary>
+
+```css
+/* 一键复制hover出入动画 */
+.clipboard-container {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0.3s;
+}
+
+.highlight:hover .clipboard-container {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.3s ease, visibility 0s 0s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0s;
+}
+```
+
+</details>
+
 ## 文章 \<a> 标签样式
 
 `a`
@@ -487,7 +530,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库, 修改 CSS
+# 通过 Gmeek 仓库, 修改博客样式
 
 为什么这样做? ~~自娱自乐.~~
 
@@ -548,7 +591,7 @@ fork 之后, 转到搭建博客的 github 源码,
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
 Github 在 issues 插入的图片也会自动转换为 Github 的地址.
-为了文章的多样性, 在 Gmeek 的 `v2.19` 版本中添加了支持 html 标签的功能.
+为了文章的多样性, 在 Gmeek 的`v2.19`版本中添加了支持 html 标签的功能.
 示例代码:
 
 ```html
