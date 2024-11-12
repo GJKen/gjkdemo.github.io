@@ -401,13 +401,33 @@ html {
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection 
-    --markdown-imgShadow: #b8fffc29;/* 增加 */
+    --markdown-imgShadow: #88d9ff47;/* 增加 */
 }
 :root {
     --markdown-imgShadow: #0000000d;/* 增加 */
 }
+/* 增加 */
+.markdown-body p {
+	position: relative;
+	overflow: visible;
+	transition: box-shadow 0.3s ease;
+	-webkit-transition: box-shadow 0.3s ease;
+	clip-path: inset(0);
+	-webkit-clip-path: inset(0);
+}
 .markdown-body img {
-    box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);
+	max-width: 100%;
+	box-sizing: content-box;
+	transition: transform 0.3s ease, clip-path 0.3s ease;
+	-webkit-transition: -webkit-transform 0.3s ease, -webkit-clip-path 0.3s ease, box-shadow 0.2s ease;
+}
+/* 增加 */
+.markdown-body img:hover {
+	transform: scale(1.01);
+	-webkit-transform: scale(1.01);
+	clip-path: inset(-4%);
+	-webkit-clip-path: inset(-4%);
+	box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);
 }
 ```
 
@@ -635,7 +655,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 定位样式`.title-right .circle`, 删除`margin-right:8px;`, 和上面一样, 删除多余间距.
 
-到这里我的自定义 header 就修改完成了, 剩下的到 primer.css 改.
+到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.
 
 ## 修改[警报强调信息]样式
 
@@ -643,11 +663,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 > 增加圆角6px
 
-`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS" style="text-align: center;">`
+`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS">`
 
 效果图:
 
-`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW" style="text-align: center;">`
+`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW">`
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
@@ -656,12 +676,12 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 示例代码:
 
 ```html
-`Gmeek-html<img src="https://img.jpg" style="text-align: center;">`
+`Gmeek-html<img src="https://img.jpg">`
 ```
 
 实际展示:
 
-`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb" style="text-align: center;">`
+`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb">`
 
 # 添加自定义单篇文章代码
 
@@ -679,4 +699,5 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间
+
 

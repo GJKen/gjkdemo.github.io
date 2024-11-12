@@ -413,13 +413,33 @@ html {
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection 
-    --markdown-imgShadow: #b8fffc29;/* 增加 */
+    --markdown-imgShadow: #88d9ff47;/* 增加 */
 }
 :root {
     --markdown-imgShadow: #0000000d;/* 增加 */
 }
+/* 增加 */
+.markdown-body p {
+	position: relative;
+	overflow: visible;
+	transition: box-shadow 0.3s ease;
+	-webkit-transition: box-shadow 0.3s ease;
+	clip-path: inset(0);
+	-webkit-clip-path: inset(0);
+}
 .markdown-body img {
-    box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);
+	max-width: 100%;
+	box-sizing: content-box;
+	transition: transform 0.3s ease, clip-path 0.3s ease;
+	-webkit-transition: -webkit-transform 0.3s ease, -webkit-clip-path 0.3s ease, box-shadow 0.2s ease;
+}
+/* 增加 */
+.markdown-body img:hover {
+	transform: scale(1.01);
+	-webkit-transform: scale(1.01);
+	clip-path: inset(-4%);
+	-webkit-clip-path: inset(-4%);
+	box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);
 }
 ```
 
@@ -647,7 +667,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 定位样式`.title-right .circle`, 删除`margin-right:8px;`, 和上面一样, 删除多余间距.
 
-到这里我的自定义 header 就修改完成了, 剩下的到 primer.css 改.
+到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.
 
 ## 修改[警报强调信息]样式
 
@@ -655,11 +675,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 > 增加圆角6px
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS' style='text-align: center;'>`
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS'>`
 
 效果图:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW' style='text-align: center;'>`
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW'>`
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
@@ -668,12 +688,12 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 示例代码:
 
 ```html
-`Gmeek-html<img src='https://img.jpg' style='text-align: center;'>`
+`Gmeek-html<img src='https://img.jpg'>`
 ```
 
 实际展示:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb' style='text-align: center;'>`
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
 
 # 添加自定义单篇文章代码
 
@@ -691,6 +711,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间
+
 
 。">
 <meta property="og:title" content="Gmeek - 记录使用过程">
@@ -1097,13 +1118,33 @@ html {
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection 
-    --markdown-imgShadow: #b8fffc29;/* 增加 */
+    --markdown-imgShadow: #88d9ff47;/* 增加 */
 }
 :root {
     --markdown-imgShadow: #0000000d;/* 增加 */
 }
+/* 增加 */
+.markdown-body p {
+	position: relative;
+	overflow: visible;
+	transition: box-shadow 0.3s ease;
+	-webkit-transition: box-shadow 0.3s ease;
+	clip-path: inset(0);
+	-webkit-clip-path: inset(0);
+}
 .markdown-body img {
-    box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);
+	max-width: 100%;
+	box-sizing: content-box;
+	transition: transform 0.3s ease, clip-path 0.3s ease;
+	-webkit-transition: -webkit-transform 0.3s ease, -webkit-clip-path 0.3s ease, box-shadow 0.2s ease;
+}
+/* 增加 */
+.markdown-body img:hover {
+	transform: scale(1.01);
+	-webkit-transform: scale(1.01);
+	clip-path: inset(-4%);
+	-webkit-clip-path: inset(-4%);
+	box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);
 }
 ```
 
@@ -1331,7 +1372,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 定位样式`.title-right .circle`, 删除`margin-right:8px;`, 和上面一样, 删除多余间距.
 
-到这里我的自定义 header 就修改完成了, 剩下的到 primer.css 改.
+到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.
 
 ## 修改[警报强调信息]样式
 
@@ -1339,11 +1380,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 > 增加圆角6px
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS' style='text-align: center;'>`
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS'>`
 
 效果图:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW' style='text-align: center;'>`
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW'>`
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
@@ -1352,12 +1393,12 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 示例代码:
 
 ```html
-`Gmeek-html<img src='https://img.jpg' style='text-align: center;'>`
+`Gmeek-html<img src='https://img.jpg'>`
 ```
 
 实际展示:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb' style='text-align: center;'>`
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
 
 # 添加自定义单篇文章代码
 
@@ -1375,6 +1416,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间
+
 
 。">
 <meta property="og:type" content="article">
@@ -1726,13 +1768,33 @@ pv 修改成 uv 计数</p>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> 
-    <span class="pl-ent">--markdown-imgShadow</span><span class="pl-kos">:</span> <span class="pl-kos">#</span><span class="pl-c1">b8fffc29</span>;<span class="pl-c">/* 增加 */</span>
+    <span class="pl-ent">--markdown-imgShadow</span><span class="pl-kos">:</span> <span class="pl-kos">#</span>88d9ff47;<span class="pl-c">/* 增加 */</span>
 }
-<span class="pl-kos">:</span><span class="pl-ent">root</span> {
+<span class="pl-kos">:</span><span class="pl-c1">root</span> {
     <span class="pl-c1">--markdown-imgShadow</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>0000000d</span>;<span class="pl-c">/* 增加 */</span>
 }
+<span class="pl-c">/* 增加 */</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">p</span> {
+	<span class="pl-c1">position</span><span class="pl-kos">:</span> relative;
+	<span class="pl-c1">overflow</span><span class="pl-kos">:</span> visible;
+	<span class="pl-c1">transition</span><span class="pl-kos">:</span> box-shadow <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease;
+	<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> box-shadow <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease;
+	<span class="pl-c1">clip-path</span><span class="pl-kos">:</span> <span class="pl-en">inset</span>(<span class="pl-c1">0</span>);
+	<span class="pl-c1">-webkit-clip-path</span><span class="pl-kos">:</span> <span class="pl-en">inset</span>(<span class="pl-c1">0</span>);
+}
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">img</span> {
-    <span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">4<span class="pl-smi">px</span></span> <span class="pl-c1">8<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-imgShadow</span>)<span class="pl-kos">,</span> <span class="pl-c1">0</span> <span class="pl-c1">-4<span class="pl-smi">px</span></span> <span class="pl-c1">8<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-imgShadow</span>);
+	<span class="pl-c1">max-width</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span>;
+	<span class="pl-c1">box-sizing</span><span class="pl-kos">:</span> content-box;
+	<span class="pl-c1">transition</span><span class="pl-kos">:</span> transform <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> clip-path <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease;
+	<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> -webkit-transform <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> -webkit-clip-path <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> box-shadow <span class="pl-c1">0.2<span class="pl-smi">s</span></span> ease;
+}
+<span class="pl-c">/* 增加 */</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">img</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> {
+	<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1.01</span>);
+	<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1.01</span>);
+	<span class="pl-c1">clip-path</span><span class="pl-kos">:</span> <span class="pl-en">inset</span>(<span class="pl-c1">-4<span class="pl-smi">%</span></span>);
+	<span class="pl-c1">-webkit-clip-path</span><span class="pl-kos">:</span> <span class="pl-en">inset</span>(<span class="pl-c1">-4<span class="pl-smi">%</span></span>);
+	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">4<span class="pl-smi">px</span></span> <span class="pl-c1">8<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-imgShadow</span>)<span class="pl-kos">,</span> <span class="pl-c1">0</span> <span class="pl-c1">-4<span class="pl-smi">px</span></span> <span class="pl-c1">8<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-imgShadow</span>);
 }</pre></div>
 </details>
 <h2>文章 &lt;code&gt; 标签样式</h2>
@@ -1885,22 +1947,22 @@ pv 修改成 uv 计数</p>
 <p>定位样式<code class="notranslate">.avatar:hover</code>,其内容全部修改<code class="notranslate">.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}</code></p>
 <h3>打开 plist.html 文件</h3>
 <p>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code>, 和上面一样, 删除多余间距.</p>
-<p>到这里我的自定义 header 就修改完成了, 剩下的到 primer.css 改.</p>
+<p>到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.</p>
 <h2>修改[警报强调信息]样式</h2>
 <p>定位代码<code class="notranslate">markdown-alert-{alert}</code></p>
 <blockquote>
 <p>增加圆角6px</p>
 </blockquote>
-<p><img src="https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS" style="text-align: center;"></p>
+<p><img src="https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS"></p>
 <p>效果图:</p>
-<p><img src="https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW" style="text-align: center;"></p>
+<p><img src="https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW"></p>
 <h1>使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换</h1>
 <p>Github 在 issues 插入的图片也会自动转换为 Github 的地址.<br>
 为了文章的多样性, 在 Gmeek 的<code class="notranslate">v2.19</code>版本中添加了支持 html 标签的功能.<br>
 示例代码:</p>
-<div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-html<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://img.jpg</span>" <span class="pl-c1">style</span>="<span class="pl-s">text-align: center;</span>"<span class="pl-kos">&gt;</span>`</pre></div>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-html<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://img.jpg</span>"<span class="pl-kos">&gt;</span>`</pre></div>
 <p>实际展示:</p>
-<p><img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb" style="text-align: center;"></p>
+<p><img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb"></p>
 <h1>添加自定义单篇文章代码</h1>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">id</span>="<span class="pl-s">busuanzi</span>"<span class="pl-kos">&gt;</span>
 :heart:感谢第<span class="pl-kos">&lt;</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>小伙伴的<span class="pl-kos">&lt;</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>次访问关于页面.
