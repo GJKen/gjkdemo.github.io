@@ -5456,7 +5456,10 @@
 [data-color-mode=dark][data-dark-theme=dark]::selection {
 	--body-bgColor: #3b3b3ba3;
 	--body-shadow-color: #52afff3d;
-	--markdown-code-color: #3bf6ff52;
+	--markdown-code-bgColor: #3bf6ff52;
+	--markdown-blockquote-color: #ffffff8c;
+	--markdown-blockquote-borderLeft-color: #bbbbbb8c;
+	--markdown-pre-bgColor: #27282d;
 	--SideNav-bgColor: #ffffff21;
 	--title-right-btnbg-color: #46ffff61;
 	--title-right-svg-color: #00f0ff;
@@ -16270,13 +16273,16 @@ input.FormControl-radio[type=radio]:focus-visible {
 	--Layout-inner-spacing-max: 0px;
 	--body-bgColor: #ffffffde;
 	--body-shadow-color: #50a8e726;
-	--markdown-code-color: #4d4d4d38;
+	--markdown-code-bgColor: #4d4d4d38;
 	--title-right-btnbg-color: #b7dbff61;
 	--title-right-svg-color: #71baff;
 	--SideNav-bgColor: #ffffff99;
 	--SideNav-hover-bgColor: #6ec3ff52;
 	--markdown-imgShadow: #0000000d;
 	--markdown-h1-bgColor: #c8e5ff7a;
+	--markdown-blockquote-color: #656d76;
+	--markdown-blockquote-borderLeft-color: #d0d7de;
+	--markdown-pre-bgColor: #f6f8fa;
 	--html-bgColor: #fff;
 	--animate-duration: 1s
 }
@@ -27271,8 +27277,8 @@ a.branch-name .octicon {
 
 .markdown-body blockquote {
 	padding: 0 1em;
-	color: var(--fgColor-muted, var(--color-fg-muted));
-	border-left: .25em solid var(--borderColor-default, var(--color-border-default))
+	color: var(--markdown-blockquote-color);
+	border-left: .25em solid var(--markdown-blockquote-borderLeft-color)
 }
 
 .markdown-body blockquote>:first-child {
@@ -27344,7 +27350,7 @@ a.branch-name .octicon {
 .markdown-body h1 {
 	background: var(--markdown-h1-bgColor);
 	border-radius: 6px;
-	font-size: 2em;
+	font-size: 1.85em;
 	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
 	border-left: .25em solid #32c7dd;
 }
@@ -27626,7 +27632,7 @@ a.branch-name .octicon {
 	margin: 0;
 	font-size: 85%;
 	white-space: break-spaces;
-	background-color: var(--markdown-code-color);
+	background-color: var(--markdown-code-bgColor);
 	border-radius: 6px
 }
 
@@ -27676,7 +27682,7 @@ a.branch-name .octicon {
 	font-size: 85%;
 	line-height: 1.45;
 	color: var(--fgColor-default, var(--color-fg-default));
-	background-color: var(--bgColor-muted, var(--color-canvas-subtle));
+	background-color: var(--markdown-pre-bgColor);
 	border-radius: 6px
 }
 
