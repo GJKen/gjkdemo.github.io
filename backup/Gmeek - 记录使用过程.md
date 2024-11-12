@@ -696,12 +696,13 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 # Issues Label 备份
 
 | Label Name | Color | 效果
-|-|-
-| 网站 | #7057ff | <button style="background:#218155;padding:6px;border-radius:20px;">CSS</button>
-| Win | #5AB3F3 | <button style="background:#5AB3F3;padding:6px;border-radius:20px;">Win</button>
-| Github | #333333 | <button style="background:#333333;padding:6px;border-radius:20px;">Github</button>
-| JS | #AD3152 | <button style="background:#AD3152;padding:6px;border-radius:20px;">JS</button>
-| Bug | #d73a4a | <button style="background:#d73a4a;padding:6px;border-radius:20px;">Bug</button>
+|-|-|-
+| 网站 | #218155 | ![Badge](https://img.shields.io/badge/%E7%BD%91%E7%AB%99-%237057FF-7057FF)
+| Win  | #5AB3F3 | ![Badge](https://img.shields.io/badge/Win-%235AB3F3-5AB3F3)
+| Github | #333333 | ![Static Badge](https://img.shields.io/badge/Github-%23333333-333333)
+| JS | #AD3152 | ![Static Badge](https://img.shields.io/badge/JS-%23AD3152-AD3152)
+| CSS | #AD3152 | ![Badge](https://img.shields.io/badge/CSS-%23218155-218155)
+| Bug | #D73A4A | ![Static Badge](https://img.shields.io/badge/Bug-%23D73A4A-D73A4A)
 
 # Readme.md
 

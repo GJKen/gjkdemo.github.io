@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://ipfs.mbzj.org/ipfs/QmWdwjYEWh1CfZe7NtbJcBp658tWbs7PqeaxgLh46NwxRZ</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Tue, 12 Nov 2024 17:24:19 +0000</lastBuildDate><managingEditor>demo</managingEditor><ttl>60</ttl><webMaster>demo</webMaster><item><title>Gmeek - 记录使用过程</title><link>https://GJKen.github.io/demo/post/1.html</link><description>[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://ipfs.mbzj.org/ipfs/QmWdwjYEWh1CfZe7NtbJcBp658tWbs7PqeaxgLh46NwxRZ</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Tue, 12 Nov 2024 18:08:44 +0000</lastBuildDate><managingEditor>demo</managingEditor><ttl>60</ttl><webMaster>demo</webMaster><item><title>Gmeek - 记录使用过程</title><link>https://GJKen.github.io/demo/post/1.html</link><description>[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.&#13;
 &#13;
 # 搭建博客**&#13;
 &#13;
@@ -697,16 +697,18 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.&#13;
 # Issues Label 备份&#13;
 &#13;
 | Label Name | Color | 效果&#13;
-|-|-&#13;
-| 网站 | #7057ff | &lt;button style='background:#218155;padding:6px;border-radius:20px;'&gt;CSS&lt;/button&gt;&#13;
-| Win | #5AB3F3 | &lt;button style='background:#5AB3F3;padding:6px;border-radius:20px;'&gt;Win&lt;/button&gt;&#13;
-| Github | #333333 | &lt;button style='background:#333333;padding:6px;border-radius:20px;'&gt;Github&lt;/button&gt;&#13;
-| JS | #AD3152 | &lt;button style='background:#AD3152;padding:6px;border-radius:20px;'&gt;JS&lt;/button&gt;&#13;
-| Bug | #d73a4a | &lt;button style='background:#d73a4a;padding:6px;border-radius:20px;'&gt;Bug&lt;/button&gt;&#13;
+|-|-|-&#13;
+| 网站 | #218155 | ![Badge](https://img.shields.io/badge/%E7%BD%91%E7%AB%99-%237057FF-7057FF)&#13;
+| Win  | #5AB3F3 | ![Badge](https://img.shields.io/badge/Win-%235AB3F3-5AB3F3)&#13;
+| Github | #333333 | ![Static Badge](https://img.shields.io/badge/Github-%23333333-333333)&#13;
+| JS | #AD3152 | ![Static Badge](https://img.shields.io/badge/JS-%23AD3152-AD3152)&#13;
+| CSS | #AD3152 | ![Badge](https://img.shields.io/badge/CSS-%23218155-218155)&#13;
+| Bug | #D73A4A | ![Static Badge](https://img.shields.io/badge/Bug-%23D73A4A-D73A4A)&#13;
 &#13;
 # Readme.md&#13;
 &#13;
 📄 &gt; 文章总数&#13;
 💬 &gt; 评论总数&#13;
 🌺 &gt; 是统计的所有文章的字符数&#13;
-⏰ &gt; 最后一次 Actions 的时间。</description><guid isPermaLink="true">https://GJKen.github.io/demo/post/1.html</guid><pubDate>Sun, 10 Nov 2024 18:29:28 +0000</pubDate></item></channel></rss>
+⏰ &gt; 最后一次 Actions 的时间&#13;
+。</description><guid isPermaLink="true">https://GJKen.github.io/demo/post/1.html</guid><pubDate>Sun, 10 Nov 2024 18:29:28 +0000</pubDate></item></channel></rss>
