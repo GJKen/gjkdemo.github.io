@@ -450,10 +450,61 @@ html {
 
 </details>
 
-## 文章一键复制代码样式
+## 文章代码块样式
+
+`.markdown-body .highlight pre, .markdown-body pre {`
 
 > [!NOTE]
-> 给代码块增加 hover 动画, 使其显示&隐藏一键复制按钮.
+> 优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body .highlight pre,
+.markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--bgColor-muted, var(--color-canvas-subtle));
+	border-radius: 6px
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--markdown-pre-bgColor: #27282d;/* 增加 */
+}
+:root {
+	--markdown-pre-bgColor: #fff;/* 增加 */
+}
+.markdown-body .highlight pre,
+.markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--markdown-pre-bgColor);
+	border-radius: 6px
+}
+```
+
+</details>
+
+
+## 文章一键复制代码按钮样式
+
+> [!NOTE]
+> 给按钮增加 hover 动画, 使其显示&隐藏一键复制按钮.
 > 直接文末增加 CSS 即可.
 
 <details><summary>CSS Code</summary>

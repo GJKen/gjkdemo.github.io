@@ -462,10 +462,61 @@ html {
 
 </details>
 
-## 文章一键复制代码样式
+## 文章代码块样式
+
+`.markdown-body .highlight pre, .markdown-body pre {`
 
 > [!NOTE]
-> 给代码块增加 hover 动画, 使其显示&隐藏一键复制按钮.
+> 优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body .highlight pre,
+.markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--bgColor-muted, var(--color-canvas-subtle));
+	border-radius: 6px
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--markdown-pre-bgColor: #27282d;/* 增加 */
+}
+:root {
+	--markdown-pre-bgColor: #fff;/* 增加 */
+}
+.markdown-body .highlight pre,
+.markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--markdown-pre-bgColor);
+	border-radius: 6px
+}
+```
+
+</details>
+
+
+## 文章一键复制代码按钮样式
+
+> [!NOTE]
+> 给按钮增加 hover 动画, 使其显示&隐藏一键复制按钮.
 > 直接文末增加 CSS 即可.
 
 <details><summary>CSS Code</summary>
@@ -1084,10 +1135,61 @@ html {
 
 </details>
 
-## 文章一键复制代码样式
+## 文章代码块样式
+
+`.markdown-body .highlight pre, .markdown-body pre {`
 
 > [!NOTE]
-> 给代码块增加 hover 动画, 使其显示&隐藏一键复制按钮.
+> 优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body .highlight pre,
+.markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--bgColor-muted, var(--color-canvas-subtle));
+	border-radius: 6px
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--markdown-pre-bgColor: #27282d;/* 增加 */
+}
+:root {
+	--markdown-pre-bgColor: #fff;/* 增加 */
+}
+.markdown-body .highlight pre,
+.markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--markdown-pre-bgColor);
+	border-radius: 6px
+}
+```
+
+</details>
+
+
+## 文章一键复制代码按钮样式
+
+> [!NOTE]
+> 给按钮增加 hover 动画, 使其显示&隐藏一键复制按钮.
 > 直接文末增加 CSS 即可.
 
 <details><summary>CSS Code</summary>
@@ -1635,8 +1737,45 @@ pv 修改成 uv 计数</p>
 	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-code-bgColor</span>);
 }</pre></div>
 </details>
-<h2>文章一键复制代码样式</h2>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>给代码块增加 hover 动画, 使其显示&amp;隐藏一键复制按钮.<br>
+<h2>文章代码块样式</h2>
+<p><code class="notranslate">.markdown-body .highlight pre, .markdown-body pre {</code></p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
+</div>
+<details><summary>修改前</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> .<span class="pl-c1">highlight</span> <span class="pl-ent">pre</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">pre</span> {
+	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">16<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">overflow</span><span class="pl-kos">:</span> auto;
+	<span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">85<span class="pl-smi">%</span></span>;
+	<span class="pl-c1">line-height</span><span class="pl-kos">:</span> <span class="pl-c1">1.45</span>;
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--bgColor-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-canvas-subtle</span>));
+	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span>
+}</pre></div>
+</details>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+	<span class="pl-c1">--markdown-pre-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>27282d</span>;<span class="pl-c">/* 增加 */</span>
+}
+<span class="pl-kos">:</span><span class="pl-c1">root</span> {
+	<span class="pl-c1">--markdown-pre-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>fff</span>;<span class="pl-c">/* 增加 */</span>
+}
+.<span class="pl-c1">markdown-body</span> .<span class="pl-c1">highlight</span> <span class="pl-ent">pre</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">pre</span> {
+	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">16<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">overflow</span><span class="pl-kos">:</span> auto;
+	<span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">85<span class="pl-smi">%</span></span>;
+	<span class="pl-c1">line-height</span><span class="pl-kos">:</span> <span class="pl-c1">1.45</span>;
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-pre-bgColor</span>);
+	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span>
+}</pre></div>
+</details>
+<h2>文章一键复制代码按钮样式</h2>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>给按钮增加 hover 动画, 使其显示&amp;隐藏一键复制按钮.<br>
 直接文末增加 CSS 即可.</p>
 </div>
 <details><summary>CSS Code</summary>
