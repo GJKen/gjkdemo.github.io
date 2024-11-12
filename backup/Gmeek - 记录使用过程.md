@@ -485,7 +485,7 @@ html {
 	--markdown-pre-bgColor: #27282d;/* 增加 */
 }
 :root {
-	--markdown-pre-bgColor: #fff;/* 增加 */
+	--markdown-pre-bgColor: #f6f8fa;/* 增加 */
 }
 .markdown-body .highlight pre,
 .markdown-body pre {
