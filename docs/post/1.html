@@ -39,7 +39,7 @@
 
 ## subTitle - 隐藏
 
-'subTitle':' ',
+`'subTitle':' ',`
 
 效果图:
 
@@ -99,7 +99,10 @@ Android 端可通过滑动屏幕左右切换图片.
 # 通过 primer.css, 修改博客样式
 
 [primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css), 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.
+
 对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
+
+下面是修改笔记, 不一定实际使用.
 
 ## \<html> 标签样式
 
@@ -152,12 +155,15 @@ Android 端可通过滑动屏幕左右切换图片.
 
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: #9fc6e3;
+    background: #97d3ffa1;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #81b5daa1;
 }
 
 /* Firefox */
 html {
-    scrollbar-color: #9fc6e3 transparent;
+    scrollbar-color: #97d3ffa1 transparent;
     scrollbar-width: thin;
 }
 ```
@@ -395,6 +401,7 @@ html {
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
+> 增加 hover 动画缩放和阴影.
 
 <details><summary>修改前</summary>
 
@@ -613,7 +620,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库, 修改博客样式
+# 通过 Gmeek 仓库DIV博客
 
 为什么这样做? ~~自娱自乐.~~
 
@@ -639,7 +646,9 @@ fork 之后, 转到搭建博客的 github 源码,
 
 打开`Gmeek.py`, 开始修改~
 
-### 网站下方的文字
+### 修改网站下方的文字
+
+文字直接修改即可, 不同语言的按需修改.
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh'>`
 
@@ -673,13 +682,78 @@ fork 之后, 转到搭建博客的 github 源码,
 
 定位代码`markdown-alert-{alert}`
 
-> 增加圆角6px
+> 增加圆角6px.
 
 `Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS'>`
 
 效果图:
 
 `Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW'>`
+
+## 页面底部文字增加图标动画
+
+### 增加爱心图标动画.
+
+打开`footer.html`
+
+在`<span id='runday'>`前面插入下面一行 SVG 图标.
+
+```html
+<svg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' style='margin-right: 4px;height:18px;vertical-align: bottom;fill: #ff5a5a;'class='animate_heartBeatScale'><path d='M1017.152 426.592a263.296 263.296 0 0 0-502.304-133.92 263.328 263.328 0 0 0-502.304 133.92s5.152 259.264 505.536 520.096c500.32-260.832 499.072-520.096 499.072-520.096zM282.016 194.976a43.2 43.2 0 1 1 .096 86.4 43.2 43.2 0 0 1-.096-86.4zm-135.04 323.232a45.12 45.12 0 0 1-55.488-31.328 289.472 289.472 0 0 1-10.816-66.592C76.64 313.824 142.24 261.472 145.504 258.88a45.024 45.024 0 0 1 63.2 8.032c15.168 19.488 11.744 47.36-7.328 62.72-2.336 1.952-30.784 27.52-30.592 82.24.096 14.752 2.208 31.616 7.488 50.784a45.12 45.12 0 0 1-31.296 55.552z'/></svg>
+```
+打开`primer.css`
+
+直接增加动画 CSS 代码.
+
+<details><summary>CSS Code</summary>
+
+```css
+@keyframes heartBeatScale  {
+	0% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+
+	14% {
+		-webkit-transform: scale(1.3);
+		transform: scale(1.3)
+	}
+
+	28% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+
+	42% {
+		-webkit-transform: scale(1.3);
+		transform: scale(1.3)
+	}
+
+	70% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+}
+@keyframes heartBeatColor {
+    0%, 28%, 70%, 100% {
+        fill: #ff5a5a; /* 初始颜色 */
+    }
+    14%, 42% {
+        fill: red; /* 放大时颜色变化 */
+    }
+}
+
+.animate_heartBeatScale {
+	animation: heartBeatScale 1.3s infinite ease-in-out, heartBeatColor 1.3s infinite ease-in-out;
+	-webkit-animation: heartBeatScale 1.3s infinite ease-in-out, heartBeatColor 1.3s infinite ease-in-out;
+}
+```
+
+</details>
+
+效果图:
+
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
@@ -691,7 +765,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 `Gmeek-html<img src='https://img.jpg'>`
 ```
 
-实际展示:
+效果图:
 
 `Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
 
@@ -753,7 +827,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
 ## subTitle - 隐藏
 
-'subTitle':' ',
+`'subTitle':' ',`
 
 效果图:
 
@@ -813,7 +887,10 @@ Android 端可通过滑动屏幕左右切换图片.
 # 通过 primer.css, 修改博客样式
 
 [primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css), 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.
+
 对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
+
+下面是修改笔记, 不一定实际使用.
 
 ## \<html> 标签样式
 
@@ -866,12 +943,15 @@ Android 端可通过滑动屏幕左右切换图片.
 
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: #9fc6e3;
+    background: #97d3ffa1;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #81b5daa1;
 }
 
 /* Firefox */
 html {
-    scrollbar-color: #9fc6e3 transparent;
+    scrollbar-color: #97d3ffa1 transparent;
     scrollbar-width: thin;
 }
 ```
@@ -1109,6 +1189,7 @@ html {
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
+> 增加 hover 动画缩放和阴影.
 
 <details><summary>修改前</summary>
 
@@ -1327,7 +1408,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库, 修改博客样式
+# 通过 Gmeek 仓库DIV博客
 
 为什么这样做? ~~自娱自乐.~~
 
@@ -1353,7 +1434,9 @@ fork 之后, 转到搭建博客的 github 源码,
 
 打开`Gmeek.py`, 开始修改~
 
-### 网站下方的文字
+### 修改网站下方的文字
+
+文字直接修改即可, 不同语言的按需修改.
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh'>`
 
@@ -1387,13 +1470,78 @@ fork 之后, 转到搭建博客的 github 源码,
 
 定位代码`markdown-alert-{alert}`
 
-> 增加圆角6px
+> 增加圆角6px.
 
 `Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS'>`
 
 效果图:
 
 `Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW'>`
+
+## 页面底部文字增加图标动画
+
+### 增加爱心图标动画.
+
+打开`footer.html`
+
+在`<span id='runday'>`前面插入下面一行 SVG 图标.
+
+```html
+<svg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' style='margin-right: 4px;height:18px;vertical-align: bottom;fill: #ff5a5a;'class='animate_heartBeatScale'><path d='M1017.152 426.592a263.296 263.296 0 0 0-502.304-133.92 263.328 263.328 0 0 0-502.304 133.92s5.152 259.264 505.536 520.096c500.32-260.832 499.072-520.096 499.072-520.096zM282.016 194.976a43.2 43.2 0 1 1 .096 86.4 43.2 43.2 0 0 1-.096-86.4zm-135.04 323.232a45.12 45.12 0 0 1-55.488-31.328 289.472 289.472 0 0 1-10.816-66.592C76.64 313.824 142.24 261.472 145.504 258.88a45.024 45.024 0 0 1 63.2 8.032c15.168 19.488 11.744 47.36-7.328 62.72-2.336 1.952-30.784 27.52-30.592 82.24.096 14.752 2.208 31.616 7.488 50.784a45.12 45.12 0 0 1-31.296 55.552z'/></svg>
+```
+打开`primer.css`
+
+直接增加动画 CSS 代码.
+
+<details><summary>CSS Code</summary>
+
+```css
+@keyframes heartBeatScale  {
+	0% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+
+	14% {
+		-webkit-transform: scale(1.3);
+		transform: scale(1.3)
+	}
+
+	28% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+
+	42% {
+		-webkit-transform: scale(1.3);
+		transform: scale(1.3)
+	}
+
+	70% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+}
+@keyframes heartBeatColor {
+    0%, 28%, 70%, 100% {
+        fill: #ff5a5a; /* 初始颜色 */
+    }
+    14%, 42% {
+        fill: red; /* 放大时颜色变化 */
+    }
+}
+
+.animate_heartBeatScale {
+	animation: heartBeatScale 1.3s infinite ease-in-out, heartBeatColor 1.3s infinite ease-in-out;
+	-webkit-animation: heartBeatScale 1.3s infinite ease-in-out, heartBeatColor 1.3s infinite ease-in-out;
+}
+```
+
+</details>
+
+效果图:
+
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
@@ -1405,7 +1553,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 `Gmeek-html<img src='https://img.jpg'>`
 ```
 
-实际展示:
+效果图:
 
 `Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
 
@@ -1522,7 +1670,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p><img src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
 <p>从图中可以看到, 可用 js 插入 html 实现修改文字.</p>
 <h2>subTitle - 隐藏</h2>
-<p>"subTitle":" ",</p>
+<p><code class="notranslate">"subTitle":" ",</code></p>
 <p>效果图:</p>
 <p><img src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"></p>
 <p>可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.</p>
@@ -1563,8 +1711,9 @@ pv 修改成 uv 计数</p>
 </blockquote>
 <p>未实际测试过.</p>
 <h1>通过 primer.css, 修改博客样式</h1>
-<p><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css">primer.css</a>, 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.<br>
-对应的选择器只张贴出关键 CSS 部分的修改, <del>不然代码太多了.</del></p>
+<p><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css">primer.css</a>, 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.</p>
+<p>对应的选择器只张贴出关键 CSS 部分的修改, <del>不然代码太多了.</del></p>
+<p>下面是修改笔记, 不一定实际使用.</p>
 <h2>&lt;html&gt; 标签样式</h2>
 <p><code class="notranslate">[data-color-mode]</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
@@ -1599,12 +1748,15 @@ pv 修改成 uv 计数</p>
 
 ::<span class="pl-ent">-webkit-scrollbar-thumb</span> {
     <span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;
-    <span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>9fc6e3</span>;
+    <span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>97d3ffa1</span>;
+}
+::<span class="pl-ent">-webkit-scrollbar-thumb</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> {
+	<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>81b5daa1</span>;
 }
 
 <span class="pl-c">/* Firefox */</span>
 <span class="pl-ent">html</span> {
-    <span class="pl-c1">scrollbar-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>9fc6e3</span> transparent;
+    <span class="pl-c1">scrollbar-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>97d3ffa1</span> transparent;
     <span class="pl-c1">scrollbar-width</span><span class="pl-kos">:</span> thin;
 }</pre></div>
 </details>
@@ -1774,7 +1926,8 @@ pv 修改成 uv 计数</p>
 </details>
 <h2>文章 &lt;img&gt; 标签样式</h2>
 <p><code class="notranslate">.markdown-body img</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.<br>
+增加 hover 动画缩放和阴影.</p>
 </div>
 <details><summary>修改前</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">img</span> {
@@ -1937,7 +2090,7 @@ pv 修改成 uv 计数</p>
     <span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;
 }</pre></div>
 </details>
-<h1>通过 Gmeek 仓库, 修改博客样式</h1>
+<h1>通过 Gmeek 仓库DIV博客</h1>
 <p>为什么这样做? <del>自娱自乐.</del></p>
 <h2>Fork Gmeek 仓库</h2>
 <p>仓库地址👉 <a href="https://github.com/Meekdai/Gmeek">https://github.com/Meekdai/Gmeek</a></p>
@@ -1951,7 +2104,8 @@ pv 修改成 uv 计数</p>
 </div>
 <h2>Gmeek.py</h2>
 <p>打开<code class="notranslate">Gmeek.py</code>, 开始修改~</p>
-<h3>网站下方的文字</h3>
+<h3>修改网站下方的文字</h3>
+<p>文字直接修改即可, 不同语言的按需修改.</p>
 <p><img src="https://ipfs.mbzj.org/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh"></p>
 <h3>修改默认 primer.css 链接</h3>
 <p><img src="https://ipfs.mbzj.org/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"></p>
@@ -1969,17 +2123,67 @@ pv 修改成 uv 计数</p>
 <h2>修改[警报强调信息]样式</h2>
 <p>定位代码<code class="notranslate">markdown-alert-{alert}</code></p>
 <blockquote>
-<p>增加圆角6px</p>
+<p>增加圆角6px.</p>
 </blockquote>
 <p><img src="https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS"></p>
 <p>效果图:</p>
 <p><img src="https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW"></p>
+<h2>页面底部文字增加图标动画</h2>
+<h3>增加爱心图标动画.</h3>
+<p>打开<code class="notranslate">footer.html</code></p>
+<p>在<code class="notranslate">&lt;span id="runday"&gt;</code>前面插入下面一行 SVG 图标.</p>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">svg</span> <span class="pl-c1">viewBox</span>="<span class="pl-s">0 0 1024 1024</span>" <span class="pl-c1">xmlns</span>="<span class="pl-s">http://www.w3.org/2000/svg</span>" <span class="pl-c1">style</span>="<span class="pl-s">margin-right: 4px;height:18px;vertical-align: bottom;fill: #ff5a5a;</span>"<span class="pl-c1">class</span>="<span class="pl-s">animate_heartBeatScale</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;</span><span class="pl-ent">path</span> <span class="pl-c1">d</span>="<span class="pl-s">M1017.152 426.592a263.296 263.296 0 0 0-502.304-133.92 263.328 263.328 0 0 0-502.304 133.92s5.152 259.264 505.536 520.096c500.32-260.832 499.072-520.096 499.072-520.096zM282.016 194.976a43.2 43.2 0 1 1 .096 86.4 43.2 43.2 0 0 1-.096-86.4zm-135.04 323.232a45.12 45.12 0 0 1-55.488-31.328 289.472 289.472 0 0 1-10.816-66.592C76.64 313.824 142.24 261.472 145.504 258.88a45.024 45.024 0 0 1 63.2 8.032c15.168 19.488 11.744 47.36-7.328 62.72-2.336 1.952-30.784 27.52-30.592 82.24.096 14.752 2.208 31.616 7.488 50.784a45.12 45.12 0 0 1-31.296 55.552z</span>"/&gt;<span class="pl-kos">&lt;/</span><span class="pl-ent">svg</span><span class="pl-kos">&gt;</span></pre></div>
+<p>打开<code class="notranslate">primer.css</code></p>
+<p>直接增加动画 CSS 代码.</p>
+<details><summary>CSS Code</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-k">@keyframes</span> heartBeatScale  {
+	<span class="pl-c1">0<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1</span>);
+		<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1</span>)
+	}
+
+	<span class="pl-c1">14<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1.3</span>);
+		<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1.3</span>)
+	}
+
+	<span class="pl-c1">28<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1</span>);
+		<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1</span>)
+	}
+
+	<span class="pl-c1">42<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1.3</span>);
+		<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1.3</span>)
+	}
+
+	<span class="pl-c1">70<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1</span>);
+		<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1</span>)
+	}
+}
+<span class="pl-k">@keyframes</span> heartBeatColor {
+    <span class="pl-c1">0<span class="pl-smi">%</span></span><span class="pl-kos">,</span> <span class="pl-c1">28<span class="pl-smi">%</span></span><span class="pl-kos">,</span> <span class="pl-c1">70<span class="pl-smi">%</span></span><span class="pl-kos">,</span> <span class="pl-c1">100<span class="pl-smi">%</span></span> {
+        <span class="pl-c1">fill</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ff5a5a</span>; <span class="pl-c">/* 初始颜色 */</span>
+    }
+    <span class="pl-c1">14<span class="pl-smi">%</span></span><span class="pl-kos">,</span> <span class="pl-c1">42<span class="pl-smi">%</span></span> {
+        <span class="pl-c1">fill</span><span class="pl-kos">:</span> red; <span class="pl-c">/* 放大时颜色变化 */</span>
+    }
+}
+
+.<span class="pl-c1">animate_heartBeatScale</span> {
+	<span class="pl-c1">animation</span><span class="pl-kos">:</span> heartBeatScale <span class="pl-c1">1.3<span class="pl-smi">s</span></span> infinite ease-in-out<span class="pl-kos">,</span> heartBeatColor <span class="pl-c1">1.3<span class="pl-smi">s</span></span> infinite ease-in-out;
+	<span class="pl-c1">-webkit-animation</span><span class="pl-kos">:</span> heartBeatScale <span class="pl-c1">1.3<span class="pl-smi">s</span></span> infinite ease-in-out<span class="pl-kos">,</span> heartBeatColor <span class="pl-c1">1.3<span class="pl-smi">s</span></span> infinite ease-in-out;
+}</pre></div>
+</details>
+<p>效果图:</p>
+<p><img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb"></p>
 <h1>使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换</h1>
 <p>Github 在 issues 插入的图片也会自动转换为 Github 的地址.<br>
 为了文章的多样性, 在 Gmeek 的<code class="notranslate">v2.19</code>版本中添加了支持 html 标签的功能.<br>
 示例代码:</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-html<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://img.jpg</span>"<span class="pl-kos">&gt;</span>`</pre></div>
-<p>实际展示:</p>
+<p>效果图:</p>
 <p><img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb"></p>
 <h1>添加自定义单篇文章代码</h1>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">id</span>="<span class="pl-s">busuanzi</span>"<span class="pl-kos">&gt;</span>

@@ -27,7 +27,7 @@
 
 ## subTitle - 隐藏
 
-"subTitle":" ",
+`"subTitle":" ",`
 
 效果图:
 
@@ -87,7 +87,10 @@ Android 端可通过滑动屏幕左右切换图片.
 # 通过 primer.css, 修改博客样式
 
 [primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css), 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.
+
 对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
+
+下面是修改笔记, 不一定实际使用.
 
 ## \<html> 标签样式
 
@@ -140,12 +143,15 @@ Android 端可通过滑动屏幕左右切换图片.
 
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: #9fc6e3;
+    background: #97d3ffa1;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #81b5daa1;
 }
 
 /* Firefox */
 html {
-    scrollbar-color: #9fc6e3 transparent;
+    scrollbar-color: #97d3ffa1 transparent;
     scrollbar-width: thin;
 }
 ```
@@ -383,6 +389,7 @@ html {
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
+> 增加 hover 动画缩放和阴影.
 
 <details><summary>修改前</summary>
 
@@ -601,7 +608,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库, 修改博客样式
+# 通过 Gmeek 仓库DIV博客
 
 为什么这样做? ~~自娱自乐.~~
 
@@ -627,7 +634,9 @@ fork 之后, 转到搭建博客的 github 源码,
 
 打开`Gmeek.py`, 开始修改~
 
-### 网站下方的文字
+### 修改网站下方的文字
+
+文字直接修改即可, 不同语言的按需修改.
 
 `Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh">`
 
@@ -661,13 +670,78 @@ fork 之后, 转到搭建博客的 github 源码,
 
 定位代码`markdown-alert-{alert}`
 
-> 增加圆角6px
+> 增加圆角6px.
 
 `Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS">`
 
 效果图:
 
 `Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW">`
+
+## 页面底部文字增加图标动画
+
+### 增加爱心图标动画.
+
+打开`footer.html`
+
+在`<span id="runday">`前面插入下面一行 SVG 图标.
+
+```html
+<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" style="margin-right: 4px;height:18px;vertical-align: bottom;fill: #ff5a5a;"class="animate_heartBeatScale"><path d="M1017.152 426.592a263.296 263.296 0 0 0-502.304-133.92 263.328 263.328 0 0 0-502.304 133.92s5.152 259.264 505.536 520.096c500.32-260.832 499.072-520.096 499.072-520.096zM282.016 194.976a43.2 43.2 0 1 1 .096 86.4 43.2 43.2 0 0 1-.096-86.4zm-135.04 323.232a45.12 45.12 0 0 1-55.488-31.328 289.472 289.472 0 0 1-10.816-66.592C76.64 313.824 142.24 261.472 145.504 258.88a45.024 45.024 0 0 1 63.2 8.032c15.168 19.488 11.744 47.36-7.328 62.72-2.336 1.952-30.784 27.52-30.592 82.24.096 14.752 2.208 31.616 7.488 50.784a45.12 45.12 0 0 1-31.296 55.552z"/></svg>
+```
+打开`primer.css`
+
+直接增加动画 CSS 代码.
+
+<details><summary>CSS Code</summary>
+
+```css
+@keyframes heartBeatScale  {
+	0% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+
+	14% {
+		-webkit-transform: scale(1.3);
+		transform: scale(1.3)
+	}
+
+	28% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+
+	42% {
+		-webkit-transform: scale(1.3);
+		transform: scale(1.3)
+	}
+
+	70% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+}
+@keyframes heartBeatColor {
+    0%, 28%, 70%, 100% {
+        fill: #ff5a5a; /* 初始颜色 */
+    }
+    14%, 42% {
+        fill: red; /* 放大时颜色变化 */
+    }
+}
+
+.animate_heartBeatScale {
+	animation: heartBeatScale 1.3s infinite ease-in-out, heartBeatColor 1.3s infinite ease-in-out;
+	-webkit-animation: heartBeatScale 1.3s infinite ease-in-out, heartBeatColor 1.3s infinite ease-in-out;
+}
+```
+
+</details>
+
+效果图:
+
+`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb">`
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
@@ -679,7 +753,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 `Gmeek-html<img src="https://img.jpg">`
 ```
 
-实际展示:
+效果图:
 
 `Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb">`
 
