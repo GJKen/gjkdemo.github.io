@@ -439,7 +439,9 @@ html {
 
 ```css
 .markdown-body img {
-    background-color: var(--bgColor-default, var(--color-canvas-default))
+	max-width: 100%;
+	box-sizing: content-box;
+	background-color: var(--bgColor-default, var(--color-canvas-default))
 }
 ```
 

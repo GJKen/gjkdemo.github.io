@@ -451,7 +451,9 @@ html {
 
 ```css
 .markdown-body img {
-    background-color: var(--bgColor-default, var(--color-canvas-default))
+	max-width: 100%;
+	box-sizing: content-box;
+	background-color: var(--bgColor-default, var(--color-canvas-default))
 }
 ```
 
@@ -1283,7 +1285,9 @@ html {
 
 ```css
 .markdown-body img {
-    background-color: var(--bgColor-default, var(--color-canvas-default))
+	max-width: 100%;
+	box-sizing: content-box;
+	background-color: var(--bgColor-default, var(--color-canvas-default))
 }
 ```
 
@@ -2045,7 +2049,9 @@ pv 修改成 uv 计数</p>
 </div>
 <details><summary>修改前</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">img</span> {
-    <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--bgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-canvas-default</span>))
+	<span class="pl-c1">max-width</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span>;
+	<span class="pl-c1">box-sizing</span><span class="pl-kos">:</span> content-box;
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--bgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-canvas-default</span>))
 }</pre></div>
 </details>
 <details><summary>修改后</summary>
