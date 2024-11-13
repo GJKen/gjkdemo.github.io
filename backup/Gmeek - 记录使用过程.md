@@ -53,7 +53,7 @@
 
 > Fancybox [官网](https://www.fancyapps.com)
 
-### 安装 Fancybox 
+### 安装 Fancybox
 
 给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.
 
@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 意思是页面加载完成后加载 fancybox 的 CSS, 同时增加 fancybox 必要的绑定函数.
 
 ### 修改 Gmeek 仓库的 Gmeek.py
+
 > 不知道怎么改自定义构建仓库的看[这里](#通过-Gmeek-仓库-DIY-博客)
 
 打开`Gmeek.py`文件
@@ -87,23 +88,23 @@ document.addEventListener('DOMContentLoaded', () => {
 定位字符串`Gmeek-html`
 
 然后在下面增加代码:
+
 ```js
-	if '<code class="notranslate">Gmeek-imgbox' in post_body:
-				post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox(.*?)</code>', lambda match: html.unescape(match.group(1)).replace('<img src="', '<img data-fancybox="gallery" data-src="').replace('">', '" />'), post_body, flags=re.DOTALL)
+if '<code class="notranslate">Gmeek-imgbox' in post_body: 
+            post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox&lt;img src="([^"]+)"&gt;</code>', lambda match: f'<img data-fancybox="gallery" data-src="{match.group(1)}" src="{match.group(1)}">', post_body, flags=re.DOTALL)
 ```
 
 ### 示例使用
 
-在markdown插入图片:
+在 markdown 插入图片:
 
 ```
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
 ```
 
-转义后输出效果如下, html里面图片标签会增加`data-fancybox="gallery"` 和 `data-src`属性, 这些都是 fancybox 必要的属性.
+通过 Action 转义后实际效果如下, html 里面图片标签会增加`data-fancybox="gallery"` 和 `data-src`属性, 这些都是 fancybox 必要的属性.
 
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN">`
-
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -181,8 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ```css
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -256,10 +257,7 @@ html {
 ```css
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
-    color: var(--fgColor-accent, var(--color-accent-fg));
     background-color: var(--button-default-bgColor-hover, var(--color-btn-hover-bg));
-    outline: none;
-    box-shadow: none
 }
 ```
 
@@ -277,15 +275,12 @@ html {
 }
 :root {
 	/* 增加 */
-	--title-right-btnbg-color: #46ffff61;
+	--title-right-btnbg-color: #b7dbff61;
 	--title-right-svg-color: #71baff;
 }
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
-	color: var(--fgColor-accent, var(--color-accent-fg));
 	background-color: var(--title-right-btnbg-color);
-	outline: none;
-	box-shadow: none
 }
 /* 增加 */
 .btn-invisible:hover svg,
@@ -298,7 +293,7 @@ html {
 
 ## 文章 \<blockquote> 标签样式
 
-`.markdown-body blockquote a`
+`.markdown-body blockquote`
 
 > [!NOTE]
 > 修改文字颜色, 适配 light & dark 主题.
@@ -306,7 +301,7 @@ html {
 <details><summary>修改前</summary>
 
 ```css
-.markdown-body blockquote{
+.markdown-body blockquote {
 	padding: 0 1em;
 	color: var(--fgColor-muted, var(--color-fg-muted));
 	border-left: .25em solid var(--borderColor-default, var(--color-border-default))
@@ -347,12 +342,13 @@ html {
 > [!NOTE]
 > 直接移除这个选择器的所有样式.
 
-## 文章 \<h1> 标签的样式
+## 文章 \<h1> 标签样式
 
 `.markdown-body h1`
 
 > [!NOTE]
-> 修改字体大小1.85em
+> 修改字体大小1.85em.
+> 删除padding.
 > 优化 light & dark 主题下的背景色.
 
 <details><summary>修改前</summary>
@@ -379,11 +375,11 @@ html {
     --markdown-h1-bgColor: #c8e5ff7a;/* 增加 */
 }
 .markdown-body h1 {
-    background: var(--markdown-h1-bgColor);
-    border-radius: 6px;
+    background: var(--markdown-h1-bgColor);/* 增加 */
+    border-radius: 6px;/* 增加 */
     font-size: 1.85em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
-	border-left: .25em solid #32c7dd;
+    border-left: .25em solid #32c7dd;/* 增加 */
 }
 ```
 
@@ -450,37 +446,24 @@ html {
 <details><summary>修改后</summary>
 
 ```css
-[data-color-mode=light][data-light-theme=dark],
-[data-color-mode=light][data-light-theme=dark]::selection,
-[data-color-mode=dark][data-dark-theme=dark],
-[data-color-mode=dark][data-dark-theme=dark]::selection 
-    --markdown-imgShadow: #88d9ff47;/* 增加 */
-}
-:root {
-    --markdown-imgShadow: #0000000d;/* 增加 */
-}
 /* 增加 */
 .markdown-body p {
 	position: relative;
 	overflow: visible;
-	transition: box-shadow 0.3s ease;
-	-webkit-transition: box-shadow 0.3s ease;
 	clip-path: inset(0);
 	-webkit-clip-path: inset(0);
 }
 .markdown-body img {
 	max-width: 100%;
 	box-sizing: content-box;
-	transition: transform 0.3s ease, clip-path 0.3s ease;
-	-webkit-transition: -webkit-transform 0.3s ease, -webkit-clip-path 0.3s ease, box-shadow 0.2s ease;
+	transition: transform 0.3s ease, clip-path 0.3s ease;/* 增加 */
+	-webkit-transition: -webkit-transform 0.3s ease, -webkit-clip-path 0.3s ease;/* 增加 */
 }
 /* 增加 */
 .markdown-body img:hover {
 	transform: scale(1.01);
-	-webkit-transform: scale(1.01);
 	clip-path: inset(-4%);
-	-webkit-clip-path: inset(-4%);
-	box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);
+	cursor: zoom-in;
 }
 ```
 
@@ -536,13 +519,7 @@ html {
 ```css
 .markdown-body .highlight pre,
 .markdown-body pre {
-	padding: 16px;
-	overflow: auto;
-	font-size: 85%;
-	line-height: 1.45;
-	color: var(--fgColor-default, var(--color-fg-default));
 	background-color: var(--bgColor-muted, var(--color-canvas-subtle));
-	border-radius: 6px
 }
 ```
 
@@ -562,13 +539,7 @@ html {
 }
 .markdown-body .highlight pre,
 .markdown-body pre {
-	padding: 16px;
-	overflow: auto;
-	font-size: 85%;
-	line-height: 1.45;
-	color: var(--fgColor-default, var(--color-fg-default));
 	background-color: var(--markdown-pre-bgColor);
-	border-radius: 6px
 }
 ```
 
@@ -585,19 +556,19 @@ html {
 ```css
 /* 一键复制hover出入动画 */
 .clipboard-container {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0s 0.3s;
-	-webkit-transition: opacity 0.3s ease, visibility 0s 0.3s;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition: opacity 0.3s ease, visibility 0s 0.3s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0.3s
 }
 
 .highlight:hover .clipboard-container {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transition: opacity 0.3s ease, visibility 0s 0s;
-	-webkit-transition: opacity 0.3s ease, visibility 0s 0s;
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transition: opacity 0.3s ease, visibility 0s 0s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0s
 }
 ```
 
@@ -620,11 +591,9 @@ html {
 [data-color-mode=dark][data-dark-theme=dark]::selection {
     --color-accent-fg: #2f81f7;
 }
+/* 这条在12345行左右出现 */
 a {
-    background-color: rgba(0, 0, 0, 0)
-}
-a:hover {
-    text-decoration: underline
+	background-color: rgba(0, 0, 0, 0)
 }
 ```
 
@@ -639,16 +608,20 @@ a:hover {
 [data-color-mode=dark][data-dark-theme=dark]::selection {
     --color-accent-fg: #20d4ff;
 }
+/* 
+这条在12345行左右出现
+增加
+*/
 a {
-    text-decoration: none !important;
-    background: #0000;
-    background: linear-gradient(#90d1ff, #90d1ff) no-repeat left bottom;
-    background-size: 0 2px;
-    -webkit-transition: all 0.25s ease;
-    transition: all 0.25s ease;
+	background: #90d1ff;
+	background: linear-gradient(#90d1ff, #90d1ff) no-repeat left bottom;
+	background-size: 0 2px;
+	transition: all 0.25s ease;
+	-webkit-transition: all 0.25s ease;
 }
-a:hover {
-    background-size: 100% 2px;
+/* 增加 */
+.markdown-body a:hover {
+	background-size: 100% 2px;
 }
 ```
 
@@ -676,17 +649,17 @@ fork 之后, 转到搭建博客的 github 源码,
 > 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
 > ~~创建新的 tag 也可以, 但是挺麻烦.~~
 
-## Gmeek.py
+## 修改网站下方的文字
 
-打开`Gmeek.py`, 开始修改~
+打开`Gmeek.py`
 
-### 修改网站下方的文字
-
-文字直接修改即可, 不同语言的按需修改.
+下图文字直接修改即可, 不同语言的按需修改.
 
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh">`
 
-### 修改默认 primer.css 链接
+## 修改默认 primer.css 链接
+
+打开`Gmeek.py`
 
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v">`
 
@@ -696,23 +669,25 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ### 打开 post.html 文件
 
-定位样式`.title-right`, 其内容全部修改为flex布局`.title-right{display:flex;}`
+定位样式`.title-right`, 其内容全部修改为flex布局👉`.title-right{display:flex;}`
 
 增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`
 
-定位样式`.title-left a`, 删除`margin-left:8px;`, 设置flex布局之后取消图标多余的间距, 样式则通过 <a href="## \#header 图标样式">primer.css</a> 来修改.
+定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 <a href="## \#header 图标样式">primer.css</a> 来修改.)
 
-定位样式`.title-right .circle`, 删除`margin-right:8px;`, 和上面一样, 删除多余间距.
+定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
 
-定位样式`.avatar:hover`,其内容全部修改`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
+定位样式`.avatar:hover`,其内容全部修改为👉`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
 
 ### 打开 plist.html 文件
 
-定位样式`.title-right .circle`, 删除`margin-right:8px;`, 和上面一样, 删除多余间距.
+定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
 
 到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.
 
 ## 修改[警报强调信息]样式
+
+打开`Gmeek.py`
 
 定位代码`markdown-alert-{alert}`
 
@@ -726,7 +701,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ## 页面底部文字增加图标动画
 
-### 增加爱心图标动画.
+增加爱心图标动画.
 
 打开`footer.html`
 
@@ -735,6 +710,7 @@ fork 之后, 转到搭建博客的 github 源码,
 ```html
 <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" style="margin-right: 4px;height:18px;vertical-align: bottom;fill: #ff5a5a;"class="animate_heartBeatScale"><path d="M1017.152 426.592a263.296 263.296 0 0 0-502.304-133.92 263.328 263.328 0 0 0-502.304 133.92s5.152 259.264 505.536 520.096c500.32-260.832 499.072-520.096 499.072-520.096zM282.016 194.976a43.2 43.2 0 1 1 .096 86.4 43.2 43.2 0 0 1-.096-86.4zm-135.04 323.232a45.12 45.12 0 0 1-55.488-31.328 289.472 289.472 0 0 1-10.816-66.592C76.64 313.824 142.24 261.472 145.504 258.88a45.024 45.024 0 0 1 63.2 8.032c15.168 19.488 11.744 47.36-7.328 62.72-2.336 1.952-30.784 27.52-30.592 82.24.096 14.752 2.208 31.616 7.488 50.784a45.12 45.12 0 0 1-31.296 55.552z"/></svg>
 ```
+
 打开`primer.css`
 
 直接增加动画 CSS 代码.
@@ -789,19 +765,21 @@ fork 之后, 转到搭建博客的 github 源码,
 
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb">`
 
-# 使用 Gmeek-imgbox 自定义标签, 给博客插入图片, 防止链接自动转换
+# 使用 Gmeek-html, 给博客插入图片, 防止链接自动转换
 
 Github 在 issues 插入的图片也会自动转换为 Github 的地址.
+
 为了文章的多样性, 在 Gmeek 的`v2.19`版本中添加了支持 html 标签的功能.
+
 示例代码:
 
 ```html
-`Gmeek-imgbox<img src="https://img.jpg">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
 ```
 
 效果图:
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
 
 # 添加自定义单篇文章代码
 
@@ -830,3 +808,5 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间
+
+> 
