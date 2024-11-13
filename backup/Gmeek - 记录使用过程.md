@@ -57,13 +57,13 @@
 
 给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.
 
-我这里用的是`5.0`版本,
+我这里用的是`5.0`版本, cdn 加速链接.
 
 ```json
 "script":"<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>"
 ```
 
-`ArticleCss.js`的内容如下.
+`ArticleCss.js`的内容如下:
 
 ```js
 document.addEventListener('DOMContentLoaded', () => {
