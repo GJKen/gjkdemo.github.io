@@ -27518,6 +27518,10 @@ a.branch-name .octicon {
 	background-color: rgba(0, 0, 0, 0)
 }
 
+.markdown-body img {
+    background-color: var(--bgColor-default, var(--color-canvas-default))
+}
+
 /* 图片hover */
 /*.markdown-body p {
 	position: relative;
@@ -27530,12 +27534,12 @@ a.branch-name .octicon {
 	box-sizing: content-box;
 	transition: transform 0.3s ease, clip-path 0.3s ease;
 }*/
-.markdown-body img:hover {
-	/*transform: scale(1.01);
+/*.markdown-body img:hover {
+	transform: scale(1.01);
 	clip-path: inset(-4%);
-	box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);*/
+	box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);
 	cursor: zoom-in;
-}
+}*/
 
 .markdown-body img[align=right] {
 	padding-left: 20px
