@@ -5464,7 +5464,6 @@
 	--title-right-btnbg-color: #46ffff61;
 	--title-right-svg-color: #00f0ff;
 	--markdown-h1-bgColor: #7dc2ff7a;
-	/* --markdown-imgShadow: #88d9ff47; 图片hover */
 	--html-bgColor: #151c2f;
 	--color-canvas-default-transparent: rgba(13, 17, 23, 0);
 	--color-page-header-bg: #0d1117;
@@ -12344,12 +12343,15 @@ template,
 }
 
 a {
-	text-decoration: none !important;
-	background: #0000;
+	background: #90d1ff;
 	background: linear-gradient(#90d1ff, #90d1ff) no-repeat left bottom;
 	background-size: 0 2px;
-	-webkit-transition: all 0.25s ease;
 	transition: all 0.25s ease;
+	-webkit-transition: all 0.25s ease;
+}
+
+.markdown-body a:hover {
+	background-size: 100% 2px;
 }
 
 abbr[title] {
@@ -12526,7 +12528,7 @@ body {
 	box-shadow: 0 0 100px var(--body-shadow-color);
 }
 
-/* static
+/* header可以通过Gmeek仓库修改, 这边直接注释了
 #header {
 	flex-direction: column !important;
 	align-items: center !important;
@@ -12562,10 +12564,6 @@ body {
 a {
 	color: var(--fgColor-accent, var(--color-accent-fg));
 	text-decoration: none
-}
-
-.markdown-body a:hover {
-	background-size: 100% 2px;
 }
 
 b,
@@ -13584,9 +13582,10 @@ a.btn-primary:focus-visible {
 	outline: none;
 	box-shadow: none
 }
+
 .btn-invisible:hover svg,
 .btn-invisible.zeroclipboard-is-hover svg {
-    fill: var(--title-right-svg-color);
+	fill: var(--title-right-svg-color);
 }
 
 .btn-invisible:active,
@@ -16278,7 +16277,6 @@ input.FormControl-radio[type=radio]:focus-visible {
 	--title-right-svg-color: #71baff;
 	--SideNav-bgColor: #ffffff99;
 	--SideNav-hover-bgColor: #6ec3ff52;
-	/* --markdown-imgShadow: #0000000d; 图片hover */
 	--markdown-h1-bgColor: #c8e5ff7a;
 	--markdown-blockquote-color: #656d76;
 	--markdown-blockquote-borderLeft-color: #d0d7de;
@@ -27354,11 +27352,13 @@ a.branch-name .octicon {
 	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
 	border-left: .25em solid #32c7dd;
 }
+
 .markdown-body h2 {
-    padding-bottom: .3em;
-    font-size: 1.5em;
-    border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted))
+	padding-bottom: .3em;
+	font-size: 1.5em;
+	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted))
 }
+
 /*
 .markdown-body h2 {
 	font-size: 1.5em;
@@ -27523,17 +27523,20 @@ a.branch-name .octicon {
 .markdown-body p {
 	position: relative;
 	overflow: visible;
-	transition: box-shadow 0.3s ease;
 	clip-path: inset(0);
+	-webkit-clip-path: inset(0);
 }
+
 .markdown-body img {
+	max-width: 100%;
 	box-sizing: content-box;
 	transition: transform 0.3s ease, clip-path 0.3s ease;
+	-webkit-transition: -webkit-transform 0.3s ease, -webkit-clip-path 0.3s ease;
 }
+
 .markdown-body img:hover {
 	transform: scale(1.01);
 	clip-path: inset(-4%);
-	/*box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);*/
 	cursor: zoom-in;
 }
 
@@ -28259,10 +28262,12 @@ a.branch-name .octicon {
 	width: 8px;
 	height: 8px;
 }
+
 ::-webkit-scrollbar-thumb {
 	border-radius: 10px;
 	background: #97d3ffa1;
 }
+
 ::-webkit-scrollbar-thumb:hover {
 	background: #81b5daa1;
 }
@@ -30867,7 +30872,7 @@ html {
 	z-index: -2 !important
 }
 
-@keyframes heartBeatScale  {
+@keyframes heartBeatScale {
 	0% {
 		-webkit-transform: scale(1);
 		transform: scale(1)
@@ -30893,13 +30898,22 @@ html {
 		transform: scale(1)
 	}
 }
+
 @keyframes heartBeatColor {
-    0%, 28%, 70%, 100% {
-        fill: #ff5a5a; /* 初始颜色 */
-    }
-    14%, 42% {
-        fill: red; /* 放大时颜色变化 */
-    }
+
+	0%,
+	28%,
+	70%,
+	100% {
+		fill: #ff5a5a;
+		/* 初始颜色 */
+	}
+
+	14%,
+	42% {
+		fill: red;
+		/* 放大时颜色变化 */
+	}
 }
 
 .animate_heartBeatScale {
@@ -30909,19 +30923,19 @@ html {
 
 /* 一键复制出入动画 */
 .clipboard-container {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0s 0.3s;
-	-webkit-transition: opacity 0.3s ease, visibility 0s 0.3s;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition: opacity 0.3s ease, visibility 0s 0.3s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0.3s
 }
 
 .highlight:hover .clipboard-container {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transition: opacity 0.3s ease, visibility 0s 0s;
-	-webkit-transition: opacity 0.3s ease, visibility 0s 0s;
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transition: opacity 0.3s ease, visibility 0s 0s;
+	-webkit-transition: opacity 0.3s ease, visibility 0s 0s
 }
 
 /*# sourceMappingURL=primer.css.map */
