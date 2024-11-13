@@ -28256,18 +28256,20 @@ a.branch-name .octicon {
 }
 
 ::-webkit-scrollbar {
-	width: 10px;
-	height: 10px;
+	width: 8px;
+	height: 8px;
 }
-
 ::-webkit-scrollbar-thumb {
 	border-radius: 10px;
-	background: #9fc6e3;
+	background: #97d3ffa1;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #81b5daa1;
 }
 
 /* Firefox */
 html {
-	scrollbar-color: #9fc6e3 transparent;
+	scrollbar-color: #97d3ffa1 transparent;
 	scrollbar-width: thin;
 }
 
