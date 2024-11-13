@@ -4,15 +4,13 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href='../../static/primer.css' rel='stylesheet' />
+    <link href='https://gjken.github.io/demo/primer.css' rel='stylesheet' />
     <script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/Indextheme.min.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script>
     <link rel="icon" href="https://ipfs.mbzj.org/ipfs/QmRtULS1Gmf3Phh84o9SVWhdc52AuJJ2NA24zMiFMeqdpf"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
 <meta name="description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
-
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'>`
 
 # 搭建博客
 
@@ -35,7 +33,7 @@
 
 效果图:
 
-`Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'>`
 
 从图中可以看到, 可用 js 插入 html 实现修改文字.
 
@@ -45,7 +43,7 @@
 
 效果图:
 
-`Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'>`
 
 可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.
 
@@ -61,19 +59,63 @@
 
 图示:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1'>`
 
-## [lightbox-gjken.js](https://github.com/GJKen/gjken.github.io/blob/main/static/lightbox-gjken.js) - 灯箱
+## Fancybox.js - 图片浏览器
 
-> 来源: [Github](https://github.com/tiengming/tiengming.github.io)
-> 修改-增加图片拖动, 增加点击图片外部退出灯箱.
-> 已知 bug: 当图片缩放过后,再对图片拖动会有微小偏差,~~我代码能力实在是太菜了😭~~.
+> Fancybox [官网](https://www.fancyapps.com)
 
-通过点击可大图浏览文章中的图片, 适合一些图片较多的文章.
+### 安装 Fancybox 
 
-Windows 端通过 Ctrl+滚轮放大, 同时滚轮可左右切换图片.
+给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.
 
-Android 端可通过滑动屏幕左右切换图片.
+我这里用的是`5.0`版本,
+
+```
+'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
+```
+
+`ArticleCss.js`的内容如下.
+
+```js
+document.addEventListener('DOMContentLoaded', () => {
+    document.head.appendChild(
+        Object.assign(document.createElement('link'), {
+            rel: 'stylesheet',
+            href: 'https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'
+        })
+    );
+    Fancybox.bind('[data-fancybox='gallery']', {});
+});
+```
+
+意思是页面加载完成后加载 fancybox 的 CSS, 同时增加 fancybox 必要的绑定函数.
+
+### 修改 Gmeek 仓库的 Gmeek.py
+> 不知道怎么改自定义构建仓库的看[这里](#通过-Gmeek-仓库-DIY-博客)
+
+打开`Gmeek.py`文件
+
+定位字符串`Gmeek-html`
+
+然后在下面增加代码:
+```js
+	if '<code class='notranslate'>Gmeek-imgbox' in post_body:
+				post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox(.*?)</code>', lambda match: html.unescape(match.group(1)).replace('<img src='', '<img data-fancybox='gallery' data-src='').replace(''>', '' />'), post_body, flags=re.DOTALL)
+```
+
+### 示例使用
+
+在markdown插入图片:
+
+```
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
+```
+
+转义后输出效果如下, html里面图片标签会增加`data-fancybox='gallery'` 和 `data-src`属性, 这些都是 fancybox 必要的属性.
+
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN'>`
+
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -622,7 +664,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库DIV博客
+# 通过 Gmeek 仓库 DIY 博客
 
 为什么这样做? ~~自娱自乐.~~
 
@@ -630,13 +672,13 @@ a:hover {
 
 仓库地址👉 https://github.com/Meekdai/Gmeek
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV'>`
 
 fork 之后, 转到搭建博客的 github 源码,
 
 打开`.github/workflows/Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav'>`
 
 打开`config.json`文件, 修改右边字段值为main`'GMEEK_VERSION':'main'`
 
@@ -652,11 +694,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 文字直接修改即可, 不同语言的按需修改.
 
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh'>`
 
 ### 修改默认 primer.css 链接
 
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v'>`
 
 这里我直接写改成我存放的链接 https://gjken.github.io/primer.css
 
@@ -686,11 +728,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 > 增加圆角6px.
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS'>`
 
 效果图:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW'>`
 
 ## 页面底部文字增加图标动画
 
@@ -755,21 +797,21 @@ fork 之后, 转到搭建博客的 github 源码,
 
 效果图:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
 
-# 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
+# 使用 Gmeek-imgbox 自定义标签, 给博客插入图片, 防止链接自动转换
 
 Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 为了文章的多样性, 在 Gmeek 的`v2.19`版本中添加了支持 html 标签的功能.
 示例代码:
 
 ```html
-`Gmeek-html<img src='https://img.jpg'>`
+`Gmeek-imgbox<img src='https://img.jpg'>`
 ```
 
 效果图:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
 
 # 添加自定义单篇文章代码
 
@@ -802,8 +844,6 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 <meta property="og:title" content="Gmeek - 记录使用过程">
 <meta property="og:description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'>`
-
 # 搭建博客
 
 **如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#gmeek)**
@@ -825,7 +865,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
 效果图:
 
-`Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'>`
 
 从图中可以看到, 可用 js 插入 html 实现修改文字.
 
@@ -835,7 +875,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
 效果图:
 
-`Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'>`
 
 可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.
 
@@ -851,19 +891,63 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
 图示:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1'>`
 
-## [lightbox-gjken.js](https://github.com/GJKen/gjken.github.io/blob/main/static/lightbox-gjken.js) - 灯箱
+## Fancybox.js - 图片浏览器
 
-> 来源: [Github](https://github.com/tiengming/tiengming.github.io)
-> 修改-增加图片拖动, 增加点击图片外部退出灯箱.
-> 已知 bug: 当图片缩放过后,再对图片拖动会有微小偏差,~~我代码能力实在是太菜了😭~~.
+> Fancybox [官网](https://www.fancyapps.com)
 
-通过点击可大图浏览文章中的图片, 适合一些图片较多的文章.
+### 安装 Fancybox 
 
-Windows 端通过 Ctrl+滚轮放大, 同时滚轮可左右切换图片.
+给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.
 
-Android 端可通过滑动屏幕左右切换图片.
+我这里用的是`5.0`版本,
+
+```
+'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
+```
+
+`ArticleCss.js`的内容如下.
+
+```js
+document.addEventListener('DOMContentLoaded', () => {
+    document.head.appendChild(
+        Object.assign(document.createElement('link'), {
+            rel: 'stylesheet',
+            href: 'https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'
+        })
+    );
+    Fancybox.bind('[data-fancybox='gallery']', {});
+});
+```
+
+意思是页面加载完成后加载 fancybox 的 CSS, 同时增加 fancybox 必要的绑定函数.
+
+### 修改 Gmeek 仓库的 Gmeek.py
+> 不知道怎么改自定义构建仓库的看[这里](#通过-Gmeek-仓库-DIY-博客)
+
+打开`Gmeek.py`文件
+
+定位字符串`Gmeek-html`
+
+然后在下面增加代码:
+```js
+	if '<code class='notranslate'>Gmeek-imgbox' in post_body:
+				post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox(.*?)</code>', lambda match: html.unescape(match.group(1)).replace('<img src='', '<img data-fancybox='gallery' data-src='').replace(''>', '' />'), post_body, flags=re.DOTALL)
+```
+
+### 示例使用
+
+在markdown插入图片:
+
+```
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
+```
+
+转义后输出效果如下, html里面图片标签会增加`data-fancybox='gallery'` 和 `data-src`属性, 这些都是 fancybox 必要的属性.
+
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN'>`
+
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -1412,7 +1496,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库DIV博客
+# 通过 Gmeek 仓库 DIY 博客
 
 为什么这样做? ~~自娱自乐.~~
 
@@ -1420,13 +1504,13 @@ a:hover {
 
 仓库地址👉 https://github.com/Meekdai/Gmeek
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV'>`
 
 fork 之后, 转到搭建博客的 github 源码,
 
 打开`.github/workflows/Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav'>`
 
 打开`config.json`文件, 修改右边字段值为main`'GMEEK_VERSION':'main'`
 
@@ -1442,11 +1526,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 文字直接修改即可, 不同语言的按需修改.
 
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh'>`
 
 ### 修改默认 primer.css 链接
 
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v'>`
 
 这里我直接写改成我存放的链接 https://gjken.github.io/primer.css
 
@@ -1476,11 +1560,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 > 增加圆角6px.
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS'>`
 
 效果图:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW'>`
 
 ## 页面底部文字增加图标动画
 
@@ -1545,21 +1629,21 @@ fork 之后, 转到搭建博客的 github 源码,
 
 效果图:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
 
-# 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
+# 使用 Gmeek-imgbox 自定义标签, 给博客插入图片, 防止链接自动转换
 
 Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 为了文章的多样性, 在 Gmeek 的`v2.19`版本中添加了支持 html 标签的功能.
 示例代码:
 
 ```html
-`Gmeek-html<img src='https://img.jpg'>`
+`Gmeek-imgbox<img src='https://img.jpg'>`
 ```
 
 效果图:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
 
 # 添加自定义单篇文章代码
 
@@ -1661,7 +1745,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><p><a href="https://github.com/Meekdai/Gmeek">Gmeek</a> 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.</p>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF" src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF" /></p>
 <h1>搭建博客</h1>
 <p><strong>如何搭建博客我就不写了, 强烈建议看完<a href="https://blog.meekdai.com/tag.html#gmeek" rel="nofollow">官方文档</a></strong></p>
 <p><strong>这里主要记录一些 js 和 CSS 的修改.</strong></p>
@@ -1672,12 +1755,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>代码:</p>
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"subTitle"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script&gt;document.getElementById('content').innerHTML = `&lt;div style='text-align: center;'&gt;&lt;p&gt;CV工程师,&lt;/p&gt;&lt;p&gt;一个又菜又爱玩, 喜欢瞎折腾的流浪者.&lt;/p&gt;&lt;/div&gt;`;&lt;/script&gt;<span class="pl-pds">"</span></span>,</pre></div>
 <p>效果图:</p>
-<p><img src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF" /></p>
 <p>从图中可以看到, 可用 js 插入 html 实现修改文字.</p>
 <h2>subTitle - 隐藏</h2>
 <p><code class="notranslate">"subTitle":" ",</code></p>
 <p>效果图:</p>
-<p><img src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"></p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy" /></p>
 <p>可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.</p>
 <h1>记录功能块代码</h1>
 <p>代码摘抄自网络, 有删改, 都存放在仓库, 使用 jsdelivr CDN 加速.</p>
@@ -1688,16 +1771,42 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 已知bug: 给body增加<code class="notranslate">backdrop-filter: blur(30px);</code>样式时, 会出现滚动错误. 待后续修复.</p>
 </blockquote>
 <p>图示:</p>
-<p><img src="https://cdn.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1"></p>
-<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/lightbox-gjken.js">lightbox-gjken.js</a> - 灯箱</h2>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1" /></p>
+<h2>Fancybox.js - 图片浏览器</h2>
 <blockquote>
-<p>来源: <a href="https://github.com/tiengming/tiengming.github.io">Github</a><br>
-修改-增加图片拖动, 增加点击图片外部退出灯箱.<br>
-已知 bug: 当图片缩放过后,再对图片拖动会有微小偏差,<del>我代码能力实在是太菜了😭</del>.</p>
+<p>Fancybox <a href="https://www.fancyapps.com" rel="nofollow">官网</a></p>
 </blockquote>
-<p>通过点击可大图浏览文章中的图片, 适合一些图片较多的文章.</p>
-<p>Windows 端通过 Ctrl+滚轮放大, 同时滚轮可左右切换图片.</p>
-<p>Android 端可通过滑动屏幕左右切换图片.</p>
+<h3>安装 Fancybox</h3>
+<p>给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.</p>
+<p>我这里用的是<code class="notranslate">5.0</code>版本,</p>
+<pre class="notranslate"><code class="notranslate">"script":"&lt;script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'&gt;&lt;/script&gt;&lt;script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'&gt;&lt;/script&gt;"
+</code></pre>
+<p><code class="notranslate">ArticleCss.js</code>的内容如下.</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">addEventListener</span><span class="pl-kos">(</span><span class="pl-s">'DOMContentLoaded'</span><span class="pl-kos">,</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+    <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-c1">head</span><span class="pl-kos">.</span><span class="pl-en">appendChild</span><span class="pl-kos">(</span>
+        <span class="pl-v">Object</span><span class="pl-kos">.</span><span class="pl-en">assign</span><span class="pl-kos">(</span><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">createElement</span><span class="pl-kos">(</span><span class="pl-s">'link'</span><span class="pl-kos">)</span><span class="pl-kos">,</span> <span class="pl-kos">{</span>
+            <span class="pl-c1">rel</span>: <span class="pl-s">'stylesheet'</span><span class="pl-kos">,</span>
+            <span class="pl-c1">href</span>: <span class="pl-s">'https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'</span>
+        <span class="pl-kos">}</span><span class="pl-kos">)</span>
+    <span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-v">Fancybox</span><span class="pl-kos">.</span><span class="pl-en">bind</span><span class="pl-kos">(</span><span class="pl-s">'[data-fancybox="gallery"]'</span><span class="pl-kos">,</span> <span class="pl-kos">{</span><span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+<p>意思是页面加载完成后加载 fancybox 的 CSS, 同时增加 fancybox 必要的绑定函数.</p>
+<h3>修改 Gmeek 仓库的 Gmeek.py</h3>
+<blockquote>
+<p>不知道怎么改自定义构建仓库的看<a href="#%E9%80%9A%E8%BF%87-Gmeek-%E4%BB%93%E5%BA%93-DIY-%E5%8D%9A%E5%AE%A2">这里</a></p>
+</blockquote>
+<p>打开<code class="notranslate">Gmeek.py</code>文件</p>
+<p>定位字符串</p>
+<p>然后在下面增加代码:</p>
+<div class="highlight highlight-source-js"><pre class="notranslate">	<span class="pl-k">if</span> '<span class="pl-c1">&lt;</span><span class="pl-ent">code</span> <span class="pl-c1">class</span><span class="pl-c1">=</span><span class="pl-s">"notranslate"</span><span class="pl-c1">&gt;</span>Gmeek-imgbox' in post_body:
+				post_body = re.sub(r'<span class="pl-c1">&lt;</span><span class="pl-ent">code</span> <span class="pl-c1">class</span><span class="pl-c1">=</span><span class="pl-s">"notranslate"</span><span class="pl-c1">&gt;</span>Gmeek-imgbox(.*?)<span class="pl-c1">&lt;</span><span class="pl-c1">/</span><span class="pl-ent">code</span><span class="pl-c1">&gt;</span>', lambda match: html.unescape(match.group(1)).replace('<span class="pl-c1">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span><span class="pl-c1">=</span><span class="pl-s">"', '&lt;img data-fancybox="</span><span class="pl-c1">gallery</span>" <span class="pl-c1">data-src</span><span class="pl-c1">=</span><span class="pl-s">"').replace('"</span><span class="pl-c1">&gt;</span>', '" /<span class="pl-c1">&gt;</span>'), post_body, flags=re.DOTALL)</pre></div>
+<h3>示例使用</h3>
+<p>在markdown插入图片:</p>
+<pre class="notranslate"><code class="notranslate">`Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq"&gt;`
+</code></pre>
+<p>转义后输出效果如下, html里面图片标签会增加<code class="notranslate">data-fancybox="gallery"</code> 和 <code class="notranslate">data-src</code>属性, 这些都是 fancybox 必要的属性.</p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN" /></p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
 <blockquote>
 <p>Vercount <a href="https://github.com/EvanNotFound/vercount">Github</a><br>
@@ -2095,14 +2204,14 @@ pv 修改成 uv 计数</p>
     <span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;
 }</pre></div>
 </details>
-<h1>通过 Gmeek 仓库DIV博客</h1>
+<h1>通过 Gmeek 仓库 DIY 博客</h1>
 <p>为什么这样做? <del>自娱自乐.</del></p>
 <h2>Fork Gmeek 仓库</h2>
 <p>仓库地址👉 <a href="https://github.com/Meekdai/Gmeek">https://github.com/Meekdai/Gmeek</a></p>
-<p><img src="https://cdn.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV"></p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV" /></p>
 <p>fork 之后, 转到搭建博客的 github 源码,</p>
 <p>打开<code class="notranslate">.github/workflows/Gmeek.yml</code>文件, 修改构建博客仓库的地址为你自己的仓库地址</p>
-<p><img src="https://cdn.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav"></p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav" /></p>
 <p>打开<code class="notranslate">config.json</code>文件, 修改右边字段值为main<code class="notranslate">"GMEEK_VERSION":"main"</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>如果值是<code class="notranslate">last</code>的话, Action 会失败, 因为默认值<code class="notranslate">last</code>是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.<br>
 <del>创建新的 tag 也可以, 但是挺麻烦.</del></p>
@@ -2111,9 +2220,9 @@ pv 修改成 uv 计数</p>
 <p>打开<code class="notranslate">Gmeek.py</code>, 开始修改~</p>
 <h3>修改网站下方的文字</h3>
 <p>文字直接修改即可, 不同语言的按需修改.</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh"></p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh" /></p>
 <h3>修改默认 primer.css 链接</h3>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"></p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v" /></p>
 <p>这里我直接写改成我存放的链接 <a href="https://gjken.github.io/primer.css" rel="nofollow">https://gjken.github.io/primer.css</a></p>
 <h2>修改页面头部样式</h2>
 <h3>打开 post.html 文件</h3>
@@ -2130,9 +2239,9 @@ pv 修改成 uv 计数</p>
 <blockquote>
 <p>增加圆角6px.</p>
 </blockquote>
-<p><img src="https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS"></p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS" /></p>
 <p>效果图:</p>
-<p><img src="https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW"></p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW" /></p>
 <h2>页面底部文字增加图标动画</h2>
 <h3>增加爱心图标动画.</h3>
 <p>打开<code class="notranslate">footer.html</code></p>
@@ -2182,14 +2291,14 @@ pv 修改成 uv 计数</p>
 }</pre></div>
 </details>
 <p>效果图:</p>
-<p><img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb"></p>
-<h1>使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换</h1>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb" /></p>
+<h1>使用 Gmeek-imgbox 自定义标签, 给博客插入图片, 防止链接自动转换</h1>
 <p>Github 在 issues 插入的图片也会自动转换为 Github 的地址.<br>
 为了文章的多样性, 在 Gmeek 的<code class="notranslate">v2.19</code>版本中添加了支持 html 标签的功能.<br>
 示例代码:</p>
-<div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-html<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://img.jpg</span>"<span class="pl-kos">&gt;</span>`</pre></div>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-imgbox<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://img.jpg</span>"<span class="pl-kos">&gt;</span>`</pre></div>
 <p>效果图:</p>
-<p><img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb"></p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb" /></p>
 <h1>添加自定义单篇文章代码</h1>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">id</span>="<span class="pl-s">busuanzi</span>"<span class="pl-kos">&gt;</span>
 :heart:感谢第<span class="pl-kos">&lt;</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>小伙伴的<span class="pl-kos">&lt;</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>次访问关于页面.
@@ -2406,8 +2515,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script>
-<script src='../../static/ArticleCss.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>
+<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://gjken.github.io/demo/ArticleCss.js'></script>
 
 </html>
