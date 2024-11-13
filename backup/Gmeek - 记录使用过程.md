@@ -59,7 +59,7 @@
 
 我这里用的是`5.0`版本,
 
-```
+```json
 "script":"<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>"
 ```
 
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 然后在下面增加代码:
 
-```js
+```python
 if '<code class="notranslate">Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox&lt;img src="([^"]+)"&gt;</code>', lambda match: f'<img data-fancybox="gallery" data-src="{match.group(1)}" src="{match.group(1)}">', post_body, flags=re.DOTALL)
 ```
@@ -98,7 +98,7 @@ if '<code class="notranslate">Gmeek-imgbox' in post_body:
 
 在 markdown 插入图片:
 
-```
+```html
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
 ```
 

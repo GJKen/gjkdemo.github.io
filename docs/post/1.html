@@ -71,7 +71,7 @@
 
 我这里用的是`5.0`版本,
 
-```
+```json
 'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
 ```
 
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 然后在下面增加代码:
 
-```js
+```python
 if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' data-src='{match.group(1)}' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
 ```
@@ -110,7 +110,7 @@ if '<code class='notranslate'>Gmeek-imgbox' in post_body:
 
 在 markdown 插入图片:
 
-```
+```html
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
 ```
 
@@ -885,7 +885,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
 我这里用的是`5.0`版本,
 
-```
+```json
 'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
 ```
 
@@ -915,7 +915,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 然后在下面增加代码:
 
-```js
+```python
 if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' data-src='{match.group(1)}' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
 ```
@@ -924,7 +924,7 @@ if '<code class='notranslate'>Gmeek-imgbox' in post_body:
 
 在 markdown 插入图片:
 
-```
+```html
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
 ```
 
@@ -1743,8 +1743,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>安装 Fancybox</h3>
 <p>给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.</p>
 <p>我这里用的是<code class="notranslate">5.0</code>版本,</p>
-<pre class="notranslate"><code class="notranslate">"script":"&lt;script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'&gt;&lt;/script&gt;&lt;script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'&gt;&lt;/script&gt;"
-</code></pre>
+<div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"script"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'&gt;&lt;/script&gt;&lt;script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'&gt;&lt;/script&gt;<span class="pl-pds">"</span></span></pre></div>
 <p><code class="notranslate">ArticleCss.js</code>的内容如下.</p>
 <div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">addEventListener</span><span class="pl-kos">(</span><span class="pl-s">'DOMContentLoaded'</span><span class="pl-kos">,</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
     <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-c1">head</span><span class="pl-kos">.</span><span class="pl-en">appendChild</span><span class="pl-kos">(</span>
@@ -1763,12 +1762,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>打开<code class="notranslate">Gmeek.py</code>文件</p>
 <p>定位字符串</p>
 <p>然后在下面增加代码:</p>
-<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">if</span> '<span class="pl-c1">&lt;</span><span class="pl-ent">code</span> <span class="pl-c1">class</span><span class="pl-c1">=</span><span class="pl-s">"notranslate"</span><span class="pl-c1">&gt;</span>Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<span class="pl-c1">&lt;</span><span class="pl-ent">code</span> <span class="pl-c1">class</span><span class="pl-c1">=</span><span class="pl-s">"notranslate"</span><span class="pl-c1">&gt;</span>Gmeek-imgbox&amp;lt;img src="([^"]+)"&amp;gt;<span class="pl-c1">&lt;</span><span class="pl-c1">/</span><span class="pl-ent">code</span><span class="pl-c1">&gt;</span>', lambda match: f'<span class="pl-c1">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">data-fancybox</span><span class="pl-c1">=</span><span class="pl-s">"gallery"</span> <span class="pl-c1">data-src</span><span class="pl-c1">=</span><span class="pl-s">"{match.group(1)}"</span> <span class="pl-c1">src</span><span class="pl-c1">=</span><span class="pl-s">"{match.group(1)}"</span><span class="pl-c1">&gt;</span>', post_body, flags=re.DOTALL)</pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
+            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox&amp;lt;img src="([^"]+)"&amp;gt;&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" data-src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>" src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
 <h3>示例使用</h3>
 <p>在 markdown 插入图片:</p>
-<pre class="notranslate"><code class="notranslate">`Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq"&gt;`
-</code></pre>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-imgbox<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq</span>"<span class="pl-kos">&gt;</span>`</pre></div>
 <p>通过 Action 转义后实际效果如下, html 里面图片标签会增加<code class="notranslate">data-fancybox="gallery"</code> 和 <code class="notranslate">data-src</code>属性, 这些都是 fancybox 必要的属性.</p>
 <p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN" src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN"></p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
