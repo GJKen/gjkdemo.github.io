@@ -1,7 +1,5 @@
 [Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF">`
-
 # 搭建博客
 
 **如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#gmeek)**
@@ -23,7 +21,7 @@
 
 效果图:
 
-`Gmeek-html<img src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF">`
 
 从图中可以看到, 可用 js 插入 html 实现修改文字.
 
@@ -33,7 +31,7 @@
 
 效果图:
 
-`Gmeek-html<img src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy">`
 
 可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.
 
@@ -49,19 +47,36 @@
 
 图示:
 
-`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1">`
 
 ## [lightbox-gjken.js](https://github.com/GJKen/gjken.github.io/blob/main/static/lightbox-gjken.js) - 灯箱
 
-> 来源: [Github](https://github.com/tiengming/tiengming.github.io)
-> 修改-增加图片拖动, 增加点击图片外部退出灯箱.
-> 已知 bug: 当图片缩放过后,再对图片拖动会有微小偏差,~~我代码能力实在是太菜了😭~~.
+> Fancybox [官网](https://www.fancyapps.com)
 
-通过点击可大图浏览文章中的图片, 适合一些图片较多的文章.
+一款功能强大的图片浏览器
 
-Windows 端通过 Ctrl+滚轮放大, 同时滚轮可左右切换图片.
+### 安装 Fancybox 
 
-Android 端可通过滑动屏幕左右切换图片.
+给文章引用 CSS 和 JS 标签.
+
+`"script":"<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>",`
+
+`ArticleCss.js`的内容为页面加载完成后加载 CSS.
+
+```JS
+document.addEventListener('DOMContentLoaded', () => {
+    document.head.appendChild(
+        Object.assign(document.createElement('link'), {
+            rel: 'stylesheet',
+            href: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'
+        })
+    );
+    Fancybox.bind('[data-fancybox="gallery"]', {});
+});
+```
+
+### 修改 Gmeek 仓库
+> 不知道怎么改的看[这里](#通过 Gmeek 仓库DIV博客)
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -618,13 +633,13 @@ a:hover {
 
 仓库地址👉 https://github.com/Meekdai/Gmeek
 
-`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV">`
 
 fork 之后, 转到搭建博客的 github 源码,
 
 打开`.github/workflows/Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址
 
-`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav">`
 
 打开`config.json`文件, 修改右边字段值为main`"GMEEK_VERSION":"main"`
 
@@ -640,11 +655,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 文字直接修改即可, 不同语言的按需修改.
 
-`Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh">`
+`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh">`
 
 ### 修改默认 primer.css 链接
 
-`Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v">`
+`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v">`
 
 这里我直接写改成我存放的链接 https://gjken.github.io/primer.css
 
@@ -674,11 +689,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 > 增加圆角6px.
 
-`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS">`
 
 效果图:
 
-`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW">`
 
 ## 页面底部文字增加图标动画
 
@@ -743,21 +758,21 @@ fork 之后, 转到搭建博客的 github 源码,
 
 效果图:
 
-`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb">`
 
-# 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
+# 使用 Gmeek-imgbox 自定义标签, 给博客插入图片, 防止链接自动转换
 
 Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 为了文章的多样性, 在 Gmeek 的`v2.19`版本中添加了支持 html 标签的功能.
 示例代码:
 
 ```html
-`Gmeek-html<img src="https://img.jpg">`
+`Gmeek-imgbox<img src="https://img.jpg">`
 ```
 
 效果图:
 
-`Gmeek-html<img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb">`
 
 # 添加自定义单篇文章代码
 
