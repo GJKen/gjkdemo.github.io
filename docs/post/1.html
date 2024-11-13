@@ -77,7 +77,7 @@
 
 `ArticleCss.js`的内容如下.
 
-```JS
+```js
 document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(
         Object.assign(document.createElement('link'), {
@@ -92,8 +92,29 @@ document.addEventListener('DOMContentLoaded', () => {
 意思是页面加载完成后加载 fancybox 的 CSS.
 
 ### 修改 Gmeek 仓库的 Gmeek.py
-> 不知道怎么改自定义构建仓库的看[这里](#通过 Gmeek 仓库DIV博客)
+> 不知道怎么改自定义构建仓库的看[这里](#通过-Gmeek-仓库-DIV-博客)
 
+打开`Gmeek.py`文件
+
+定位字符串`Gmeek-html`
+
+然后在下面增加代码:
+```js
+	if '<code class='notranslate'>Gmeek-imgbox' in post_body:
+				post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox(.*?)</code>', lambda match: html.unescape(match.group(1)).replace('<img src='', '<img data-fancybox='gallery' data-src='').replace(''>', '' />'), post_body, flags=re.DOTALL)
+```
+
+### 示例使用
+
+在markdown插入图片:
+
+```
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
+```
+
+转义后输出效果:
+
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
 
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
@@ -643,7 +664,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库DIV博客
+# 通过 Gmeek 仓库 DIV 博客
 
 为什么这样做? ~~自娱自乐.~~
 
@@ -888,7 +909,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
 `ArticleCss.js`的内容如下.
 
-```JS
+```js
 document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(
         Object.assign(document.createElement('link'), {
@@ -903,8 +924,29 @@ document.addEventListener('DOMContentLoaded', () => {
 意思是页面加载完成后加载 fancybox 的 CSS.
 
 ### 修改 Gmeek 仓库的 Gmeek.py
-> 不知道怎么改自定义构建仓库的看[这里](#通过 Gmeek 仓库DIV博客)
+> 不知道怎么改自定义构建仓库的看[这里](#通过-Gmeek-仓库-DIV-博客)
 
+打开`Gmeek.py`文件
+
+定位字符串`Gmeek-html`
+
+然后在下面增加代码:
+```js
+	if '<code class='notranslate'>Gmeek-imgbox' in post_body:
+				post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox(.*?)</code>', lambda match: html.unescape(match.group(1)).replace('<img src='', '<img data-fancybox='gallery' data-src='').replace(''>', '' />'), post_body, flags=re.DOTALL)
+```
+
+### 示例使用
+
+在markdown插入图片:
+
+```
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
+```
+
+转义后输出效果:
+
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
 
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
@@ -1454,7 +1496,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库DIV博客
+# 通过 Gmeek 仓库 DIV 博客
 
 为什么这样做? ~~自娱自乐.~~
 
@@ -1752,8 +1794,19 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>意思是页面加载完成后加载 fancybox 的 CSS.</p>
 <h3>修改 Gmeek 仓库的 Gmeek.py</h3>
 <blockquote>
-<p>不知道怎么改自定义构建仓库的看[这里](#通过 Gmeek 仓库DIV博客)</p>
+<p>不知道怎么改自定义构建仓库的看<a href="#%E9%80%9A%E8%BF%87-Gmeek-%E4%BB%93%E5%BA%93-DIV-%E5%8D%9A%E5%AE%A2">这里</a></p>
 </blockquote>
+<p>打开<code class="notranslate">Gmeek.py</code>文件</p>
+<p>定位字符串</p>
+<p>然后在下面增加代码:</p>
+<div class="highlight highlight-source-js"><pre class="notranslate">	<span class="pl-k">if</span> '<span class="pl-c1">&lt;</span><span class="pl-ent">code</span> <span class="pl-c1">class</span><span class="pl-c1">=</span><span class="pl-s">"notranslate"</span><span class="pl-c1">&gt;</span>Gmeek-imgbox' in post_body:
+				post_body = re.sub(r'<span class="pl-c1">&lt;</span><span class="pl-ent">code</span> <span class="pl-c1">class</span><span class="pl-c1">=</span><span class="pl-s">"notranslate"</span><span class="pl-c1">&gt;</span>Gmeek-imgbox(.*?)<span class="pl-c1">&lt;</span><span class="pl-c1">/</span><span class="pl-ent">code</span><span class="pl-c1">&gt;</span>', lambda match: html.unescape(match.group(1)).replace('<span class="pl-c1">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span><span class="pl-c1">=</span><span class="pl-s">"', '&lt;img data-fancybox="</span><span class="pl-c1">gallery</span>" <span class="pl-c1">data-src</span><span class="pl-c1">=</span><span class="pl-s">"').replace('"</span><span class="pl-c1">&gt;</span>', '" /<span class="pl-c1">&gt;</span>'), post_body, flags=re.DOTALL)</pre></div>
+<h3>示例使用</h3>
+<p>在markdown插入图片:</p>
+<pre class="notranslate"><code class="notranslate">`Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq"&gt;`
+</code></pre>
+<p>转义后输出效果:</p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq" /></p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
 <blockquote>
 <p>Vercount <a href="https://github.com/EvanNotFound/vercount">Github</a><br>
@@ -2151,7 +2204,7 @@ pv 修改成 uv 计数</p>
     <span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;
 }</pre></div>
 </details>
-<h1>通过 Gmeek 仓库DIV博客</h1>
+<h1>通过 Gmeek 仓库 DIV 博客</h1>
 <p>为什么这样做? <del>自娱自乐.</del></p>
 <h2>Fork Gmeek 仓库</h2>
 <p>仓库地址👉 <a href="https://github.com/Meekdai/Gmeek">https://github.com/Meekdai/Gmeek</a></p>

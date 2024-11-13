@@ -65,7 +65,7 @@
 
 `ArticleCss.js`的内容如下.
 
-```JS
+```js
 document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(
         Object.assign(document.createElement('link'), {
@@ -80,8 +80,29 @@ document.addEventListener('DOMContentLoaded', () => {
 意思是页面加载完成后加载 fancybox 的 CSS.
 
 ### 修改 Gmeek 仓库的 Gmeek.py
-> 不知道怎么改自定义构建仓库的看[这里](#通过 Gmeek 仓库DIV博客)
+> 不知道怎么改自定义构建仓库的看[这里](#通过-Gmeek-仓库-DIV-博客)
 
+打开`Gmeek.py`文件
+
+定位字符串`Gmeek-html`
+
+然后在下面增加代码:
+```js
+	if '<code class="notranslate">Gmeek-imgbox' in post_body:
+				post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox(.*?)</code>', lambda match: html.unescape(match.group(1)).replace('<img src="', '<img data-fancybox="gallery" data-src="').replace('">', '" />'), post_body, flags=re.DOTALL)
+```
+
+### 示例使用
+
+在markdown插入图片:
+
+```
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
+```
+
+转义后输出效果:
+
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
 
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
@@ -631,7 +652,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库DIV博客
+# 通过 Gmeek 仓库 DIV 博客
 
 为什么这样做? ~~自娱自乐.~~
 
