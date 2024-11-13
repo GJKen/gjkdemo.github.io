@@ -1,6 +1,6 @@
 [Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
-`Gmeek-imgbox<img src="https://lipsum.app/id/4/200x150">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF">`
 
 # 搭建博客
 
