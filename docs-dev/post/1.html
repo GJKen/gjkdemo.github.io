@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href='../../static/primer.css' rel='stylesheet' />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fancybox@3.0.1/dist/css/jquery.fancybox.min.css">
-	<script src='https://cdn.jsdelivr.net/npm/fancybox@3.0.1/dist/js/jquery.fancybox.min.js'></script>
-    <script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/Indextheme.min.js'></script>
+    <script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/Indextheme.min.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script>
     <link rel="icon" href="https://ipfs.mbzj.org/ipfs/QmRtULS1Gmf3Phh84o9SVWhdc52AuJJ2NA24zMiFMeqdpf"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
 <meta name="description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'>`
+
 # 搭建博客
 
 **如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#gmeek)**
@@ -41,7 +41,7 @@
 
 ## subTitle - 隐藏
 
-'subTitle':' ',
+`'subTitle':' ',`
 
 效果图:
 
@@ -101,7 +101,10 @@ Android 端可通过滑动屏幕左右切换图片.
 # 通过 primer.css, 修改博客样式
 
 [primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css), 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.
+
 对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
+
+下面是修改笔记, 不一定实际使用.
 
 ## \<html> 标签样式
 
@@ -154,12 +157,15 @@ Android 端可通过滑动屏幕左右切换图片.
 
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: #9fc6e3;
+    background: #97d3ffa1;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #81b5daa1;
 }
 
 /* Firefox */
 html {
-    scrollbar-color: #9fc6e3 transparent;
+    scrollbar-color: #97d3ffa1 transparent;
     scrollbar-width: thin;
 }
 ```
@@ -397,6 +403,7 @@ html {
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
+> 增加 hover 动画缩放和阴影.
 
 <details><summary>修改前</summary>
 
@@ -415,13 +422,33 @@ html {
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection 
-    --markdown-imgShadow: #b8fffc29;/* 增加 */
+    --markdown-imgShadow: #88d9ff47;/* 增加 */
 }
 :root {
     --markdown-imgShadow: #0000000d;/* 增加 */
 }
+/* 增加 */
+.markdown-body p {
+	position: relative;
+	overflow: visible;
+	transition: box-shadow 0.3s ease;
+	-webkit-transition: box-shadow 0.3s ease;
+	clip-path: inset(0);
+	-webkit-clip-path: inset(0);
+}
 .markdown-body img {
-    box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);
+	max-width: 100%;
+	box-sizing: content-box;
+	transition: transform 0.3s ease, clip-path 0.3s ease;
+	-webkit-transition: -webkit-transform 0.3s ease, -webkit-clip-path 0.3s ease, box-shadow 0.2s ease;
+}
+/* 增加 */
+.markdown-body img:hover {
+	transform: scale(1.01);
+	-webkit-transform: scale(1.01);
+	clip-path: inset(-4%);
+	-webkit-clip-path: inset(-4%);
+	box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);
 }
 ```
 
@@ -595,7 +622,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库, 修改博客样式
+# 通过 Gmeek 仓库DIV博客
 
 为什么这样做? ~~自娱自乐.~~
 
@@ -621,7 +648,9 @@ fork 之后, 转到搭建博客的 github 源码,
 
 打开`Gmeek.py`, 开始修改~
 
-### 网站下方的文字
+### 修改网站下方的文字
+
+文字直接修改即可, 不同语言的按需修改.
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh'>`
 
@@ -649,19 +678,84 @@ fork 之后, 转到搭建博客的 github 源码,
 
 定位样式`.title-right .circle`, 删除`margin-right:8px;`, 和上面一样, 删除多余间距.
 
-到这里我的自定义 header 就修改完成了, 剩下的到 primer.css 改.
+到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.
 
 ## 修改[警报强调信息]样式
 
 定位代码`markdown-alert-{alert}`
 
-> 增加圆角6px
+> 增加圆角6px.
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS' style='text-align: center;'>`
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS'>`
 
 效果图:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW' style='text-align: center;'>`
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW'>`
+
+## 页面底部文字增加图标动画
+
+### 增加爱心图标动画.
+
+打开`footer.html`
+
+在`<span id='runday'>`前面插入下面一行 SVG 图标.
+
+```html
+<svg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' style='margin-right: 4px;height:18px;vertical-align: bottom;fill: #ff5a5a;'class='animate_heartBeatScale'><path d='M1017.152 426.592a263.296 263.296 0 0 0-502.304-133.92 263.328 263.328 0 0 0-502.304 133.92s5.152 259.264 505.536 520.096c500.32-260.832 499.072-520.096 499.072-520.096zM282.016 194.976a43.2 43.2 0 1 1 .096 86.4 43.2 43.2 0 0 1-.096-86.4zm-135.04 323.232a45.12 45.12 0 0 1-55.488-31.328 289.472 289.472 0 0 1-10.816-66.592C76.64 313.824 142.24 261.472 145.504 258.88a45.024 45.024 0 0 1 63.2 8.032c15.168 19.488 11.744 47.36-7.328 62.72-2.336 1.952-30.784 27.52-30.592 82.24.096 14.752 2.208 31.616 7.488 50.784a45.12 45.12 0 0 1-31.296 55.552z'/></svg>
+```
+打开`primer.css`
+
+直接增加动画 CSS 代码.
+
+<details><summary>CSS Code</summary>
+
+```css
+@keyframes heartBeatScale  {
+	0% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+
+	14% {
+		-webkit-transform: scale(1.3);
+		transform: scale(1.3)
+	}
+
+	28% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+
+	42% {
+		-webkit-transform: scale(1.3);
+		transform: scale(1.3)
+	}
+
+	70% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+}
+@keyframes heartBeatColor {
+    0%, 28%, 70%, 100% {
+        fill: #ff5a5a; /* 初始颜色 */
+    }
+    14%, 42% {
+        fill: red; /* 放大时颜色变化 */
+    }
+}
+
+.animate_heartBeatScale {
+	animation: heartBeatScale 1.3s infinite ease-in-out, heartBeatColor 1.3s infinite ease-in-out;
+	-webkit-animation: heartBeatScale 1.3s infinite ease-in-out, heartBeatColor 1.3s infinite ease-in-out;
+}
+```
+
+</details>
+
+效果图:
+
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
@@ -670,12 +764,12 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 示例代码:
 
 ```html
-`Gmeek-html<img src='https://img.jpg' style='text-align: center;'>`
+`Gmeek-html<img src='https://img.jpg'>`
 ```
 
-实际展示:
+效果图:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb' style='text-align: center;'>`
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
 
 # 添加自定义单篇文章代码
 
@@ -687,17 +781,29 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 <!-- ##{'script':'<script>document.getElementById('user-content-busuanzi').id='busuanzi_container_site_uv';busuanzi=document.getElementById('busuanzi_container_site_uv');busuanzi.style.display='none';busuanzi.childNodes[1].id='busuanzi_value_site_uv';busuanzi.childNodes[3].id='busuanzi_value_site_pv';</script><script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>','style':'<style>#busuanzi_value_site_uv{color:red}#busuanzi_value_site_pv{color:red}</style>'}## -->
 ```
 
+# Issues Label 备份
+
+| Label Name | Color | 效果
+|-|-|-
+| 网站 | #218155 | ![Badge](https://img.shields.io/badge/%E7%BD%91%E7%AB%99-%237057FF-7057FF)
+| Win  | #5AB3F3 | ![Badge](https://img.shields.io/badge/Win-%235AB3F3-5AB3F3)
+| Github | #333333 | ![Static Badge](https://img.shields.io/badge/Github-%23333333-333333)
+| JS | #AD3152 | ![Static Badge](https://img.shields.io/badge/JS-%23AD3152-AD3152)
+| CSS | #AD3152 | ![Badge](https://img.shields.io/badge/CSS-%23218155-218155)
+| Bug | #D73A4A | ![Static Badge](https://img.shields.io/badge/Bug-%23D73A4A-D73A4A)
+
 # Readme.md
 
 📄 > 文章总数
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间
-
 。">
 <meta property="og:title" content="Gmeek - 记录使用过程">
 <meta property="og:description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'>`
+
 # 搭建博客
 
 **如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#gmeek)**
@@ -725,7 +831,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
 ## subTitle - 隐藏
 
-'subTitle':' ',
+`'subTitle':' ',`
 
 效果图:
 
@@ -785,7 +891,10 @@ Android 端可通过滑动屏幕左右切换图片.
 # 通过 primer.css, 修改博客样式
 
 [primer.css](https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css), 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.
+
 对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
+
+下面是修改笔记, 不一定实际使用.
 
 ## \<html> 标签样式
 
@@ -838,12 +947,15 @@ Android 端可通过滑动屏幕左右切换图片.
 
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: #9fc6e3;
+    background: #97d3ffa1;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #81b5daa1;
 }
 
 /* Firefox */
 html {
-    scrollbar-color: #9fc6e3 transparent;
+    scrollbar-color: #97d3ffa1 transparent;
     scrollbar-width: thin;
 }
 ```
@@ -1081,6 +1193,7 @@ html {
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
+> 增加 hover 动画缩放和阴影.
 
 <details><summary>修改前</summary>
 
@@ -1099,13 +1212,33 @@ html {
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection 
-    --markdown-imgShadow: #b8fffc29;/* 增加 */
+    --markdown-imgShadow: #88d9ff47;/* 增加 */
 }
 :root {
     --markdown-imgShadow: #0000000d;/* 增加 */
 }
+/* 增加 */
+.markdown-body p {
+	position: relative;
+	overflow: visible;
+	transition: box-shadow 0.3s ease;
+	-webkit-transition: box-shadow 0.3s ease;
+	clip-path: inset(0);
+	-webkit-clip-path: inset(0);
+}
 .markdown-body img {
-    box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);
+	max-width: 100%;
+	box-sizing: content-box;
+	transition: transform 0.3s ease, clip-path 0.3s ease;
+	-webkit-transition: -webkit-transform 0.3s ease, -webkit-clip-path 0.3s ease, box-shadow 0.2s ease;
+}
+/* 增加 */
+.markdown-body img:hover {
+	transform: scale(1.01);
+	-webkit-transform: scale(1.01);
+	clip-path: inset(-4%);
+	-webkit-clip-path: inset(-4%);
+	box-shadow: 0 4px 8px 0 var(--markdown-imgShadow), 0 -4px 8px 0 var(--markdown-imgShadow);
 }
 ```
 
@@ -1279,7 +1412,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库, 修改博客样式
+# 通过 Gmeek 仓库DIV博客
 
 为什么这样做? ~~自娱自乐.~~
 
@@ -1305,7 +1438,9 @@ fork 之后, 转到搭建博客的 github 源码,
 
 打开`Gmeek.py`, 开始修改~
 
-### 网站下方的文字
+### 修改网站下方的文字
+
+文字直接修改即可, 不同语言的按需修改.
 
 `Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh'>`
 
@@ -1333,19 +1468,84 @@ fork 之后, 转到搭建博客的 github 源码,
 
 定位样式`.title-right .circle`, 删除`margin-right:8px;`, 和上面一样, 删除多余间距.
 
-到这里我的自定义 header 就修改完成了, 剩下的到 primer.css 改.
+到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.
 
 ## 修改[警报强调信息]样式
 
 定位代码`markdown-alert-{alert}`
 
-> 增加圆角6px
+> 增加圆角6px.
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS' style='text-align: center;'>`
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS'>`
 
 效果图:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW' style='text-align: center;'>`
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW'>`
+
+## 页面底部文字增加图标动画
+
+### 增加爱心图标动画.
+
+打开`footer.html`
+
+在`<span id='runday'>`前面插入下面一行 SVG 图标.
+
+```html
+<svg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' style='margin-right: 4px;height:18px;vertical-align: bottom;fill: #ff5a5a;'class='animate_heartBeatScale'><path d='M1017.152 426.592a263.296 263.296 0 0 0-502.304-133.92 263.328 263.328 0 0 0-502.304 133.92s5.152 259.264 505.536 520.096c500.32-260.832 499.072-520.096 499.072-520.096zM282.016 194.976a43.2 43.2 0 1 1 .096 86.4 43.2 43.2 0 0 1-.096-86.4zm-135.04 323.232a45.12 45.12 0 0 1-55.488-31.328 289.472 289.472 0 0 1-10.816-66.592C76.64 313.824 142.24 261.472 145.504 258.88a45.024 45.024 0 0 1 63.2 8.032c15.168 19.488 11.744 47.36-7.328 62.72-2.336 1.952-30.784 27.52-30.592 82.24.096 14.752 2.208 31.616 7.488 50.784a45.12 45.12 0 0 1-31.296 55.552z'/></svg>
+```
+打开`primer.css`
+
+直接增加动画 CSS 代码.
+
+<details><summary>CSS Code</summary>
+
+```css
+@keyframes heartBeatScale  {
+	0% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+
+	14% {
+		-webkit-transform: scale(1.3);
+		transform: scale(1.3)
+	}
+
+	28% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+
+	42% {
+		-webkit-transform: scale(1.3);
+		transform: scale(1.3)
+	}
+
+	70% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+}
+@keyframes heartBeatColor {
+    0%, 28%, 70%, 100% {
+        fill: #ff5a5a; /* 初始颜色 */
+    }
+    14%, 42% {
+        fill: red; /* 放大时颜色变化 */
+    }
+}
+
+.animate_heartBeatScale {
+	animation: heartBeatScale 1.3s infinite ease-in-out, heartBeatColor 1.3s infinite ease-in-out;
+	-webkit-animation: heartBeatScale 1.3s infinite ease-in-out, heartBeatColor 1.3s infinite ease-in-out;
+}
+```
+
+</details>
+
+效果图:
+
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
 
 # 使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换
 
@@ -1354,12 +1554,12 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 示例代码:
 
 ```html
-`Gmeek-html<img src='https://img.jpg' style='text-align: center;'>`
+`Gmeek-html<img src='https://img.jpg'>`
 ```
 
-实际展示:
+效果图:
 
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb' style='text-align: center;'>`
+`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb'>`
 
 # 添加自定义单篇文章代码
 
@@ -1371,13 +1571,23 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 <!-- ##{'script':'<script>document.getElementById('user-content-busuanzi').id='busuanzi_container_site_uv';busuanzi=document.getElementById('busuanzi_container_site_uv');busuanzi.style.display='none';busuanzi.childNodes[1].id='busuanzi_value_site_uv';busuanzi.childNodes[3].id='busuanzi_value_site_pv';</script><script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>','style':'<style>#busuanzi_value_site_uv{color:red}#busuanzi_value_site_pv{color:red}</style>'}## -->
 ```
 
+# Issues Label 备份
+
+| Label Name | Color | 效果
+|-|-|-
+| 网站 | #218155 | ![Badge](https://img.shields.io/badge/%E7%BD%91%E7%AB%99-%237057FF-7057FF)
+| Win  | #5AB3F3 | ![Badge](https://img.shields.io/badge/Win-%235AB3F3-5AB3F3)
+| Github | #333333 | ![Static Badge](https://img.shields.io/badge/Github-%23333333-333333)
+| JS | #AD3152 | ![Static Badge](https://img.shields.io/badge/JS-%23AD3152-AD3152)
+| CSS | #AD3152 | ![Badge](https://img.shields.io/badge/CSS-%23218155-218155)
+| Bug | #D73A4A | ![Static Badge](https://img.shields.io/badge/Bug-%23D73A4A-D73A4A)
+
 # Readme.md
 
 📄 > 文章总数
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间
-
 。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://GJKen.github.io/demo/post/1.html">
@@ -1451,6 +1661,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><p><a href="https://github.com/Meekdai/Gmeek">Gmeek</a> 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.</p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF" /></p>
 <h1>搭建博客</h1>
 <p><strong>如何搭建博客我就不写了, 强烈建议看完<a href="https://blog.meekdai.com/tag.html#gmeek" rel="nofollow">官方文档</a></strong></p>
 <p><strong>这里主要记录一些 js 和 CSS 的修改.</strong></p>
@@ -1464,7 +1675,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p><img src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
 <p>从图中可以看到, 可用 js 插入 html 实现修改文字.</p>
 <h2>subTitle - 隐藏</h2>
-<p>"subTitle":" ",</p>
+<p><code class="notranslate">"subTitle":" ",</code></p>
 <p>效果图:</p>
 <p><img src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"></p>
 <p>可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.</p>
@@ -1505,8 +1716,9 @@ pv 修改成 uv 计数</p>
 </blockquote>
 <p>未实际测试过.</p>
 <h1>通过 primer.css, 修改博客样式</h1>
-<p><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css">primer.css</a>, 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.<br>
-对应的选择器只张贴出关键 CSS 部分的修改, <del>不然代码太多了.</del></p>
+<p><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css">primer.css</a>, 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.</p>
+<p>对应的选择器只张贴出关键 CSS 部分的修改, <del>不然代码太多了.</del></p>
+<p>下面是修改笔记, 不一定实际使用.</p>
 <h2>&lt;html&gt; 标签样式</h2>
 <p><code class="notranslate">[data-color-mode]</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
@@ -1541,12 +1753,15 @@ pv 修改成 uv 计数</p>
 
 ::<span class="pl-ent">-webkit-scrollbar-thumb</span> {
     <span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;
-    <span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>9fc6e3</span>;
+    <span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>97d3ffa1</span>;
+}
+::<span class="pl-ent">-webkit-scrollbar-thumb</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> {
+	<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>81b5daa1</span>;
 }
 
 <span class="pl-c">/* Firefox */</span>
 <span class="pl-ent">html</span> {
-    <span class="pl-c1">scrollbar-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>9fc6e3</span> transparent;
+    <span class="pl-c1">scrollbar-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>97d3ffa1</span> transparent;
     <span class="pl-c1">scrollbar-width</span><span class="pl-kos">:</span> thin;
 }</pre></div>
 </details>
@@ -1716,7 +1931,8 @@ pv 修改成 uv 计数</p>
 </details>
 <h2>文章 &lt;img&gt; 标签样式</h2>
 <p><code class="notranslate">.markdown-body img</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.<br>
+增加 hover 动画缩放和阴影.</p>
 </div>
 <details><summary>修改前</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">img</span> {
@@ -1728,13 +1944,33 @@ pv 修改成 uv 计数</p>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> 
-    <span class="pl-ent">--markdown-imgShadow</span><span class="pl-kos">:</span> <span class="pl-kos">#</span><span class="pl-c1">b8fffc29</span>;<span class="pl-c">/* 增加 */</span>
+    <span class="pl-ent">--markdown-imgShadow</span><span class="pl-kos">:</span> <span class="pl-kos">#</span>88d9ff47;<span class="pl-c">/* 增加 */</span>
 }
-<span class="pl-kos">:</span><span class="pl-ent">root</span> {
+<span class="pl-kos">:</span><span class="pl-c1">root</span> {
     <span class="pl-c1">--markdown-imgShadow</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>0000000d</span>;<span class="pl-c">/* 增加 */</span>
 }
+<span class="pl-c">/* 增加 */</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">p</span> {
+	<span class="pl-c1">position</span><span class="pl-kos">:</span> relative;
+	<span class="pl-c1">overflow</span><span class="pl-kos">:</span> visible;
+	<span class="pl-c1">transition</span><span class="pl-kos">:</span> box-shadow <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease;
+	<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> box-shadow <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease;
+	<span class="pl-c1">clip-path</span><span class="pl-kos">:</span> <span class="pl-en">inset</span>(<span class="pl-c1">0</span>);
+	<span class="pl-c1">-webkit-clip-path</span><span class="pl-kos">:</span> <span class="pl-en">inset</span>(<span class="pl-c1">0</span>);
+}
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">img</span> {
-    <span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">4<span class="pl-smi">px</span></span> <span class="pl-c1">8<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-imgShadow</span>)<span class="pl-kos">,</span> <span class="pl-c1">0</span> <span class="pl-c1">-4<span class="pl-smi">px</span></span> <span class="pl-c1">8<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-imgShadow</span>);
+	<span class="pl-c1">max-width</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span>;
+	<span class="pl-c1">box-sizing</span><span class="pl-kos">:</span> content-box;
+	<span class="pl-c1">transition</span><span class="pl-kos">:</span> transform <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> clip-path <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease;
+	<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> -webkit-transform <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> -webkit-clip-path <span class="pl-c1">0.3<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> box-shadow <span class="pl-c1">0.2<span class="pl-smi">s</span></span> ease;
+}
+<span class="pl-c">/* 增加 */</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">img</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> {
+	<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1.01</span>);
+	<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1.01</span>);
+	<span class="pl-c1">clip-path</span><span class="pl-kos">:</span> <span class="pl-en">inset</span>(<span class="pl-c1">-4<span class="pl-smi">%</span></span>);
+	<span class="pl-c1">-webkit-clip-path</span><span class="pl-kos">:</span> <span class="pl-en">inset</span>(<span class="pl-c1">-4<span class="pl-smi">%</span></span>);
+	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">4<span class="pl-smi">px</span></span> <span class="pl-c1">8<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-imgShadow</span>)<span class="pl-kos">,</span> <span class="pl-c1">0</span> <span class="pl-c1">-4<span class="pl-smi">px</span></span> <span class="pl-c1">8<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-imgShadow</span>);
 }</pre></div>
 </details>
 <h2>文章 &lt;code&gt; 标签样式</h2>
@@ -1859,7 +2095,7 @@ pv 修改成 uv 计数</p>
     <span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;
 }</pre></div>
 </details>
-<h1>通过 Gmeek 仓库, 修改博客样式</h1>
+<h1>通过 Gmeek 仓库DIV博客</h1>
 <p>为什么这样做? <del>自娱自乐.</del></p>
 <h2>Fork Gmeek 仓库</h2>
 <p>仓库地址👉 <a href="https://github.com/Meekdai/Gmeek">https://github.com/Meekdai/Gmeek</a></p>
@@ -1873,7 +2109,8 @@ pv 修改成 uv 计数</p>
 </div>
 <h2>Gmeek.py</h2>
 <p>打开<code class="notranslate">Gmeek.py</code>, 开始修改~</p>
-<h3>网站下方的文字</h3>
+<h3>修改网站下方的文字</h3>
+<p>文字直接修改即可, 不同语言的按需修改.</p>
 <p><img src="https://ipfs.mbzj.org/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh"></p>
 <h3>修改默认 primer.css 链接</h3>
 <p><img src="https://ipfs.mbzj.org/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"></p>
@@ -1887,28 +2124,120 @@ pv 修改成 uv 计数</p>
 <p>定位样式<code class="notranslate">.avatar:hover</code>,其内容全部修改<code class="notranslate">.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}</code></p>
 <h3>打开 plist.html 文件</h3>
 <p>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code>, 和上面一样, 删除多余间距.</p>
-<p>到这里我的自定义 header 就修改完成了, 剩下的到 primer.css 改.</p>
+<p>到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.</p>
 <h2>修改[警报强调信息]样式</h2>
 <p>定位代码<code class="notranslate">markdown-alert-{alert}</code></p>
 <blockquote>
-<p>增加圆角6px</p>
+<p>增加圆角6px.</p>
 </blockquote>
-<p><img src="https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS" style="text-align: center;"></p>
+<p><img src="https://cdn.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS"></p>
 <p>效果图:</p>
-<p><img src="https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW" style="text-align: center;"></p>
+<p><img src="https://cdn.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW"></p>
+<h2>页面底部文字增加图标动画</h2>
+<h3>增加爱心图标动画.</h3>
+<p>打开<code class="notranslate">footer.html</code></p>
+<p>在<code class="notranslate">&lt;span id="runday"&gt;</code>前面插入下面一行 SVG 图标.</p>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">svg</span> <span class="pl-c1">viewBox</span>="<span class="pl-s">0 0 1024 1024</span>" <span class="pl-c1">xmlns</span>="<span class="pl-s">http://www.w3.org/2000/svg</span>" <span class="pl-c1">style</span>="<span class="pl-s">margin-right: 4px;height:18px;vertical-align: bottom;fill: #ff5a5a;</span>"<span class="pl-c1">class</span>="<span class="pl-s">animate_heartBeatScale</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;</span><span class="pl-ent">path</span> <span class="pl-c1">d</span>="<span class="pl-s">M1017.152 426.592a263.296 263.296 0 0 0-502.304-133.92 263.328 263.328 0 0 0-502.304 133.92s5.152 259.264 505.536 520.096c500.32-260.832 499.072-520.096 499.072-520.096zM282.016 194.976a43.2 43.2 0 1 1 .096 86.4 43.2 43.2 0 0 1-.096-86.4zm-135.04 323.232a45.12 45.12 0 0 1-55.488-31.328 289.472 289.472 0 0 1-10.816-66.592C76.64 313.824 142.24 261.472 145.504 258.88a45.024 45.024 0 0 1 63.2 8.032c15.168 19.488 11.744 47.36-7.328 62.72-2.336 1.952-30.784 27.52-30.592 82.24.096 14.752 2.208 31.616 7.488 50.784a45.12 45.12 0 0 1-31.296 55.552z</span>"/&gt;<span class="pl-kos">&lt;/</span><span class="pl-ent">svg</span><span class="pl-kos">&gt;</span></pre></div>
+<p>打开<code class="notranslate">primer.css</code></p>
+<p>直接增加动画 CSS 代码.</p>
+<details><summary>CSS Code</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-k">@keyframes</span> heartBeatScale  {
+	<span class="pl-c1">0<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1</span>);
+		<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1</span>)
+	}
+
+	<span class="pl-c1">14<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1.3</span>);
+		<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1.3</span>)
+	}
+
+	<span class="pl-c1">28<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1</span>);
+		<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1</span>)
+	}
+
+	<span class="pl-c1">42<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1.3</span>);
+		<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1.3</span>)
+	}
+
+	<span class="pl-c1">70<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1</span>);
+		<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1</span>)
+	}
+}
+<span class="pl-k">@keyframes</span> heartBeatColor {
+    <span class="pl-c1">0<span class="pl-smi">%</span></span><span class="pl-kos">,</span> <span class="pl-c1">28<span class="pl-smi">%</span></span><span class="pl-kos">,</span> <span class="pl-c1">70<span class="pl-smi">%</span></span><span class="pl-kos">,</span> <span class="pl-c1">100<span class="pl-smi">%</span></span> {
+        <span class="pl-c1">fill</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ff5a5a</span>; <span class="pl-c">/* 初始颜色 */</span>
+    }
+    <span class="pl-c1">14<span class="pl-smi">%</span></span><span class="pl-kos">,</span> <span class="pl-c1">42<span class="pl-smi">%</span></span> {
+        <span class="pl-c1">fill</span><span class="pl-kos">:</span> red; <span class="pl-c">/* 放大时颜色变化 */</span>
+    }
+}
+
+.<span class="pl-c1">animate_heartBeatScale</span> {
+	<span class="pl-c1">animation</span><span class="pl-kos">:</span> heartBeatScale <span class="pl-c1">1.3<span class="pl-smi">s</span></span> infinite ease-in-out<span class="pl-kos">,</span> heartBeatColor <span class="pl-c1">1.3<span class="pl-smi">s</span></span> infinite ease-in-out;
+	<span class="pl-c1">-webkit-animation</span><span class="pl-kos">:</span> heartBeatScale <span class="pl-c1">1.3<span class="pl-smi">s</span></span> infinite ease-in-out<span class="pl-kos">,</span> heartBeatColor <span class="pl-c1">1.3<span class="pl-smi">s</span></span> infinite ease-in-out;
+}</pre></div>
+</details>
+<p>效果图:</p>
+<p><img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb"></p>
 <h1>使用 Gmeek-html 自定义标签, 给博客插入图片, 防止链接自动转换</h1>
 <p>Github 在 issues 插入的图片也会自动转换为 Github 的地址.<br>
 为了文章的多样性, 在 Gmeek 的<code class="notranslate">v2.19</code>版本中添加了支持 html 标签的功能.<br>
 示例代码:</p>
-<div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-html<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://img.jpg</span>" <span class="pl-c1">style</span>="<span class="pl-s">text-align: center;</span>"<span class="pl-kos">&gt;</span>`</pre></div>
-<p>实际展示:</p>
-<p><img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb" style="text-align: center;"></p>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-html<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://img.jpg</span>"<span class="pl-kos">&gt;</span>`</pre></div>
+<p>效果图:</p>
+<p><img src="https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb"></p>
 <h1>添加自定义单篇文章代码</h1>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">id</span>="<span class="pl-s">busuanzi</span>"<span class="pl-kos">&gt;</span>
 :heart:感谢第<span class="pl-kos">&lt;</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>小伙伴的<span class="pl-kos">&lt;</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>次访问关于页面.
 <span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>
 
 <span class="pl-c">&lt;!-- ##{"script":"&lt;script&gt;document.getElementById('user-content-busuanzi').id='busuanzi_container_site_uv';busuanzi=document.getElementById('busuanzi_container_site_uv');busuanzi.style.display='none';busuanzi.childNodes[1].id='busuanzi_value_site_uv';busuanzi.childNodes[3].id='busuanzi_value_site_pv';&lt;/script&gt;&lt;script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'&gt;&lt;/script&gt;","style":"&lt;style&gt;#busuanzi_value_site_uv{color:red}#busuanzi_value_site_pv{color:red}&lt;/style&gt;"}## --&gt;</span></pre></div>
+<h1>Issues Label 备份</h1>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>Label Name</th>
+<th>Color</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>网站</td>
+<td>#218155</td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/17b054f0c0191dd5885bc03cbd172c3f6644ad8368b19327a27d3d4558ff694c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2545372542442539312545372541422539392d2532333730353746462d373035374646"><img src="https://camo.githubusercontent.com/17b054f0c0191dd5885bc03cbd172c3f6644ad8368b19327a27d3d4558ff694c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2545372542442539312545372541422539392d2532333730353746462d373035374646" alt="Badge" data-canonical-src="https://img.shields.io/badge/%E7%BD%91%E7%AB%99-%237057FF-7057FF" style="max-width: 100%;"></a></td>
+</tr>
+<tr>
+<td>Win</td>
+<td>#5AB3F3</td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/49c28548337e9993e07cdbdf7a07718c19dbd6e29db893bf4d5be2e507577bf9/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f57696e2d2532333541423346332d354142334633"><img src="https://camo.githubusercontent.com/49c28548337e9993e07cdbdf7a07718c19dbd6e29db893bf4d5be2e507577bf9/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f57696e2d2532333541423346332d354142334633" alt="Badge" data-canonical-src="https://img.shields.io/badge/Win-%235AB3F3-5AB3F3" style="max-width: 100%;"></a></td>
+</tr>
+<tr>
+<td>Github</td>
+<td>#333333</td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7e34169e74c51fa4afe5fa07ebd43093f9c20e8fd74dbde7c3d23bfd49c948a6/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4769746875622d2532333333333333332d333333333333"><img src="https://camo.githubusercontent.com/7e34169e74c51fa4afe5fa07ebd43093f9c20e8fd74dbde7c3d23bfd49c948a6/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4769746875622d2532333333333333332d333333333333" alt="Static Badge" data-canonical-src="https://img.shields.io/badge/Github-%23333333-333333" style="max-width: 100%;"></a></td>
+</tr>
+<tr>
+<td>JS</td>
+<td>#AD3152</td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/9d64fc1428262f97276704c967adab1fc633772acf06578d63f4ccabbe909dea/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4a532d2532334144333135322d414433313532"><img src="https://camo.githubusercontent.com/9d64fc1428262f97276704c967adab1fc633772acf06578d63f4ccabbe909dea/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4a532d2532334144333135322d414433313532" alt="Static Badge" data-canonical-src="https://img.shields.io/badge/JS-%23AD3152-AD3152" style="max-width: 100%;"></a></td>
+</tr>
+<tr>
+<td>CSS</td>
+<td>#AD3152</td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/cfa79a85a6949aba17e680cd0d358b590bfeda53b6a8ed13a91a2bd804ee2868/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4353532d2532333231383135352d323138313535"><img src="https://camo.githubusercontent.com/cfa79a85a6949aba17e680cd0d358b590bfeda53b6a8ed13a91a2bd804ee2868/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4353532d2532333231383135352d323138313535" alt="Badge" data-canonical-src="https://img.shields.io/badge/CSS-%23218155-218155" style="max-width: 100%;"></a></td>
+</tr>
+<tr>
+<td>Bug</td>
+<td>#D73A4A</td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/0940b8a88a1b782cf256d79cfac88e0ee001221e91b9967a18dc268aab025e57/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4275672d2532334437334134412d443733413441"><img src="https://camo.githubusercontent.com/0940b8a88a1b782cf256d79cfac88e0ee001221e91b9967a18dc268aab025e57/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4275672d2532334437334134412d443733413441" alt="Static Badge" data-canonical-src="https://img.shields.io/badge/Bug-%23D73A4A-D73A4A" style="max-width: 100%;"></a></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
 <h1>Readme.md</h1>
 <p>📄 &gt; 文章总数<br>
 💬 &gt; 评论总数<br>
@@ -2077,7 +2406,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script>
-<!-- <script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/lightbox-gjken.min.js'></script> -->
+<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script>
 
 </html>
