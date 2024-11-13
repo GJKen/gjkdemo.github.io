@@ -93,11 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ### 修改 Gmeek 仓库的 Gmeek.py
 
-> 不知道怎么改自定义构建仓库的看[这里](#通过-Gmeek-仓库-DIY-博客)
-
-打开`Gmeek.py`文件
-
-定位字符串`Gmeek-html`
+打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
 
 然后在下面增加代码:
 
@@ -123,7 +119,7 @@ if '<code class='notranslate'>Gmeek-imgbox' in post_body:
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
 > Vercount [Github](https://github.com/EvanNotFound/vercount)
-> pv 修改成 uv 计数
+> pv 修改成 uv 计数.
 
 建议放入`allHead`里全站添加 js.
 
@@ -669,7 +665,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 下图文字直接修改即可, 不同语言的按需修改.
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs'>`
 
 ## 修改默认 primer.css 链接
 
@@ -906,11 +902,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ### 修改 Gmeek 仓库的 Gmeek.py
 
-> 不知道怎么改自定义构建仓库的看[这里](#通过-Gmeek-仓库-DIY-博客)
-
-打开`Gmeek.py`文件
-
-定位字符串`Gmeek-html`
+打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
 
 然后在下面增加代码:
 
@@ -936,7 +928,7 @@ if '<code class='notranslate'>Gmeek-imgbox' in post_body:
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
 > Vercount [Github](https://github.com/EvanNotFound/vercount)
-> pv 修改成 uv 计数
+> pv 修改成 uv 计数.
 
 建议放入`allHead`里全站添加 js.
 
@@ -1482,7 +1474,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 下图文字直接修改即可, 不同语言的按需修改.
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs'>`
 
 ## 修改默认 primer.css 链接
 
@@ -1754,11 +1746,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
 <p>意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.</p>
 <h3>修改 Gmeek 仓库的 Gmeek.py</h3>
-<blockquote>
-<p>不知道怎么改自定义构建仓库的看<a href="#%E9%80%9A%E8%BF%87-Gmeek-%E4%BB%93%E5%BA%93-DIY-%E5%8D%9A%E5%AE%A2">这里</a></p>
-</blockquote>
-<p>打开<code class="notranslate">Gmeek.py</code>文件</p>
-<p>定位字符串<code class="notranslate">Gmeek-html</code></p>
+<p>打开<code class="notranslate">Gmeek.py</code>文件, 定位字符串<code class="notranslate">Gmeek-html</code></p>
 <p>然后在下面增加代码:</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
             <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox&amp;lt;img src="([^"]+)"&amp;gt;&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" data-src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>" src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
@@ -1771,7 +1759,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
 <blockquote>
 <p>Vercount <a href="https://github.com/EvanNotFound/vercount">Github</a><br>
-pv 修改成 uv 计数</p>
+pv 修改成 uv 计数.</p>
 </blockquote>
 <p>建议放入<code class="notranslate">allHead</code>里全站添加 js.</p>
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"allHead"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'&gt;&lt;/script&gt;<span class="pl-pds">"</span></span></pre></div>
@@ -2154,7 +2142,7 @@ pv 修改成 uv 计数</p>
 <h2>修改网站下方的文字</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
 <p>下图文字直接修改即可, 不同语言的按需修改.</p>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh" src="https://i0.img2ipfs.com/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh"></p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs" src="https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs"></p>
 <h2>修改默认 primer.css 链接</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
 <p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v" src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"></p>

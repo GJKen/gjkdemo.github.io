@@ -81,11 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ### 修改 Gmeek 仓库的 Gmeek.py
 
-> 不知道怎么改自定义构建仓库的看[这里](#通过-Gmeek-仓库-DIY-博客)
-
-打开`Gmeek.py`文件
-
-定位字符串`Gmeek-html`
+打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
 
 然后在下面增加代码:
 
@@ -111,7 +107,7 @@ if '<code class="notranslate">Gmeek-imgbox' in post_body:
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
 > Vercount [Github](https://github.com/EvanNotFound/vercount)
-> pv 修改成 uv 计数
+> pv 修改成 uv 计数.
 
 建议放入`allHead`里全站添加 js.
 
@@ -657,7 +653,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 下图文字直接修改即可, 不同语言的按需修改.
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs">`
 
 ## 修改默认 primer.css 链接
 
