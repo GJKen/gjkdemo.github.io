@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-意思是页面加载完成后加载 fancybox 的 CSS, 同时增加 fancybox 必要的绑定函数.
+意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.
 
 ### 修改 Gmeek 仓库的 Gmeek.py
 
@@ -93,6 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
 if '<code class="notranslate">Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox&lt;img src="([^"]+)"&gt;</code>', lambda match: f'<img data-fancybox="gallery" data-src="{match.group(1)}" src="{match.group(1)}">', post_body, flags=re.DOTALL)
 ```
+
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmZEd3RecBMiM59khHbB2xYLnSdWXados3yDPhzhVrZDyX">`
 
 ### 示例使用
 
@@ -808,5 +810,3 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间
-
-> 

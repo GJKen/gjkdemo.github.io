@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-意思是页面加载完成后加载 fancybox 的 CSS, 同时增加 fancybox 必要的绑定函数.
+意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.
 
 ### 修改 Gmeek 仓库的 Gmeek.py
 
@@ -105,6 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
 if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' data-src='{match.group(1)}' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
 ```
+
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmZEd3RecBMiM59khHbB2xYLnSdWXados3yDPhzhVrZDyX'>`
 
 ### 示例使用
 
@@ -819,10 +821,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 📄 > 文章总数
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
-⏰ > 最后一次 Actions 的时间
-
-> 
-。">
+⏰ > 最后一次 Actions 的时间。">
 <meta property="og:title" content="Gmeek - 记录使用过程">
 <meta property="og:description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
@@ -903,7 +902,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-意思是页面加载完成后加载 fancybox 的 CSS, 同时增加 fancybox 必要的绑定函数.
+意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.
 
 ### 修改 Gmeek 仓库的 Gmeek.py
 
@@ -919,6 +918,8 @@ document.addEventListener('DOMContentLoaded', () => {
 if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' data-src='{match.group(1)}' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
 ```
+
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmZEd3RecBMiM59khHbB2xYLnSdWXados3yDPhzhVrZDyX'>`
 
 ### 示例使用
 
@@ -1633,10 +1634,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 📄 > 文章总数
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
-⏰ > 最后一次 Actions 的时间
-
-> 
-。">
+⏰ > 最后一次 Actions 的时间。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://GJKen.github.io/demo/post/1.html">
 <meta property="og:image" content="https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp">
@@ -1754,7 +1752,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-v">Fancybox</span><span class="pl-kos">.</span><span class="pl-en">bind</span><span class="pl-kos">(</span><span class="pl-s">'[data-fancybox="gallery"]'</span><span class="pl-kos">,</span> <span class="pl-kos">{</span><span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
-<p>意思是页面加载完成后加载 fancybox 的 CSS, 同时增加 fancybox 必要的绑定函数.</p>
+<p>意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.</p>
 <h3>修改 Gmeek 仓库的 Gmeek.py</h3>
 <blockquote>
 <p>不知道怎么改自定义构建仓库的看<a href="#%E9%80%9A%E8%BF%87-Gmeek-%E4%BB%93%E5%BA%93-DIY-%E5%8D%9A%E5%AE%A2">这里</a></p>
@@ -1764,6 +1762,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>然后在下面增加代码:</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
             <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox&amp;lt;img src="([^"]+)"&amp;gt;&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" data-src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>" src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmZEd3RecBMiM59khHbB2xYLnSdWXados3yDPhzhVrZDyX" src="https://i0.img2ipfs.com/ipfs/QmZEd3RecBMiM59khHbB2xYLnSdWXados3yDPhzhVrZDyX"></p>
 <h3>示例使用</h3>
 <p>在 markdown 插入图片:</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-imgbox<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq</span>"<span class="pl-kos">&gt;</span>`</pre></div>
@@ -2288,9 +2287,7 @@ pv 修改成 uv 计数</p>
 <p>📄 &gt; 文章总数<br>
 💬 &gt; 评论总数<br>
 🌺 &gt; 是统计的所有文章的字符数<br>
-⏰ &gt; 最后一次 Actions 的时间</p>
-<blockquote>
-</blockquote></div>
+⏰ &gt; 最后一次 Actions 的时间</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">🥰转载请注明,谢谢!🥰</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
