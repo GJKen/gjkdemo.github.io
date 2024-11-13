@@ -77,10 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-意思是页面加载完成后加载 fancybox 的 CSS.
+意思是页面加载完成后加载 fancybox 的 CSS, 同时增加 fancybox 必要的绑定函数.
 
 ### 修改 Gmeek 仓库的 Gmeek.py
-> 不知道怎么改自定义构建仓库的看[这里](#通过-Gmeek-仓库-DIV-博客)
+> 不知道怎么改自定义构建仓库的看[这里](#通过-Gmeek-仓库-DIY-博客)
 
 打开`Gmeek.py`文件
 
@@ -100,9 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
 ```
 
-转义后输出效果:
+转义后输出效果如下, html里面图片标签会增加`data-fancybox="gallery"` 和 `data-src`属性, 这些都是 fancybox 必要的属性.
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN">`
 
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
@@ -652,7 +652,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库 DIV 博客
+# 通过 Gmeek 仓库 DIY 博客
 
 为什么这样做? ~~自娱自乐.~~
 

@@ -89,10 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-意思是页面加载完成后加载 fancybox 的 CSS.
+意思是页面加载完成后加载 fancybox 的 CSS, 同时增加 fancybox 必要的绑定函数.
 
 ### 修改 Gmeek 仓库的 Gmeek.py
-> 不知道怎么改自定义构建仓库的看[这里](#通过-Gmeek-仓库-DIV-博客)
+> 不知道怎么改自定义构建仓库的看[这里](#通过-Gmeek-仓库-DIY-博客)
 
 打开`Gmeek.py`文件
 
@@ -112,9 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
 ```
 
-转义后输出效果:
+转义后输出效果如下, html里面图片标签会增加`data-fancybox='gallery'` 和 `data-src`属性, 这些都是 fancybox 必要的属性.
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN'>`
 
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
@@ -664,7 +664,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库 DIV 博客
+# 通过 Gmeek 仓库 DIY 博客
 
 为什么这样做? ~~自娱自乐.~~
 
@@ -921,10 +921,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-意思是页面加载完成后加载 fancybox 的 CSS.
+意思是页面加载完成后加载 fancybox 的 CSS, 同时增加 fancybox 必要的绑定函数.
 
 ### 修改 Gmeek 仓库的 Gmeek.py
-> 不知道怎么改自定义构建仓库的看[这里](#通过-Gmeek-仓库-DIV-博客)
+> 不知道怎么改自定义构建仓库的看[这里](#通过-Gmeek-仓库-DIY-博客)
 
 打开`Gmeek.py`文件
 
@@ -944,9 +944,9 @@ document.addEventListener('DOMContentLoaded', () => {
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
 ```
 
-转义后输出效果:
+转义后输出效果如下, html里面图片标签会增加`data-fancybox='gallery'` 和 `data-src`属性, 这些都是 fancybox 必要的属性.
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN'>`
 
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
@@ -1496,7 +1496,7 @@ a:hover {
 
 </details>
 
-# 通过 Gmeek 仓库 DIV 博客
+# 通过 Gmeek 仓库 DIY 博客
 
 为什么这样做? ~~自娱自乐.~~
 
@@ -1791,10 +1791,10 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-v">Fancybox</span><span class="pl-kos">.</span><span class="pl-en">bind</span><span class="pl-kos">(</span><span class="pl-s">'[data-fancybox="gallery"]'</span><span class="pl-kos">,</span> <span class="pl-kos">{</span><span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
-<p>意思是页面加载完成后加载 fancybox 的 CSS.</p>
+<p>意思是页面加载完成后加载 fancybox 的 CSS, 同时增加 fancybox 必要的绑定函数.</p>
 <h3>修改 Gmeek 仓库的 Gmeek.py</h3>
 <blockquote>
-<p>不知道怎么改自定义构建仓库的看<a href="#%E9%80%9A%E8%BF%87-Gmeek-%E4%BB%93%E5%BA%93-DIV-%E5%8D%9A%E5%AE%A2">这里</a></p>
+<p>不知道怎么改自定义构建仓库的看<a href="#%E9%80%9A%E8%BF%87-Gmeek-%E4%BB%93%E5%BA%93-DIY-%E5%8D%9A%E5%AE%A2">这里</a></p>
 </blockquote>
 <p>打开<code class="notranslate">Gmeek.py</code>文件</p>
 <p>定位字符串</p>
@@ -1805,8 +1805,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>在markdown插入图片:</p>
 <pre class="notranslate"><code class="notranslate">`Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq"&gt;`
 </code></pre>
-<p>转义后输出效果:</p>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq" /></p>
+<p>转义后输出效果如下, html里面图片标签会增加<code class="notranslate">data-fancybox="gallery"</code> 和 <code class="notranslate">data-src</code>属性, 这些都是 fancybox 必要的属性.</p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN" /></p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
 <blockquote>
 <p>Vercount <a href="https://github.com/EvanNotFound/vercount">Github</a><br>
@@ -2204,7 +2204,7 @@ pv 修改成 uv 计数</p>
     <span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;
 }</pre></div>
 </details>
-<h1>通过 Gmeek 仓库 DIV 博客</h1>
+<h1>通过 Gmeek 仓库 DIY 博客</h1>
 <p>为什么这样做? <del>自娱自乐.</del></p>
 <h2>Fork Gmeek 仓库</h2>
 <p>仓库地址👉 <a href="https://github.com/Meekdai/Gmeek">https://github.com/Meekdai/Gmeek</a></p>
