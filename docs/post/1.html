@@ -61,34 +61,40 @@
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1'>`
 
-## [lightbox-gjken.js](https://github.com/GJKen/gjken.github.io/blob/main/static/lightbox-gjken.js) - 灯箱
+## Fancybox.js - 图片浏览器
 
 > Fancybox [官网](https://www.fancyapps.com)
 
-一款功能强大的图片浏览器
-
 ### 安装 Fancybox 
 
-给文章引用 CSS 和 JS 标签.
+给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.
 
-`'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>',`
+我这里用的是`5.0`版本,
 
-`ArticleCss.js`的内容为页面加载完成后加载 CSS.
+```
+'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
+```
+
+`ArticleCss.js`的内容如下.
 
 ```JS
 document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(
         Object.assign(document.createElement('link'), {
             rel: 'stylesheet',
-            href: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'
+            href: 'https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'
         })
     );
     Fancybox.bind('[data-fancybox='gallery']', {});
 });
 ```
 
-### 修改 Gmeek 仓库
-> 不知道怎么改的看[这里](#通过 Gmeek 仓库DIV博客)
+意思是页面加载完成后加载 fancybox 的 CSS.
+
+### 修改 Gmeek 仓库的 Gmeek.py
+> 不知道怎么改自定义构建仓库的看[这里](#通过 Gmeek 仓库DIV博客)
+
+
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -866,34 +872,40 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1'>`
 
-## [lightbox-gjken.js](https://github.com/GJKen/gjken.github.io/blob/main/static/lightbox-gjken.js) - 灯箱
+## Fancybox.js - 图片浏览器
 
 > Fancybox [官网](https://www.fancyapps.com)
 
-一款功能强大的图片浏览器
-
 ### 安装 Fancybox 
 
-给文章引用 CSS 和 JS 标签.
+给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.
 
-`'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>',`
+我这里用的是`5.0`版本,
 
-`ArticleCss.js`的内容为页面加载完成后加载 CSS.
+```
+'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
+```
+
+`ArticleCss.js`的内容如下.
 
 ```JS
 document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(
         Object.assign(document.createElement('link'), {
             rel: 'stylesheet',
-            href: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'
+            href: 'https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'
         })
     );
     Fancybox.bind('[data-fancybox='gallery']', {});
 });
 ```
 
-### 修改 Gmeek 仓库
-> 不知道怎么改的看[这里](#通过 Gmeek 仓库DIV博客)
+意思是页面加载完成后加载 fancybox 的 CSS.
+
+### 修改 Gmeek 仓库的 Gmeek.py
+> 不知道怎么改自定义构建仓库的看[这里](#通过 Gmeek 仓库DIV博客)
+
+
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -1718,27 +1730,29 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </blockquote>
 <p>图示:</p>
 <p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1" /></p>
-<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/lightbox-gjken.js">lightbox-gjken.js</a> - 灯箱</h2>
+<h2>Fancybox.js - 图片浏览器</h2>
 <blockquote>
 <p>Fancybox <a href="https://www.fancyapps.com" rel="nofollow">官网</a></p>
 </blockquote>
-<p>一款功能强大的图片浏览器</p>
 <h3>安装 Fancybox</h3>
-<p>给文章引用 CSS 和 JS 标签.</p>
-<p><code class="notranslate">"script":"&lt;script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'&gt;&lt;/script&gt;&lt;script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'&gt;&lt;/script&gt;",</code></p>
-<p><code class="notranslate">ArticleCss.js</code>的内容为页面加载完成后加载 CSS.</p>
+<p>给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.</p>
+<p>我这里用的是<code class="notranslate">5.0</code>版本,</p>
+<pre class="notranslate"><code class="notranslate">"script":"&lt;script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'&gt;&lt;/script&gt;&lt;script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'&gt;&lt;/script&gt;"
+</code></pre>
+<p><code class="notranslate">ArticleCss.js</code>的内容如下.</p>
 <div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">addEventListener</span><span class="pl-kos">(</span><span class="pl-s">'DOMContentLoaded'</span><span class="pl-kos">,</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
     <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-c1">head</span><span class="pl-kos">.</span><span class="pl-en">appendChild</span><span class="pl-kos">(</span>
         <span class="pl-v">Object</span><span class="pl-kos">.</span><span class="pl-en">assign</span><span class="pl-kos">(</span><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">createElement</span><span class="pl-kos">(</span><span class="pl-s">'link'</span><span class="pl-kos">)</span><span class="pl-kos">,</span> <span class="pl-kos">{</span>
             <span class="pl-c1">rel</span>: <span class="pl-s">'stylesheet'</span><span class="pl-kos">,</span>
-            <span class="pl-c1">href</span>: <span class="pl-s">'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'</span>
+            <span class="pl-c1">href</span>: <span class="pl-s">'https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'</span>
         <span class="pl-kos">}</span><span class="pl-kos">)</span>
     <span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-v">Fancybox</span><span class="pl-kos">.</span><span class="pl-en">bind</span><span class="pl-kos">(</span><span class="pl-s">'[data-fancybox="gallery"]'</span><span class="pl-kos">,</span> <span class="pl-kos">{</span><span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
-<h3>修改 Gmeek 仓库</h3>
+<p>意思是页面加载完成后加载 fancybox 的 CSS.</p>
+<h3>修改 Gmeek 仓库的 Gmeek.py</h3>
 <blockquote>
-<p>不知道怎么改的看[这里](#通过 Gmeek 仓库DIV博客)</p>
+<p>不知道怎么改自定义构建仓库的看[这里](#通过 Gmeek 仓库DIV博客)</p>
 </blockquote>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
 <blockquote>
