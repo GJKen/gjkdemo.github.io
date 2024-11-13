@@ -1,5 +1,17 @@
 [Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
+![](https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb)
+
+`Gmeek-imgbox<img data-fancybox="gallery" data-src="https://lipsum.app/id/4/1024x768" src="https://lipsum.app/id/4/200x150">`
+
+`Gmeek-imgbox<img data-fancybox="gallery" data-src="https://lipsum.app/id/4/1024x768" src="https://lipsum.app/id/4/200x150">`
+
+<iframe src="https://music.meekdai.com/#61" width="100%" height="460px" frameborder="0" allowfullscreen="true"></iframe>
+
+
+
+`Gmeek-html<img src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF">`
+
 # 搭建博客
 
 **如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#gmeek)**
