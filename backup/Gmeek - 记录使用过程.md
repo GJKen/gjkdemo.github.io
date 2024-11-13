@@ -682,11 +682,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 文字直接修改即可, 不同语言的按需修改.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh">`
 
 ### 修改默认 primer.css 链接
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v">`
 
 这里我直接写改成我存放的链接 https://gjken.github.io/primer.css
 

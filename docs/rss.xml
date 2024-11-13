@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://ipfs.mbzj.org/ipfs/QmWdwjYEWh1CfZe7NtbJcBp658tWbs7PqeaxgLh46NwxRZ</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Wed, 13 Nov 2024 14:43:44 +0000</lastBuildDate><managingEditor>demo</managingEditor><ttl>60</ttl><webMaster>demo</webMaster><item><title>Gmeek - 记录使用过程</title><link>https://GJKen.github.io/demo/post/1.html</link><description>[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://ipfs.mbzj.org/ipfs/QmWdwjYEWh1CfZe7NtbJcBp658tWbs7PqeaxgLh46NwxRZ</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Wed, 13 Nov 2024 14:45:31 +0000</lastBuildDate><managingEditor>demo</managingEditor><ttl>60</ttl><webMaster>demo</webMaster><item><title>Gmeek - 记录使用过程</title><link>https://GJKen.github.io/demo/post/1.html</link><description>[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.&#13;
 &#13;
 # 搭建博客&#13;
 &#13;
@@ -683,11 +683,11 @@ fork 之后, 转到搭建博客的 github 源码,&#13;
 &#13;
 文字直接修改即可, 不同语言的按需修改.&#13;
 &#13;
-`Gmeek-imgbox&lt;img src='https://ipfs.mbzj.org/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh'&gt;`&#13;
+`Gmeek-imgbox&lt;img src='https://i0.img2ipfs.com/ipfs/QmQBwVgptWtvi36WWnoRmriPPsvezJq7Ui8oL47BehWvTh'&gt;`&#13;
 &#13;
 ### 修改默认 primer.css 链接&#13;
 &#13;
-`Gmeek-imgbox&lt;img src='https://ipfs.mbzj.org/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v'&gt;`&#13;
+`Gmeek-imgbox&lt;img src='https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v'&gt;`&#13;
 &#13;
 这里我直接写改成我存放的链接 https://gjken.github.io/primer.css&#13;
 &#13;
