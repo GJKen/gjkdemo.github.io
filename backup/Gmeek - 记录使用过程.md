@@ -2,7 +2,7 @@
 
 ![](https://cdn.img2ipfs.com/ipfs/Qme1BvwvqLcS86jQqwfxVEFrdNPusCqRn3APhdHGEKLtDb)
 
-`Gmeek-imgbox<img data-fancybox="gallery" data-src="https://lipsum.app/id/4/1024x768" src="https://lipsum.app/id/4/200x150">`
+`Gmeek-imgbox<img src="https://lipsum.app/id/4/200x150">`
 
 `Gmeek-imgbox<img data-fancybox="gallery" data-src="https://lipsum.app/id/4/1024x768" src="https://lipsum.app/id/4/200x150">`
 
