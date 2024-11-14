@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 然后在下面增加代码:
 
 ```python
-if '<code class="notranslate">Gmeek-imgbox' in post_body: 
+        if '<code class="notranslate">Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox&lt;img src="([^"]+)"&gt;</code>', lambda match: f'<img data-fancybox="gallery" data-src="{match.group(1)}" src="{match.group(1)}">', post_body, flags=re.DOTALL)
 ```
 
