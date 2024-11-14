@@ -57,9 +57,9 @@
 
 > Fancybox [官网](https://www.fancyapps.com)
 
-### 安装 Fancybox
+### 引用 Fancybox 所需文件
 
-给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.
+#### 给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.
 
 我这里用的是`5.0`版本, cdn 加速链接.
 
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.
 
-### 修改 Gmeek 仓库的 Gmeek.py
+#### 修改 Gmeek 仓库的 Gmeek.py
 
 打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
 
