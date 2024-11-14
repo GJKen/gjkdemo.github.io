@@ -178,6 +178,52 @@ if '<code class="notranslate">Gmeek-imgbox' in post_body:
 
 </details>
 
+## \<body> 标签样式
+
+`body`
+
+> [!NOTE]
+> 优化 light & dark 主题下的背景色.
+
+<details><summary>修改前</summary>
+
+```css
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+	font-size: var(--body-font-size, 14px);
+	line-height: 1.5;
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--bgColor-default, var(--color-canvas-default))
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```css
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+    --body-bgColor: #3b3b3bd9;/* 增加 */
+}
+:root {
+    --body-bgColor: #ffffffde;/* 增加 */
+}
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+	font-size: var(--body-font-size, 14px);
+	line-height: 1.5;
+	border-radius: 10px;
+	color: var(--fgColor-default, var(--color-fg-default));
+	background: var(--body-bgColor);
+	box-shadow: 0 0 100px var(--body-shadow-color);
+}
+```
+
+</details>
+
 ## 博客滚动条样式
 
 直接增加下面代码.
