@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 然后在下面增加代码:
 
 ```python
-        if '<code class="notranslate">Gmeek-imgbox' in post_body: 
+if '<code class="notranslate">Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox&lt;img src="([^"]+)"&gt;</code>', lambda match: f'<img data-fancybox="gallery" data-src="{match.group(1)}" src="{match.group(1)}">', post_body, flags=re.DOTALL)
 ```
 
@@ -772,16 +772,33 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 示例代码:
 
 ```html
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
+`Gmeek-html<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
 ```
 
 效果图:
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
+`Gmeek-html<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
 
 > [!Important]
 > 如果在文章中含有代码块标签并且内容为Gmeek-html, Action 那边会进行转换导致显示错误, 详情看[#201](https://github.com/Meekdai/Gmeek/issues/201)
 > `gmeek-html` 换成小写就没事了.
+
+# 优化 Gmeek-html, 标签转换匹配
+
+打开`Gmeek.py`
+
+定位字符串`gmeek-html`
+
+替换成下面的代码:
+
+```python
+        if '<code class="notranslate">Gmeek-html' in post_body:
+            post_body = re.sub(r'<code class="notranslate">Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
+```
+
+原先匹配的内容为:`<code class="notranslate">Gmeek-html(.*?)</code>`, 这样会导致匹配文章内容时出现显示错误.
+
+更改后缩小了匹配范围, 可以直接使用`Gmeek-html`让其在文章内正常显示.
 
 # 添加自定义单篇文章代码
 
