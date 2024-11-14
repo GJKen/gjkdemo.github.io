@@ -2,7 +2,7 @@
 
 # 搭建博客
 
-**如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#gmeek)**
+**如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#gmeek).**
 
 **这里主要记录一些 js 和 CSS 的修改.**
 
