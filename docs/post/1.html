@@ -54,8 +54,12 @@
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
 > 来源: [Github](https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file)
-> 修改-切换博客主题时颜色不一致, 增加滚动同步定位章节, 修改动画和样式.
-> 已知bug: 给body增加`backdrop-filter: blur(30px);`样式时, 会出现滚动错误. 待后续修复.
+> 修改-创建`.toc`的位置为body里面.
+> 修改-批量给 a 标签创建的类名为: `toc-h1` `toc-h2` ... `toc-h6`
+> 修改-适配切换博客主题颜色.
+> 修改-增加滚动页面同时滚动章节.
+> 修改-动画和样式.
+> 已知bug: 给body增加`backdrop-filter: blur(30px);`样式时, 会出现页面异常, 待后续修复.
 
 图示:
 
@@ -456,7 +460,7 @@ html {
 
 > [!NOTE]
 > 修改字体大小1.85em.
-> 删除padding.
+> 删除下 padding, 增加左 padding .22em.
 > 优化 light & dark 主题下的背景色.
 
 <details><summary>修改前</summary>
@@ -483,6 +487,7 @@ html {
     --markdown-h1-bgColor: #c8e5ff7a;/* 增加 */
 }
 .markdown-body h1 {
+	padding-left: .22em;
     background: var(--markdown-h1-bgColor);/* 增加 */
     border-radius: 6px;/* 增加 */
     font-size: 1.85em;
@@ -986,8 +991,12 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
 > 来源: [Github](https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file)
-> 修改-切换博客主题时颜色不一致, 增加滚动同步定位章节, 修改动画和样式.
-> 已知bug: 给body增加`backdrop-filter: blur(30px);`样式时, 会出现滚动错误. 待后续修复.
+> 修改-创建`.toc`的位置为body里面.
+> 修改-批量给 a 标签创建的类名为: `toc-h1` `toc-h2` ... `toc-h6`
+> 修改-适配切换博客主题颜色.
+> 修改-增加滚动页面同时滚动章节.
+> 修改-动画和样式.
+> 已知bug: 给body增加`backdrop-filter: blur(30px);`样式时, 会出现页面异常, 待后续修复.
 
 图示:
 
@@ -1388,7 +1397,7 @@ html {
 
 > [!NOTE]
 > 修改字体大小1.85em.
-> 删除padding.
+> 删除下 padding, 增加左 padding .22em.
 > 优化 light & dark 主题下的背景色.
 
 <details><summary>修改前</summary>
@@ -1415,6 +1424,7 @@ html {
     --markdown-h1-bgColor: #c8e5ff7a;/* 增加 */
 }
 .markdown-body h1 {
+	padding-left: .22em;
     background: var(--markdown-h1-bgColor);/* 增加 */
     border-radius: 6px;/* 增加 */
     font-size: 1.85em;
@@ -1967,8 +1977,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js">ArticleToc.js</a> - 文章增加目录列表+一键返回顶部按钮</h2>
 <blockquote>
 <p>来源: <a href="https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file">Github</a><br>
-修改-切换博客主题时颜色不一致, 增加滚动同步定位章节, 修改动画和样式.<br>
-已知bug: 给body增加<code class="notranslate">backdrop-filter: blur(30px);</code>样式时, 会出现滚动错误. 待后续修复.</p>
+修改-创建<code class="notranslate">.toc</code>的位置为body里面.<br>
+修改-批量给 a 标签创建的类名为: <code class="notranslate">toc-h1</code> <code class="notranslate">toc-h2</code> ... <code class="notranslate">toc-h6</code><br>
+修改-适配切换博客主题颜色.<br>
+修改-增加滚动页面同时滚动章节.<br>
+修改-动画和样式.<br>
+已知bug: 给body增加<code class="notranslate">backdrop-filter: blur(30px);</code>样式时, 会出现页面异常, 待后续修复.</p>
 </blockquote>
 <p>图示:</p>
 <p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1" src="https://i0.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1"></p>
@@ -2248,7 +2262,7 @@ pv 修改成 uv 计数.</p>
 <h2>文章 &lt;h1&gt; 标签样式</h2>
 <p><code class="notranslate">.markdown-body h1</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改字体大小1.85em.<br>
-删除padding.<br>
+删除下 padding, 增加左 padding .22em.<br>
 优化 light &amp; dark 主题下的背景色.</p>
 </div>
 <details><summary>修改前</summary>
@@ -2269,6 +2283,7 @@ pv 修改成 uv 计数.</p>
     <span class="pl-c1">--markdown-h1-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>c8e5ff7a</span>;<span class="pl-c">/* 增加 */</span>
 }
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">h1</span> {
+	<span class="pl-c1">padding-left</span><span class="pl-kos">:</span> <span class="pl-c1">.22<span class="pl-smi">em</span></span>;
     <span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-h1-bgColor</span>);<span class="pl-c">/* 增加 */</span>
     <span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span>;<span class="pl-c">/* 增加 */</span>
     <span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">1.85<span class="pl-smi">em</span></span>;

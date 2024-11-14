@@ -42,8 +42,12 @@
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
 > 来源: [Github](https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file)
-> 修改-切换博客主题时颜色不一致, 增加滚动同步定位章节, 修改动画和样式.
-> 已知bug: 给body增加`backdrop-filter: blur(30px);`样式时, 会出现滚动错误. 待后续修复.
+> 修改-创建`.toc`的位置为body里面.
+> 修改-批量给 a 标签创建的类名为: `toc-h1` `toc-h2` ... `toc-h6`
+> 修改-适配切换博客主题颜色.
+> 修改-增加滚动页面同时滚动章节.
+> 修改-动画和样式.
+> 已知bug: 给body增加`backdrop-filter: blur(30px);`样式时, 会出现页面异常, 待后续修复.
 
 图示:
 
@@ -444,7 +448,7 @@ html {
 
 > [!NOTE]
 > 修改字体大小1.85em.
-> 删除padding.
+> 删除下 padding, 增加左 padding .22em.
 > 优化 light & dark 主题下的背景色.
 
 <details><summary>修改前</summary>
@@ -471,6 +475,7 @@ html {
     --markdown-h1-bgColor: #c8e5ff7a;/* 增加 */
 }
 .markdown-body h1 {
+	padding-left: .22em;
     background: var(--markdown-h1-bgColor);/* 增加 */
     border-radius: 6px;/* 增加 */
     font-size: 1.85em;
