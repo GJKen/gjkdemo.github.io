@@ -4,32 +4,44 @@
 
 # 先决条件
 
-必须要创建一个 GitHub 仓库.
+必须要创建一个 GitHub 仓库, 并且存放你需要加速的文件.
 
 # 创建版本号
 
-进入仓库点击 releases.
+进入仓库点击 Releases.
 
-`Gmeek-html<img src="https://i0.img2ipfs.com/ipfs/QmU1czFFqTS8kx6nkc52dxxdJHw3ASpeGGHCYmUgRxcBxM">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmezvVPRyL9frLHxBtG5SnuxNLjxwN6tbHDTPK7zhYeSM7">`
+![](https://i0.img2ipfs.com/ipfs/QmezvVPRyL9frLHxBtG5SnuxNLjxwN6tbHDTPK7zhYeSM7)
 
-`Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmcPKqqhyTPZrsbvDW5KcibNfEFN55t6yecS71yAL8Nh7F">`
+简单命名版本
 
-`Gmeek-html<img src="https://ipfs.mbzj.org/ipfs/QmZEczMS98W1qbcHJXhn6NtVXkC9UwdjP417hFRpkCTphh">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qmb81JPfuBkDAaVSSFSNEC31q6nPfQw3BeTWK48u96kAza">`
+![](https://i0.img2ipfs.com/ipfs/Qmb81JPfuBkDAaVSSFSNEC31q6nPfQw3BeTWK48u96kAza)
+
+测试`gmeek-imgbox<img>`
+
+# 创建标签(Tags)
+
+创建 Tags 和 Releases 步骤一样, 下图是入口.
+
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbpnHcxKXJNYuEvrT5tg4CwAiJNgpc3BRNE7h6ebhYgsK">`
+![](https://i0.img2ipfs.com/ipfs/QmbpnHcxKXJNYuEvrT5tg4CwAiJNgpc3BRNE7h6ebhYgsK)
 
 # 使用方法
 
 例如:
 
-`https://cdn.jsdelivr.net/gh/[GitHub用户名]/[仓库名]@[标签或分支]/[文件路径]`
+`https://cdn.jsdelivr.net/gh/[GitHub用户名]/[仓库名]@[版本号或者标签]/[文件路径]`
 
 https://cdn.jsdelivr.net/gh/gjken/gjken.github.io/static/primer.min.css
 
 > [!Important]
-> 如果源文件更新, cdn 加速后的链接不会更新那么快, 一般有12小时的延迟, 大概?
+> 省略版本号, 直接访问最新的资源, 不推荐在生产环境中使用.
+> 如果源文件更新, cdn 加速后的文件内容不会更新那么快, 一般有12小时的延迟, ~~大概?~~
 
 # 其它替代地址
 
-由于 Jsdelivr 国内的 CDN 服务被 DNS 污染了, 被指向了Google, Twitter 和 Facebook 的 IP 地址, 导致使用 CDN 服务加速的链接访问失败.
+Jsdelivr 国内的 CDN 服务被 DNS 污染了, 被指向了Google, Twitter 和 Facebook 的 IP 地址, 导致使用 CDN 服务加速的链接访问失败.
 
 ```css
 fastly.jsdelivr.net
