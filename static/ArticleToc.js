@@ -9,11 +9,10 @@ function loadResource(type, attributes) {
 function createTOC() {
 	const tocElement = document.createElement('div');
 	tocElement.className = 'toc';
-	const contentContainer = document.querySelector('.markdown-body');
-	// 将目录 <div> 插入到 <body> 中
-	document.body.appendChild(tocElement);
+	document.body.appendChild(tocElement);// 将目录 <div> 插入到 <body> 中
 
-	const headings = contentContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
+	const markdownBody = document.querySelector('.markdown-body');
+	const headings = markdownBody.querySelectorAll('h1, h2, h3, h4, h5, h6');
 	headings.forEach(heading => {
 		if (!heading.id) {
 			heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
@@ -21,8 +20,15 @@ function createTOC() {
 		const link = document.createElement('a');
 		link.href = '#' + heading.id;
 		link.textContent = heading.textContent;
+		// 添加公共类名 'toc-link'
 		link.className = 'toc-link';
-		link.style.marginLeft = `${(parseInt(heading.tagName.charAt(1)) - 1) * 10}px`;
+		// 根据标题标签动态添加不同的类名
+		link.classList.add('toc-' + heading.tagName.toLowerCase());
+		// 获取标题级别并计算 margin-left
+		if (heading.tagName !== 'H1') {
+		  const level = parseInt(heading.tagName.charAt(1)); // 获取标题级别
+		  link.style.marginLeft = `${(level - 1) * 10}px`;  // 计算缩进
+		}
 		link.addEventListener('click', function(e) {
 			e.preventDefault();
 			const targetElement = document.getElementById(heading.id);
@@ -54,28 +60,33 @@ document.addEventListener("DOMContentLoaded", function() {
 	createTOC();
 	const css = `
 		:root {
-			--toc-icon-bg: rgba(255, 255, 255, 0.8);
-			--toc-icon-color: #333;
-			--toc-icon-active-bg: #fff;
-			--toc-icon-active-color: #333;
+			--toc-link-bgColor: #ffffffb8;
+			--toc-h1-after-bgColor: #1b9dff
+		}
+		[data-color-mode=light][data-light-theme=dark],
+		[data-color-mode=light][data-light-theme=dark]::selection,
+		[data-color-mode=dark][data-dark-theme=dark],
+		[data-color-mode=dark][data-dark-theme=dark]::selection {
+			--toc-link-bgColor: #121d23ab;
+			--toc-h1-after-bgColor: #43dbff
 		}
 		.toc {
 			position: fixed;
-			bottom: 80px;
-			right: 20px;
+			bottom: 13%;
+			right: 0;
+			transform: translateX(50%);
 			width: 250px;
-			max-height: 70vh;
-			background-color: var(--color-neutral-muted);
-			border-radius: 6px;
+			max-height: 50vh;
+			background-color: var(--toc-link-bgColor);
+			border-radius: 10px;
 			padding: 10px;
-			box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 			overflow-y: auto;
 			z-index: 1000;
 			opacity: 0;
 			visibility: hidden;
-			transform: translateY(20px);
 			transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-			backdrop-filter: blur(90px);
+			backdrop-filter: blur(15px);
 		}
 		/* 滚动条样式 */
 		.toc::-webkit-scrollbar {
@@ -83,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		.toc::-webkit-scrollbar-thumb {
 			background: #9fc6e3;
-			border-radius: 10px;
+			border-radius: 20px;
 		}
 		.toc::-webkit-scrollbar-thumb:hover {
 			background: #6baedf;
@@ -113,14 +124,14 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		.toc-icon {
 			position: fixed;
-			bottom: 20px;
+			bottom: 7%;
 			right: 15px;
 			cursor: pointer;
-			background-color: var(--toc-icon-bg);
-			color: var(--toc-icon-color);
+			background-color: rgba(255, 255, 255, 0.8);
+			color: #333;
 			border-radius: 50%;
-			width: 50px;
-			height: 50px;
+			width: 51px;
+			height: 51px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -133,14 +144,14 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		.toc-icon:hover {
 			transform: scale(1.1);
-			background-color: var(--toc-icon-active-bg);
+			background-color: #fff;
 		}
 		.toc-icon:active {
 			transform: scale(0.9);
 		}
 		.toc-icon.active {
-			background-color: var(--toc-icon-active-bg);
-			color: var(--toc-icon-active-color);
+			background-color: #fff;
+			color: #333;
 		}
 		.toc-icon svg {
 			width: 24px;
@@ -151,12 +162,24 @@ document.addEventListener("DOMContentLoaded", function() {
 			stroke-linecap: round;
 			stroke-linejoin: round;
 		}
-
+		.toc-h1{
+			position: relative;
+			padding-left: 10px;
+		}
+		.toc-h1::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 0;
+			width: 3px;
+			height: 60%;
+			background-color: var(--toc-h1-after-bgColor);
+			transform: translateY(-50%);
+		}
 		@media (max-width: 768px) {
 			.toc {
 				width: 200px;
-				bottom: 70px;
-				right: 10px;
+				max-height: 40vh;
 			}
 			.toc-icon {
 				width: 40px;
@@ -170,10 +193,9 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 		}
 
-		/* ToTop css */
 		.back-to-top {
 			position: fixed;
-			bottom: 80px;
+			bottom: 1%;
 			right: 15px;
 			background-color: rgba(255, 255, 255, 0.8);
 			color: #333;
@@ -209,13 +231,18 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		@media (max-width: 768px) {
 		 .back-to-top {
+			bottom: 2%;
 			width: 40px;
 			height: 40px;
 			font-size: 20px;
 		 }
+		 .toc-icon {
+			bottom: 7%;
+		 }
 		}
-		.toc-link.active-toc {
+		.toc-link.toc-active {
 			background-color: #3db9d399;
+			font-weight: bold;
 		}
 	`;
 	loadResource('style', {
@@ -284,10 +311,10 @@ document.addEventListener("DOMContentLoaded", function() {
 		});
 	
 		tocLinks.forEach(link => {
-			link.classList.remove('active-toc');
+			link.classList.remove('toc-active');
 		});
 		if (currentHeading) {
-			currentHeading.classList.add('active-toc');
+			currentHeading.classList.add('toc-active');
 			// 确保当前高亮的目录项在可视区域的中间
 			currentHeading.scrollIntoView({
 				block: 'center',   // 确保当前高亮项滚动到视图中间位置
