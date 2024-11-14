@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Thu, 14 Nov 2024 06:23:28 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>免费CDN - jsDelivr+Github 使用方法</title><link>https://GJKen.github.io/demo/post/2.html</link><description># jsDelivr 官网&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Thu, 14 Nov 2024 06:33:20 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>免费CDN - jsDelivr+Github 使用方法</title><link>https://GJKen.github.io/demo/post/2.html</link><description># jsDelivr 官网&#13;
 &#13;
 &gt; https://www.jsdelivr.com&#13;
 &#13;
@@ -20,6 +20,8 @@
 ![](https://i0.img2ipfs.com/ipfs/Qmb81JPfuBkDAaVSSFSNEC31q6nPfQw3BeTWK48u96kAza)&#13;
 &#13;
 测试`gmeek-imgbox&lt;img&gt;`&#13;
+&#13;
+测试`gmeek-html`&#13;
 &#13;
 # 创建标签(Tags)&#13;
 &#13;

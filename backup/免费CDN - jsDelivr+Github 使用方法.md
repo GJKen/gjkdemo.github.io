@@ -20,6 +20,8 @@
 
 测试`gmeek-imgbox<img>`
 
+测试`gmeek-html`
+
 # 创建标签(Tags)
 
 创建 Tags 和 Releases 步骤一样, 下图是入口.
