@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Thu, 14 Nov 2024 19:20:17 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>纪念下SAO通关-2024-11-07</title><link>https://GJKen.github.io/demo/post/3.html</link><description>Twitter[@sao_anime](https://x.com/sao_anime/status/1854402349412106416)&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Thu, 14 Nov 2024 19:22:12 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>纪念下SAO通关-2024-11-07</title><link>https://GJKen.github.io/demo/post/3.html</link><description>Twitter[@sao_anime](https://x.com/sao_anime/status/1854402349412106416)&#13;
 &#13;
 2024 年 11 月 7 日 14:55&#13;
 游戏已通关——&#13;
@@ -148,6 +148,8 @@ document.addEventListener('DOMContentLoaded', () =&gt; {&#13;
 意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.&#13;
 &#13;
 #### 修改 Gmeek 仓库的 Gmeek.py&#13;
+&#13;
+&gt; 不知道怎么自定义 Gmeek 仓库的看这👉`Gmeek-html&lt;a href='#通过-gmeek-仓库-diy-博客'&gt;通过 Gmeek 仓库 DIY 博客&lt;/a&gt;`&#13;
 &#13;
 打开`Gmeek.py`文件, 定位字符串`Gmeek-html`&#13;
 &#13;

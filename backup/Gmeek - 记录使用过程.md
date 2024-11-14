@@ -85,6 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 #### 修改 Gmeek 仓库的 Gmeek.py
 
+> 不知道怎么自定义 Gmeek 仓库的看这👉`Gmeek-html<a href="#通过-gmeek-仓库-diy-博客">通过 Gmeek 仓库 DIY 博客</a>`
+
 打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
 
 然后在下面增加代码:
