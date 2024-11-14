@@ -16,10 +16,6 @@
 
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qmb81JPfuBkDAaVSSFSNEC31q6nPfQw3BeTWK48u96kAza">`
 
-测试`Gmeek-imgbox<img>`
-
-测试`gmeek-html`
-
 # 创建标签(Tags)
 
 创建 Tags 和 Releases 步骤一样, 下图是入口.
