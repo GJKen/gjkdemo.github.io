@@ -219,18 +219,20 @@ body {
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
     --body-bgColor: #3b3b3bd9;/* 增加 */
+	--body-shadow-color: #52afff3d;/* 增加 */
 }
 :root {
     --body-bgColor: #ffffffde;/* 增加 */
+	--body-shadow-color: #50a8e726;/* 增加 */
 }
 body {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
 	font-size: var(--body-font-size, 14px);
 	line-height: 1.5;
-	border-radius: 10px;
 	color: var(--fgColor-default, var(--color-fg-default));
 	background: var(--body-bgColor);
-	box-shadow: 0 0 100px var(--body-shadow-color);
+	box-shadow: 0 0 100px var(--body-shadow-color);/* 增加 */
+	border-radius: 10px;/* 增加 */
 }
 ```
 
@@ -1105,18 +1107,20 @@ body {
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
     --body-bgColor: #3b3b3bd9;/* 增加 */
+	--body-shadow-color: #52afff3d;/* 增加 */
 }
 :root {
     --body-bgColor: #ffffffde;/* 增加 */
+	--body-shadow-color: #50a8e726;/* 增加 */
 }
 body {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
 	font-size: var(--body-font-size, 14px);
 	line-height: 1.5;
-	border-radius: 10px;
 	color: var(--fgColor-default, var(--color-fg-default));
 	background: var(--body-bgColor);
-	box-shadow: 0 0 100px var(--body-shadow-color);
+	box-shadow: 0 0 100px var(--body-shadow-color);/* 增加 */
+	border-radius: 10px;/* 增加 */
 }
 ```
 
@@ -1980,18 +1984,20 @@ pv 修改成 uv 计数.</p>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
     <span class="pl-c1">--body-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>3b3b3bd9</span>;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">--body-shadow-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>52afff3d</span>;<span class="pl-c">/* 增加 */</span>
 }
 <span class="pl-kos">:</span><span class="pl-c1">root</span> {
     <span class="pl-c1">--body-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ffffffde</span>;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">--body-shadow-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>50a8e726</span>;<span class="pl-c">/* 增加 */</span>
 }
 <span class="pl-ent">body</span> {
 	<span class="pl-c1">font-family</span><span class="pl-kos">:</span> -apple-system<span class="pl-kos">,</span> BlinkMacSystemFont<span class="pl-kos">,</span> <span class="pl-s">"Segoe UI"</span><span class="pl-kos">,</span> <span class="pl-s">"Noto Sans"</span><span class="pl-kos">,</span> Helvetica<span class="pl-kos">,</span> Arial<span class="pl-kos">,</span> sans-serif<span class="pl-kos">,</span> <span class="pl-s">"Apple Color Emoji"</span><span class="pl-kos">,</span> <span class="pl-s">"Segoe UI Emoji"</span>;
 	<span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--body-font-size</span><span class="pl-kos">,</span> <span class="pl-c1">14<span class="pl-smi">px</span></span>);
 	<span class="pl-c1">line-height</span><span class="pl-kos">:</span> <span class="pl-c1">1.5</span>;
-	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;
 	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));
 	<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--body-bgColor</span>);
-	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span> <span class="pl-c1">100<span class="pl-smi">px</span></span> <span class="pl-en">var</span>(<span class="pl-s1">--body-shadow-color</span>);
+	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span> <span class="pl-c1">100<span class="pl-smi">px</span></span> <span class="pl-en">var</span>(<span class="pl-s1">--body-shadow-color</span>);<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;<span class="pl-c">/* 增加 */</span>
 }</pre></div>
 </details>
 <h2>博客滚动条样式</h2>

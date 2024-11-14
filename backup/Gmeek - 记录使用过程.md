@@ -207,18 +207,20 @@ body {
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
     --body-bgColor: #3b3b3bd9;/* 增加 */
+	--body-shadow-color: #52afff3d;/* 增加 */
 }
 :root {
     --body-bgColor: #ffffffde;/* 增加 */
+	--body-shadow-color: #50a8e726;/* 增加 */
 }
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 	font-size: var(--body-font-size, 14px);
 	line-height: 1.5;
-	border-radius: 10px;
 	color: var(--fgColor-default, var(--color-fg-default));
 	background: var(--body-bgColor);
-	box-shadow: 0 0 100px var(--body-shadow-color);
+	box-shadow: 0 0 100px var(--body-shadow-color);/* 增加 */
+	border-radius: 10px;/* 增加 */
 }
 ```
 
