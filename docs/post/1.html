@@ -98,11 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
 然后在下面增加代码:
 
 ```python
-if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
+        if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' data-src='{match.group(1)}' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
 ```
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmZEd3RecBMiM59khHbB2xYLnSdWXados3yDPhzhVrZDyX'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbnqZ2K74iZPmHgzAJKwro2uoH3Q3U1hbQanfPJpXfv4b'>`
 
 ### 示例使用
 
@@ -930,11 +930,11 @@ document.addEventListener('DOMContentLoaded', () => {
 然后在下面增加代码:
 
 ```python
-if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
+        if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' data-src='{match.group(1)}' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
 ```
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmZEd3RecBMiM59khHbB2xYLnSdWXados3yDPhzhVrZDyX'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbnqZ2K74iZPmHgzAJKwro2uoH3Q3U1hbQanfPJpXfv4b'>`
 
 ### 示例使用
 
@@ -1794,9 +1794,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>修改 Gmeek 仓库的 Gmeek.py</h3>
 <p>打开<code class="notranslate">Gmeek.py</code>文件, 定位字符串<code class="notranslate">Gmeek-html</code></p>
 <p>然后在下面增加代码:</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
+<div class="highlight highlight-source-python"><pre class="notranslate">        <span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
             <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox&amp;lt;img src="([^"]+)"&amp;gt;&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" data-src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>" src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmZEd3RecBMiM59khHbB2xYLnSdWXados3yDPhzhVrZDyX" src="https://i0.img2ipfs.com/ipfs/QmZEd3RecBMiM59khHbB2xYLnSdWXados3yDPhzhVrZDyX"></p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmbnqZ2K74iZPmHgzAJKwro2uoH3Q3U1hbQanfPJpXfv4b" src="https://i0.img2ipfs.com/ipfs/QmbnqZ2K74iZPmHgzAJKwro2uoH3Q3U1hbQanfPJpXfv4b"></p>
 <h3>示例使用</h3>
 <p>在 markdown 插入图片:</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-imgbox<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq</span>"<span class="pl-kos">&gt;</span>`</pre></div>
