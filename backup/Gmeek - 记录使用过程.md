@@ -394,6 +394,50 @@ html {
 > [!NOTE]
 > 直接移除这个选择器的所有样式.
 
+## 文章标题通用样式
+
+`.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6`
+
+> [!NOTE]
+> 删除左右 padding.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+	padding: .22em;
+	margin-top: 24px;
+	margin-bottom: 16px;
+	font-weight: var(--base-text-weight-semibold, 600);
+	line-height: 1.25
+}
+```
+
+</details>
+<details><summary>修改后</summary>
+
+```css
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+	padding: .22em 0;
+	margin-top: 24px;
+	margin-bottom: 16px;
+	font-weight: var(--base-text-weight-semibold, 600);
+	line-height: 1.25
+}
+```
+
+</details>
+
 ## 文章 \<h1> 标签样式
 
 `.markdown-body h1`

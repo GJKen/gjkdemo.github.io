@@ -406,6 +406,50 @@ html {
 > [!NOTE]
 > 直接移除这个选择器的所有样式.
 
+## 文章标题通用样式
+
+`.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6`
+
+> [!NOTE]
+> 删除左右 padding.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+	padding: .22em;
+	margin-top: 24px;
+	margin-bottom: 16px;
+	font-weight: var(--base-text-weight-semibold, 600);
+	line-height: 1.25
+}
+```
+
+</details>
+<details><summary>修改后</summary>
+
+```css
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+	padding: .22em 0;
+	margin-top: 24px;
+	margin-bottom: 16px;
+	font-weight: var(--base-text-weight-semibold, 600);
+	line-height: 1.25
+}
+```
+
+</details>
+
 ## 文章 \<h1> 标签样式
 
 `.markdown-body h1`
@@ -1294,6 +1338,50 @@ html {
 > [!NOTE]
 > 直接移除这个选择器的所有样式.
 
+## 文章标题通用样式
+
+`.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6`
+
+> [!NOTE]
+> 删除左右 padding.
+
+<details><summary>修改前</summary>
+
+```css
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+	padding: .22em;
+	margin-top: 24px;
+	margin-bottom: 16px;
+	font-weight: var(--base-text-weight-semibold, 600);
+	line-height: 1.25
+}
+```
+
+</details>
+<details><summary>修改后</summary>
+
+```css
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+	padding: .22em 0;
+	margin-top: 24px;
+	margin-bottom: 16px;
+	font-weight: var(--base-text-weight-semibold, 600);
+	line-height: 1.25
+}
+```
+
+</details>
+
 ## 文章 \<h1> 标签样式
 
 `.markdown-body h1`
@@ -2125,6 +2213,38 @@ pv 修改成 uv 计数.</p>
 <p><code class="notranslate">.SideNav-item:last-child</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>直接移除这个选择器的所有样式.</p>
 </div>
+<h2>文章标题通用样式</h2>
+<p><code class="notranslate">.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6</code></p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>删除左右 padding.</p>
+</div>
+<details><summary>修改前</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h1</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h2</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h3</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h4</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h5</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h6</span> {
+	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">.22<span class="pl-smi">em</span></span>;
+	<span class="pl-c1">margin-top</span><span class="pl-kos">:</span> <span class="pl-c1">24<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">margin-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">16<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">font-weight</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--base-text-weight-semibold</span><span class="pl-kos">,</span> <span class="pl-c1">600</span>);
+	<span class="pl-c1">line-height</span><span class="pl-kos">:</span> <span class="pl-c1">1.25</span>
+}</pre></div>
+</details>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h1</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h2</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h3</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h4</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h5</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h6</span> {
+	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">.22<span class="pl-smi">em</span></span> <span class="pl-c1">0</span>;
+	<span class="pl-c1">margin-top</span><span class="pl-kos">:</span> <span class="pl-c1">24<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">margin-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">16<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">font-weight</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--base-text-weight-semibold</span><span class="pl-kos">,</span> <span class="pl-c1">600</span>);
+	<span class="pl-c1">line-height</span><span class="pl-kos">:</span> <span class="pl-c1">1.25</span>
+}</pre></div>
+</details>
 <h2>文章 &lt;h1&gt; 标签样式</h2>
 <p><code class="notranslate">.markdown-body h1</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改字体大小1.85em.<br>
