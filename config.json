@@ -11,7 +11,7 @@
     "exlink":{"TG群":"https://t.me/GJK_chat"},
     "urlMode":"issue",
     "bottomText":"🥰转载请注明,谢谢!🥰",
-    "script":"<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://gjken.github.io/demo/ArticleCss.js'></script>",
+    "script":"<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script>",
     "indexScript":"<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/NumPagination.min.js'></script>",
     "allHead":"<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/Indextheme.min.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script>",
     "GMEEK_VERSION":"main"

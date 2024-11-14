@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			--bgColor-default: rgb(255, 255, 255, 0.93);
 			--color-canvas-default: rgb(255, 255, 255, 0.93);
 		}*/
-		/*html {background: url('https://ipfs.decentralized-content.com/ipfs/QmQn8HcHeutmaH2qEbPK8PT6TXEpj58VizavBxanCiQcYv') center / cover no-repeat fixed;}*/
+		html {background: url('https://ipfs.decentralized-content.com/ipfs/QmQn8HcHeutmaH2qEbPK8PT6TXEpj58VizavBxanCiQcYv') center / cover no-repeat fixed;}
 		body {
 			max-width:1000px;
 			border-radius: 10px;
