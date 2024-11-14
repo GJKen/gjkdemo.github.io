@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 然后在下面增加代码:
 
 ```python
-        if '<code class="notranslate">Gmeek-imgbox' in post_body: 
+if '<code class="notranslate">Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox&lt;img src="([^"]+)"&gt;</code>', lambda match: f'<img data-fancybox="gallery" data-src="{match.group(1)}" src="{match.group(1)}">', post_body, flags=re.DOTALL)
 ```
 
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
 ```
 
-通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的`data-fancybox="gallery"` 和 `data-src`属性.
+通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的`data-fancybox="gallery"` 和 `data-src=""`属性.
 
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN">`
 
@@ -141,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
+> 增加兼容性动画过渡.
 
 <details><summary>修改前</summary>
 
@@ -166,7 +167,12 @@ document.addEventListener('DOMContentLoaded', () => {
     --html-bgColor: #fff;/* 增加 */
 }
 [data-color-mode] {
-    background-color: var(--html-bgColor)
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--html-bgColor);
+	-webkit-transition: background-color 0.5s ease;/* 增加 */
+	-moz-transition: background-color 0.5s ease;/* 增加 */
+	-o-transition: background-color 0.5s ease;/* 增加 */
+	transition: background-color 0.5s ease;/* 增加 */
 }
 ```
 
@@ -827,4 +833,3 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间
-

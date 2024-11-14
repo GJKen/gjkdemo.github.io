@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 然后在下面增加代码:
 
 ```python
-        if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
+if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' data-src='{match.group(1)}' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
 ```
 
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
 ```
 
-通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的`data-fancybox='gallery'` 和 `data-src`属性.
+通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的`data-fancybox='gallery'` 和 `data-src=''`属性.
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN'>`
 
@@ -153,6 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
+> 增加兼容性动画过渡.
 
 <details><summary>修改前</summary>
 
@@ -178,7 +179,12 @@ document.addEventListener('DOMContentLoaded', () => {
     --html-bgColor: #fff;/* 增加 */
 }
 [data-color-mode] {
-    background-color: var(--html-bgColor)
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--html-bgColor);
+	-webkit-transition: background-color 0.5s ease;/* 增加 */
+	-moz-transition: background-color 0.5s ease;/* 增加 */
+	-o-transition: background-color 0.5s ease;/* 增加 */
+	transition: background-color 0.5s ease;/* 增加 */
 }
 ```
 
@@ -838,9 +844,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 📄 > 文章总数
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
-⏰ > 最后一次 Actions 的时间
-
-。">
+⏰ > 最后一次 Actions 的时间。">
 <meta property="og:title" content="Gmeek - 记录使用过程">
 <meta property="og:description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
@@ -930,7 +934,7 @@ document.addEventListener('DOMContentLoaded', () => {
 然后在下面增加代码:
 
 ```python
-        if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
+if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' data-src='{match.group(1)}' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
 ```
 
@@ -944,7 +948,7 @@ document.addEventListener('DOMContentLoaded', () => {
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
 ```
 
-通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的`data-fancybox='gallery'` 和 `data-src`属性.
+通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的`data-fancybox='gallery'` 和 `data-src=''`属性.
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN'>`
 
@@ -985,6 +989,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
+> 增加兼容性动画过渡.
 
 <details><summary>修改前</summary>
 
@@ -1010,7 +1015,12 @@ document.addEventListener('DOMContentLoaded', () => {
     --html-bgColor: #fff;/* 增加 */
 }
 [data-color-mode] {
-    background-color: var(--html-bgColor)
+	color: var(--fgColor-default, var(--color-fg-default));
+	background-color: var(--html-bgColor);
+	-webkit-transition: background-color 0.5s ease;/* 增加 */
+	-moz-transition: background-color 0.5s ease;/* 增加 */
+	-o-transition: background-color 0.5s ease;/* 增加 */
+	transition: background-color 0.5s ease;/* 增加 */
 }
 ```
 
@@ -1670,9 +1680,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 📄 > 文章总数
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
-⏰ > 最后一次 Actions 的时间
-
-。">
+⏰ > 最后一次 Actions 的时间。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://GJKen.github.io/demo/post/1.html">
 <meta property="og:image" content="https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp">
@@ -1794,13 +1802,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>修改 Gmeek 仓库的 Gmeek.py</h3>
 <p>打开<code class="notranslate">Gmeek.py</code>文件, 定位字符串<code class="notranslate">Gmeek-html</code></p>
 <p>然后在下面增加代码:</p>
-<div class="highlight highlight-source-python"><pre class="notranslate">        <span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
             <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox&amp;lt;img src="([^"]+)"&amp;gt;&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" data-src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>" src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
 <p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmbnqZ2K74iZPmHgzAJKwro2uoH3Q3U1hbQanfPJpXfv4b" src="https://i0.img2ipfs.com/ipfs/QmbnqZ2K74iZPmHgzAJKwro2uoH3Q3U1hbQanfPJpXfv4b"></p>
 <h3>示例使用</h3>
 <p>在 markdown 插入图片:</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-imgbox<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq</span>"<span class="pl-kos">&gt;</span>`</pre></div>
-<p>通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的<code class="notranslate">data-fancybox="gallery"</code> 和 <code class="notranslate">data-src</code>属性.</p>
+<p>通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的<code class="notranslate">data-fancybox="gallery"</code> 和 <code class="notranslate">data-src=""</code>属性.</p>
 <p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN" src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN"></p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
 <blockquote>
@@ -1825,7 +1833,8 @@ pv 修改成 uv 计数.</p>
 <p>下面是修改笔记, 不一定实际使用.</p>
 <h2>&lt;html&gt; 标签样式</h2>
 <p><code class="notranslate">[data-color-mode]</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.<br>
+增加兼容性动画过渡.</p>
 </div>
 <details><summary>修改前</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span>] {
@@ -1844,7 +1853,12 @@ pv 修改成 uv 计数.</p>
     <span class="pl-c1">--html-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>fff</span>;<span class="pl-c">/* 增加 */</span>
 }
 [<span class="pl-c1">data-color-mode</span>] {
-    <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--html-bgColor</span>)
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--html-bgColor</span>);
+	<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> background-color <span class="pl-c1">0.5<span class="pl-smi">s</span></span> ease;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">-moz-transition</span><span class="pl-kos">:</span> background-color <span class="pl-c1">0.5<span class="pl-smi">s</span></span> ease;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">-o-transition</span><span class="pl-kos">:</span> background-color <span class="pl-c1">0.5<span class="pl-smi">s</span></span> ease;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">transition</span><span class="pl-kos">:</span> background-color <span class="pl-c1">0.5<span class="pl-smi">s</span></span> ease;<span class="pl-c">/* 增加 */</span>
 }</pre></div>
 </details>
 <h2>博客滚动条样式</h2>
