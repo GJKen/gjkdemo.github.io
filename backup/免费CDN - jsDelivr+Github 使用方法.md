@@ -18,7 +18,7 @@
 
 测试`Gmeek-imgbox<img>`
 
-测试`Gmeek-html`
+测试`gmeek-html`
 
 # 创建标签(Tags)
 
