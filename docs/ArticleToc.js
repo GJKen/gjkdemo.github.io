@@ -10,7 +10,8 @@ function createTOC() {
 	const tocElement = document.createElement('div');
 	tocElement.className = 'toc';
 	const contentContainer = document.querySelector('.markdown-body');
-	contentContainer.appendChild(tocElement);
+	// 将目录 <div> 插入到 <body> 中
+	document.body.appendChild(tocElement);
 
 	const headings = contentContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
 	headings.forEach(heading => {

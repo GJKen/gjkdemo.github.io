@@ -5454,7 +5454,7 @@
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
-	--body-bgColor: #3b3b3ba3;
+	--body-bgColor: #3b3b3bd9;
 	--body-shadow-color: #52afff3d;
 	--markdown-code-bgColor: #3bf6ff52;
 	--markdown-blockquote-color: #ffffff8c;
@@ -12273,7 +12273,11 @@
 
 [data-color-mode] {
 	color: var(--fgColor-default, var(--color-fg-default));
-	background-color: var(--html-bgColor)
+	background-color: var(--html-bgColor);
+	-webkit-transition: background-color 0.5s ease;
+	-moz-transition: background-color 0.5s ease;
+	-o-transition: background-color 0.5s ease;
+	transition: background-color 0.5s ease;
 }
 
 @media(forced-colors: active) {
@@ -12526,6 +12530,7 @@ body {
 	color: var(--fgColor-default, var(--color-fg-default));
 	background: var(--body-bgColor);
 	box-shadow: 0 0 100px var(--body-shadow-color);
+	
 }
 
 /* header可以通过Gmeek仓库修改, 这边直接注释了

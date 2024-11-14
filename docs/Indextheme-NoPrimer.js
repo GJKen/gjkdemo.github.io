@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// 通用样式
 	applyStyles(`
-		html {background: url('https://ipfs.decentralized-content.com/ipfs/QmQn8HcHeutmaH2qEbPK8PT6TXEpj58VizavBxanCiQcYv') center / cover no-repeat fixed;}
+		html {background: url('https://s2.loli.net/2024/11/14/DhKIbTFEa73Gsv8.webp') center / cover no-repeat fixed;}
 		body {
 			max-width:1000px;
 		}
