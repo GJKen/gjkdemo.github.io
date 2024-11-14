@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ### 修改 Gmeek 仓库的 Gmeek.py
 
-打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
+打开`Gmeek.py`文件, 定位字符串`gmeek-html`
 
 然后在下面增加代码:
 
@@ -778,6 +778,10 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 效果图:
 
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
+
+> [!Important]
+> 如果在文章中含有代码块标签并且内容为Gmeek-html, Action 那边会进行转换导致显示错误, 详情看[#201](https://github.com/Meekdai/Gmeek/issues/201)
+> `gmeek-html` 换成小写就没事了.
 
 # 添加自定义单篇文章代码
 

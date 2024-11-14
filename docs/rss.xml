@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Thu, 14 Nov 2024 07:05:47 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>免费CDN - jsDelivr+Github 使用方法</title><link>https://GJKen.github.io/demo/post/2.html</link><description># jsDelivr 官网&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Thu, 14 Nov 2024 07:10:59 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>免费CDN - jsDelivr+Github 使用方法</title><link>https://GJKen.github.io/demo/post/2.html</link><description># jsDelivr 官网&#13;
 &#13;
 &gt; https://www.jsdelivr.com&#13;
 &#13;
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () =&gt; {&#13;
 &#13;
 ### 修改 Gmeek 仓库的 Gmeek.py&#13;
 &#13;
-打开`Gmeek.py`文件, 定位字符串`Gmeek-html`&#13;
+打开`Gmeek.py`文件, 定位字符串`gmeek-html`&#13;
 &#13;
 然后在下面增加代码:&#13;
 &#13;
@@ -831,6 +831,10 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.&#13;
 效果图:&#13;
 &#13;
 `Gmeek-imgbox&lt;img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'&gt;`&#13;
+&#13;
+&gt; [!Important]&#13;
+&gt; 如果在文章中含有代码块标签并且内容为Gmeek-html, Action 那边会进行转换导致显示错误, 详情看[#201](https://github.com/Meekdai/Gmeek/issues/201)&#13;
+&gt; `gmeek-html` 换成小写就没事了.&#13;
 &#13;
 # 添加自定义单篇文章代码&#13;
 &#13;
