@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ### 修改 Gmeek 仓库的 Gmeek.py
 
-打开`Gmeek.py`文件, 定位字符串`gmeek-html`
+打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
 
 然后在下面增加代码:
 
@@ -112,7 +112,7 @@ if '<code class='notranslate'>Gmeek-imgbox' in post_body:
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
 ```
 
-通过 Action 转义后实际效果如下, html 里面图片标签会增加`data-fancybox='gallery'` 和 `data-src`属性, 这些都是 fancybox 必要的属性.
+通过 Action 转换后实际效果如下, html 里面图片标签会增加`data-fancybox='gallery'` 和 `data-src`属性, 这些都是 fancybox 必要的属性.
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN'>`
 
@@ -804,7 +804,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 替换成下面的代码:
 
 ```python
-        if '<code class='notranslate'>Gmeek-html' in post_body:
+if '<code class='notranslate'>Gmeek-html' in post_body:
             post_body = re.sub(r'<code class='notranslate'>Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
 ```
 
@@ -839,6 +839,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间
+
 。">
 <meta property="og:title" content="Gmeek - 记录使用过程">
 <meta property="og:description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
@@ -924,7 +925,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ### 修改 Gmeek 仓库的 Gmeek.py
 
-打开`Gmeek.py`文件, 定位字符串`gmeek-html`
+打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
 
 然后在下面增加代码:
 
@@ -943,7 +944,7 @@ if '<code class='notranslate'>Gmeek-imgbox' in post_body:
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
 ```
 
-通过 Action 转义后实际效果如下, html 里面图片标签会增加`data-fancybox='gallery'` 和 `data-src`属性, 这些都是 fancybox 必要的属性.
+通过 Action 转换后实际效果如下, html 里面图片标签会增加`data-fancybox='gallery'` 和 `data-src`属性, 这些都是 fancybox 必要的属性.
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN'>`
 
@@ -1635,7 +1636,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 替换成下面的代码:
 
 ```python
-        if '<code class='notranslate'>Gmeek-html' in post_body:
+if '<code class='notranslate'>Gmeek-html' in post_body:
             post_body = re.sub(r'<code class='notranslate'>Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
 ```
 
@@ -1670,6 +1671,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间
+
 。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://GJKen.github.io/demo/post/1.html">
@@ -1790,7 +1792,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
 <p>意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.</p>
 <h3>修改 Gmeek 仓库的 Gmeek.py</h3>
-<p>打开<code class="notranslate">Gmeek.py</code>文件, 定位字符串<code class="notranslate">gmeek-html</code></p>
+<p>打开<code class="notranslate">Gmeek.py</code>文件, 定位字符串<code class="notranslate">Gmeek-html</code></p>
 <p>然后在下面增加代码:</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
             <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox&amp;lt;img src="([^"]+)"&amp;gt;&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" data-src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>" src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
@@ -1798,7 +1800,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>示例使用</h3>
 <p>在 markdown 插入图片:</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-imgbox<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq</span>"<span class="pl-kos">&gt;</span>`</pre></div>
-<p>通过 Action 转义后实际效果如下, html 里面图片标签会增加<code class="notranslate">data-fancybox="gallery"</code> 和 <code class="notranslate">data-src</code>属性, 这些都是 fancybox 必要的属性.</p>
+<p>通过 Action 转换后实际效果如下, html 里面图片标签会增加<code class="notranslate">data-fancybox="gallery"</code> 和 <code class="notranslate">data-src</code>属性, 这些都是 fancybox 必要的属性.</p>
 <p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN" src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN"></p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
 <blockquote>
@@ -2274,7 +2276,7 @@ pv 修改成 uv 计数.</p>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
 <p>定位字符串<code class="notranslate">gmeek-html</code></p>
 <p>替换成下面的代码:</p>
-<div class="highlight highlight-source-python"><pre class="notranslate">        <span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-html'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>:
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-html'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>:
             <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-html(&amp;lt;.*?&amp;gt;)&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s1">html</span>.<span class="pl-en">unescape</span>(<span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)), <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
 <p>原先匹配的内容为:<code class="notranslate">&lt;code class="notranslate"&gt;Gmeek-html(.*?)&lt;/code&gt;</code>, 这样会导致匹配文章内容时出现显示错误.</p>
 <p>更改后缩小了匹配范围, 可以直接使用<code class="notranslate">Gmeek-html</code>让其在文章内正常显示.</p>

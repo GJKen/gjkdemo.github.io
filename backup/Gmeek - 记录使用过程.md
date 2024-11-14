@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ### 修改 Gmeek 仓库的 Gmeek.py
 
-打开`Gmeek.py`文件, 定位字符串`gmeek-html`
+打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
 
 然后在下面增加代码:
 
@@ -100,7 +100,7 @@ if '<code class="notranslate">Gmeek-imgbox' in post_body:
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
 ```
 
-通过 Action 转义后实际效果如下, html 里面图片标签会增加`data-fancybox="gallery"` 和 `data-src`属性, 这些都是 fancybox 必要的属性.
+通过 Action 转换后实际效果如下, html 里面图片标签会增加`data-fancybox="gallery"` 和 `data-src`属性, 这些都是 fancybox 必要的属性.
 
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN">`
 
@@ -792,7 +792,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 替换成下面的代码:
 
 ```python
-        if '<code class="notranslate">Gmeek-html' in post_body:
+if '<code class="notranslate">Gmeek-html' in post_body:
             post_body = re.sub(r'<code class="notranslate">Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
 ```
 
@@ -827,3 +827,4 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 💬 > 评论总数
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间
+
