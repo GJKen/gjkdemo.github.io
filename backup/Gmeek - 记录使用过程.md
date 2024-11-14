@@ -821,10 +821,14 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 | Label Name | Color | 效果
 |-|-|-
 | 网站 | #218155 | ![Badge](https://img.shields.io/badge/%E7%BD%91%E7%AB%99-%237057FF-7057FF)
+| 日常 | #008672 | ![Badge](https://img.shields.io/badge/%E6%97%A5%E5%B8%B8-%23008672-008672)
+| 教程 | #0075ca | ![Badge](https://img.shields.io/badge/%E6%95%99%E7%A8%8B-%230075CA-0075CA)
+| Anime | #E77AB1 | ![Badge](https://img.shields.io/badge/Anime-%23E77AB1-E77AB1)
 | Win  | #5AB3F3 | ![Badge](https://img.shields.io/badge/Win-%235AB3F3-5AB3F3)
-| Github | #333333 | ![Static Badge](https://img.shields.io/badge/Github-%23333333-333333)
 | JS | #AD3152 | ![Static Badge](https://img.shields.io/badge/JS-%23AD3152-AD3152)
 | CSS | #AD3152 | ![Badge](https://img.shields.io/badge/CSS-%23218155-218155)
+| Github | #333333 | ![Static Badge](https://img.shields.io/badge/Github-%23333333-333333)
+| CDN | #cb222c | ![Badge](https://img.shields.io/badge/CDN-%23cb222c-cb222c)
 | Bug | #D73A4A | ![Static Badge](https://img.shields.io/badge/Bug-%23D73A4A-D73A4A)
 
 # Readme.md
