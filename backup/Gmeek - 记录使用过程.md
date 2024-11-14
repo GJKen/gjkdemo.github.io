@@ -796,7 +796,7 @@ if '<code class="notranslate">Gmeek-html' in post_body:
             post_body = re.sub(r'<code class="notranslate">Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
 ```
 
-原先匹配的内容为:`<code class="notranslate">Gmeek-html(.*?)</code>`, 这样会导致匹配文章内容时出现显示错误.
+原先匹配的内容为:`<code class="notranslate">Gmeek-html(.*?)</code>`, 这样会导致转换文章内容时出现显示错误.
 
 更改后缩小了匹配范围, 可以直接使用`Gmeek-html`让其在文章内正常显示.
 
