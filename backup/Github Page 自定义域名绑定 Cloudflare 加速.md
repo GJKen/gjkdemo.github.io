@@ -29,9 +29,9 @@ GitHub Pagesde 的`github.io`域名访问太慢了, 故有此教程.
 
 回到 Cloudflare面板, 进入 dns 记录, 填写 CNAME 记录.
 
-`Gmeek-imgbox<img src="[https://ipfs.mbzj.org/ipfs/QmYKSxMhUZzH94AquVHQrRbnPs1DAhvoW5uwra2FX44DtM]
+`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmYKSxMhUZzH94AquVHQrRbnPs1DAhvoW5uwra2FX44DtM">`
 
-<!--  
+<!--  注释块
 # 进入 Github 的 Pages 设置自定义域名
 
 ![](https://ipfs.mbzj.org/ipfs/QmYfvg3jyxVCusmyicJVGQEyXhTfdVJTatotxVHRRqqE9K)
