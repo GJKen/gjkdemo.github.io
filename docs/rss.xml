@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Thu, 14 Nov 2024 19:24:18 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>纪念下SAO通关-2024-11-07</title><link>https://GJKen.github.io/demo/post/3.html</link><description>Twitter[@sao_anime](https://x.com/sao_anime/status/1854402349412106416)&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Fri, 15 Nov 2024 05:38:01 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>纪念下SAO通关-2024-11-07</title><link>https://GJKen.github.io/demo/post/3.html</link><description>Twitter[@sao_anime](https://x.com/sao_anime/status/1854402349412106416)&#13;
 &#13;
 2024 年 11 月 7 日 14:55&#13;
 游戏已通关——&#13;
@@ -116,7 +116,7 @@ test1.jsdelivr.net&#13;
 &#13;
 图示:&#13;
 &#13;
-`Gmeek-imgbox&lt;img src='https://i0.img2ipfs.com/ipfs/QmZZc1AEpcDTUiasyp6qkGx4h2K7btob9U4c9RAgrTMnx1'&gt;`&#13;
+`Gmeek-imgbox&lt;img src='https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H'&gt;`&#13;
 &#13;
 ## Fancybox.js - 图片浏览器&#13;
 &#13;
@@ -984,20 +984,21 @@ if '&lt;code class='notranslate'&gt;Gmeek-html' in post_body:&#13;
 &#13;
 | Label Name | Color | 效果&#13;
 |-|-|-&#13;
-| 网站 | #218155 | ![Badge](https://img.shields.io/badge/%E7%BD%91%E7%AB%99-%237057FF-7057FF)&#13;
-| 日常 | #008672 | ![Badge](https://img.shields.io/badge/%E6%97%A5%E5%B8%B8-%23008672-008672)&#13;
-| 教程 | #0075ca | ![Badge](https://img.shields.io/badge/%E6%95%99%E7%A8%8B-%230075CA-0075CA)&#13;
-| Anime | #E77AB1 | ![Badge](https://img.shields.io/badge/Anime-%23E77AB1-E77AB1)&#13;
-| Win  | #5AB3F3 | ![Badge](https://img.shields.io/badge/Win-%235AB3F3-5AB3F3)&#13;
-| JS | #AD3152 | ![Static Badge](https://img.shields.io/badge/JS-%23AD3152-AD3152)&#13;
-| CSS | #AD3152 | ![Badge](https://img.shields.io/badge/CSS-%23218155-218155)&#13;
-| Github | #333333 | ![Static Badge](https://img.shields.io/badge/Github-%23333333-333333)&#13;
-| CDN | #cb222c | ![Badge](https://img.shields.io/badge/CDN-%23cb222c-cb222c)&#13;
-| Bug | #D73A4A | ![Static Badge](https://img.shields.io/badge/Bug-%23D73A4A-D73A4A)&#13;
+| 网站 | #218155 | ![Badge](https://img.shields.io/static/v1?label=&amp;message=网站&amp;color=218155)&#13;
+| 日常 | #008672 | ![Badge](https://img.shields.io/static/v1?label=&amp;message=日常&amp;color=008672)&#13;
+| 教程 | #0075ca | ![Badge](https://img.shields.io/static/v1?label=&amp;message=教程&amp;color=0075ca)&#13;
+| Anime | #E77AB1 | ![Badge](https://img.shields.io/static/v1?label=&amp;message=Anime&amp;color=E77AB1)&#13;
+| Win  | #5AB3F3 | ![Badge](https://img.shields.io/static/v1?label=&amp;message=Win&amp;color=5AB3F3)&#13;
+| JS | #AD3152 | ![Badge](https://img.shields.io/static/v1?label=&amp;message=JS&amp;color=AD3152)&#13;
+| CSS | #218155 | ![Badge](https://img.shields.io/static/v1?label=&amp;message=CSS&amp;color=218155)&#13;
+| Github | #333333 | ![Badge](https://img.shields.io/static/v1?label=&amp;message=Github&amp;color=333333)&#13;
+| CDN | #cb222c | ![Badge](https://img.shields.io/static/v1?label=&amp;message=CDN&amp;color=cb222c)&#13;
+| Bug | #D73A4A | ![Badge](https://img.shields.io/static/v1?label=&amp;message=Bug&amp;color=D73A4A)&#13;
 &#13;
 # Readme.md&#13;
 &#13;
 📄 &gt; 文章总数&#13;
 💬 &gt; 评论总数&#13;
 🌺 &gt; 是统计的所有文章的字符数&#13;
-⏰ &gt; 最后一次 Actions 的时间。</description><guid isPermaLink="true">https://GJKen.github.io/demo/post/1.html</guid><pubDate>Sun, 10 Nov 2024 18:29:28 +0000</pubDate></item></channel></rss>
+⏰ &gt; 最后一次 Actions 的时间&#13;
+。</description><guid isPermaLink="true">https://GJKen.github.io/demo/post/1.html</guid><pubDate>Sun, 10 Nov 2024 18:29:28 +0000</pubDate></item></channel></rss>
