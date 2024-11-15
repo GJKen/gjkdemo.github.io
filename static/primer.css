@@ -27355,6 +27355,7 @@ a.branch-name .octicon {
 	font-size: 1.85em;
 	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
 	border-left: .25em solid #32c7dd;
+    padding-left: .25em;
 }
 
 .markdown-body h2 {
