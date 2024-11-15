@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href='https://gjken.github.io/primer.min.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css' rel='stylesheet' />
     <script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/Indextheme.min.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script>
     <link rel="icon" href="https://pic.imgdb.cn/item/6734c652d29ded1a8cc038aa.jpg"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
@@ -663,7 +663,7 @@ async function loginAccount(account) {
 <meta property="og:url" content="https://GJKen.github.io/demo/post/5.html">
 <meta property="og:image" content="https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp">
 <title>Serv00 - 使用记录</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 
 </head>
@@ -767,10 +767,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <blockquote>
 <p>一键创建目录并下载 Alist, 增加执行权限.</p>
 </blockquote>
-<div class="highlight highlight-source-shell"><pre class="notranslate">mkdir -p <span class="pl-k">~</span>/domains/alist <span class="pl-k">&amp;&amp;</span> <span class="pl-c1">cd</span> <span class="pl-k">~</span>/domains/alist <span class="pl-k">&amp;&amp;</span> curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz <span class="pl-k">&amp;&amp;</span> tar -xzf alist.tar.gz <span class="pl-k">&amp;&amp;</span> chomd +x alist</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">mkdir -p ~/domains/alist &amp;&amp; cd ~/domains/alist &amp;&amp; curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz &amp;&amp; tar -xzf alist.tar.gz &amp;&amp; chomd +x alist
+</code></pre>
 <h3>第一次启动 Alist 生成配置文件</h3>
 <p>然后需要先启动一次 Alist 让它生成配置文件, 此次启动一定会失败, 请不用在意：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">./alist server</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">./alist server
+</code></pre>
 <h3>创建 Alist 所需数据库</h3>
 <p>回到 Panel 面板, 找到 MySQL 选项卡, 使用 Add database 功能新建一个数据库：</p>
 <p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r" src="https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r"></p>
@@ -829,7 +831,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>改完之后, 点击 save 保存.</p>
 <h3>再次启动Alist</h3>
 <p>回到SSH窗口中进行操作.</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">./alist server</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">./alist server
+</code></pre>
 <p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmYL72sd2Wyb5C6WrJe6G7w1NvAdpqXiUwFWUEm6FCSGxt" src="https://ipfs.mbzj.org/ipfs/QmYL72sd2Wyb5C6WrJe6G7w1NvAdpqXiUwFWUEm6FCSGxt"></p>
 <p>运行正常, 显示的管理员账号的密码一定要记住. 接着使用 Ctrl+c 停止运行.</p>
 <h3>自定义域名</h3>
@@ -1236,6 +1239,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script>
+<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script><script async src='https://www.googletagmanager.com/gtag/js?id=G-5VB040E3PS'></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5VB040E3PS');</script>
 
 </html>
