@@ -484,6 +484,7 @@ html {
     font-size: 1.85em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
     border-left: .25em solid #32c7dd;/* 增加 */
+    padding-left: .25em;/* 增加 */
 }
 ```
 

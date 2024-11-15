@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Fri, 15 Nov 2024 05:38:01 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>纪念下SAO通关-2024-11-07</title><link>https://GJKen.github.io/demo/post/3.html</link><description>Twitter[@sao_anime](https://x.com/sao_anime/status/1854402349412106416)&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Fri, 15 Nov 2024 05:55:26 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>纪念下SAO通关-2024-11-07</title><link>https://GJKen.github.io/demo/post/3.html</link><description>Twitter[@sao_anime](https://x.com/sao_anime/status/1854402349412106416)&#13;
 &#13;
 2024 年 11 月 7 日 14:55&#13;
 游戏已通关——&#13;
@@ -548,6 +548,7 @@ html {&#13;
     font-size: 1.85em;&#13;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));&#13;
     border-left: .25em solid #32c7dd;/* 增加 */&#13;
+    padding-left: .25em;/* 增加 */&#13;
 }&#13;
 ```&#13;
 &#13;
@@ -1000,5 +1001,4 @@ if '&lt;code class='notranslate'&gt;Gmeek-html' in post_body:&#13;
 📄 &gt; 文章总数&#13;
 💬 &gt; 评论总数&#13;
 🌺 &gt; 是统计的所有文章的字符数&#13;
-⏰ &gt; 最后一次 Actions 的时间&#13;
-。</description><guid isPermaLink="true">https://GJKen.github.io/demo/post/1.html</guid><pubDate>Sun, 10 Nov 2024 18:29:28 +0000</pubDate></item></channel></rss>
+⏰ &gt; 最后一次 Actions 的时间。</description><guid isPermaLink="true">https://GJKen.github.io/demo/post/1.html</guid><pubDate>Sun, 10 Nov 2024 18:29:28 +0000</pubDate></item></channel></rss>
