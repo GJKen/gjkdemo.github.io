@@ -31,7 +31,7 @@ GitHub Pagesde 的`github.io`域名访问太慢了, 故有此教程.
 
 回到 Cloudflare面板, 进入 dns 记录, 按照下图添加 `CNAME` 和 `A` 记录.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmUFcvcDv8g8Y9G3B81pfE9bSuLMwKrz5mpaa9d2Zn3W9Q">`
+`Gmeek-imgbox<img src="https://cdn.img2ipfs.com/ipfs/QmUFcvcDv8g8Y9G3B81pfE9bSuLMwKrz5mpaa9d2Zn3W9Q?filename=image.png">`
 
 ```
 185.199.108.153
