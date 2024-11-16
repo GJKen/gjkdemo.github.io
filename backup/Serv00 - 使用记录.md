@@ -150,7 +150,7 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 运行正常, 显示的管理员账号的密码一定要记住. 接着使用 Ctrl+c 停止运行.
 
-## 自定义域名绑定
+## 自定义域名绑定 
 
 我这边使用 us.kg 的免费域名进行访问 Alist.
 
@@ -182,7 +182,7 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 ## Alist 保活
 
-> 因为 Serv00 会不定时杀进程库😅, 所以诞生此方案.
+> 因为 Serv00 会不定时杀进程😅, 所以诞生此方案.
 
 我在 Alist 目录下创建了`runAlist.sh`脚本, 内容如下:
 
@@ -200,11 +200,13 @@ echo "$(date '+%Y-%m-%d %H:%M:%S')" > ~/domains/alist/logfile.txt
 
 计划任务执行我的`runAlist.sh`脚本进行进程保活. 如下图:
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmRgagQ4tvQ6BeD5Hcjm2tx7YdWFL6Fo3BYCiHZJD9wgSd">`
+
+`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a">`
+https://ipfs.mbzj.org/ipfs/QmRgagQ4tvQ6BeD5Hcjm2tx7YdWFL6Fo3BYCiHZJD9wgSd
 
 成功后不出意外的话, 隔一段时间进入 Alist 网盘需要重新登陆账号, 因为定时脚本会先杀原来的 Alist 进程再重启.
 
-# Serv00+CT8 保活
+# Serv00+CT8 保活(可TG通知)
 
 > 引用自 [Linux.do](https://linux.do/t/topic/180293)
 
@@ -412,8 +414,8 @@ function formatToISO(date) {
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
-</details>
 ```
+</details>
 
 ## 变量
 
@@ -428,8 +430,8 @@ function delay(ms) {
   { "username": "ct8user2", "password": "ct8password2", "type": "ct8" }
 ]
 ```
-
 </details>
+
 
 <details><summary>TELEGRAM_JSON</summary>
 
@@ -444,18 +446,15 @@ function delay(ms) {
 
 ## 创建 Workers
 
-进入 Cloudflare 面板.
+进入 Cloudflare 面板, 然后按照下图点击创建.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmcitGGj9orfCTT51PeYLeEoeMZtesYnYhay6o5epd3o9L">`
+`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmXBBc5zsb3vZEbXWKjw9oUv7u6899kPV8eDz8MXZKyUpe">`
 
-点击创建.
-
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmauoUSohYVxxcNUGrLKBNBuweaUW2PWNjtMR6KMCZmdgB">`
-
-名字随意, 建议写`Serv00Keep`, 然后直接点部署.
+名字随意, 建议写`Serv00Keep`方便好记, 然后直接点部署.
 
 `Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmNP8RrwuUE6LEauh1tEAVApPXkLzf1nH28r6mWZgV5GEg">`
 
 点击编辑代码.
 
 `Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmNVaEi6uUU7AaprzNaPGGwRbKNmc1kHvXEAE6pZTPZzqa">`
+
