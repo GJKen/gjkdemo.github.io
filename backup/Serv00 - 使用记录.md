@@ -32,7 +32,7 @@
 
 `Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC">`
 
-其中 26666 这个端口是 alist 服务的端口.
+其中 26666 这个端口是 Alist 服务的端口.
 
 ### 网站添加 SSL 证书
 
@@ -150,11 +150,11 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 运行正常, 显示的管理员账号的密码一定要记住. 接着使用 Ctrl+c 停止运行.
 
-## 自定义域名绑定 
+## 自定义域名绑定
 
 我这边使用 us.kg 的免费域名进行访问 Alist.
 
-因为 serv00 的域名基本上都会被墙, 没办法只能用~~Cloudflare减速器~~跨墙了, ~~CDN 回源加速不会弄~~
+因为 serv00 的域名基本上都会被墙, 没办法只能用~~Cloudflare减速器~~跨墙了, ~~CDN 回源加速不会弄.~~
 
 我们进入 https://dash.cloudflare.com
 
@@ -180,13 +180,13 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 如果没问题就可以通过自定义域名访问了.
 
-### Alist 保活
+## Alist 保活
 
-Serv00 会不定时杀进程.
+> 因为 Serv00 会不定时杀进程库😅, 所以诞生此方案.
 
-我在 alist 目录下创建了`runAlist.sh`脚本, 内容如下:
+我在 Alist 目录下创建了`runAlist.sh`脚本, 内容如下:
 
-```
+```bash
 screen -ls | awk 'NR>=2&&NR<=20{print $1}' | awk '{print "screen -S "$1" -X quit"}' | sh
 echo "Attempting to start screen session 'alist'"
 screen -dmS alist bash -c 'cd ~/domains/alist && ./alist server'
@@ -194,13 +194,13 @@ screen -dmS alist bash -c 'cd ~/domains/alist && ./alist server'
 echo "$(date '+%Y-%m-%d %H:%M:%S')" > ~/domains/alist/logfile.txt
 ```
 
-转到 panel 面板, 创建 Cron Jobs 定时任务
+转到 panel 面板, 创建 Cron Jobs 定时任务.
 
-我们需要创建2条定时任务, 一个是每小时执行, 一个是 reboot 执行, 如下图:
+我们需要创建2条定时任务, 一个是每小时执行, 一个是 reboot 执行,
 
-https://ipfs.mbzj.org/ipfs/QmRgagQ4tvQ6BeD5Hcjm2tx7YdWFL6Fo3BYCiHZJD9wgSd.jpg
+计划任务执行我的`runAlist.sh`脚本进行进程保活. 如下图:
 
-计划任务执行我的`runAlist.sh`脚本进行进程保活.
+`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmRgagQ4tvQ6BeD5Hcjm2tx7YdWFL6Fo3BYCiHZJD9wgSd">`
 
 成功后不出意外的话, 隔一段时间进入 Alist 网盘需要重新登陆账号, 因为定时脚本会先杀原来的 Alist 进程再重启.
 
@@ -211,6 +211,8 @@ https://ipfs.mbzj.org/ipfs/QmRgagQ4tvQ6BeD5Hcjm2tx7YdWFL6Fo3BYCiHZJD9wgSd.jpg
 ## 首先上代码:
 
 <details><summary>Worker 代码</summary>
+
+```JavaScript
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
@@ -411,11 +413,13 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 </details>
+```
 
 ## 变量
 
 <details><summary>ACCOUNTS_JSON</summary>
 
+```json
 [  
   { "username": "serv00user1", "password": "serv00password1", "panelnum": "0", "type": "serv00" },
   { "username": "serv00user2", "password": "serv00password2", "panelnum": "4", "type": "serv00" },
@@ -423,16 +427,18 @@ function delay(ms) {
   { "username": "ct8user1", "password": "ct8password1", "type": "ct8" },
   { "username": "ct8user2", "password": "ct8password2", "type": "ct8" }
 ]
+```
 
 </details>
 
-
 <details><summary>TELEGRAM_JSON</summary>
 
+```json
 {
   "telegramBotToken": "YOUR_BOT_TOKEN",
   "telegramBotUserId": "YOUR_USER_ID"
 }
+```
 
 </details>
 
@@ -440,16 +446,16 @@ function delay(ms) {
 
 进入 Cloudflare 面板.
 
-https://ipfs.mbzj.org/ipfs/QmcitGGj9orfCTT51PeYLeEoeMZtesYnYhay6o5epd3o9L.jpg
+`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmcitGGj9orfCTT51PeYLeEoeMZtesYnYhay6o5epd3o9L">`
 
 点击创建.
 
-https://ipfs.mbzj.org/ipfs/QmauoUSohYVxxcNUGrLKBNBuweaUW2PWNjtMR6KMCZmdgB.jpg
+`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmauoUSohYVxxcNUGrLKBNBuweaUW2PWNjtMR6KMCZmdgB">`
 
 名字随意, 建议写`Serv00Keep`, 然后直接点部署.
 
-https://ipfs.mbzj.org/ipfs/QmNP8RrwuUE6LEauh1tEAVApPXkLzf1nH28r6mWZgV5GEg.jpg
+`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmNP8RrwuUE6LEauh1tEAVApPXkLzf1nH28r6mWZgV5GEg">`
 
 点击编辑代码.
 
-https://ipfs.mbzj.org/ipfs/QmNVaEi6uUU7AaprzNaPGGwRbKNmc1kHvXEAE6pZTPZzqa.jpg
+`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmNVaEi6uUU7AaprzNaPGGwRbKNmc1kHvXEAE6pZTPZzqa">`
