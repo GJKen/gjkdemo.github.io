@@ -40,23 +40,23 @@
 > Serv00 账号创建好之后默认就有一个网站, 一般是`USERNAME.serv00.net`, 可以随意删除.
 
 这里可以用自己的域名或者用 Serv00 的域名.
-下图我写的是自己的域名, 后续可以通过自定义域名访问.
+下图我写的是自己的域名.
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC'>`
 
-其中26666这个端口是 alist 服务的端口.
+其中 26666 这个端口是 alist 服务的端口.
 
 ### 网站添加 SSL 证书
 
-站点创建完成后, 点击上方的 Manage SSL certificates
+站点创建完成后, 点击上方的 Manage SSL certificates.
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw'>`
 
-点击 Manage
+点击 Manage.
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx'>`
 
-点击 Add certificate
+点击 Add certificate.
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6'>`
 
@@ -65,11 +65,9 @@
 > [!TIP]
 > Alist 官方在 24年8月17日, 增加了 [beta](https://github.com/AlistGo/alist/releases/tag/beta) 版本, 支持 FreeBSD 系统下能够运行的 Alist 可执行文件🎉
 
-Serv00 本身提供的网站托管在 `~/domains` 路径下, 所以我建议把 Alist 也部署到这个路径下的子目录.
+Serv00 本身提供的网站托管在`~/domains`路径下, 所以我建议把 Alist 也部署到这个路径下的子目录.
 
-复制到终端粘贴使用:
-
-> 一键创建目录并下载 Alist, 增加执行权限.
+一键创建目录并下载 Alist, 增加执行权限, 复制到终端粘贴使用.
 
 ```bash
 mkdir -p ~/domains/alist && cd ~/domains/alist && curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz && tar -xzf alist.tar.gz && chomd +x alist
@@ -77,7 +75,7 @@ mkdir -p ~/domains/alist && cd ~/domains/alist && curl -L -o alist.tar.gz https:
 
 ### 第一次启动 Alist 生成配置文件
 
-然后需要先启动一次 Alist 让它生成配置文件, 此次启动一定会失败, 请不用在意：
+然后需要先启动一次 Alist 让它生成配置文件, 此次启动一定会失败, 请不用在意~
 
 ```bash
 ./alist server
@@ -85,7 +83,7 @@ mkdir -p ~/domains/alist && cd ~/domains/alist && curl -L -o alist.tar.gz https:
 
 ### 创建 Alist 所需数据库
 
-回到 Panel 面板, 找到 MySQL 选项卡, 使用 Add database 功能新建一个数据库：
+回到 Panel 面板, 找到 MySQL 选项卡, 使用 Add database 功能新建一个数据库:
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r'>`
 
@@ -96,6 +94,8 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 ### 修改配置文件
 
 进入 Panel 面板, 找到 File manager 选项卡, 会如下图的进入文件管理器.
+
+定位文件:
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/QmXmXQRv5AfHqy2sRYS4dNCPQL2xPiGfaGtgTJjwGsX5Et'>`
 
@@ -150,9 +150,9 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 改完之后, 点击 save 保存.
 
-### 再次启动Alist
+### 再次启动 Alist
 
-回到SSH窗口中进行操作.
+回到 SSH 窗口中进行操作.
 
 ```bash
 ./alist server
@@ -162,13 +162,14 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 运行正常, 显示的管理员账号的密码一定要记住. 接着使用 Ctrl+c 停止运行.
 
-### 自定义域名
+## 自定义域名绑定 
 
-我这边使用 Cloudflare 和 us.kg 的免费域名进行绑定.
+我这边使用 us.kg 的免费域名进行访问 Alist.
 
-> 因为 serv00 的域名基本上都会被墙, 没办法只能用~~cf减速器~~跨墙了.
+因为 serv00 的域名基本上都会被墙, 没办法只能用~~Cloudflare减速器~~跨墙了, ~~CDN 回源加速不会弄~~
 
 我们进入 https://dash.cloudflare.com
+
 点击添加域.
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD'>`
@@ -365,23 +366,23 @@ async function loginAccount(account) {
 > Serv00 账号创建好之后默认就有一个网站, 一般是`USERNAME.serv00.net`, 可以随意删除.
 
 这里可以用自己的域名或者用 Serv00 的域名.
-下图我写的是自己的域名, 后续可以通过自定义域名访问.
+下图我写的是自己的域名.
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC'>`
 
-其中26666这个端口是 alist 服务的端口.
+其中 26666 这个端口是 alist 服务的端口.
 
 ### 网站添加 SSL 证书
 
-站点创建完成后, 点击上方的 Manage SSL certificates
+站点创建完成后, 点击上方的 Manage SSL certificates.
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw'>`
 
-点击 Manage
+点击 Manage.
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx'>`
 
-点击 Add certificate
+点击 Add certificate.
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6'>`
 
@@ -390,11 +391,9 @@ async function loginAccount(account) {
 > [!TIP]
 > Alist 官方在 24年8月17日, 增加了 [beta](https://github.com/AlistGo/alist/releases/tag/beta) 版本, 支持 FreeBSD 系统下能够运行的 Alist 可执行文件🎉
 
-Serv00 本身提供的网站托管在 `~/domains` 路径下, 所以我建议把 Alist 也部署到这个路径下的子目录.
+Serv00 本身提供的网站托管在`~/domains`路径下, 所以我建议把 Alist 也部署到这个路径下的子目录.
 
-复制到终端粘贴使用:
-
-> 一键创建目录并下载 Alist, 增加执行权限.
+一键创建目录并下载 Alist, 增加执行权限, 复制到终端粘贴使用.
 
 ```bash
 mkdir -p ~/domains/alist && cd ~/domains/alist && curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz && tar -xzf alist.tar.gz && chomd +x alist
@@ -402,7 +401,7 @@ mkdir -p ~/domains/alist && cd ~/domains/alist && curl -L -o alist.tar.gz https:
 
 ### 第一次启动 Alist 生成配置文件
 
-然后需要先启动一次 Alist 让它生成配置文件, 此次启动一定会失败, 请不用在意：
+然后需要先启动一次 Alist 让它生成配置文件, 此次启动一定会失败, 请不用在意~
 
 ```bash
 ./alist server
@@ -410,7 +409,7 @@ mkdir -p ~/domains/alist && cd ~/domains/alist && curl -L -o alist.tar.gz https:
 
 ### 创建 Alist 所需数据库
 
-回到 Panel 面板, 找到 MySQL 选项卡, 使用 Add database 功能新建一个数据库：
+回到 Panel 面板, 找到 MySQL 选项卡, 使用 Add database 功能新建一个数据库:
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r'>`
 
@@ -421,6 +420,8 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 ### 修改配置文件
 
 进入 Panel 面板, 找到 File manager 选项卡, 会如下图的进入文件管理器.
+
+定位文件:
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/QmXmXQRv5AfHqy2sRYS4dNCPQL2xPiGfaGtgTJjwGsX5Et'>`
 
@@ -475,9 +476,9 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 改完之后, 点击 save 保存.
 
-### 再次启动Alist
+### 再次启动 Alist
 
-回到SSH窗口中进行操作.
+回到 SSH 窗口中进行操作.
 
 ```bash
 ./alist server
@@ -487,13 +488,14 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 运行正常, 显示的管理员账号的密码一定要记住. 接着使用 Ctrl+c 停止运行.
 
-### 自定义域名
+## 自定义域名绑定 
 
-我这边使用 Cloudflare 和 us.kg 的免费域名进行绑定.
+我这边使用 us.kg 的免费域名进行访问 Alist.
 
-> 因为 serv00 的域名基本上都会被墙, 没办法只能用~~cf减速器~~跨墙了.
+因为 serv00 的域名基本上都会被墙, 没办法只能用~~Cloudflare减速器~~跨墙了, ~~CDN 回源加速不会弄~~
 
 我们进入 https://dash.cloudflare.com
+
 点击添加域.
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD'>`
@@ -749,30 +751,27 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>Serv00 账号创建好之后默认就有一个网站, 一般是<code class="notranslate">USERNAME.serv00.net</code>, 可以随意删除.</p>
 </blockquote>
 <p>这里可以用自己的域名或者用 Serv00 的域名.<br>
-下图我写的是自己的域名, 后续可以通过自定义域名访问.</p>
+下图我写的是自己的域名.</p>
 <p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC" src="https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC"></p>
-<p>其中26666这个端口是 alist 服务的端口.</p>
+<p>其中 26666 这个端口是 alist 服务的端口.</p>
 <h3>网站添加 SSL 证书</h3>
-<p>站点创建完成后, 点击上方的 Manage SSL certificates</p>
+<p>站点创建完成后, 点击上方的 Manage SSL certificates.</p>
 <p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw" src="https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw"></p>
-<p>点击 Manage</p>
+<p>点击 Manage.</p>
 <p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx" src="https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx"></p>
-<p>点击 Add certificate</p>
+<p>点击 Add certificate.</p>
 <p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6" src="https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6"></p>
 <h3>安装 Alist</h3>
 <div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p>Alist 官方在 24年8月17日, 增加了 <a href="https://github.com/AlistGo/alist/releases/tag/beta">beta</a> 版本, 支持 FreeBSD 系统下能够运行的 Alist 可执行文件🎉</p>
 </div>
-<p>Serv00 本身提供的网站托管在 <code class="notranslate">~/domains</code> 路径下, 所以我建议把 Alist 也部署到这个路径下的子目录.</p>
-<p>复制到终端粘贴使用:</p>
-<blockquote>
-<p>一键创建目录并下载 Alist, 增加执行权限.</p>
-</blockquote>
+<p>Serv00 本身提供的网站托管在<code class="notranslate">~/domains</code>路径下, 所以我建议把 Alist 也部署到这个路径下的子目录.</p>
+<p>一键创建目录并下载 Alist, 增加执行权限, 复制到终端粘贴使用.</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">mkdir -p <span class="pl-k">~</span>/domains/alist <span class="pl-k">&amp;&amp;</span> <span class="pl-c1">cd</span> <span class="pl-k">~</span>/domains/alist <span class="pl-k">&amp;&amp;</span> curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz <span class="pl-k">&amp;&amp;</span> tar -xzf alist.tar.gz <span class="pl-k">&amp;&amp;</span> chomd +x alist</pre></div>
 <h3>第一次启动 Alist 生成配置文件</h3>
-<p>然后需要先启动一次 Alist 让它生成配置文件, 此次启动一定会失败, 请不用在意：</p>
+<p>然后需要先启动一次 Alist 让它生成配置文件, 此次启动一定会失败, 请不用在意~</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">./alist server</pre></div>
 <h3>创建 Alist 所需数据库</h3>
-<p>回到 Panel 面板, 找到 MySQL 选项卡, 使用 Add database 功能新建一个数据库：</p>
+<p>回到 Panel 面板, 找到 MySQL 选项卡, 使用 Add database 功能新建一个数据库:</p>
 <p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r" src="https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r"></p>
 <p>Database name 和 Username 字段为了方便好记就写 Alist 就行了.</p>
 <blockquote>
@@ -780,6 +779,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </blockquote>
 <h3>修改配置文件</h3>
 <p>进入 Panel 面板, 找到 File manager 选项卡, 会如下图的进入文件管理器.</p>
+<p>定位文件:</p>
 <p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmXmXQRv5AfHqy2sRYS4dNCPQL2xPiGfaGtgTJjwGsX5Et" src="https://ipfs.mbzj.org/ipfs/QmXmXQRv5AfHqy2sRYS4dNCPQL2xPiGfaGtgTJjwGsX5Et"></p>
 <p>双击编辑这个<code class="notranslate">config.json</code>文件.</p>
 <p>我主要修改了<code class="notranslate">CDN</code> <code class="notranslate">database</code> <code class="notranslate">scheme</code>三个部分,</p>
@@ -827,18 +827,16 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
   </tr>
 </tbody></table></markdown-accessiblity-table>
 <p>改完之后, 点击 save 保存.</p>
-<h3>再次启动Alist</h3>
-<p>回到SSH窗口中进行操作.</p>
+<h3>再次启动 Alist</h3>
+<p>回到 SSH 窗口中进行操作.</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">./alist server</pre></div>
 <p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmYL72sd2Wyb5C6WrJe6G7w1NvAdpqXiUwFWUEm6FCSGxt" src="https://ipfs.mbzj.org/ipfs/QmYL72sd2Wyb5C6WrJe6G7w1NvAdpqXiUwFWUEm6FCSGxt"></p>
 <p>运行正常, 显示的管理员账号的密码一定要记住. 接着使用 Ctrl+c 停止运行.</p>
-<h3>自定义域名</h3>
-<p>我这边使用 Cloudflare 和 us.kg 的免费域名进行绑定.</p>
-<blockquote>
-<p>因为 serv00 的域名基本上都会被墙, 没办法只能用<del>cf减速器</del>跨墙了.</p>
-</blockquote>
-<p>我们进入 <a href="https://dash.cloudflare.com" rel="nofollow">https://dash.cloudflare.com</a><br>
-点击添加域.</p>
+<h2>自定义域名绑定</h2>
+<p>我这边使用 us.kg 的免费域名进行访问 Alist.</p>
+<p>因为 serv00 的域名基本上都会被墙, 没办法只能用<del>Cloudflare减速器</del>跨墙了, <del>CDN 回源加速不会弄</del></p>
+<p>我们进入 <a href="https://dash.cloudflare.com" rel="nofollow">https://dash.cloudflare.com</a></p>
+<p>点击添加域.</p>
 <p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD" src="https://ipfs.mbzj.org/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD"></p>
 <p>输入自己的域名.</p>
 <p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmWEwsF7kjqWYZET8AbyPbVizciT3pLDbi6Pjm4xkYZvCS" src="https://ipfs.mbzj.org/ipfs/QmWEwsF7kjqWYZET8AbyPbVizciT3pLDbi6Pjm4xkYZvCS"></p>
@@ -976,7 +974,7 @@ if (loginResponse.status === 302 &amp;&amp; loginResponse.headers.get('location'
     return { success: false, message }
   }
 } else if (loginResponseBody.includes('Nieprawidłowy login lub hasło')) {
-  const message = `账号 ${username} (${type}) 登录失败：用户名或密码错误。`
+  const message = `账号 ${username} (${type}) 登录失败: 用户名或密码错误。`
   console.error(message)
   await sendTelegramMessage(message)
   return { success: false, message }
@@ -1012,11 +1010,11 @@ parseCookies(cookies2)</p>
 <p>async function sendSummary(results) {<br>
 const successfulLogins = results.filter(r =&gt; r.success)<br>
 const failedLogins = results.filter(r =&gt; !r.success)</p>
-<p>let summaryMessage = '登录结果统计：\n'<br>
-summaryMessage += <code class="notranslate">成功登录的账号：${successfulLogins.length}\n</code><br>
-summaryMessage += <code class="notranslate">登录失败的账号：${failedLogins.length}\n</code></p>
+<p>let summaryMessage = '登录结果统计: \n'<br>
+summaryMessage += <code class="notranslate">成功登录的账号: ${successfulLogins.length}\n</code><br>
+summaryMessage += <code class="notranslate">登录失败的账号: ${failedLogins.length}\n</code></p>
 <p>if (failedLogins.length &gt; 0) {<br>
-summaryMessage += '\n登录失败的账号列表：\n'<br>
+summaryMessage += '\n登录失败的账号列表: \n'<br>
 failedLogins.forEach(({ username, type, message }) =&gt; {<br>
 summaryMessage += <code class="notranslate">- ${username} (${type}): ${message}\n</code><br>
 })<br>
