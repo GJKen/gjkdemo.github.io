@@ -150,7 +150,7 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 运行正常, 显示的管理员账号的密码一定要记住. 接着使用 Ctrl+c 停止运行.
 
-## 自定义域名绑定
+### 自定义域名绑定
 
 我这边使用 us.kg 的免费域名进行访问 Alist.
 
@@ -180,7 +180,7 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 如果没问题就可以通过自定义域名访问了.
 
-## Alist 保活
+### Alist 保活
 
 > 因为 Serv00 会不定时杀进程😅, 所以诞生此方案.
 
@@ -476,8 +476,8 @@ function delay(ms) {
 
 ### 添加机密
 
-按照`Json`格式编辑好自己的 serv00 账号和密码, 填入`ACCOUNTS_JSON`.
-按照`Json`格式编辑好自己的 telegram bot token, 填入`TELEGRAM_JSON`.
+按照`Json`格式编辑好自己的 serv00 账号和密码, 填入`ACCOUNTS_JSON`值.
+按照`Json`格式编辑好自己的 telegram bot token, 填入`TELEGRAM_JSON`值.
 
 `Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmWrhPXgkyqwjRSPE3EbT18eCq8XtLYUPL1JaPc9bQbPw2">`
 
@@ -493,7 +493,7 @@ function delay(ms) {
 
 ## 手动执行验证效果
 
-如下图, 进入编辑代码-设定时间-触发计划事件, 即可手动触发.
+如下图, 进入编辑代码 → 设定时间 → 触发计划的事件, 即可手动触发.
 
 同时可以看到正常运行没问题, 接下来就是定时执行不用再管它了.
 
