@@ -210,7 +210,7 @@ https://ipfs.mbzj.org/ipfs/QmRgagQ4tvQ6BeD5Hcjm2tx7YdWFL6Fo3BYCiHZJD9wgSd
 
 > 引用自 [Linux.do](https://linux.do/t/topic/180293)
 
-## 首先上代码:
+## 首先上代码
 
 <details><summary>Worker 代码</summary>
 
@@ -417,7 +417,7 @@ function delay(ms) {
 ```
 </details>
 
-## 变量
+变量:
 
 <details><summary>ACCOUNTS_JSON</summary>
 
@@ -450,11 +450,18 @@ function delay(ms) {
 
 `Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmXBBc5zsb3vZEbXWKjw9oUv7u6899kPV8eDz8MXZKyUpe">`
 
-名字随意, 建议写`Serv00Keep`方便好记, 然后直接点部署.
+名字随意, 建议写`Serv00Keep`方便好记, 然后右下角点部署.
 
 `Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmNP8RrwuUE6LEauh1tEAVApPXkLzf1nH28r6mWZgV5GEg">`
 
-点击编辑代码.
+部署完成后点击编辑代码.
 
 `Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmNVaEi6uUU7AaprzNaPGGwRbKNmc1kHvXEAE6pZTPZzqa">`
 
+粘贴 Worker 代码, 粘贴好之后点击部署.
+
+`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmPh4ziXe3Wg4cagzdq5vzyn3NUTYVr3pNXpKSfbZ7v6NT">`
+
+返回到`Serv00Keep`的设置, 找到`变量和机密`
+
+### 添加机密

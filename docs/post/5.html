@@ -222,7 +222,7 @@ https://ipfs.mbzj.org/ipfs/QmRgagQ4tvQ6BeD5Hcjm2tx7YdWFL6Fo3BYCiHZJD9wgSd
 
 > 引用自 [Linux.do](https://linux.do/t/topic/180293)
 
-## 首先上代码:
+## 首先上代码
 
 <details><summary>Worker 代码</summary>
 
@@ -552,7 +552,7 @@ https://ipfs.mbzj.org/ipfs/QmRgagQ4tvQ6BeD5Hcjm2tx7YdWFL6Fo3BYCiHZJD9wgSd
 
 > 引用自 [Linux.do](https://linux.do/t/topic/180293)
 
-## 首先上代码:
+## 首先上代码
 
 <details><summary>Worker 代码</summary>
 
@@ -875,7 +875,7 @@ screen -dmS alist bash -c <span class="pl-s"><span class="pl-pds">'</span>cd ~/d
 <blockquote>
 <p>引用自 <a href="https://linux.do/t/topic/180293" rel="nofollow">Linux.do</a></p>
 </blockquote>
-<h2>首先上代码:</h2>
+<h2>首先上代码</h2>
 <details><summary>Worker 代码</summary>
 <div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-en">addEventListener</span><span class="pl-kos">(</span><span class="pl-s">'fetch'</span><span class="pl-kos">,</span> <span class="pl-s1">event</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
   <span class="pl-s1">event</span><span class="pl-kos">.</span><span class="pl-en">respondWith</span><span class="pl-kos">(</span><span class="pl-en">handleRequest</span><span class="pl-kos">(</span><span class="pl-s1">event</span><span class="pl-kos">.</span><span class="pl-c1">request</span><span class="pl-kos">)</span><span class="pl-kos">)</span>
@@ -1077,7 +1077,7 @@ screen -dmS alist bash -c <span class="pl-s"><span class="pl-pds">'</span>cd ~/d
   <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-v">Promise</span><span class="pl-kos">(</span><span class="pl-s1">resolve</span> <span class="pl-c1">=&gt;</span> <span class="pl-en">setTimeout</span><span class="pl-kos">(</span><span class="pl-s1">resolve</span><span class="pl-kos">,</span> <span class="pl-s1">ms</span><span class="pl-kos">)</span><span class="pl-kos">)</span>
 <span class="pl-kos">}</span></pre></div>
 </details>
-<h2>变量</h2>
+<p>变量:</p>
 <details><summary>ACCOUNTS_JSON</summary>
 <div class="highlight highlight-source-json"><pre class="notranslate">[  
   { <span class="pl-ent">"username"</span>: <span class="pl-s"><span class="pl-pds">"</span>serv00user1<span class="pl-pds">"</span></span>, <span class="pl-ent">"password"</span>: <span class="pl-s"><span class="pl-pds">"</span>serv00password1<span class="pl-pds">"</span></span>, <span class="pl-ent">"panelnum"</span>: <span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span>, <span class="pl-ent">"type"</span>: <span class="pl-s"><span class="pl-pds">"</span>serv00<span class="pl-pds">"</span></span> },
@@ -1096,10 +1096,14 @@ screen -dmS alist bash -c <span class="pl-s"><span class="pl-pds">'</span>cd ~/d
 <h2>创建 Workers</h2>
 <p>进入 Cloudflare 面板, 然后按照下图点击创建.</p>
 <p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmXBBc5zsb3vZEbXWKjw9oUv7u6899kPV8eDz8MXZKyUpe" src="https://ipfs.mbzj.org/ipfs/QmXBBc5zsb3vZEbXWKjw9oUv7u6899kPV8eDz8MXZKyUpe"></p>
-<p>名字随意, 建议写<code class="notranslate">Serv00Keep</code>方便好记, 然后直接点部署.</p>
+<p>名字随意, 建议写<code class="notranslate">Serv00Keep</code>方便好记, 然后右下角点部署.</p>
 <p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmNP8RrwuUE6LEauh1tEAVApPXkLzf1nH28r6mWZgV5GEg" src="https://ipfs.mbzj.org/ipfs/QmNP8RrwuUE6LEauh1tEAVApPXkLzf1nH28r6mWZgV5GEg"></p>
-<p>点击编辑代码.</p>
-<p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmNVaEi6uUU7AaprzNaPGGwRbKNmc1kHvXEAE6pZTPZzqa" src="https://ipfs.mbzj.org/ipfs/QmNVaEi6uUU7AaprzNaPGGwRbKNmc1kHvXEAE6pZTPZzqa"></p></div>
+<p>部署完成后点击编辑代码.</p>
+<p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmNVaEi6uUU7AaprzNaPGGwRbKNmc1kHvXEAE6pZTPZzqa" src="https://ipfs.mbzj.org/ipfs/QmNVaEi6uUU7AaprzNaPGGwRbKNmc1kHvXEAE6pZTPZzqa"></p>
+<p>粘贴 Worker 代码, 粘贴好之后点击部署.</p>
+<p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmPh4ziXe3Wg4cagzdq5vzyn3NUTYVr3pNXpKSfbZ7v6NT" src="https://ipfs.mbzj.org/ipfs/QmPh4ziXe3Wg4cagzdq5vzyn3NUTYVr3pNXpKSfbZ7v6NT"></p>
+<p>返回到<code class="notranslate">Serv00Keep</code>的设置, 找到<code class="notranslate">变量和机密</code></p>
+<h3>添加机密</h3></div>
 <div style="font-size:small;margin-top:8px;float:right;">🥰转载请注明,谢谢!🥰</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
