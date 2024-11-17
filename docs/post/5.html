@@ -162,7 +162,7 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 运行正常, 显示的管理员账号的密码一定要记住. 接着使用 Ctrl+c 停止运行.
 
-## 自定义域名绑定 
+## 自定义域名绑定
 
 我这边使用 us.kg 的免费域名进行访问 Alist.
 
@@ -211,7 +211,6 @@ echo '$(date '+%Y-%m-%d %H:%M:%S')' > ~/domains/alist/logfile.txt
 我们需要创建2条定时任务, 一个是每小时执行, 一个是 reboot 执行,
 
 计划任务执行我的`runAlist.sh`脚本进行进程保活. 如下图:
-
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a'>`
 https://ipfs.mbzj.org/ipfs/QmRgagQ4tvQ6BeD5Hcjm2tx7YdWFL6Fo3BYCiHZJD9wgSd
@@ -492,7 +491,7 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 运行正常, 显示的管理员账号的密码一定要记住. 接着使用 Ctrl+c 停止运行.
 
-## 自定义域名绑定 
+## 自定义域名绑定
 
 我这边使用 us.kg 的免费域名进行访问 Alist.
 
@@ -541,7 +540,6 @@ echo '$(date '+%Y-%m-%d %H:%M:%S')' > ~/domains/alist/logfile.txt
 我们需要创建2条定时任务, 一个是每小时执行, 一个是 reboot 执行,
 
 计划任务执行我的`runAlist.sh`脚本进行进程保活. 如下图:
-
 
 `Gmeek-imgbox<img src='https://ipfs.mbzj.org/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a'>`
 https://ipfs.mbzj.org/ipfs/QmRgagQ4tvQ6BeD5Hcjm2tx7YdWFL6Fo3BYCiHZJD9wgSd
@@ -1078,7 +1076,8 @@ screen -dmS alist bash -c <span class="pl-s"><span class="pl-pds">'</span>cd ~/d
 <span class="pl-kos">}</span></pre></div>
 </details>
 <p>变量:</p>
-<details><summary>ACCOUNTS_JSON</summary>
+<p><code class="notranslate">ACCOUNTS_JSON</code></p>
+<details><summary>Json</summary>
 <div class="highlight highlight-source-json"><pre class="notranslate">[  
   { <span class="pl-ent">"username"</span>: <span class="pl-s"><span class="pl-pds">"</span>serv00user1<span class="pl-pds">"</span></span>, <span class="pl-ent">"password"</span>: <span class="pl-s"><span class="pl-pds">"</span>serv00password1<span class="pl-pds">"</span></span>, <span class="pl-ent">"panelnum"</span>: <span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span>, <span class="pl-ent">"type"</span>: <span class="pl-s"><span class="pl-pds">"</span>serv00<span class="pl-pds">"</span></span> },
   { <span class="pl-ent">"username"</span>: <span class="pl-s"><span class="pl-pds">"</span>serv00user2<span class="pl-pds">"</span></span>, <span class="pl-ent">"password"</span>: <span class="pl-s"><span class="pl-pds">"</span>serv00password2<span class="pl-pds">"</span></span>, <span class="pl-ent">"panelnum"</span>: <span class="pl-s"><span class="pl-pds">"</span>4<span class="pl-pds">"</span></span>, <span class="pl-ent">"type"</span>: <span class="pl-s"><span class="pl-pds">"</span>serv00<span class="pl-pds">"</span></span> },
@@ -1087,7 +1086,8 @@ screen -dmS alist bash -c <span class="pl-s"><span class="pl-pds">'</span>cd ~/d
   { <span class="pl-ent">"username"</span>: <span class="pl-s"><span class="pl-pds">"</span>ct8user2<span class="pl-pds">"</span></span>, <span class="pl-ent">"password"</span>: <span class="pl-s"><span class="pl-pds">"</span>ct8password2<span class="pl-pds">"</span></span>, <span class="pl-ent">"type"</span>: <span class="pl-s"><span class="pl-pds">"</span>ct8<span class="pl-pds">"</span></span> }
 ]</pre></div>
 </details>
-<details><summary>TELEGRAM_JSON</summary>
+<p><code class="notranslate">TELEGRAM_JSON</code></p>
+<details><summary>Json</summary>
 <div class="highlight highlight-source-json"><pre class="notranslate">{
   <span class="pl-ent">"telegramBotToken"</span>: <span class="pl-s"><span class="pl-pds">"</span>YOUR_BOT_TOKEN<span class="pl-pds">"</span></span>,
   <span class="pl-ent">"telegramBotUserId"</span>: <span class="pl-s"><span class="pl-pds">"</span>YOUR_USER_ID<span class="pl-pds">"</span></span>
@@ -1103,7 +1103,19 @@ screen -dmS alist bash -c <span class="pl-s"><span class="pl-pds">'</span>cd ~/d
 <p>粘贴 Worker 代码, 粘贴好之后点击部署.</p>
 <p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmPh4ziXe3Wg4cagzdq5vzyn3NUTYVr3pNXpKSfbZ7v6NT" src="https://ipfs.mbzj.org/ipfs/QmPh4ziXe3Wg4cagzdq5vzyn3NUTYVr3pNXpKSfbZ7v6NT"></p>
 <p>返回到<code class="notranslate">Serv00Keep</code>的设置, 找到<code class="notranslate">变量和机密</code></p>
-<h3>添加机密</h3></div>
+<h3>添加机密</h3>
+<p>编辑好自己的 serv00 账号和密码, 填入<code class="notranslate">ACCOUNTS_JSON</code>.<br>
+编辑好自己的 telegram bot tokenj, 填入<code class="notranslate">TELEGRAM_JSON</code>.</p>
+<p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmWrhPXgkyqwjRSPE3EbT18eCq8XtLYUPL1JaPc9bQbPw2" src="https://ipfs.mbzj.org/ipfs/QmWrhPXgkyqwjRSPE3EbT18eCq8XtLYUPL1JaPc9bQbPw2"></p>
+<h3>添加触发事件</h3>
+<p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmPmUCuANQN2UP9jKodZwiVN5xLWLNg315q8dqZdQsXuch" src="https://ipfs.mbzj.org/ipfs/QmPmUCuANQN2UP9jKodZwiVN5xLWLNg315q8dqZdQsXuch"></p>
+<h2>手动部署</h2>
+<p>机密和触发事件填写完成之后, 我们手动部署一次.</p>
+<p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmZvTJW7bMwv5jWK7H4sJG1GMvqBwmAiLzdhehTgLpdyao" src="https://ipfs.mbzj.org/ipfs/QmZvTJW7bMwv5jWK7H4sJG1GMvqBwmAiLzdhehTgLpdyao"></p>
+<h2>手动执行验证效果</h2>
+<p>如下图, 进入编辑代码-设定时间-触发计划事件, 即可手动触发.</p>
+<p>同时可以看到正常运行没问题, 接下来就是定时执行不用再管它了.</p>
+<p><img data-fancybox="gallery" data-src="https://ipfs.mbzj.org/ipfs/QmSZWMYTY92JjWUxipWBLb9ipAWpAayYY3Jwint8Zp8XAK" src="https://ipfs.mbzj.org/ipfs/QmSZWMYTY92JjWUxipWBLb9ipAWpAayYY3Jwint8Zp8XAK"></p></div>
 <div style="font-size:small;margin-top:8px;float:right;">🥰转载请注明,谢谢!🥰</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

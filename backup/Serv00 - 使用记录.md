@@ -150,7 +150,7 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 运行正常, 显示的管理员账号的密码一定要记住. 接着使用 Ctrl+c 停止运行.
 
-## 自定义域名绑定 
+## 自定义域名绑定
 
 我这边使用 us.kg 的免费域名进行访问 Alist.
 
@@ -199,7 +199,6 @@ echo "$(date '+%Y-%m-%d %H:%M:%S')" > ~/domains/alist/logfile.txt
 我们需要创建2条定时任务, 一个是每小时执行, 一个是 reboot 执行,
 
 计划任务执行我的`runAlist.sh`脚本进行进程保活. 如下图:
-
 
 `Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a">`
 https://ipfs.mbzj.org/ipfs/QmRgagQ4tvQ6BeD5Hcjm2tx7YdWFL6Fo3BYCiHZJD9wgSd
@@ -415,11 +414,14 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 ```
+
 </details>
 
 变量:
 
-<details><summary>ACCOUNTS_JSON</summary>
+`ACCOUNTS_JSON`
+
+<details><summary>Json</summary>
 
 ```json
 [  
@@ -430,10 +432,12 @@ function delay(ms) {
   { "username": "ct8user2", "password": "ct8password2", "type": "ct8" }
 ]
 ```
+
 </details>
 
+`TELEGRAM_JSON`
 
-<details><summary>TELEGRAM_JSON</summary>
+<details><summary>Json</summary>
 
 ```json
 {
@@ -465,3 +469,26 @@ function delay(ms) {
 返回到`Serv00Keep`的设置, 找到`变量和机密`
 
 ### 添加机密
+
+编辑好自己的 serv00 账号和密码, 填入`ACCOUNTS_JSON`.
+编辑好自己的 telegram bot tokenj, 填入`TELEGRAM_JSON`.
+
+`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmWrhPXgkyqwjRSPE3EbT18eCq8XtLYUPL1JaPc9bQbPw2">`
+
+### 添加触发事件
+
+`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmPmUCuANQN2UP9jKodZwiVN5xLWLNg315q8dqZdQsXuch">`
+
+## 手动部署
+
+机密和触发事件填写完成之后, 我们手动部署一次.
+
+`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmZvTJW7bMwv5jWK7H4sJG1GMvqBwmAiLzdhehTgLpdyao">`
+
+## 手动执行验证效果
+
+如下图, 进入编辑代码-设定时间-触发计划事件, 即可手动触发.
+
+同时可以看到正常运行没问题, 接下来就是定时执行不用再管它了.
+
+`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmSZWMYTY92JjWUxipWBLb9ipAWpAayYY3Jwint8Zp8XAK">`
