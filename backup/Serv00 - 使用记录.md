@@ -209,9 +209,15 @@ https://ipfs.mbzj.org/ipfs/QmRgagQ4tvQ6BeD5Hcjm2tx7YdWFL6Fo3BYCiHZJD9wgSd
 
 > 引用自 [Linux.do](https://linux.do/t/topic/180293)
 
+## 先决条件
+
+- [x] 假设你已经拥有了一个 telegram bot.
+
 ## 首先上代码
 
-<details><summary>Worker 代码</summary>
+Worker 代码:
+
+<details><summary>JavaScript Code</summary>
 
 ```JavaScript
 addEventListener('fetch', event => {
@@ -470,8 +476,8 @@ function delay(ms) {
 
 ### 添加机密
 
-编辑好自己的 serv00 账号和密码, 填入`ACCOUNTS_JSON`.
-编辑好自己的 telegram bot tokenj, 填入`TELEGRAM_JSON`.
+按照`Json`格式编辑好自己的 serv00 账号和密码, 填入`ACCOUNTS_JSON`.
+按照`Json`格式编辑好自己的 telegram bot token, 填入`TELEGRAM_JSON`.
 
 `Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmWrhPXgkyqwjRSPE3EbT18eCq8XtLYUPL1JaPc9bQbPw2">`
 
