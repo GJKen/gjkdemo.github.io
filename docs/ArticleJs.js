@@ -6,3 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	}));
 	Fancybox.bind('[data-fancybox="gallery"]', {});
 });
+// 图片懒加载所需函数
+const lazyImage = new LazyImage('.lazy-load-image');
+// Customize the loading strategy
+lazyImage.observeWithIntersectionObserver();
+// Optional: Provide a placeholder image
+lazyImage.placeholderImage = 'placeholder.jpg';
+lazyImage.init();
