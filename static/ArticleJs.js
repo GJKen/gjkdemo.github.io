@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// https://lazyload.js.org
 	// 延迟加载图片所需函数
-	const lazyImage = new LazyLoadImage('.lazy-load-image');
+	const lazyImage = new LazyImage('.lazy-load-image');
 	// Customize the loading strategy
 	lazyImage.observeWithIntersectionObserver();
 	// Optional: Provide a placeholder image
