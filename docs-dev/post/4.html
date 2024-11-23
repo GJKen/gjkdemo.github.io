@@ -4,382 +4,141 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href='../primer.min.css' rel='stylesheet' />
-    <script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/Indextheme.min.js'></script>
-    <link rel="icon" href="https://ipfs.mbzj.org/ipfs/QmRtULS1Gmf3Phh84o9SVWhdc52AuJJ2NA24zMiFMeqdpf"><script>
+    <link href='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css' rel='stylesheet' />
+    <script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/Indextheme.min.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script><script src='https://blog.liyifan.xyz/assets/live2d.js'></script>
+    <link rel="icon" href="https://pic.imgdb.cn/item/6734c652d29ded1a8cc038aa.jpg"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# 注册Serv00
-注册没什么好说的, gmail+干净一点的ip基本上都可以成功, 这里不多做展开.
-收不到邮件信息的估计是邮箱问题.比如 https://mail.proton.me
+<meta name="description" content="GitHub Pagesde 的`github.io`域名访问太慢了, 故有此教程.
 
-# 准备工作
-进入 Additional services 选项卡中找到 Run your own applications 项目,
-如下图所示, 必须要设置成如图所示的 Enabled.
+# 先决条件
 
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmUg8VV61q7DApUWcijdA1xdZar5wE5TUhcfMq5femCMYs'>`
+假设你已经:
 
-如果不开启这一项, 自己的用户目录下的所有文件都无法添加可执行权限.
+- [x] 拥有了一个域名.
+- [x] 域名备案已解决.
 
-# 部署记录
-## Alist
-### 创建端口
-
-每个账户只能创建3个端口.
-其中一个用来反代本地搭建 Alist 的端口, 这里我用26666
-
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmNSXAsz4QFnkTp3JRHGLuUJStNoPaK7yERRqPj9spXSc9'>`
-
-### 创建网站
-
-> Serv00 账号创建好之后默认就有一个网站, 一般是`USERNAME.serv00.net`, 可以随意删除.
-
-这里可以用自己的域名或者用 Serv00 的域名.
-下图我写的是自己的域名, 后续可以通过自定义域名访问.
-
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC'>`
-
-其中26666这个端口是 alist 服务的端口.
-
-### 网站添加SSL证书
-站点创建完成后, 点击上方的 Manage SSL certificates
-
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw'>`
-
-点击 Manage
-
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx'>`
-
-点击 Add certificate
-
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6'>`
-
-### 安装Alist
-> [!TIP]
-> Alist 官方在 24年8月17日, 增加了 [beta](https://github.com/AlistGo/alist/releases/tag/beta) 版本, 支持 FreeBSD 系统下能够运行的 Alist 可执行文件🎉
-
-Serv00 本身提供的网站托管在 `~/domains` 路径下, 所以我建议把 Alist 也部署到这个路径下的子目录.
-
-复制到终端粘贴使用:
-> 一键创建目录并下载 Alist, 增加执行权限
-
-```bash
-mkdir -p ~/domains/alist && cd ~/domains/alist && curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz && tar -xzf alist.tar.gz && chomd +x alist
-```
-
-### 第一次启动Alist生成配置文件
-然后需要先启动一次 Alist 让它生成配置文件, 此次启动一定会失败, 请不用在意：
-
-```bash
-./alist server
-```
-
-### 创建Alist所需数据库
-回到 Panel 面板, 找到 MySQL 选项卡, 使用 Add database 功能新建一个数据库：
-
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r'>`
-
-Database name 和 Username 字段为了方便好记就写 Alist 就行了.
-
-> 密码要求含有大写字母, 小写字母和数字三种字符, 且长度必须超过6个字符.
-
-### 修改配置文件
-进入 Panel 面板, 找到 File manager 选项卡, 会如下图的进入文件管理器
-
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmXmXQRv5AfHqy2sRYS4dNCPQL2xPiGfaGtgTJjwGsX5Et'>`
-
-双击编辑这个`config.json`文件.
-
-我主要修改了`CDN` `database` `scheme`三个部分,
-
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmXLJa8YMr9KufMYVNQjVW1wXCjWmJ3Q9V1PqR5BRXHtHU'>`
-<table>
-  <tr>
-    <td><p>CDN</p></td>
-    <td colspan='2'>
-      <p><span>可以在 <a href='https://alist.nn.ci/zh/config/configuration.html#cdn'>Alist</a> 的官方文档找到, 请选择你本地网络连接速度最快的一个.</span></p>
-    </td>
-  </tr>
-  <tr>
-    <td rowspan='6'>database</td>
-    <td>type</td>
-    <td>因为我们创建的数据库类型是 mysql, 所以这里写<code class='notranslate'>mysql</code>.</td>
-  </tr>
-  <tr>
-    <td>host</td>
-    <td>例如我的 serv00 是12, 就写<code class='notranslate'>mysql12.serv00.com</code>, 自己看着写.</td>
-  </tr>
-  <tr>
-    <td>port</td>
-    <td>mysql 端口, 默认<code class='notranslate'>3306</code>.</td>
-  </tr>
-  <tr>
-    <td>user</td>
-    <td>填写创建的数据库用户名</td>
-  </tr>
-  <tr>
-    <td>passdowd</td>
-    <td>填写创建的数据密码</td>
-  </tr>
-  <tr>
-    <td>name</td>
-    <td>填写创建的数据表名称</td>
-  </tr>
-  <tr>
-    <td rowspan='2'>database</td>
-    <td>scheme</td>
-    <td>0.0.0.0</td>
-  </tr>
-  <tr>
-    <td>http_port</td>
-    <td>填写创建的端口</td>
-  </tr>
-</table>
-
-改完之后, 点击save保存
-
-### 再次启动Alist
-回到SSH窗口中进行操作.
-
-```bash
-./alist server
-```
-
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmYL72sd2Wyb5C6WrJe6G7w1NvAdpqXiUwFWUEm6FCSGxt'>`
-
-运行正常, 记得把管理员用户的密码记住.接着使用Ctrl+c停止运行.
-
-### 使用 Cloudflare 和域名绑定
-
-> 因为 serv00 的域名基本上都会被墙, 没办法只能用~~cf减速器~~跨墙了
+# Cloudflare 添加域
 
 我们进入 https://dash.cloudflare.com
-点击添加域
 
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD'>`
 
-输入自己的域名
+输入自己的域名点击继续, 然后选择底部的 Free 计划.
 
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmWEwsF7kjqWYZET8AbyPbVizciT3pLDbi6Pjm4xkYZvCS'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmWEwsF7kjqWYZET8AbyPbVizciT3pLDbi6Pjm4xkYZvCS'>`
 
-选择 free 计划
+复制 dns 名称服务器.
 
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmeYbZ48awUqAPApdLrRckVqbtLB71XWTpCafpHCwE2hHG'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmakCvRG52FLk2NV1XFjmWmz5LZuhPg3oD2SdiTunQH8TU'>`
 
-复制 dns 名称服务器
+然后转到你的域名提供服务商, 添加 dns 记录.
 
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmakCvRG52FLk2NV1XFjmWmz5LZuhPg3oD2SdiTunQH8TU'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a'>`
 
-然后转到你的域名提供服务商, 添加dns记录
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a'>`
+# 填写 DNS 记录.
 
-如果没问题就可以通过自定义域名访问了
+回到 Cloudflare 面板, 进入 dns 记录, 按照下图添加 `CNAME` 和 `A` 记录.
 
-### Alist 保活
+`Gmeek-imgbox<img src='https://cdn.img2ipfs.com/ipfs/QmUFcvcDv8g8Y9G3B81pfE9bSuLMwKrz5mpaa9d2Zn3W9Q?filename=image.png'>`
 
-11
+```
+185.199.108.153
 
-### 收尾工作
+185.199.109.153
 
-Serv00会不定时杀进程, 我们需要
+185.199.110.153
 
-Serv00会不定时杀进程, 所以我们把pm2添加开机自启, 可以保证每次重启都能由pm2调动Alist和Cloudflared.而且Serv00每三个月内必须要有一次登录面板或者SSH连接, 不然会删号, 也可以通过一个脚本解决问题, 接下来我会详细说明.。">
-<meta property="og:title" content="Serv00 - 使用记录">
-<meta property="og:description" content="# 注册Serv00
-注册没什么好说的, gmail+干净一点的ip基本上都可以成功, 这里不多做展开.
-收不到邮件信息的估计是邮箱问题.比如 https://mail.proton.me
-
-# 准备工作
-进入 Additional services 选项卡中找到 Run your own applications 项目,
-如下图所示, 必须要设置成如图所示的 Enabled.
-
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmUg8VV61q7DApUWcijdA1xdZar5wE5TUhcfMq5femCMYs'>`
-
-如果不开启这一项, 自己的用户目录下的所有文件都无法添加可执行权限.
-
-# 部署记录
-## Alist
-### 创建端口
-
-每个账户只能创建3个端口.
-其中一个用来反代本地搭建 Alist 的端口, 这里我用26666
-
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmNSXAsz4QFnkTp3JRHGLuUJStNoPaK7yERRqPj9spXSc9'>`
-
-### 创建网站
-
-> Serv00 账号创建好之后默认就有一个网站, 一般是`USERNAME.serv00.net`, 可以随意删除.
-
-这里可以用自己的域名或者用 Serv00 的域名.
-下图我写的是自己的域名, 后续可以通过自定义域名访问.
-
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC'>`
-
-其中26666这个端口是 alist 服务的端口.
-
-### 网站添加SSL证书
-站点创建完成后, 点击上方的 Manage SSL certificates
-
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw'>`
-
-点击 Manage
-
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx'>`
-
-点击 Add certificate
-
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6'>`
-
-### 安装Alist
-> [!TIP]
-> Alist 官方在 24年8月17日, 增加了 [beta](https://github.com/AlistGo/alist/releases/tag/beta) 版本, 支持 FreeBSD 系统下能够运行的 Alist 可执行文件🎉
-
-Serv00 本身提供的网站托管在 `~/domains` 路径下, 所以我建议把 Alist 也部署到这个路径下的子目录.
-
-复制到终端粘贴使用:
-> 一键创建目录并下载 Alist, 增加执行权限
-
-```bash
-mkdir -p ~/domains/alist && cd ~/domains/alist && curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz && tar -xzf alist.tar.gz && chomd +x alist
+185.199.111.153
 ```
 
-### 第一次启动Alist生成配置文件
-然后需要先启动一次 Alist 让它生成配置文件, 此次启动一定会失败, 请不用在意：
+# Github Page 设置自定义域名
 
-```bash
-./alist server
-```
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmYfvg3jyxVCusmyicJVGQEyXhTfdVJTatotxVHRRqqE9K'>`
 
-### 创建Alist所需数据库
-回到 Panel 面板, 找到 MySQL 选项卡, 使用 Add database 功能新建一个数据库：
+填写 Save 之后会提示你等待一会.
 
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmYtbdp1WTLPgVdVXJvS5hJCwmUSqN3qCNX3tNjUiCDmYv'>`
 
-Database name 和 Username 字段为了方便好记就写 Alist 就行了.
+提示`DNS check successful`代表完成, 之后就可以通过www+你的域名进行访问了.
 
-> 密码要求含有大写字母, 小写字母和数字三种字符, 且长度必须超过6个字符.
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmUd39gbrv86frzBrjFN5PwHPBnU8hLbfvS7CqpUgjup6M?filename=image.png'>`。">
+<meta property="og:title" content="Github Page 自定义域名绑定 Cloudflare 加速">
+<meta property="og:description" content="GitHub Pagesde 的`github.io`域名访问太慢了, 故有此教程.
 
-### 修改配置文件
-进入 Panel 面板, 找到 File manager 选项卡, 会如下图的进入文件管理器
+# 先决条件
 
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmXmXQRv5AfHqy2sRYS4dNCPQL2xPiGfaGtgTJjwGsX5Et'>`
+假设你已经:
 
-双击编辑这个`config.json`文件.
+- [x] 拥有了一个域名.
+- [x] 域名备案已解决.
 
-我主要修改了`CDN` `database` `scheme`三个部分,
-
-`Gmeek-html<img src='https://cdn.img2ipfs.com/ipfs/QmXLJa8YMr9KufMYVNQjVW1wXCjWmJ3Q9V1PqR5BRXHtHU'>`
-<table>
-  <tr>
-    <td><p>CDN</p></td>
-    <td colspan='2'>
-      <p><span>可以在 <a href='https://alist.nn.ci/zh/config/configuration.html#cdn'>Alist</a> 的官方文档找到, 请选择你本地网络连接速度最快的一个.</span></p>
-    </td>
-  </tr>
-  <tr>
-    <td rowspan='6'>database</td>
-    <td>type</td>
-    <td>因为我们创建的数据库类型是 mysql, 所以这里写<code class='notranslate'>mysql</code>.</td>
-  </tr>
-  <tr>
-    <td>host</td>
-    <td>例如我的 serv00 是12, 就写<code class='notranslate'>mysql12.serv00.com</code>, 自己看着写.</td>
-  </tr>
-  <tr>
-    <td>port</td>
-    <td>mysql 端口, 默认<code class='notranslate'>3306</code>.</td>
-  </tr>
-  <tr>
-    <td>user</td>
-    <td>填写创建的数据库用户名</td>
-  </tr>
-  <tr>
-    <td>passdowd</td>
-    <td>填写创建的数据密码</td>
-  </tr>
-  <tr>
-    <td>name</td>
-    <td>填写创建的数据表名称</td>
-  </tr>
-  <tr>
-    <td rowspan='2'>database</td>
-    <td>scheme</td>
-    <td>0.0.0.0</td>
-  </tr>
-  <tr>
-    <td>http_port</td>
-    <td>填写创建的端口</td>
-  </tr>
-</table>
-
-改完之后, 点击save保存
-
-### 再次启动Alist
-回到SSH窗口中进行操作.
-
-```bash
-./alist server
-```
-
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmYL72sd2Wyb5C6WrJe6G7w1NvAdpqXiUwFWUEm6FCSGxt'>`
-
-运行正常, 记得把管理员用户的密码记住.接着使用Ctrl+c停止运行.
-
-### 使用 Cloudflare 和域名绑定
-
-> 因为 serv00 的域名基本上都会被墙, 没办法只能用~~cf减速器~~跨墙了
+# Cloudflare 添加域
 
 我们进入 https://dash.cloudflare.com
-点击添加域
 
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD'>`
 
-输入自己的域名
+输入自己的域名点击继续, 然后选择底部的 Free 计划.
 
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmWEwsF7kjqWYZET8AbyPbVizciT3pLDbi6Pjm4xkYZvCS'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmWEwsF7kjqWYZET8AbyPbVizciT3pLDbi6Pjm4xkYZvCS'>`
 
-选择 free 计划
+复制 dns 名称服务器.
 
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmeYbZ48awUqAPApdLrRckVqbtLB71XWTpCafpHCwE2hHG'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmakCvRG52FLk2NV1XFjmWmz5LZuhPg3oD2SdiTunQH8TU'>`
 
-复制 dns 名称服务器
+然后转到你的域名提供服务商, 添加 dns 记录.
 
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmakCvRG52FLk2NV1XFjmWmz5LZuhPg3oD2SdiTunQH8TU'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a'>`
 
-然后转到你的域名提供服务商, 添加dns记录
-`Gmeek-html<img src='https://ipfs.mbzj.org/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a'>`
+# 填写 DNS 记录.
 
-如果没问题就可以通过自定义域名访问了
+回到 Cloudflare 面板, 进入 dns 记录, 按照下图添加 `CNAME` 和 `A` 记录.
 
-### Alist 保活
+`Gmeek-imgbox<img src='https://cdn.img2ipfs.com/ipfs/QmUFcvcDv8g8Y9G3B81pfE9bSuLMwKrz5mpaa9d2Zn3W9Q?filename=image.png'>`
 
-11
+```
+185.199.108.153
 
-### 收尾工作
+185.199.109.153
 
-Serv00会不定时杀进程, 我们需要
+185.199.110.153
 
-Serv00会不定时杀进程, 所以我们把pm2添加开机自启, 可以保证每次重启都能由pm2调动Alist和Cloudflared.而且Serv00每三个月内必须要有一次登录面板或者SSH连接, 不然会删号, 也可以通过一个脚本解决问题, 接下来我会详细说明.。">
+185.199.111.153
+```
+
+# Github Page 设置自定义域名
+
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmYfvg3jyxVCusmyicJVGQEyXhTfdVJTatotxVHRRqqE9K'>`
+
+填写 Save 之后会提示你等待一会.
+
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmYtbdp1WTLPgVdVXJvS5hJCwmUSqN3qCNX3tNjUiCDmYv'>`
+
+提示`DNS check successful`代表完成, 之后就可以通过www+你的域名进行访问了.
+
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmUd39gbrv86frzBrjFN5PwHPBnU8hLbfvS7CqpUgjup6M?filename=image.png'>`。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://GJKen.github.io/gjkdemo.github.io/post/4.html">
-<meta property="og:image" content="https://ipfs.mbzj.org/ipfs/QmWdwjYEWh1CfZe7NtbJcBp658tWbs7PqeaxgLh46NwxRZ">
-<title>Serv00 - 使用记录</title>
-<!-- <link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" /> -->
+<meta property="og:url" content="https://GJKen.github.io/demo/post/4.html">
+<meta property="og:image" content="https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp">
+<title>Github Page 自定义域名绑定 Cloudflare 加速</title>
+
 
 
 </head>
 <style>
 body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
-#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#header{display:flex;flex-direction: column;align-items: center;gap: 10px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 24px;}
+#header h1 a {margin: unset;}
 #footer {margin-top:64px; text-align: center;font-size: small;}
 
 </style>
 
 <style>
 .postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
-.title-right{display:flex;margin:auto 0 0 auto;}
-.title-right .circle{padding: 14px 16px;margin-right:8px;}
+.title-right{display:flex;}
+.title-right .circle{padding: 14px 16px;}
 #postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
 #postBody hr{height:2px;}
 #cmButton{height:48px;margin-top:48px;}
@@ -401,21 +160,21 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     font-size: 12px;
 }
 </style>
-<style>.markdown-alert{padding:0.5rem 1rem;margin-bottom:1rem;border-left:.25em solid var(--borderColor-default,var(--color-border-default));}.markdown-alert .markdown-alert-title {display:flex;font-weight:var(--base-text-weight-medium,500);align-items:center;line-height:1;}.markdown-alert>:first-child {margin-top:0;}.markdown-alert>:last-child {margin-bottom:0;}</style><style>.markdown-alert.markdown-alert-tip {border-left-color:var(--borderColor-success-emphasis, var(--color-success-emphasis));background-color:var(--color-success-subtle);}.markdown-alert.markdown-alert-tip .markdown-alert-title {color: var(--fgColor-success,var(--color-success-fg));}</style>
+
 
 
 
 <body>
     <div id="header">
-<h1 class="postTitle">Serv00 - 使用记录</h1>
+<h1 class="postTitle">Github Page 自定义域名绑定 Cloudflare 加速</h1>
 <div class="title-right">
-    <a href="https://GJKen.github.io/gjkdemo.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+    <a href="https://GJKen.github.io/demo" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
             <path id="pathHome" fill-rule="evenodd"></path>
         </svg>
     </a>
     
-    <a href="https://github.com/GJKen/gjkdemo.github.io/issues/4" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/GJKen/demo/issues/4" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -431,138 +190,48 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h1>注册Serv00</h1>
-<p>注册没什么好说的, gmail+干净一点的ip基本上都可以成功, 这里不多做展开.<br>
-收不到邮件信息的估计是邮箱问题.比如 <a href="https://mail.proton.me" rel="nofollow">https://mail.proton.me</a></p>
-<h1>准备工作</h1>
-<p>进入 Additional services 选项卡中找到 Run your own applications 项目,<br>
-如下图所示, 必须要设置成如图所示的 Enabled.</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmUg8VV61q7DApUWcijdA1xdZar5wE5TUhcfMq5femCMYs"></p>
-<p>如果不开启这一项, 自己的用户目录下的所有文件都无法添加可执行权限.</p>
-<h1>部署记录</h1>
-<h2>Alist</h2>
-<h3>创建端口</h3>
-<p>每个账户只能创建3个端口.<br>
-其中一个用来反代本地搭建 Alist 的端口, 这里我用26666</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmNSXAsz4QFnkTp3JRHGLuUJStNoPaK7yERRqPj9spXSc9"></p>
-<h3>创建网站</h3>
-<blockquote>
-<p>Serv00 账号创建好之后默认就有一个网站, 一般是<code class="notranslate">USERNAME.serv00.net</code>, 可以随意删除.</p>
-</blockquote>
-<p>这里可以用自己的域名或者用 Serv00 的域名.<br>
-下图我写的是自己的域名, 后续可以通过自定义域名访问.</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC"></p>
-<p>其中26666这个端口是 alist 服务的端口.</p>
-<h3>网站添加SSL证书</h3>
-<p>站点创建完成后, 点击上方的 Manage SSL certificates</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw"></p>
-<p>点击 Manage</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx"></p>
-<p>点击 Add certificate</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6"></p>
-<h3>安装Alist</h3>
-<div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p>Alist 官方在 24年8月17日, 增加了 <a href="https://github.com/AlistGo/alist/releases/tag/beta">beta</a> 版本, 支持 FreeBSD 系统下能够运行的 Alist 可执行文件🎉</p>
-</div>
-<p>Serv00 本身提供的网站托管在 <code class="notranslate">~/domains</code> 路径下, 所以我建议把 Alist 也部署到这个路径下的子目录.</p>
-<p>复制到终端粘贴使用:</p>
-<blockquote>
-<p>一键创建目录并下载 Alist, 增加执行权限</p>
-</blockquote>
-<div class="highlight highlight-source-shell"><pre class="notranslate">mkdir -p <span class="pl-k">~</span>/domains/alist <span class="pl-k">&amp;&amp;</span> <span class="pl-c1">cd</span> <span class="pl-k">~</span>/domains/alist <span class="pl-k">&amp;&amp;</span> curl -L -o alist.tar.gz https://github.com/AlistGo/alist/releases/download/beta/alist-freebsd-amd64.tar.gz <span class="pl-k">&amp;&amp;</span> tar -xzf alist.tar.gz <span class="pl-k">&amp;&amp;</span> chomd +x alist</pre></div>
-<h3>第一次启动Alist生成配置文件</h3>
-<p>然后需要先启动一次 Alist 让它生成配置文件, 此次启动一定会失败, 请不用在意：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">./alist server</pre></div>
-<h3>创建Alist所需数据库</h3>
-<p>回到 Panel 面板, 找到 MySQL 选项卡, 使用 Add database 功能新建一个数据库：</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r"></p>
-<p>Database name 和 Username 字段为了方便好记就写 Alist 就行了.</p>
-<blockquote>
-<p>密码要求含有大写字母, 小写字母和数字三种字符, 且长度必须超过6个字符.</p>
-</blockquote>
-<h3>修改配置文件</h3>
-<p>进入 Panel 面板, 找到 File manager 选项卡, 会如下图的进入文件管理器</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmXmXQRv5AfHqy2sRYS4dNCPQL2xPiGfaGtgTJjwGsX5Et"></p>
-<p>双击编辑这个<code class="notranslate">config.json</code>文件.</p>
-<p>我主要修改了<code class="notranslate">CDN</code> <code class="notranslate">database</code> <code class="notranslate">scheme</code>三个部分,</p>
-<p><img src="https://cdn.img2ipfs.com/ipfs/QmXLJa8YMr9KufMYVNQjVW1wXCjWmJ3Q9V1PqR5BRXHtHU"></p>
-<markdown-accessiblity-table><table role="table">
-  <tbody><tr>
-    <td><p>CDN</p></td>
-    <td colspan="2">
-      <p><span>可以在 <a href="https://alist.nn.ci/zh/config/configuration.html#cdn" rel="nofollow">Alist</a> 的官方文档找到, 请选择你本地网络连接速度最快的一个.</span></p>
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="6">database</td>
-    <td>type</td>
-    <td>因为我们创建的数据库类型是 mysql, 所以这里写<code class="notranslate">mysql</code>.</td>
-  </tr>
-  <tr>
-    <td>host</td>
-    <td>例如我的 serv00 是12, 就写<code class="notranslate">mysql12.serv00.com</code>, 自己看着写.</td>
-  </tr>
-  <tr>
-    <td>port</td>
-    <td>mysql 端口, 默认<code class="notranslate">3306</code>.</td>
-  </tr>
-  <tr>
-    <td>user</td>
-    <td>填写创建的数据库用户名</td>
-  </tr>
-  <tr>
-    <td>passdowd</td>
-    <td>填写创建的数据密码</td>
-  </tr>
-  <tr>
-    <td>name</td>
-    <td>填写创建的数据表名称</td>
-  </tr>
-  <tr>
-    <td rowspan="2">database</td>
-    <td>scheme</td>
-    <td>0.0.0.0</td>
-  </tr>
-  <tr>
-    <td>http_port</td>
-    <td>填写创建的端口</td>
-  </tr>
-</tbody></table></markdown-accessiblity-table>
-<p>改完之后, 点击save保存</p>
-<h3>再次启动Alist</h3>
-<p>回到SSH窗口中进行操作.</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">./alist server</pre></div>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmYL72sd2Wyb5C6WrJe6G7w1NvAdpqXiUwFWUEm6FCSGxt"></p>
-<p>运行正常, 记得把管理员用户的密码记住.接着使用Ctrl+c停止运行.</p>
-<h3>使用 Cloudflare 和域名绑定</h3>
-<blockquote>
-<p>因为 serv00 的域名基本上都会被墙, 没办法只能用<del>cf减速器</del>跨墙了</p>
-</blockquote>
-<p>我们进入 <a href="https://dash.cloudflare.com" rel="nofollow">https://dash.cloudflare.com</a><br>
-点击添加域</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD"></p>
-<p>输入自己的域名</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmWEwsF7kjqWYZET8AbyPbVizciT3pLDbi6Pjm4xkYZvCS"></p>
-<p>选择 free 计划</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmeYbZ48awUqAPApdLrRckVqbtLB71XWTpCafpHCwE2hHG"></p>
-<p>复制 dns 名称服务器</p>
-<p><img src="https://ipfs.mbzj.org/ipfs/QmakCvRG52FLk2NV1XFjmWmz5LZuhPg3oD2SdiTunQH8TU"></p>
-<p>然后转到你的域名提供服务商, 添加dns记录<br>
-<img src="https://ipfs.mbzj.org/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a"></p>
-<p>如果没问题就可以通过自定义域名访问了</p>
-<h3>Alist 保活</h3>
-<p>11</p>
-<h3>收尾工作</h3>
-<p>Serv00会不定时杀进程, 我们需要</p>
-<p>Serv00会不定时杀进程, 所以我们把pm2添加开机自启, 可以保证每次重启都能由pm2调动Alist和Cloudflared.而且Serv00每三个月内必须要有一次登录面板或者SSH连接, 不然会删号, 也可以通过一个脚本解决问题, 接下来我会详细说明.</p></div>
+<div class="markdown-body" id="postBody"><p>GitHub Pagesde 的<code class="notranslate">github.io</code>域名访问太慢了, 故有此教程.</p>
+<h1>先决条件</h1>
+<p>假设你已经:</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" id="" disabled="" class="task-list-item-checkbox" checked=""> 拥有了一个域名.</li>
+<li class="task-list-item"><input type="checkbox" id="" disabled="" class="task-list-item-checkbox" checked=""> 域名备案已解决.</li>
+</ul>
+<h1>Cloudflare 添加域</h1>
+<p>我们进入 <a href="https://dash.cloudflare.com" rel="nofollow">https://dash.cloudflare.com</a></p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD" src="https://i0.img2ipfs.com/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD"></p>
+<p>输入自己的域名点击继续, 然后选择底部的 Free 计划.</p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmWEwsF7kjqWYZET8AbyPbVizciT3pLDbi6Pjm4xkYZvCS" src="https://i0.img2ipfs.com/ipfs/QmWEwsF7kjqWYZET8AbyPbVizciT3pLDbi6Pjm4xkYZvCS"></p>
+<p>复制 dns 名称服务器.</p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmakCvRG52FLk2NV1XFjmWmz5LZuhPg3oD2SdiTunQH8TU" src="https://i0.img2ipfs.com/ipfs/QmakCvRG52FLk2NV1XFjmWmz5LZuhPg3oD2SdiTunQH8TU"></p>
+<p>然后转到你的域名提供服务商, 添加 dns 记录.</p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a" src="https://i0.img2ipfs.com/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a"></p>
+<h1>填写 DNS 记录.</h1>
+<p>回到 Cloudflare 面板, 进入 dns 记录, 按照下图添加 <code class="notranslate">CNAME</code> 和 <code class="notranslate">A</code> 记录.</p>
+<p><img data-fancybox="gallery" data-src="https://cdn.img2ipfs.com/ipfs/QmUFcvcDv8g8Y9G3B81pfE9bSuLMwKrz5mpaa9d2Zn3W9Q?filename=image.png" src="https://cdn.img2ipfs.com/ipfs/QmUFcvcDv8g8Y9G3B81pfE9bSuLMwKrz5mpaa9d2Zn3W9Q?filename=image.png"></p>
+<pre class="notranslate"><code class="notranslate">185.199.108.153
+
+185.199.109.153
+
+185.199.110.153
+
+185.199.111.153
+</code></pre>
+<h1>Github Page 设置自定义域名</h1>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmYfvg3jyxVCusmyicJVGQEyXhTfdVJTatotxVHRRqqE9K" src="https://i0.img2ipfs.com/ipfs/QmYfvg3jyxVCusmyicJVGQEyXhTfdVJTatotxVHRRqqE9K"></p>
+<p>填写 Save 之后会提示你等待一会.</p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmYtbdp1WTLPgVdVXJvS5hJCwmUSqN3qCNX3tNjUiCDmYv" src="https://i0.img2ipfs.com/ipfs/QmYtbdp1WTLPgVdVXJvS5hJCwmUSqN3qCNX3tNjUiCDmYv"></p>
+<p>提示<code class="notranslate">DNS check successful</code>代表完成, 之后就可以通过www+你的域名进行访问了.</p>
+<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmUd39gbrv86frzBrjFN5PwHPBnU8hLbfvS7CqpUgjup6M?filename=image.png" src="https://i0.img2ipfs.com/ipfs/QmUd39gbrv86frzBrjFN5PwHPBnU8hLbfvS7CqpUgjup6M?filename=image.png"></p></div>
 <div style="font-size:small;margin-top:8px;float:right;">🥰转载请注明,谢谢!🥰</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
 
 </div>
-    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://GJKen.github.io/gjkdemo.github.io">GJKen</a></div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://GJKen.github.io/demo">Demo</a></div>
 <div id="footer2">
-    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+    <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" style="margin-right: 4px;height:18px;vertical-align: bottom;fill: #ff5a5a;"class="animate_heartBeatScale"><path d="M1017.152 426.592a263.296 263.296 0 0 0-502.304-133.92 263.328 263.328 0 0 0-502.304 133.92s5.152 259.264 505.536 520.096c500.32-260.832 499.072-520.096 499.072-520.096zM282.016 194.976a43.2 43.2 0 1 1 .096 86.4 43.2 43.2 0 0 1-.096-86.4zm-135.04 323.232a45.12 45.12 0 0 1-55.488-31.328 289.472 289.472 0 0 1-10.816-66.592C76.64 313.824 142.24 261.472 145.504 258.88a45.024 45.024 0 0 1 63.2 8.032c15.168 19.488 11.744 47.36-7.328 62.72-2.336 1.952-30.784 27.52-30.592 82.24.096 14.752 2.208 31.616 7.488 50.784a45.12 45.12 0 0 1-31.296 55.552z"/></svg><span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
 </div>
 
 <script>
@@ -573,7 +242,7 @@ if("11/01/2024"!=""){
     var startSite=new Date("11/01/2024");
     var diff=now.getTime()-startSite.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
-    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+    document.getElementById("runday").innerHTML="网站已运行"+diffDay+"天"+" • ";
 }
 </script></div>
 </body>
@@ -606,7 +275,7 @@ function utterancesTheme(theme){
     iframe.contentWindow.postMessage(message,'https://utteranc.es');
 }
 if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
-console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+console.log("\n %c Gmeek main https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
 </script>
 
 <script>
@@ -618,6 +287,7 @@ document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 function openComments(){
     cm=document.getElementById("comments");
     cmButton=document.getElementById("cmButton");
+	cmButton.disabled=true;
     cmButton.innerHTML="loading";
     span=document.createElement("span");
     span.setAttribute("class","AnimatedEllipsis");
@@ -625,7 +295,7 @@ function openComments(){
 
     script=document.createElement("script");
     script.setAttribute("src","https://utteranc.es/client.js");
-    script.setAttribute("repo","GJKen/gjkdemo.github.io");
+    script.setAttribute("repo","GJKen/demo");
     script.setAttribute("issue-term","title");
     
     if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
@@ -717,6 +387,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/lightbox-gjken.min.js'></script>
+<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script>
 
 </html>

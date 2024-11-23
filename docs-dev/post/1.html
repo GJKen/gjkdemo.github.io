@@ -4,8 +4,20 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href='../../static/primer.min.css' rel='stylesheet' />
-    <script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/Indextheme.min.js'>
+    <link href='../../static/primer.css' rel='stylesheet' />
+    <script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/Indextheme.min.js'></script>
+	<script src="https://cdn.jsdelivr.net/gh/gyanprabhat7/LazyLoad.JS/lazyimage.js"></script>
+	<script>
+	    const lazyImage = new LazyLoadImage('.lazy-load-image');
+	
+	    // Customize the loading strategy
+	    lazyImage.observeWithIntersectionObserver();
+	
+	    // Optional: Provide a placeholder image
+	    lazyImage.placeholderImage = 'placeholder.jpg';
+	
+	    lazyImage.init();
+	</script>
     <link rel="icon" href="https://pic.imgdb.cn/item/6734c652d29ded1a8cc038aa.jpg"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
@@ -915,7 +927,9 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
             post_body = re.sub(r'<code class='notranslate'>Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
 ```
 
-原先匹配的内容为:`<code class='notranslate'>Gmeek-html(.*?)</code>`, 这样会导致转换文章内容时出现显示错误.
+原先匹配的内容为:`<code class='notranslate'>Gmeek-html(.*?)</code>`,
+
+这种情况下, 如果在文章中含有代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,
 
 更改后缩小了匹配范围, 可以直接使用`Gmeek-html`让其在文章内正常显示.
 
@@ -1856,7 +1870,9 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
             post_body = re.sub(r'<code class='notranslate'>Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
 ```
 
-原先匹配的内容为:`<code class='notranslate'>Gmeek-html(.*?)</code>`, 这样会导致转换文章内容时出现显示错误.
+原先匹配的内容为:`<code class='notranslate'>Gmeek-html(.*?)</code>`,
+
+这种情况下, 如果在文章中含有代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,
 
 更改后缩小了匹配范围, 可以直接使用`Gmeek-html`让其在文章内正常显示.
 
@@ -1895,6 +1911,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 <meta property="og:url" content="https://GJKen.github.io/demo/post/1.html">
 <meta property="og:image" content="https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp">
 <title>Gmeek - 记录使用过程</title>
+<!-- <link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" /> -->
 
 
 </head>
@@ -2578,7 +2595,8 @@ pv 修改成 uv 计数.</p>
 <p>替换成下面的代码:</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-html'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>:
             <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-html(&amp;lt;.*?&amp;gt;)&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s1">html</span>.<span class="pl-en">unescape</span>(<span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)), <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
-<p>原先匹配的内容为:<code class="notranslate">&lt;code class="notranslate"&gt;Gmeek-html(.*?)&lt;/code&gt;</code>, 这样会导致转换文章内容时出现显示错误.</p>
+<p>原先匹配的内容为:<code class="notranslate">&lt;code class="notranslate"&gt;Gmeek-html(.*?)&lt;/code&gt;</code>,</p>
+<p>这种情况下, 如果在文章中含有代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,</p>
 <p>更改后缩小了匹配范围, 可以直接使用<code class="notranslate">Gmeek-html</code>让其在文章内正常显示.</p>
 <h1>添加自定义单篇文章代码</h1>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">id</span>="<span class="pl-s">busuanzi</span>"<span class="pl-kos">&gt;</span>
@@ -2717,6 +2735,7 @@ document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 function openComments(){
     cm=document.getElementById("comments");
     cmButton=document.getElementById("cmButton");
+	cmButton.disabled=true;
     cmButton.innerHTML="loading";
     span=document.createElement("span");
     span.setAttribute("class","AnimatedEllipsis");
@@ -2816,6 +2835,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script src='../../static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script>
+<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script>
 
 </html>
