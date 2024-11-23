@@ -7,7 +7,7 @@
     "startSite":"11/01/2024",
     "onePageListNum":15,
     "i18n":"CN",
-    "iconList":{"TG群":"<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" height="24" width="24" stroke-linejoin="round" style="color: #656d76;height: 16px;width: 16px;" fill="none" stroke-linecap="round"><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4"></path></svg>"},
+    "iconList":{"TG群":"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke='currentColor' height='24' width='24' stroke-linejoin='round' style='color: #656d76;height: 16px;width: 16px;' fill='none' stroke-linecap='round'><path d='M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4'></path></svg>"},
     "exlink":{"TG群":"https://t.me/GJK_chat"},
     "urlMode":"issue",
     "bottomText":"🥰转载请注明,谢谢!🥰",
