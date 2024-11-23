@@ -5,13 +5,4 @@ document.addEventListener('DOMContentLoaded', () => {
 		href: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'
 	}));
 	Fancybox.bind('[data-fancybox="gallery"]', {});
-
-	// https://lazyload.js.org
-	// 延迟加载图片所需函数
-	const lazyImage = new LazyImage('.lazy-load-image');
-	// Customize the loading strategy
-	lazyImage.observeWithIntersectionObserver();
-	// Optional: Provide a placeholder image
-	lazyImage.placeholderImage = 'placeholder.jpg';
-	lazyImage.init();
 });
