@@ -1977,12 +1977,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>代码:</p>
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"subTitle"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script&gt;document.getElementById('content').innerHTML = `&lt;div style='text-align: center;'&gt;&lt;p&gt;CV工程师,&lt;/p&gt;&lt;p&gt;一个又菜又爱玩, 喜欢瞎折腾的流浪者.&lt;/p&gt;&lt;/div&gt;`;&lt;/script&gt;<span class="pl-pds">"</span></span>,</pre></div>
 <p>效果图:</p>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF" src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
+<p><img data-fancybox="gallery" src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
 <p>从图中可以看到, 可用 js 插入 html 实现修改文字.</p>
 <h2>subTitle - 隐藏</h2>
 <p><code class="notranslate">"subTitle":" ",</code></p>
 <p>效果图:</p>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy" src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"></p>
+<p><img data-fancybox="gallery" src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"></p>
 <p>可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.</p>
 <h1>记录功能块代码</h1>
 <p>代码摘抄自网络, 有删改, 都存放在仓库, 使用 jsdelivr CDN 加速.</p>
@@ -1998,7 +1998,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 已知bug: 给body增加<code class="notranslate">backdrop-filter: blur(30px);</code>样式时, 会出现页面异常, 待后续修复.</p>
 </blockquote>
 <p>图示:</p>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H" src="https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H"></p>
+<p><img data-fancybox="gallery" src="https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H"></p>
 <h2>Fancybox.js - 图片浏览器</h2>
 <blockquote>
 <p>Fancybox <a href="https://www.fancyapps.com" rel="nofollow">官网</a></p>
@@ -2026,12 +2026,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>然后在下面增加代码:</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
             <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox&amp;lt;img src="([^"]+)"&amp;gt;&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" data-src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>" src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmbnqZ2K74iZPmHgzAJKwro2uoH3Q3U1hbQanfPJpXfv4b" src="https://i0.img2ipfs.com/ipfs/QmbnqZ2K74iZPmHgzAJKwro2uoH3Q3U1hbQanfPJpXfv4b"></p>
+<p><img data-fancybox="gallery" src="https://i0.img2ipfs.com/ipfs/QmbnqZ2K74iZPmHgzAJKwro2uoH3Q3U1hbQanfPJpXfv4b"></p>
 <h3>示例使用</h3>
 <p>在 markdown 插入图片:</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-imgbox<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq</span>"<span class="pl-kos">&gt;</span>`</pre></div>
 <p>通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的<code class="notranslate">data-fancybox="gallery"</code> 和 <code class="notranslate">data-src=""</code>属性.</p>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN" src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN"></p>
+<p><img data-fancybox="gallery" src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN"></p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
 <blockquote>
 <p>Vercount <a href="https://github.com/EvanNotFound/vercount">Github</a><br>
@@ -2482,10 +2482,10 @@ pv 修改成 uv 计数.</p>
 <p>为什么这样做? <del>自娱自乐.</del></p>
 <h2>Fork Gmeek 仓库</h2>
 <p>仓库地址👉 <a href="https://github.com/Meekdai/Gmeek">https://github.com/Meekdai/Gmeek</a></p>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV" src="https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV"></p>
+<p><img data-fancybox="gallery" src="https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV"></p>
 <p>fork 之后, 转到搭建博客的 github 源码,</p>
 <p>打开<code class="notranslate">.github/workflows/Gmeek.yml</code>文件, 修改构建博客仓库的地址为你自己的仓库地址</p>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav" src="https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav"></p>
+<p><img data-fancybox="gallery" src="https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav"></p>
 <p>打开<code class="notranslate">config.json</code>文件, 修改右边字段值为main<code class="notranslate">"GMEEK_VERSION":"main"</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>如果值是<code class="notranslate">last</code>的话, Action 会失败, 因为默认值<code class="notranslate">last</code>是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.<br>
 <del>创建新的 tag 也可以, 但是挺麻烦.</del></p>
@@ -2493,10 +2493,10 @@ pv 修改成 uv 计数.</p>
 <h2>修改网站下方的文字</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
 <p>下图文字直接修改即可, 不同语言的按需修改.</p>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs" src="https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs"></p>
+<p><img data-fancybox="gallery" src="https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs"></p>
 <h2>修改默认 primer.css 链接</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v" src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"></p>
+<p><img data-fancybox="gallery" src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"></p>
 <p>这里我直接写改成我存放的链接 <a href="https://gjken.github.io/primer.css" rel="nofollow">https://gjken.github.io/primer.css</a></p>
 <h2>修改页面头部样式</h2>
 <h3>打开 post.html 文件</h3>
@@ -2514,9 +2514,9 @@ pv 修改成 uv 计数.</p>
 <blockquote>
 <p>增加圆角6px.</p>
 </blockquote>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS" src="https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS"></p>
+<p><img data-fancybox="gallery" src="https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS"></p>
 <p>效果图:</p>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW" src="https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW"></p>
+<p><img data-fancybox="gallery" src="https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW"></p>
 <h2>页面底部文字增加图标动画</h2>
 <p>增加爱心图标动画.</p>
 <p>打开<code class="notranslate">footer.html</code></p>
@@ -2566,7 +2566,7 @@ pv 修改成 uv 计数.</p>
 }</pre></div>
 </details>
 <p>效果图:</p>
-<p><img data-fancybox="gallery" data-src="https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH" src="https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH"></p>
+<p><img data-fancybox="gallery" src="https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH"></p>
 <h1>使用 Gmeek-html, 给博客插入图片, 防止链接自动转换</h1>
 <p>Github 在 issues 插入的图片也会自动转换为 Github 的地址.</p>
 <p>为了文章的多样性, 在 Gmeek 的<code class="notranslate">v2.19</code>版本中添加了支持 html 标签的功能.</p>
