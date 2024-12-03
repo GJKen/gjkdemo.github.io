@@ -1,4 +1,4 @@
-[`Gmeek](https://github.com/Meekdai/`Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
+[Gmeek](https://github.com/Meekdai/`Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
 # 搭建博客
 
