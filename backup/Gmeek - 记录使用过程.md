@@ -1,4 +1,8 @@
+`Gmeek-imgbox="https://example.com/image.jpg"`
+
 [Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
+
+`<Gmeek-imgbox src="https://img.shields.io/static/v1?label=&message=网站&color=218155">`
 
 # 搭建博客
 
