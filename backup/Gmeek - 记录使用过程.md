@@ -1,8 +1,8 @@
-[Gmeek](https://github.com/Meekdai/`Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
+[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
 # 搭建博客
 
-**如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#`Gmeek).**
+**如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#gmeek).**
 
 **这里主要记录一些 js 和 CSS 的修改.**
 
@@ -108,17 +108,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	lazyImage.init();
 ```
 
-#### 修改 `Gmeek 仓库的 `Gmeek.py
+#### 修改 Gmeek 仓库的 Gmeek.py
 
-> 不知道怎么自定义 `Gmeek 仓库的看这👉`Gmeek-html<a href="#通过-`Gmeek-仓库-diy-博客">通过 `Gmeek 仓库 DIY 博客</a>`
+> 不知道怎么自定义 Gmeek 仓库的看这👉`Gmeek-html<a href="#通过-gmeek-仓库-diy-博客">通过 Gmeek 仓库 DIY 博客</a>`
 
 打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
 
 然后在下面增加代码:
 
 ```python
-if '<code class="notranslate">`Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class="notranslate">`Gmeek-imgbox&lt;img src="([^"]+)"&gt;</code>', lambda match: f'<img data-fancybox="gallery" src="{match.group(1)}">', post_body, flags=re.DOTALL)
+if '<code class="notranslate">Gmeek-imgbox' in post_body: 
+            post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox&lt;img src="([^"]+)"&gt;</code>', lambda match: f'<img data-fancybox="gallery" src="{match.group(1)}">', post_body, flags=re.DOTALL)
 ```
 
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmQu6VykpD9odhGB6bMdtR5PdCT9P89ajzM7YD2sq7YuPy">`
@@ -135,7 +135,7 @@ if '<code class="notranslate">`Gmeek-imgbox' in post_body:
 
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qmb4526u4e4jy4vscE8w3gVRyVkegyotdnwhS1rVCoVm8k">`
 
-## [`GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/`GmeekVercount_uv.min.js) - 网站增加访客计数器
+## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
 > Vercount [Github](https://github.com/EvanNotFound/vercount)
 > pv 修改成 uv 计数.
@@ -143,7 +143,7 @@ if '<code class="notranslate">`Gmeek-imgbox' in post_body:
 建议放入`allHead`里全站添加 js.
 
 ```json
-"allHead":"<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/`GmeekVercount_uv.min.js'></script>"
+"allHead":"<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script>"
 ```
 
 ## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
@@ -756,26 +756,26 @@ a {
 
 </details>
 
-# 通过 `Gmeek 仓库 DIY 博客
+# 通过 Gmeek 仓库 DIY 博客
 
 为什么这样做? ~~自娱自乐.~~
 
-## Fork `Gmeek 仓库
+## Fork Gmeek 仓库
 
-仓库地址👉 https://github.com/Meekdai/`Gmeek
+仓库地址👉 https://github.com/Meekdai/Gmeek
 
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV">`
 
 fork 之后, 转到搭建博客的 github 源码,
 
-打开`.github/workflows/`Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址
+打开`.github/workflows/Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址
 
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav">`
 
-打开`config.json`文件, 修改右边字段值为main`"`Gmeek_VERSION":"main"`
+打开`config.json`文件, 修改右边字段值为main`"GMEEK_VERSION":"main"`
 
 > [!NOTE]
-> 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(`Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
+> 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
 > ~~创建新的 tag 也可以, 但是挺麻烦.~~
 
 ## 修改网站下方的文字
@@ -894,11 +894,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH">`
 
-# 使用 `Gmeek-html, 给博客插入图片, 防止链接自动转换
+# 使用 Gmeek-html, 给博客插入图片, 防止链接自动转换
 
 Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
-为了文章的多样性, 在 `Gmeek 的`v2.19`版本中添加了支持 html 标签的功能.
+为了文章的多样性, 在 Gmeek 的`v2.19`版本中添加了支持 html 标签的功能.
 
 示例代码:
 
@@ -911,25 +911,25 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 `Gmeek-html<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
 
 > [!Important]
-> 如果在文章中含有代码块标签并且内容为`Gmeek-html, Action 那边会进行转换导致显示错误, 详情看[#201](https://github.com/Meekdai/`Gmeek/issues/201)
-> `Gmeek-html` 换成小写就没事了.
+> 如果在文章中含有代码块标签并且内容为Gmeek-html, Action 那边会进行转换导致显示错误, 详情看[#201](https://github.com/Meekdai/Gmeek/issues/201)
+> `gmeek-html` 换成小写就没事了.
 
-# 优化 `Gmeek-html, 标签转换匹配
+# 优化 Gmeek-html, 标签转换匹配
 
 打开`Gmeek.py`
 
-定位字符串`Gmeek-html`
+定位字符串`gmeek-html`
 
 替换成下面的代码:
 
 ```python
-if '<code class="notranslate">`Gmeek-html' in post_body:
-            post_body = re.sub(r'<code class="notranslate">`Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
+if '<code class="notranslate">Gmeek-html' in post_body:
+            post_body = re.sub(r'<code class="notranslate">Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
 ```
 
-原先匹配的内容为:`<code class="notranslate">`Gmeek-html(.*?)</code>`,
+原先匹配的内容为:`<code class="notranslate">Gmeek-html(.*?)</code>`,
 
-这种情况下, 如果在文章中含有代码块标签并且内容含有 `Gmeek-html, 会导致转换文章内容时出现显示错误,
+这种情况下, 如果在文章中含有代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,
 
 更改后缩小了匹配范围, 可以直接使用`Gmeek-html`让其在文章内正常显示.
 

@@ -10,11 +10,11 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="[Gmeek](https://github.com/Meekdai/`Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
+<meta name="description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
 # 搭建博客
 
-**如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#`Gmeek).**
+**如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#gmeek).**
 
 **这里主要记录一些 js 和 CSS 的修改.**
 
@@ -120,17 +120,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	lazyImage.init();
 ```
 
-#### 修改 `Gmeek 仓库的 `Gmeek.py
+#### 修改 Gmeek 仓库的 Gmeek.py
 
-> 不知道怎么自定义 `Gmeek 仓库的看这👉`Gmeek-html<a href='#通过-`Gmeek-仓库-diy-博客'>通过 `Gmeek 仓库 DIY 博客</a>`
+> 不知道怎么自定义 Gmeek 仓库的看这👉`Gmeek-html<a href='#通过-gmeek-仓库-diy-博客'>通过 Gmeek 仓库 DIY 博客</a>`
 
 打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
 
 然后在下面增加代码:
 
 ```python
-if '<code class='notranslate'>`Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class='notranslate'>`Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
+if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
 ```
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmQu6VykpD9odhGB6bMdtR5PdCT9P89ajzM7YD2sq7YuPy'>`
@@ -147,7 +147,7 @@ if '<code class='notranslate'>`Gmeek-imgbox' in post_body:
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmb4526u4e4jy4vscE8w3gVRyVkegyotdnwhS1rVCoVm8k'>`
 
-## [`GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/`GmeekVercount_uv.min.js) - 网站增加访客计数器
+## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
 > Vercount [Github](https://github.com/EvanNotFound/vercount)
 > pv 修改成 uv 计数.
@@ -155,7 +155,7 @@ if '<code class='notranslate'>`Gmeek-imgbox' in post_body:
 建议放入`allHead`里全站添加 js.
 
 ```json
-'allHead':'<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/`GmeekVercount_uv.min.js'></script>'
+'allHead':'<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script>'
 ```
 
 ## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
@@ -768,26 +768,26 @@ a {
 
 </details>
 
-# 通过 `Gmeek 仓库 DIY 博客
+# 通过 Gmeek 仓库 DIY 博客
 
 为什么这样做? ~~自娱自乐.~~
 
-## Fork `Gmeek 仓库
+## Fork Gmeek 仓库
 
-仓库地址👉 https://github.com/Meekdai/`Gmeek
+仓库地址👉 https://github.com/Meekdai/Gmeek
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV'>`
 
 fork 之后, 转到搭建博客的 github 源码,
 
-打开`.github/workflows/`Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址
+打开`.github/workflows/Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav'>`
 
-打开`config.json`文件, 修改右边字段值为main`'`Gmeek_VERSION':'main'`
+打开`config.json`文件, 修改右边字段值为main`'GMEEK_VERSION':'main'`
 
 > [!NOTE]
-> 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(`Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
+> 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
 > ~~创建新的 tag 也可以, 但是挺麻烦.~~
 
 ## 修改网站下方的文字
@@ -906,11 +906,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH'>`
 
-# 使用 `Gmeek-html, 给博客插入图片, 防止链接自动转换
+# 使用 Gmeek-html, 给博客插入图片, 防止链接自动转换
 
 Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
-为了文章的多样性, 在 `Gmeek 的`v2.19`版本中添加了支持 html 标签的功能.
+为了文章的多样性, 在 Gmeek 的`v2.19`版本中添加了支持 html 标签的功能.
 
 示例代码:
 
@@ -923,25 +923,25 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 `Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
 
 > [!Important]
-> 如果在文章中含有代码块标签并且内容为`Gmeek-html, Action 那边会进行转换导致显示错误, 详情看[#201](https://github.com/Meekdai/`Gmeek/issues/201)
-> `Gmeek-html` 换成小写就没事了.
+> 如果在文章中含有代码块标签并且内容为Gmeek-html, Action 那边会进行转换导致显示错误, 详情看[#201](https://github.com/Meekdai/Gmeek/issues/201)
+> `gmeek-html` 换成小写就没事了.
 
-# 优化 `Gmeek-html, 标签转换匹配
+# 优化 Gmeek-html, 标签转换匹配
 
 打开`Gmeek.py`
 
-定位字符串`Gmeek-html`
+定位字符串`gmeek-html`
 
 替换成下面的代码:
 
 ```python
-if '<code class='notranslate'>`Gmeek-html' in post_body:
-            post_body = re.sub(r'<code class='notranslate'>`Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
+if '<code class='notranslate'>Gmeek-html' in post_body:
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
 ```
 
-原先匹配的内容为:`<code class='notranslate'>`Gmeek-html(.*?)</code>`,
+原先匹配的内容为:`<code class='notranslate'>Gmeek-html(.*?)</code>`,
 
-这种情况下, 如果在文章中含有代码块标签并且内容含有 `Gmeek-html, 会导致转换文章内容时出现显示错误,
+这种情况下, 如果在文章中含有代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,
 
 更改后缩小了匹配范围, 可以直接使用`Gmeek-html`让其在文章内正常显示.
 
@@ -978,11 +978,11 @@ if '<code class='notranslate'>`Gmeek-html' in post_body:
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间。">
 <meta property="og:title" content="Gmeek - 记录使用过程">
-<meta property="og:description" content="[Gmeek](https://github.com/Meekdai/`Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
+<meta property="og:description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
 # 搭建博客
 
-**如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#`Gmeek).**
+**如何搭建博客我就不写了, 强烈建议看完[官方文档](https://blog.meekdai.com/tag.html#gmeek).**
 
 **这里主要记录一些 js 和 CSS 的修改.**
 
@@ -1088,17 +1088,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	lazyImage.init();
 ```
 
-#### 修改 `Gmeek 仓库的 `Gmeek.py
+#### 修改 Gmeek 仓库的 Gmeek.py
 
-> 不知道怎么自定义 `Gmeek 仓库的看这👉`Gmeek-html<a href='#通过-`Gmeek-仓库-diy-博客'>通过 `Gmeek 仓库 DIY 博客</a>`
+> 不知道怎么自定义 Gmeek 仓库的看这👉`Gmeek-html<a href='#通过-gmeek-仓库-diy-博客'>通过 Gmeek 仓库 DIY 博客</a>`
 
 打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
 
 然后在下面增加代码:
 
 ```python
-if '<code class='notranslate'>`Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class='notranslate'>`Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
+if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
 ```
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmQu6VykpD9odhGB6bMdtR5PdCT9P89ajzM7YD2sq7YuPy'>`
@@ -1115,7 +1115,7 @@ if '<code class='notranslate'>`Gmeek-imgbox' in post_body:
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmb4526u4e4jy4vscE8w3gVRyVkegyotdnwhS1rVCoVm8k'>`
 
-## [`GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/`GmeekVercount_uv.min.js) - 网站增加访客计数器
+## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
 > Vercount [Github](https://github.com/EvanNotFound/vercount)
 > pv 修改成 uv 计数.
@@ -1123,7 +1123,7 @@ if '<code class='notranslate'>`Gmeek-imgbox' in post_body:
 建议放入`allHead`里全站添加 js.
 
 ```json
-'allHead':'<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/`GmeekVercount_uv.min.js'></script>'
+'allHead':'<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script>'
 ```
 
 ## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
@@ -1736,26 +1736,26 @@ a {
 
 </details>
 
-# 通过 `Gmeek 仓库 DIY 博客
+# 通过 Gmeek 仓库 DIY 博客
 
 为什么这样做? ~~自娱自乐.~~
 
-## Fork `Gmeek 仓库
+## Fork Gmeek 仓库
 
-仓库地址👉 https://github.com/Meekdai/`Gmeek
+仓库地址👉 https://github.com/Meekdai/Gmeek
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV'>`
 
 fork 之后, 转到搭建博客的 github 源码,
 
-打开`.github/workflows/`Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址
+打开`.github/workflows/Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav'>`
 
-打开`config.json`文件, 修改右边字段值为main`'`Gmeek_VERSION':'main'`
+打开`config.json`文件, 修改右边字段值为main`'GMEEK_VERSION':'main'`
 
 > [!NOTE]
-> 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(`Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
+> 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
 > ~~创建新的 tag 也可以, 但是挺麻烦.~~
 
 ## 修改网站下方的文字
@@ -1874,11 +1874,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH'>`
 
-# 使用 `Gmeek-html, 给博客插入图片, 防止链接自动转换
+# 使用 Gmeek-html, 给博客插入图片, 防止链接自动转换
 
 Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
-为了文章的多样性, 在 `Gmeek 的`v2.19`版本中添加了支持 html 标签的功能.
+为了文章的多样性, 在 Gmeek 的`v2.19`版本中添加了支持 html 标签的功能.
 
 示例代码:
 
@@ -1891,25 +1891,25 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 `Gmeek-html<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
 
 > [!Important]
-> 如果在文章中含有代码块标签并且内容为`Gmeek-html, Action 那边会进行转换导致显示错误, 详情看[#201](https://github.com/Meekdai/`Gmeek/issues/201)
-> `Gmeek-html` 换成小写就没事了.
+> 如果在文章中含有代码块标签并且内容为Gmeek-html, Action 那边会进行转换导致显示错误, 详情看[#201](https://github.com/Meekdai/Gmeek/issues/201)
+> `gmeek-html` 换成小写就没事了.
 
-# 优化 `Gmeek-html, 标签转换匹配
+# 优化 Gmeek-html, 标签转换匹配
 
 打开`Gmeek.py`
 
-定位字符串`Gmeek-html`
+定位字符串`gmeek-html`
 
 替换成下面的代码:
 
 ```python
-if '<code class='notranslate'>`Gmeek-html' in post_body:
-            post_body = re.sub(r'<code class='notranslate'>`Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
+if '<code class='notranslate'>Gmeek-html' in post_body:
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
 ```
 
-原先匹配的内容为:`<code class='notranslate'>`Gmeek-html(.*?)</code>`,
+原先匹配的内容为:`<code class='notranslate'>Gmeek-html(.*?)</code>`,
 
-这种情况下, 如果在文章中含有代码块标签并且内容含有 `Gmeek-html, 会导致转换文章内容时出现显示错误,
+这种情况下, 如果在文章中含有代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,
 
 更改后缩小了匹配范围, 可以直接使用`Gmeek-html`让其在文章内正常显示.
 
@@ -2016,9 +2016,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><p><a href="https://github.com/Meekdai/%60Gmeek">Gmeek</a> 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.</p>
+<div class="markdown-body" id="postBody"><p><a href="https://github.com/Meekdai/Gmeek">Gmeek</a> 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.</p>
 <h1>搭建博客</h1>
-<p><strong>如何搭建博客我就不写了, 强烈建议看完<a href="https://blog.meekdai.com/tag.html#%60Gmeek" rel="nofollow">官方文档</a>.</strong></p>
+<p><strong>如何搭建博客我就不写了, 强烈建议看完<a href="https://blog.meekdai.com/tag.html#gmeek" rel="nofollow">官方文档</a>.</strong></p>
 <p><strong>这里主要记录一些 js 和 CSS 的修改.</strong></p>
 <div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title"><svg class="octicon octicon-alert mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p><p>利用 Github Page 搭建的网站内容是完全公开的, 请注意不要上传自己的隐私!!!</p>
 </div>
@@ -2086,27 +2086,27 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 	<span class="pl-c">// Optional: Provide a placeholder image</span>
 	<span class="pl-s1">lazyImage</span><span class="pl-kos">.</span><span class="pl-c1">placeholderImage</span> <span class="pl-c1">=</span> <span class="pl-s">'placeholder.jpg'</span><span class="pl-kos">;</span>
 	<span class="pl-s1">lazyImage</span><span class="pl-kos">.</span><span class="pl-en">init</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
-<h4>修改 <code class="notranslate">Gmeek 仓库的 </code>Gmeek.py</h4>
+<h4>修改 Gmeek 仓库的 Gmeek.py</h4>
 <blockquote>
-<p>不知道怎么自定义 <code class="notranslate">Gmeek 仓库的看这👉</code>Gmeek-html<a href="#通过-`Gmeek-仓库-diy-博客">通过 <code class="notranslate">Gmeek 仓库 DIY 博客&lt;/a&gt;</code></a></p>
+<p>不知道怎么自定义 Gmeek 仓库的看这👉<a href="#通过-gmeek-仓库-diy-博客">通过 Gmeek 仓库 DIY 博客</a></p>
 </blockquote>
 <p>打开<code class="notranslate">Gmeek.py</code>文件, 定位字符串<code class="notranslate">Gmeek-html</code></p>
 <p>然后在下面增加代码:</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;`Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
-            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;`Gmeek-imgbox&amp;lt;img src="([^"]+)"&amp;gt;&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
+            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox&amp;lt;img src="([^"]+)"&amp;gt;&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
 <p><img data-fancybox="gallery" class="lazy-load-image" src="https://i0.img2ipfs.com/ipfs/QmQu6VykpD9odhGB6bMdtR5PdCT9P89ajzM7YD2sq7YuPy"></p>
 <h3>示例使用</h3>
 <p>在 markdown 中插入图片:</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-imgbox<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq</span>"<span class="pl-kos">&gt;</span>`</pre></div>
 <p>通过 Action 转换后实际效果如下, 在 html 里面图片标签会增加 fancybox 所需的<code class="notranslate">data-fancybox="gallery"</code>属性.</p>
 <p><img data-fancybox="gallery" class="lazy-load-image" src="https://i0.img2ipfs.com/ipfs/Qmb4526u4e4jy4vscE8w3gVRyVkegyotdnwhS1rVCoVm8k"></p>
-<h2>[<code class="notranslate">GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/</code>GmeekVercount_uv.min.js) - 网站增加访客计数器</h2>
+<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
 <blockquote>
 <p>Vercount <a href="https://github.com/EvanNotFound/vercount">Github</a><br>
 pv 修改成 uv 计数.</p>
 </blockquote>
 <p>建议放入<code class="notranslate">allHead</code>里全站添加 js.</p>
-<div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"allHead"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/`GmeekVercount_uv.min.js'&gt;&lt;/script&gt;<span class="pl-pds">"</span></span></pre></div>
+<div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"allHead"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'&gt;&lt;/script&gt;<span class="pl-pds">"</span></span></pre></div>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js">ImgLazyLoad.js</a> - 图片懒加载</h2>
 <blockquote>
 <p>来源: <a href="https://github.com/liyifanniubi/liyifanniubi.github.io">Github</a></p>
@@ -2546,16 +2546,16 @@ pv 修改成 uv 计数.</p>
 	<span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;
 }</pre></div>
 </details>
-<h1>通过 `Gmeek 仓库 DIY 博客</h1>
+<h1>通过 Gmeek 仓库 DIY 博客</h1>
 <p>为什么这样做? <del>自娱自乐.</del></p>
-<h2>Fork `Gmeek 仓库</h2>
-<p>仓库地址👉 <a href="https://github.com/Meekdai/%60Gmeek">https://github.com/Meekdai/`Gmeek</a></p>
+<h2>Fork Gmeek 仓库</h2>
+<p>仓库地址👉 <a href="https://github.com/Meekdai/Gmeek">https://github.com/Meekdai/Gmeek</a></p>
 <p><img data-fancybox="gallery" class="lazy-load-image" src="https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV"></p>
 <p>fork 之后, 转到搭建博客的 github 源码,</p>
-<p>打开<code class="notranslate">.github/workflows/</code>Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址</p>
+<p>打开<code class="notranslate">.github/workflows/Gmeek.yml</code>文件, 修改构建博客仓库的地址为你自己的仓库地址</p>
 <p><img data-fancybox="gallery" class="lazy-load-image" src="https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav"></p>
-<p>打开<code class="notranslate">config.json</code>文件, 修改右边字段值为main<code class="notranslate">"</code>Gmeek_VERSION":"main"`</p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>如果值是<code class="notranslate">last</code>的话, Action 会失败, 因为默认值<code class="notranslate">last</code>是靠源码仓库(`Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.<br>
+<p>打开<code class="notranslate">config.json</code>文件, 修改右边字段值为main<code class="notranslate">"GMEEK_VERSION":"main"</code></p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>如果值是<code class="notranslate">last</code>的话, Action 会失败, 因为默认值<code class="notranslate">last</code>是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.<br>
 <del>创建新的 tag 也可以, 但是挺麻烦.</del></p>
 </div>
 <h2>修改网站下方的文字</h2>
@@ -2635,24 +2635,24 @@ pv 修改成 uv 计数.</p>
 </details>
 <p>效果图:</p>
 <p><img data-fancybox="gallery" class="lazy-load-image" src="https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH"></p>
-<h1>使用 `Gmeek-html, 给博客插入图片, 防止链接自动转换</h1>
+<h1>使用 Gmeek-html, 给博客插入图片, 防止链接自动转换</h1>
 <p>Github 在 issues 插入的图片也会自动转换为 Github 的地址.</p>
-<p>为了文章的多样性, 在 <code class="notranslate">Gmeek 的</code>v2.19`版本中添加了支持 html 标签的功能.</p>
+<p>为了文章的多样性, 在 Gmeek 的<code class="notranslate">v2.19</code>版本中添加了支持 html 标签的功能.</p>
 <p>示例代码:</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-html<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq</span>"<span class="pl-kos">&gt;</span>`</pre></div>
 <p>效果图:</p>
 <p><img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq"></p>
-<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>如果在文章中含有代码块标签并且内容为<code class="notranslate">Gmeek-html, Action 那边会进行转换导致显示错误, 详情看[#201](https://github.com/Meekdai/</code>Gmeek/issues/201)<br>
-<code class="notranslate">Gmeek-html</code> 换成小写就没事了.</p>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>如果在文章中含有代码块标签并且内容为Gmeek-html, Action 那边会进行转换导致显示错误, 详情看<a href="https://github.com/Meekdai/Gmeek/issues/201" data-hovercard-type="issue" data-hovercard-url="/Meekdai/Gmeek/issues/201/hovercard">#201</a><br>
+<code class="notranslate">gmeek-html</code> 换成小写就没事了.</p>
 </div>
-<h1>优化 `Gmeek-html, 标签转换匹配</h1>
+<h1>优化 Gmeek-html, 标签转换匹配</h1>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
-<p>定位字符串<code class="notranslate">Gmeek-html</code></p>
+<p>定位字符串<code class="notranslate">gmeek-html</code></p>
 <p>替换成下面的代码:</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;`Gmeek-html'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>:
-            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;`Gmeek-html(&amp;lt;.*?&amp;gt;)&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s1">html</span>.<span class="pl-en">unescape</span>(<span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)), <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
-<p>原先匹配的内容为:<code class="notranslate">&lt;code class="notranslate"&gt;</code>Gmeek-html(.*?)`,</p>
-<p>这种情况下, 如果在文章中含有代码块标签并且内容含有 `Gmeek-html, 会导致转换文章内容时出现显示错误,</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-html'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>:
+            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-html(&amp;lt;.*?&amp;gt;)&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s1">html</span>.<span class="pl-en">unescape</span>(<span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)), <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
+<p>原先匹配的内容为:<code class="notranslate">&lt;code class="notranslate"&gt;Gmeek-html(.*?)&lt;/code&gt;</code>,</p>
+<p>这种情况下, 如果在文章中含有代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,</p>
 <p>更改后缩小了匹配范围, 可以直接使用<code class="notranslate">Gmeek-html</code>让其在文章内正常显示.</p>
 <h1>添加自定义单篇文章代码</h1>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">id</span>="<span class="pl-s">busuanzi</span>"<span class="pl-kos">&gt;</span>
