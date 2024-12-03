@@ -11,6 +11,14 @@
 
 # Config.json 小妙用
 
+## 引用顺序
+
+官方虽然没说, 但是经过我后面测试得出:
+
+`script`字段里面引用的 js 代码, 写在尾巴加载越靠前!
+
+> 其它字段还未测试过, 不知道是不是一样的道理.
+
 ## subTitle - js插入
 
 代码:
@@ -65,10 +73,10 @@
 我这里用的是`5.0`版本, cdn 加速链接.
 
 ```json
-"script":"<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>"
+"script":"<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>"
 ```
 
-`ArticleCss.js`的内容如下:
+`ArticleJs.js`需要填写的内容如下:
 
 ```js
 document.addEventListener('DOMContentLoaded', () => {
@@ -84,6 +92,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.
 
+## lazyImage.js - 图片懒加载
+
+> lazyImage [官网](https://lazyload.js.org)
+
+打开`post.html`文件, 在`<script>`标签里面增加下面 js 代码.
+
+```JavaScript
+	// 图片懒加载所需函数
+	const lazyImage = new LazyImage('.lazy-load-image');
+	// Customize the loading strategy
+	lazyImage.observeWithIntersectionObserver();
+	// Optional: Provide a placeholder image
+	lazyImage.placeholderImage = 'placeholder.jpg';
+	lazyImage.init();
+```
+
 #### 修改 Gmeek 仓库的 Gmeek.py
 
 > 不知道怎么自定义 Gmeek 仓库的看这👉`Gmeek-html<a href="#通过-gmeek-仓库-diy-博客">通过 Gmeek 仓库 DIY 博客</a>`
@@ -94,22 +118,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ```python
 if '<code class="notranslate">Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox&lt;img src="([^"]+)"&gt;</code>', lambda match: f'<img data-fancybox="gallery" data-src="{match.group(1)}" src="{match.group(1)}">', post_body, flags=re.DOTALL)
+            post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox&lt;img src="([^"]+)"&gt;</code>', lambda match: f'<img data-fancybox="gallery" src="{match.group(1)}">', post_body, flags=re.DOTALL)
 ```
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbnqZ2K74iZPmHgzAJKwro2uoH3Q3U1hbQanfPJpXfv4b">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmQu6VykpD9odhGB6bMdtR5PdCT9P89ajzM7YD2sq7YuPy">`
 
 ### 示例使用
 
-在 markdown 插入图片:
+在 markdown 中插入图片:
 
 ```html
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
 ```
 
-通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的`data-fancybox="gallery"` 和 `data-src=""`属性.
+通过 Action 转换后实际效果如下, 在 html 里面图片标签会增加 fancybox 所需的`data-fancybox="gallery"`属性.
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN">`
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qmb4526u4e4jy4vscE8w3gVRyVkegyotdnwhS1rVCoVm8k">`
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -768,7 +792,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 `Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v">`
 
-这里我直接写改成我存放的链接 https://gjken.github.io/primer.css
+这里我直接写改成我存放的链接 https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css
 
 ## 修改页面头部样式
 
@@ -923,16 +947,16 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 
 | Label Name | Color | 效果
 |-|-|-
-| 网站 | #218155 | ![Badge](https://img.shields.io/static/v1?label=&message=网站&color=218155)
-| 日常 | #008672 | ![Badge](https://img.shields.io/static/v1?label=&message=日常&color=008672)
-| 教程 | #0075ca | ![Badge](https://img.shields.io/static/v1?label=&message=教程&color=0075ca)
-| Anime | #E77AB1 | ![Badge](https://img.shields.io/static/v1?label=&message=Anime&color=E77AB1)
-| Win  | #5AB3F3 | ![Badge](https://img.shields.io/static/v1?label=&message=Win&color=5AB3F3)
-| JS | #AD3152 | ![Badge](https://img.shields.io/static/v1?label=&message=JS&color=AD3152)
-| CSS | #218155 | ![Badge](https://img.shields.io/static/v1?label=&message=CSS&color=218155)
-| Github | #333333 | ![Badge](https://img.shields.io/static/v1?label=&message=Github&color=333333)
-| CDN | #cb222c | ![Badge](https://img.shields.io/static/v1?label=&message=CDN&color=cb222c)
-| Bug | #D73A4A | ![Badge](https://img.shields.io/static/v1?label=&message=Bug&color=D73A4A)
+| 网站 | #218155 | `Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=网站&color=218155">`
+| 日常 | #008672 | Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=日常&color=008672">
+| 教程 | #0075ca | Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=教程&color=0075ca">
+| Anime | #E77AB1 | Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=Anime&color=E77AB1">
+| Win| #5AB3F3 | Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=Win&color=5AB3F3">
+| JS | #AD3152 | Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=JS&color=AD3152">
+| CSS| #218155 | Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=CSS&color=218155">
+| Github| #333333 | Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=Github&color=333333">
+| CDN| #cb222c | Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=CDN&color=cb222c">
+| Bug| #D73A4A | Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=Bug&color=D73A4A">
 
 # Readme.md
 

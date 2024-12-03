@@ -23,6 +23,14 @@
 
 # Config.json 小妙用
 
+## 引用顺序
+
+官方虽然没说, 但是经过我后面测试得出:
+
+`script`字段里面引用的 js 代码, 写在尾巴加载越靠前!
+
+> 其它字段还未测试过, 不知道是不是一样的道理.
+
 ## subTitle - js插入
 
 代码:
@@ -77,10 +85,10 @@
 我这里用的是`5.0`版本, cdn 加速链接.
 
 ```json
-'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
+'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
 ```
 
-`ArticleCss.js`的内容如下:
+`ArticleJs.js`需要填写的内容如下:
 
 ```js
 document.addEventListener('DOMContentLoaded', () => {
@@ -96,6 +104,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.
 
+## lazyImage.js - 图片懒加载
+
+> lazyImage [官网](https://lazyload.js.org)
+
+打开`post.html`文件, 在`<script>`标签里面增加下面 js 代码.
+
+```JavaScript
+	// 图片懒加载所需函数
+	const lazyImage = new LazyImage('.lazy-load-image');
+	// Customize the loading strategy
+	lazyImage.observeWithIntersectionObserver();
+	// Optional: Provide a placeholder image
+	lazyImage.placeholderImage = 'placeholder.jpg';
+	lazyImage.init();
+```
+
 #### 修改 Gmeek 仓库的 Gmeek.py
 
 > 不知道怎么自定义 Gmeek 仓库的看这👉`Gmeek-html<a href='#通过-gmeek-仓库-diy-博客'>通过 Gmeek 仓库 DIY 博客</a>`
@@ -106,22 +130,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ```python
 if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' data-src='{match.group(1)}' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
 ```
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbnqZ2K74iZPmHgzAJKwro2uoH3Q3U1hbQanfPJpXfv4b'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmQu6VykpD9odhGB6bMdtR5PdCT9P89ajzM7YD2sq7YuPy'>`
 
 ### 示例使用
 
-在 markdown 插入图片:
+在 markdown 中插入图片:
 
 ```html
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
 ```
 
-通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的`data-fancybox='gallery'` 和 `data-src=''`属性.
+通过 Action 转换后实际效果如下, 在 html 里面图片标签会增加 fancybox 所需的`data-fancybox='gallery'`属性.
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmb4526u4e4jy4vscE8w3gVRyVkegyotdnwhS1rVCoVm8k'>`
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -780,7 +804,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v'>`
 
-这里我直接写改成我存放的链接 https://gjken.github.io/primer.css
+这里我直接写改成我存放的链接 https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css
 
 ## 修改页面头部样式
 
@@ -935,16 +959,16 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 | Label Name | Color | 效果
 |-|-|-
-| 网站 | #218155 | ![Badge](https://img.shields.io/static/v1?label=&message=网站&color=218155)
-| 日常 | #008672 | ![Badge](https://img.shields.io/static/v1?label=&message=日常&color=008672)
-| 教程 | #0075ca | ![Badge](https://img.shields.io/static/v1?label=&message=教程&color=0075ca)
-| Anime | #E77AB1 | ![Badge](https://img.shields.io/static/v1?label=&message=Anime&color=E77AB1)
-| Win  | #5AB3F3 | ![Badge](https://img.shields.io/static/v1?label=&message=Win&color=5AB3F3)
-| JS | #AD3152 | ![Badge](https://img.shields.io/static/v1?label=&message=JS&color=AD3152)
-| CSS | #218155 | ![Badge](https://img.shields.io/static/v1?label=&message=CSS&color=218155)
-| Github | #333333 | ![Badge](https://img.shields.io/static/v1?label=&message=Github&color=333333)
-| CDN | #cb222c | ![Badge](https://img.shields.io/static/v1?label=&message=CDN&color=cb222c)
-| Bug | #D73A4A | ![Badge](https://img.shields.io/static/v1?label=&message=Bug&color=D73A4A)
+| 网站 | #218155 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=网站&color=218155'>`
+| 日常 | #008672 | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=日常&color=008672'>
+| 教程 | #0075ca | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=教程&color=0075ca'>
+| Anime | #E77AB1 | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Anime&color=E77AB1'>
+| Win| #5AB3F3 | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Win&color=5AB3F3'>
+| JS | #AD3152 | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=JS&color=AD3152'>
+| CSS| #218155 | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=CSS&color=218155'>
+| Github| #333333 | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Github&color=333333'>
+| CDN| #cb222c | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=CDN&color=cb222c'>
+| Bug| #D73A4A | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Bug&color=D73A4A'>
 
 # Readme.md
 
@@ -966,6 +990,14 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 # Config.json 小妙用
 
+## 引用顺序
+
+官方虽然没说, 但是经过我后面测试得出:
+
+`script`字段里面引用的 js 代码, 写在尾巴加载越靠前!
+
+> 其它字段还未测试过, 不知道是不是一样的道理.
+
 ## subTitle - js插入
 
 代码:
@@ -1020,10 +1052,10 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 我这里用的是`5.0`版本, cdn 加速链接.
 
 ```json
-'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
+'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
 ```
 
-`ArticleCss.js`的内容如下:
+`ArticleJs.js`需要填写的内容如下:
 
 ```js
 document.addEventListener('DOMContentLoaded', () => {
@@ -1039,6 +1071,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.
 
+## lazyImage.js - 图片懒加载
+
+> lazyImage [官网](https://lazyload.js.org)
+
+打开`post.html`文件, 在`<script>`标签里面增加下面 js 代码.
+
+```JavaScript
+	// 图片懒加载所需函数
+	const lazyImage = new LazyImage('.lazy-load-image');
+	// Customize the loading strategy
+	lazyImage.observeWithIntersectionObserver();
+	// Optional: Provide a placeholder image
+	lazyImage.placeholderImage = 'placeholder.jpg';
+	lazyImage.init();
+```
+
 #### 修改 Gmeek 仓库的 Gmeek.py
 
 > 不知道怎么自定义 Gmeek 仓库的看这👉`Gmeek-html<a href='#通过-gmeek-仓库-diy-博客'>通过 Gmeek 仓库 DIY 博客</a>`
@@ -1049,22 +1097,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ```python
 if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' data-src='{match.group(1)}' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
 ```
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbnqZ2K74iZPmHgzAJKwro2uoH3Q3U1hbQanfPJpXfv4b'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmQu6VykpD9odhGB6bMdtR5PdCT9P89ajzM7YD2sq7YuPy'>`
 
 ### 示例使用
 
-在 markdown 插入图片:
+在 markdown 中插入图片:
 
 ```html
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
 ```
 
-通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的`data-fancybox='gallery'` 和 `data-src=''`属性.
+通过 Action 转换后实际效果如下, 在 html 里面图片标签会增加 fancybox 所需的`data-fancybox='gallery'`属性.
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN'>`
+`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmb4526u4e4jy4vscE8w3gVRyVkegyotdnwhS1rVCoVm8k'>`
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -1723,7 +1771,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 `Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v'>`
 
-这里我直接写改成我存放的链接 https://gjken.github.io/primer.css
+这里我直接写改成我存放的链接 https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css
 
 ## 修改页面头部样式
 
@@ -1878,16 +1926,16 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 | Label Name | Color | 效果
 |-|-|-
-| 网站 | #218155 | ![Badge](https://img.shields.io/static/v1?label=&message=网站&color=218155)
-| 日常 | #008672 | ![Badge](https://img.shields.io/static/v1?label=&message=日常&color=008672)
-| 教程 | #0075ca | ![Badge](https://img.shields.io/static/v1?label=&message=教程&color=0075ca)
-| Anime | #E77AB1 | ![Badge](https://img.shields.io/static/v1?label=&message=Anime&color=E77AB1)
-| Win  | #5AB3F3 | ![Badge](https://img.shields.io/static/v1?label=&message=Win&color=5AB3F3)
-| JS | #AD3152 | ![Badge](https://img.shields.io/static/v1?label=&message=JS&color=AD3152)
-| CSS | #218155 | ![Badge](https://img.shields.io/static/v1?label=&message=CSS&color=218155)
-| Github | #333333 | ![Badge](https://img.shields.io/static/v1?label=&message=Github&color=333333)
-| CDN | #cb222c | ![Badge](https://img.shields.io/static/v1?label=&message=CDN&color=cb222c)
-| Bug | #D73A4A | ![Badge](https://img.shields.io/static/v1?label=&message=Bug&color=D73A4A)
+| 网站 | #218155 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=网站&color=218155'>`
+| 日常 | #008672 | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=日常&color=008672'>
+| 教程 | #0075ca | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=教程&color=0075ca'>
+| Anime | #E77AB1 | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Anime&color=E77AB1'>
+| Win| #5AB3F3 | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Win&color=5AB3F3'>
+| JS | #AD3152 | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=JS&color=AD3152'>
+| CSS| #218155 | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=CSS&color=218155'>
+| Github| #333333 | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Github&color=333333'>
+| CDN| #cb222c | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=CDN&color=cb222c'>
+| Bug| #D73A4A | Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Bug&color=D73A4A'>
 
 # Readme.md
 
@@ -1973,6 +2021,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title"><svg class="octicon octicon-alert mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p><p>利用 Github Page 搭建的网站内容是完全公开的, 请注意不要上传自己的隐私!!!</p>
 </div>
 <h1>Config.json 小妙用</h1>
+<h2>引用顺序</h2>
+<p>官方虽然没说, 但是经过我后面测试得出:</p>
+<p><code class="notranslate">script</code>字段里面引用的 js 代码, 写在尾巴加载越靠前!</p>
+<blockquote>
+<p>其它字段还未测试过, 不知道是不是一样的道理.</p>
+</blockquote>
 <h2>subTitle - js插入</h2>
 <p>代码:</p>
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"subTitle"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script&gt;document.getElementById('content').innerHTML = `&lt;div style='text-align: center;'&gt;&lt;p&gt;CV工程师,&lt;/p&gt;&lt;p&gt;一个又菜又爱玩, 喜欢瞎折腾的流浪者.&lt;/p&gt;&lt;/div&gt;`;&lt;/script&gt;<span class="pl-pds">"</span></span>,</pre></div>
@@ -2006,8 +2060,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>引用 Fancybox 所需文件</h3>
 <h4>给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.</h4>
 <p>我这里用的是<code class="notranslate">5.0</code>版本, cdn 加速链接.</p>
-<div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"script"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleCss.js'&gt;&lt;/script&gt;&lt;script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'&gt;&lt;/script&gt;<span class="pl-pds">"</span></span></pre></div>
-<p><code class="notranslate">ArticleCss.js</code>的内容如下:</p>
+<div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"script"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'&gt;&lt;/script&gt;&lt;script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'&gt;&lt;/script&gt;<span class="pl-pds">"</span></span></pre></div>
+<p><code class="notranslate">ArticleJs.js</code>需要填写的内容如下:</p>
 <div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">addEventListener</span><span class="pl-kos">(</span><span class="pl-s">'DOMContentLoaded'</span><span class="pl-kos">,</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
     <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-c1">head</span><span class="pl-kos">.</span><span class="pl-en">appendChild</span><span class="pl-kos">(</span>
         <span class="pl-v">Object</span><span class="pl-kos">.</span><span class="pl-en">assign</span><span class="pl-kos">(</span><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">createElement</span><span class="pl-kos">(</span><span class="pl-s">'link'</span><span class="pl-kos">)</span><span class="pl-kos">,</span> <span class="pl-kos">{</span>
@@ -2018,6 +2072,18 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-v">Fancybox</span><span class="pl-kos">.</span><span class="pl-en">bind</span><span class="pl-kos">(</span><span class="pl-s">'[data-fancybox="gallery"]'</span><span class="pl-kos">,</span> <span class="pl-kos">{</span><span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
 <p>意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.</p>
+<h2>lazyImage.js - 图片懒加载</h2>
+<blockquote>
+<p>lazyImage <a href="https://lazyload.js.org" rel="nofollow">官网</a></p>
+</blockquote>
+<p>打开<code class="notranslate">post.html</code>文件, 在<code class="notranslate">&lt;script&gt;</code>标签里面增加下面 js 代码.</p>
+<div class="highlight highlight-source-js"><pre class="notranslate">	<span class="pl-c">// 图片懒加载所需函数</span>
+	<span class="pl-k">const</span> <span class="pl-s1">lazyImage</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">LazyImage</span><span class="pl-kos">(</span><span class="pl-s">'.lazy-load-image'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+	<span class="pl-c">// Customize the loading strategy</span>
+	<span class="pl-s1">lazyImage</span><span class="pl-kos">.</span><span class="pl-en">observeWithIntersectionObserver</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+	<span class="pl-c">// Optional: Provide a placeholder image</span>
+	<span class="pl-s1">lazyImage</span><span class="pl-kos">.</span><span class="pl-c1">placeholderImage</span> <span class="pl-c1">=</span> <span class="pl-s">'placeholder.jpg'</span><span class="pl-kos">;</span>
+	<span class="pl-s1">lazyImage</span><span class="pl-kos">.</span><span class="pl-en">init</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
 <h4>修改 Gmeek 仓库的 Gmeek.py</h4>
 <blockquote>
 <p>不知道怎么自定义 Gmeek 仓库的看这👉<a href="#通过-gmeek-仓库-diy-博客">通过 Gmeek 仓库 DIY 博客</a></p>
@@ -2025,13 +2091,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>打开<code class="notranslate">Gmeek.py</code>文件, 定位字符串<code class="notranslate">Gmeek-html</code></p>
 <p>然后在下面增加代码:</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
-            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox&amp;lt;img src="([^"]+)"&amp;gt;&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" data-src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>" src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
-<p><img data-fancybox="gallery" class="lazy-load-image" src="https://i0.img2ipfs.com/ipfs/QmbnqZ2K74iZPmHgzAJKwro2uoH3Q3U1hbQanfPJpXfv4b"></p>
+            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox&amp;lt;img src="([^"]+)"&amp;gt;&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
+<p><img data-fancybox="gallery" class="lazy-load-image" src="https://i0.img2ipfs.com/ipfs/QmQu6VykpD9odhGB6bMdtR5PdCT9P89ajzM7YD2sq7YuPy"></p>
 <h3>示例使用</h3>
-<p>在 markdown 插入图片:</p>
+<p>在 markdown 中插入图片:</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-imgbox<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq</span>"<span class="pl-kos">&gt;</span>`</pre></div>
-<p>通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的<code class="notranslate">data-fancybox="gallery"</code> 和 <code class="notranslate">data-src=""</code>属性.</p>
-<p><img data-fancybox="gallery" class="lazy-load-image" src="https://i0.img2ipfs.com/ipfs/QmXtNapJz2XijpRa9AQtrQYNGBY91MmnWa7H1SUF5CiZzN"></p>
+<p>通过 Action 转换后实际效果如下, 在 html 里面图片标签会增加 fancybox 所需的<code class="notranslate">data-fancybox="gallery"</code>属性.</p>
+<p><img data-fancybox="gallery" class="lazy-load-image" src="https://i0.img2ipfs.com/ipfs/Qmb4526u4e4jy4vscE8w3gVRyVkegyotdnwhS1rVCoVm8k"></p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
 <blockquote>
 <p>Vercount <a href="https://github.com/EvanNotFound/vercount">Github</a><br>
@@ -2497,7 +2563,7 @@ pv 修改成 uv 计数.</p>
 <h2>修改默认 primer.css 链接</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
 <p><img data-fancybox="gallery" class="lazy-load-image" src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"></p>
-<p>这里我直接写改成我存放的链接 <a href="https://gjken.github.io/primer.css" rel="nofollow">https://gjken.github.io/primer.css</a></p>
+<p>这里我直接写改成我存放的链接 <a href="https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css" rel="nofollow">https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css</a></p>
 <h2>修改页面头部样式</h2>
 <h3>打开 post.html 文件</h3>
 <p>定位样式<code class="notranslate">.title-right</code>, 其内容全部修改为flex布局👉<code class="notranslate">.title-right{display:flex;}</code></p>
@@ -2605,52 +2671,52 @@ pv 修改成 uv 计数.</p>
 <tr>
 <td>网站</td>
 <td>#218155</td>
-<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/09566c1a2275ef9b39a0909e90f838efb0e65319b52b65a26344931b228bef3f/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d25453725424425393125453725414225393926636f6c6f723d323138313535"><img src="https://camo.githubusercontent.com/09566c1a2275ef9b39a0909e90f838efb0e65319b52b65a26344931b228bef3f/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d25453725424425393125453725414225393926636f6c6f723d323138313535" alt="Badge" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=%E7%BD%91%E7%AB%99&amp;color=218155" style="max-width: 100%;"></a></td>
+<td><img data-fancybox="gallery" class="lazy-load-image" src="https://img.shields.io/static/v1?label=&amp;message=网站&amp;color=218155"></td>
 </tr>
 <tr>
 <td>日常</td>
 <td>#008672</td>
-<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/0f9c0e6c819b283e0c44baf8320f7c1c71fe5f2d38b200d07cb850f32194815c/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d25453625393725413525453525423825423826636f6c6f723d303038363732"><img src="https://camo.githubusercontent.com/0f9c0e6c819b283e0c44baf8320f7c1c71fe5f2d38b200d07cb850f32194815c/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d25453625393725413525453525423825423826636f6c6f723d303038363732" alt="Badge" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=%E6%97%A5%E5%B8%B8&amp;color=008672" style="max-width: 100%;"></a></td>
+<td>Gmeek-imgbox<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/090e0f661e213387debe79496051e7991987369557b3a737bcc85a26044d0be2/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653de697a5e5b8b826636f6c6f723d303038363732"><img src="https://camo.githubusercontent.com/090e0f661e213387debe79496051e7991987369557b3a737bcc85a26044d0be2/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653de697a5e5b8b826636f6c6f723d303038363732" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=日常&amp;color=008672" style="max-width: 100%;"></a></td>
 </tr>
 <tr>
 <td>教程</td>
 <td>#0075ca</td>
-<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/2fdb453bb2533f8895df060b587a6fceae0d8995e5de2ad48d2848ea13dbbe4a/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d25453625393525393925453725413825384226636f6c6f723d303037356361"><img src="https://camo.githubusercontent.com/2fdb453bb2533f8895df060b587a6fceae0d8995e5de2ad48d2848ea13dbbe4a/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d25453625393525393925453725413825384226636f6c6f723d303037356361" alt="Badge" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=%E6%95%99%E7%A8%8B&amp;color=0075ca" style="max-width: 100%;"></a></td>
+<td>Gmeek-imgbox<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4a253127ec512c52194111e3726aa68a3b6c20e13b60723e3724537c63dd65e1/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653de69599e7a88b26636f6c6f723d303037356361"><img src="https://camo.githubusercontent.com/4a253127ec512c52194111e3726aa68a3b6c20e13b60723e3724537c63dd65e1/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653de69599e7a88b26636f6c6f723d303037356361" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=教程&amp;color=0075ca" style="max-width: 100%;"></a></td>
 </tr>
 <tr>
 <td>Anime</td>
 <td>#E77AB1</td>
-<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4be3336d41feeb772f99ab5b157d4cb09f394c7071160088f27ac2c931a3b158/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d416e696d6526636f6c6f723d453737414231"><img src="https://camo.githubusercontent.com/4be3336d41feeb772f99ab5b157d4cb09f394c7071160088f27ac2c931a3b158/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d416e696d6526636f6c6f723d453737414231" alt="Badge" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=Anime&amp;color=E77AB1" style="max-width: 100%;"></a></td>
+<td>Gmeek-imgbox<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4be3336d41feeb772f99ab5b157d4cb09f394c7071160088f27ac2c931a3b158/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d416e696d6526636f6c6f723d453737414231"><img src="https://camo.githubusercontent.com/4be3336d41feeb772f99ab5b157d4cb09f394c7071160088f27ac2c931a3b158/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d416e696d6526636f6c6f723d453737414231" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=Anime&amp;color=E77AB1" style="max-width: 100%;"></a></td>
 </tr>
 <tr>
 <td>Win</td>
 <td>#5AB3F3</td>
-<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7e8e476754e821c8c606cadd321ee2305e5d40421b251771279c43d2a1faefe7/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d57696e26636f6c6f723d354142334633"><img src="https://camo.githubusercontent.com/7e8e476754e821c8c606cadd321ee2305e5d40421b251771279c43d2a1faefe7/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d57696e26636f6c6f723d354142334633" alt="Badge" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=Win&amp;color=5AB3F3" style="max-width: 100%;"></a></td>
+<td>Gmeek-imgbox<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7e8e476754e821c8c606cadd321ee2305e5d40421b251771279c43d2a1faefe7/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d57696e26636f6c6f723d354142334633"><img src="https://camo.githubusercontent.com/7e8e476754e821c8c606cadd321ee2305e5d40421b251771279c43d2a1faefe7/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d57696e26636f6c6f723d354142334633" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=Win&amp;color=5AB3F3" style="max-width: 100%;"></a></td>
 </tr>
 <tr>
 <td>JS</td>
 <td>#AD3152</td>
-<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e76c1bf0660a1e0869c123c8c0660b0468cf3bc700048b62a682c1ce399f27a6/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d4a5326636f6c6f723d414433313532"><img src="https://camo.githubusercontent.com/e76c1bf0660a1e0869c123c8c0660b0468cf3bc700048b62a682c1ce399f27a6/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d4a5326636f6c6f723d414433313532" alt="Badge" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=JS&amp;color=AD3152" style="max-width: 100%;"></a></td>
+<td>Gmeek-imgbox<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e76c1bf0660a1e0869c123c8c0660b0468cf3bc700048b62a682c1ce399f27a6/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d4a5326636f6c6f723d414433313532"><img src="https://camo.githubusercontent.com/e76c1bf0660a1e0869c123c8c0660b0468cf3bc700048b62a682c1ce399f27a6/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d4a5326636f6c6f723d414433313532" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=JS&amp;color=AD3152" style="max-width: 100%;"></a></td>
 </tr>
 <tr>
 <td>CSS</td>
 <td>#218155</td>
-<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/1f5abe9a8933b2b2beb1c167f8140f6e23a7a1b6985d567792ad4f97f397138f/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d43535326636f6c6f723d323138313535"><img src="https://camo.githubusercontent.com/1f5abe9a8933b2b2beb1c167f8140f6e23a7a1b6985d567792ad4f97f397138f/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d43535326636f6c6f723d323138313535" alt="Badge" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=CSS&amp;color=218155" style="max-width: 100%;"></a></td>
+<td>Gmeek-imgbox<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/1f5abe9a8933b2b2beb1c167f8140f6e23a7a1b6985d567792ad4f97f397138f/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d43535326636f6c6f723d323138313535"><img src="https://camo.githubusercontent.com/1f5abe9a8933b2b2beb1c167f8140f6e23a7a1b6985d567792ad4f97f397138f/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d43535326636f6c6f723d323138313535" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=CSS&amp;color=218155" style="max-width: 100%;"></a></td>
 </tr>
 <tr>
 <td>Github</td>
 <td>#333333</td>
-<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ac5d9f066e61c6426b5a10a9f582e789dd986dc743565bb590eb8962a6c7ff53/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d47697468756226636f6c6f723d333333333333"><img src="https://camo.githubusercontent.com/ac5d9f066e61c6426b5a10a9f582e789dd986dc743565bb590eb8962a6c7ff53/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d47697468756226636f6c6f723d333333333333" alt="Badge" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=Github&amp;color=333333" style="max-width: 100%;"></a></td>
+<td>Gmeek-imgbox<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ac5d9f066e61c6426b5a10a9f582e789dd986dc743565bb590eb8962a6c7ff53/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d47697468756226636f6c6f723d333333333333"><img src="https://camo.githubusercontent.com/ac5d9f066e61c6426b5a10a9f582e789dd986dc743565bb590eb8962a6c7ff53/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d47697468756226636f6c6f723d333333333333" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=Github&amp;color=333333" style="max-width: 100%;"></a></td>
 </tr>
 <tr>
 <td>CDN</td>
 <td>#cb222c</td>
-<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5d77bebe22c7297f39323b9c29785aae031950659847b556db59ba0818b0f325/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d43444e26636f6c6f723d636232323263"><img src="https://camo.githubusercontent.com/5d77bebe22c7297f39323b9c29785aae031950659847b556db59ba0818b0f325/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d43444e26636f6c6f723d636232323263" alt="Badge" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=CDN&amp;color=cb222c" style="max-width: 100%;"></a></td>
+<td>Gmeek-imgbox<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5d77bebe22c7297f39323b9c29785aae031950659847b556db59ba0818b0f325/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d43444e26636f6c6f723d636232323263"><img src="https://camo.githubusercontent.com/5d77bebe22c7297f39323b9c29785aae031950659847b556db59ba0818b0f325/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d43444e26636f6c6f723d636232323263" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=CDN&amp;color=cb222c" style="max-width: 100%;"></a></td>
 </tr>
 <tr>
 <td>Bug</td>
 <td>#D73A4A</td>
-<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ba22158a814e5f021336b6319d1714fd942d8831ecd7831607221db0855108a5/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d42756726636f6c6f723d443733413441"><img src="https://camo.githubusercontent.com/ba22158a814e5f021336b6319d1714fd942d8831ecd7831607221db0855108a5/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d42756726636f6c6f723d443733413441" alt="Badge" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=Bug&amp;color=D73A4A" style="max-width: 100%;"></a></td>
+<td>Gmeek-imgbox<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ba22158a814e5f021336b6319d1714fd942d8831ecd7831607221db0855108a5/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d42756726636f6c6f723d443733413441"><img src="https://camo.githubusercontent.com/ba22158a814e5f021336b6319d1714fd942d8831ecd7831607221db0855108a5/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f6c6162656c3d266d6573736167653d42756726636f6c6f723d443733413441" data-canonical-src="https://img.shields.io/static/v1?label=&amp;message=Bug&amp;color=D73A4A" style="max-width: 100%;"></a></td>
 </tr>
 </tbody>
 </table></markdown-accessiblity-table>
