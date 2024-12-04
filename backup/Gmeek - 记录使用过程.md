@@ -1,8 +1,4 @@
-`Gmeek-imgbox="https://example.com/image.jpg"`
-
 [Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
-
-`<Gmeek-imgbox src="https://img.shields.io/static/v1?label=&message=网站&color=218155">`
 
 # 搭建博客
 
@@ -33,7 +29,7 @@
 
 效果图:
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"`
 
 从图中可以看到, 可用 js 插入 html 实现修改文字.
 
@@ -43,7 +39,7 @@
 
 效果图:
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"`
 
 可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.
 
@@ -64,7 +60,7 @@
 
 图示:
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H"`
 
 ## Fancybox.js - 图片浏览器
 
@@ -125,19 +121,19 @@ if '<code class="notranslate">Gmeek-imgbox' in post_body:
             post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox&lt;img src="([^"]+)"&gt;</code>', lambda match: f'<img data-fancybox="gallery" src="{match.group(1)}">', post_body, flags=re.DOTALL)
 ```
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmQu6VykpD9odhGB6bMdtR5PdCT9P89ajzM7YD2sq7YuPy">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmQu6VykpD9odhGB6bMdtR5PdCT9P89ajzM7YD2sq7YuPy"`
 
 ### 示例使用
 
 在 markdown 中插入图片:
 
 ```html
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq"`
 ```
 
 通过 Action 转换后实际效果如下, 在 html 里面图片标签会增加 fancybox 所需的`data-fancybox="gallery"`属性.
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qmb4526u4e4jy4vscE8w3gVRyVkegyotdnwhS1rVCoVm8k">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/Qmb4526u4e4jy4vscE8w3gVRyVkegyotdnwhS1rVCoVm8k"`
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -768,13 +764,13 @@ a {
 
 仓库地址👉 https://github.com/Meekdai/Gmeek
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV"`
 
 fork 之后, 转到搭建博客的 github 源码,
 
 打开`.github/workflows/Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav"`
 
 打开`config.json`文件, 修改右边字段值为main`"GMEEK_VERSION":"main"`
 
@@ -788,13 +784,13 @@ fork 之后, 转到搭建博客的 github 源码,
 
 下图文字直接修改即可, 不同语言的按需修改.
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs"`
 
 ## 修改默认 primer.css 链接
 
 打开`Gmeek.py`
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"`
 
 这里我直接写改成我存放的链接 https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css
 
@@ -826,11 +822,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 > 增加圆角6px.
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS"`
 
 效果图:
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW"`
 
 ## 页面底部文字增加图标动画
 
@@ -896,7 +892,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 效果图:
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH"`
 
 # 使用 Gmeek-html, 给博客插入图片, 防止链接自动转换
 
@@ -951,17 +947,17 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 
 | Label Name | Color | 效果
 |-|-|-
-| 网站 | #218155 | `Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=网站&color=218155">`
-| 日常 | #008672 | `Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=日常&color=008672">`
-| 教程 | #0075ca | `Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=教程&color=0075ca">`
-| Anime | #E77AB1 | `Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=Anime&color=E77AB1">`
-| Win | #5AB3F3 | `Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=Win&color=5AB3F3">`
-| VPS | #5319e7 | `Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=VPS&color=5319e7">`
-| JS | #AD3152 | `Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=JS&color=AD3152">`
-| CSS | #218155 | `Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=CSS&color=218155">`
-| Github | #333333 | `Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=Github&color=333333">`
-| CDN | #cb222c | `Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=CDN&color=cb222c">`
-| Bug | #D73A4A | `Gmeek-imgbox<img src="https://img.shields.io/static/v1?label=&message=Bug&color=D73A4A">`
+| 网站 | #218155 | `Gmeek-imgbox="https://img.shields.io/static/v1?label=&message=网站&color=218155"`
+| 日常 | #008672 | `Gmeek-imgbox="https://img.shields.io/static/v1?label=&message=日常&color=008672"`
+| 教程 | #0075ca | `Gmeek-imgbox="https://img.shields.io/static/v1?label=&message=教程&color=0075ca"`
+| Anime | #E77AB1 | `Gmeek-imgbox="https://img.shields.io/static/v1?label=&message=Anime&color=E77AB1"`
+| Win | #5AB3F3 | `Gmeek-imgbox="https://img.shields.io/static/v1?label=&message=Win&color=5AB3F3"`
+| VPS | #5319e7 | `Gmeek-imgbox="https://img.shields.io/static/v1?label=&message=VPS&color=5319e7"`
+| JS | #AD3152 | `Gmeek-imgbox="https://img.shields.io/static/v1?label=&message=JS&color=AD3152"`
+| CSS | #218155 | `Gmeek-imgbox="https://img.shields.io/static/v1?label=&message=CSS&color=218155"`
+| Github | #333333 | `Gmeek-imgbox="https://img.shields.io/static/v1?label=&message=Github&color=333333"`
+| CDN | #cb222c | `Gmeek-imgbox="https://img.shields.io/static/v1?label=&message=CDN&color=cb222c"`
+| Bug | #D73A4A | `Gmeek-imgbox="https://img.shields.io/static/v1?label=&message=Bug&color=D73A4A"`
 
 # Readme.md
 
