@@ -928,15 +928,15 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ### 打开 post.html 文件
 
-定位样式`.title-right`, 其内容全部修改为flex布局👉`.title-right{display:flex;}`
++ 定位样式`.title-right`, 其内容全部修改为flex布局👉`.title-right{display:flex;}`
 
-- 增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`
++ 增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`
 
-- 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 [#header-图标样式"](primer.css) 来修改.)
++ 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 [#header-图标样式"](primer.css) 来修改.)
 
-定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
++ 定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
 
-定位样式`.avatar:hover`,其内容全部修改为👉`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
++ 定位样式`.avatar:hover`,其内容全部修改为👉`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
 
 ### 打开 plist.html 文件
 
