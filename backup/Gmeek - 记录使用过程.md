@@ -203,12 +203,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	user-select: none;
 }
 ```
-动画效果演示:
-<img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://example.com/image.jpg">
-
-
 
 </details>
+
+动画效果演示:
+
+`Gmeek-html<img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://example.com/image.jpg">`
+
+
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
 > Vercount [Github](https://github.com/EvanNotFound/vercount)
