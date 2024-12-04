@@ -83,7 +83,7 @@
 "script":"<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>"
 ```
 
-CSS写到了👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码).
+CSS写入到了👉[文章自定义 js 代码](#articlejs.js---文章自定义-js-代码)
 
 意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.
 
