@@ -51,12 +51,15 @@
 
 整合内容:
 
+
+
 <a href="fancybox.js---图片浏览器">Fancybox 的代码</a>
 
 <a href="###引用-Fancybox-所需文件">Fancybox 的代码</a>
 
+[测试锚点](#articlejs.js---文章自定义-js-代码)
 
-[Fancybox 的代码](#引用-Fancybox-所需文件)
+
 
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
