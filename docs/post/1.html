@@ -27,7 +27,7 @@
 
 官方虽然没说, 但是经过我后面测试得出:
 
-`script`字段里面引用的 js 代码, 写在尾巴加载越靠前!
+`script`字段里面引用的 js 代码, **写在尾巴加载越靠前!**
 
 > 其它字段还未测试过, 不知道是不是一样的道理.
 
@@ -43,7 +43,7 @@
 
 `Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'`
 
-从图中可以看到, 可用 js 插入 html 实现修改文字.
+从图中可以看到, `subTitle`字段可用 js 插入 html 实现修改文字.
 
 ## subTitle - 隐藏
 
@@ -53,7 +53,7 @@
 
 `Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'`
 
-可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.
+可以用空白字符的方式, 隐藏`subTitle`这个必须字段, 无需使用 js 隐藏.
 
 # 记录功能块代码
 
@@ -1122,7 +1122,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 官方虽然没说, 但是经过我后面测试得出:
 
-`script`字段里面引用的 js 代码, 写在尾巴加载越靠前!
+`script`字段里面引用的 js 代码, **写在尾巴加载越靠前!**
 
 > 其它字段还未测试过, 不知道是不是一样的道理.
 
@@ -1138,7 +1138,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 `Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'`
 
-从图中可以看到, 可用 js 插入 html 实现修改文字.
+从图中可以看到, `subTitle`字段可用 js 插入 html 实现修改文字.
 
 ## subTitle - 隐藏
 
@@ -1148,7 +1148,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 `Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'`
 
-可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.
+可以用空白字符的方式, 隐藏`subTitle`这个必须字段, 无需使用 js 隐藏.
 
 # 记录功能块代码
 
@@ -2279,7 +2279,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h1>Config.json 小妙用</h1>
 <h2>引用顺序</h2>
 <p>官方虽然没说, 但是经过我后面测试得出:</p>
-<p><code class="notranslate">script</code>字段里面引用的 js 代码, 写在尾巴加载越靠前!</p>
+<p><code class="notranslate">script</code>字段里面引用的 js 代码, <strong>写在尾巴加载越靠前!</strong></p>
 <blockquote>
 <p>其它字段还未测试过, 不知道是不是一样的道理.</p>
 </blockquote>
@@ -2288,12 +2288,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"subTitle"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script&gt;document.getElementById('content').innerHTML = `&lt;div style='text-align: center;'&gt;&lt;p&gt;CV工程师,&lt;/p&gt;&lt;p&gt;一个又菜又爱玩, 喜欢瞎折腾的流浪者.&lt;/p&gt;&lt;/div&gt;`;&lt;/script&gt;<span class="pl-pds">"</span></span>,</pre></div>
 <p>效果图:</p>
 <p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
-<p>从图中可以看到, 可用 js 插入 html 实现修改文字.</p>
+<p>从图中可以看到, <code class="notranslate">subTitle</code>字段可用 js 插入 html 实现修改文字.</p>
 <h2>subTitle - 隐藏</h2>
 <p><code class="notranslate">"subTitle":" ",</code></p>
 <p>效果图:</p>
 <p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"></p>
-<p>可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.</p>
+<p>可以用空白字符的方式, 隐藏<code class="notranslate">subTitle</code>这个必须字段, 无需使用 js 隐藏.</p>
 <h1>记录功能块代码</h1>
 <p>代码摘抄自网络, 有删改, 都存放在仓库, 使用 jsdelivr CDN 加速.</p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleJs.js">ArticleJs.js</a> - 文章自定义 js 代码</h2>

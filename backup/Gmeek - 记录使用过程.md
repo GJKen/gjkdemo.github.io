@@ -15,7 +15,7 @@
 
 官方虽然没说, 但是经过我后面测试得出:
 
-`script`字段里面引用的 js 代码, 写在尾巴加载越靠前!
+`script`字段里面引用的 js 代码, **写在尾巴加载越靠前!**
 
 > 其它字段还未测试过, 不知道是不是一样的道理.
 
@@ -31,7 +31,7 @@
 
 `Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"`
 
-从图中可以看到, 可用 js 插入 html 实现修改文字.
+从图中可以看到, `subTitle`字段可用 js 插入 html 实现修改文字.
 
 ## subTitle - 隐藏
 
@@ -41,7 +41,7 @@
 
 `Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"`
 
-可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.
+可以用空白字符的方式, 隐藏`subTitle`这个必须字段, 无需使用 js 隐藏.
 
 # 记录功能块代码
 
