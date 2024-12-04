@@ -73,7 +73,7 @@
 
 <details><summary>点击展开</summary>
 
-`Gmeek-imgbox`首先匹配到关键字后转化标签
+`Gmeek-imgbox`首先匹配到关键字后转化标签.
 
 `Gmeek.py`匹配转换的代码如下:
 
@@ -93,10 +93,9 @@ markdown 输入:
 ```html
 <img data-fancybox='gallery' class='ImgLazyLoad' img-src='https://example.com/image.jpg'>
 
-<!-- 可以看到包含图片浏览器所需的`data-fancybox='gallery'`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`.## -->
+<!-- 可以看到包含图片浏览器所需的`data-fancybox='gallery'`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`. -->
+<!-- 类名`ImgLazyLoad`的 CSS 动画我写在了`primer.css`里面, 让图片未加载时有一个加载动画. -->
 ```
-
-类名`ImgLazyLoad`的 CSS 动画我写在了`primer.css`里面, 让图片未加载时有一个加载动画.
 
 当页面加载完成后, 脚本会检测标签里面的`img-src='https://example.com/image.jpg'`内容, 并增加`src`值, 这样图片就能显示了.
 
@@ -1172,7 +1171,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 <details><summary>点击展开</summary>
 
-`Gmeek-imgbox`首先匹配到关键字后转化标签
+`Gmeek-imgbox`首先匹配到关键字后转化标签.
 
 `Gmeek.py`匹配转换的代码如下:
 
@@ -1192,10 +1191,9 @@ markdown 输入:
 ```html
 <img data-fancybox='gallery' class='ImgLazyLoad' img-src='https://example.com/image.jpg'>
 
-<!-- 可以看到包含图片浏览器所需的`data-fancybox='gallery'`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`.## -->
+<!-- 可以看到包含图片浏览器所需的`data-fancybox='gallery'`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`. -->
+<!-- 类名`ImgLazyLoad`的 CSS 动画我写在了`primer.css`里面, 让图片未加载时有一个加载动画. -->
 ```
-
-类名`ImgLazyLoad`的 CSS 动画我写在了`primer.css`里面, 让图片未加载时有一个加载动画.
 
 当页面加载完成后, 脚本会检测标签里面的`img-src='https://example.com/image.jpg'`内容, 并增加`src`值, 这样图片就能显示了.
 
@@ -2311,7 +2309,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2>图片图片浏览器+图片懒加载整合</h2>
 <p>这里说明一下, 图片浏览器和图片懒加载的整合后的工作流程:</p>
 <details><summary>点击展开</summary>
-<p><code class="notranslate">Gmeek-imgbox</code>首先匹配到关键字后转化标签</p>
+<p><code class="notranslate">Gmeek-imgbox</code>首先匹配到关键字后转化标签.</p>
 <p><code class="notranslate">Gmeek.py</code>匹配转换的代码如下:</p>
 <div class="highlight highlight-source-python"><pre class="notranslate">        <span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
             <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox="([^"]+)"&lt;/code&gt;'</span>,<span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" class="ImgLazyLoad" img-src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>,<span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
@@ -2320,8 +2318,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>实际转化后的标签如下:</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">data-fancybox</span>="<span class="pl-s">gallery</span>" <span class="pl-c1">class</span>="<span class="pl-s">ImgLazyLoad</span>" <span class="pl-c1">img-src</span>="<span class="pl-s">https://example.com/image.jpg</span>"<span class="pl-kos">&gt;</span>
 
-<span class="pl-c">&lt;!-- 可以看到包含图片浏览器所需的`data-fancybox="gallery"`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`.## --&gt;</span></pre></div>
-<p>类名<code class="notranslate">ImgLazyLoad</code>的 CSS 动画我写在了<code class="notranslate">primer.css</code>里面, 让图片未加载时有一个加载动画.</p>
+<span class="pl-c">&lt;!-- 可以看到包含图片浏览器所需的`data-fancybox="gallery"`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`. --&gt;</span>
+<span class="pl-c">&lt;!-- 类名`ImgLazyLoad`的 CSS 动画我写在了`primer.css`里面, 让图片未加载时有一个加载动画. --&gt;</span></pre></div>
 <p>当页面加载完成后, 脚本会检测标签里面的<code class="notranslate">img-src="https://example.com/image.jpg"</code>内容, 并增加<code class="notranslate">src</code>值, 这样图片就能显示了.</p>
 <p>图片加载的同时, 延迟 500 毫秒去掉<code class="notranslate">ImgLazyLoad</code>类名, 这样动画就能消失并显示正常的图片.</p>
 <p>图片加载失败则会显示指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.</p>

@@ -61,7 +61,7 @@
 
 <details><summary>点击展开</summary>
 
-`Gmeek-imgbox`首先匹配到关键字后转化标签
+`Gmeek-imgbox`首先匹配到关键字后转化标签.
 
 `Gmeek.py`匹配转换的代码如下:
 
@@ -81,10 +81,9 @@ markdown 输入:
 ```html
 <img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://example.com/image.jpg">
 
-<!-- 可以看到包含图片浏览器所需的`data-fancybox="gallery"`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`.## -->
+<!-- 可以看到包含图片浏览器所需的`data-fancybox="gallery"`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`. -->
+<!-- 类名`ImgLazyLoad`的 CSS 动画我写在了`primer.css`里面, 让图片未加载时有一个加载动画. -->
 ```
-
-类名`ImgLazyLoad`的 CSS 动画我写在了`primer.css`里面, 让图片未加载时有一个加载动画.
 
 当页面加载完成后, 脚本会检测标签里面的`img-src="https://example.com/image.jpg"`内容, 并增加`src`值, 这样图片就能显示了.
 
