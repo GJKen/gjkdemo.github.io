@@ -101,11 +101,38 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
+### 增加自定义匹配 - Gmeek-imgbox
+
+修改 Gmeek 仓库的 Gmeek.py
+
+> 不知道怎么自定义 Gmeek 仓库的看这👉[通过 Gmeek 仓库 DIY 博客](#通过-gmeek-仓库-diy-博客)
+
+打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
+
+然后在下面增加代码:
+
+```python
+if '<code class="notranslate">Gmeek-imgbox' in post_body: 
+            post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox&lt;img src="([^"]+)"&gt;</code>', lambda match: f'<img data-fancybox="gallery" src="{match.group(1)}">', post_body, flags=re.DOTALL)
+```
+
+### 使用演示
+
+在 markdown 插入图片:
+
+```html
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2">`
+```
+
+通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的`data-fancybox="gallery"`属性.
+
+`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2">`
+
 ## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
 
 > 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
 
-代码内容合并到👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码)
+代码内容合并到👉[文章自定义 js 代码](#articlejs.js---文章自定义-js-代码)
 
 关键内容如下:
 
@@ -154,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </details>
 
-加载动画 html:
+加载动画 html, 这个 html 是靠 
 
 ```html
 <img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://example.com/image.jpg">
@@ -1003,9 +1030,9 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 
 原先匹配的内容为:`<code class="notranslate">Gmeek-html(.*?)</code>`,
 
-这种情况下, 如果在文章中含有代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,
+这种情况下, 如果在 html 中含有行内代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,
 
-更改后缩小了匹配范围, 可以直接使用`Gmeek-html`让其在文章内正常显示.
+更改后缩小了匹配范围, 可直接用行内代码块👉`Gmeek-html`让其在文章内正常显示.
 
 # 添加自定义单篇文章代码
 
