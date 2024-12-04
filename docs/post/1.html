@@ -918,6 +918,20 @@ fork 之后, 转到搭建博客的 github 源码,
 > 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
 > ~~创建新的 tag 也可以, 但是挺麻烦.~~
 
+## 修改 Action 定时任务时间
+
+原本为每天 UTC 时间 16 点定时 Action
+
+```yaml
+        - cron: '0 16 * * *'
+```
+
+改成每周 UTC 时间 18 点定时 Action
+
+```yaml
+        - cron: '0 18 * * 0'
+```
+
 ## 修改网站下方的文字
 
 打开`Gmeek.py`
@@ -2014,6 +2028,20 @@ fork 之后, 转到搭建博客的 github 源码,
 > 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
 > ~~创建新的 tag 也可以, 但是挺麻烦.~~
 
+## 修改 Action 定时任务时间
+
+原本为每天 UTC 时间 16 点定时 Action
+
+```yaml
+        - cron: '0 16 * * *'
+```
+
+改成每周 UTC 时间 18 点定时 Action
+
+```yaml
+        - cron: '0 18 * * 0'
+```
+
 ## 修改网站下方的文字
 
 打开`Gmeek.py`
@@ -2912,6 +2940,11 @@ pv 修改成 uv 计数.</p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>如果值是<code class="notranslate">last</code>的话, Action 会失败, 因为默认值<code class="notranslate">last</code>是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.<br>
 <del>创建新的 tag 也可以, 但是挺麻烦.</del></p>
 </div>
+<h2>修改 Action 定时任务时间</h2>
+<p>原本为每天 UTC 时间 16 点定时 Action</p>
+<div class="highlight highlight-source-yaml"><pre class="notranslate">        - <span class="pl-ent">cron</span>: <span class="pl-s"><span class="pl-pds">"</span>0 16 * * *<span class="pl-pds">"</span></span></pre></div>
+<p>改成每周 UTC 时间 18 点定时 Action</p>
+<div class="highlight highlight-source-yaml"><pre class="notranslate">        - <span class="pl-ent">cron</span>: <span class="pl-s"><span class="pl-pds">"</span>0 18 * * 0<span class="pl-pds">"</span></span></pre></div>
 <h2>修改网站下方的文字</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
 <p>下图文字直接修改即可, 不同语言的按需修改.</p>

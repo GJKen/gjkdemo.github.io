@@ -906,6 +906,20 @@ fork 之后, 转到搭建博客的 github 源码,
 > 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
 > ~~创建新的 tag 也可以, 但是挺麻烦.~~
 
+## 修改 Action 定时任务时间
+
+原本为每天 UTC 时间 16 点定时 Action
+
+```yaml
+        - cron: "0 16 * * *"
+```
+
+改成每周 UTC 时间 18 点定时 Action
+
+```yaml
+        - cron: "0 18 * * 0"
+```
+
 ## 修改网站下方的文字
 
 打开`Gmeek.py`

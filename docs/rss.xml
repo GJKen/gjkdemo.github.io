@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Wed, 04 Dec 2024 12:28:23 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>Serv00 - 使用记录</title><link>https://GJKen.github.io/demo/post/5.html</link><description># 注册 Serv00&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Wed, 04 Dec 2024 13:14:16 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>Serv00 - 使用记录</title><link>https://GJKen.github.io/demo/post/5.html</link><description># 注册 Serv00&#13;
 &#13;
 注册没什么好说的, gmail+干净一点的ip基本上都可以成功, 这里不多做展开.&#13;
 收不到邮件信息的估计是邮箱问题. 比如:https://mail.proton.me&#13;
@@ -1355,6 +1355,20 @@ fork 之后, 转到搭建博客的 github 源码,&#13;
 &gt; [!NOTE]&#13;
 &gt; 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.&#13;
 &gt; ~~创建新的 tag 也可以, 但是挺麻烦.~~&#13;
+&#13;
+## 修改 Action 定时任务时间&#13;
+&#13;
+原本为每天 UTC 时间 16 点定时 Action&#13;
+&#13;
+```yaml&#13;
+        - cron: '0 16 * * *'&#13;
+```&#13;
+&#13;
+改成每周 UTC 时间 18 点定时 Action&#13;
+&#13;
+```yaml&#13;
+        - cron: '0 18 * * 0'&#13;
+```&#13;
 &#13;
 ## 修改网站下方的文字&#13;
 &#13;
