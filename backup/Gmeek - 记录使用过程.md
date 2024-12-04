@@ -55,6 +55,43 @@
 
 [图片懒加载的代码](#图片懒加载)
 
+<details><summary>这里说明一下, 图片浏览器和图片懒加载的整合后的工作流程:</summary>
+
+`Gmeek-imgbox`首先匹配到关键字后转化标签
+
+`Gmeek.py`匹配转换的代码如下:
+
+```python
+        if '<code class="notranslate">Gmeek-imgbox' in post_body: 
+            post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>',lambda match: f'<img data-fancybox="gallery" class="ImgLazyLoad" img-src="{match.group(1)}">',post_body, flags=re.DOTALL)
+```
+
+markdown 输入:
+
+```html
+`Gmeek-imgbox="https://example.com/image.jpg"`
+```
+
+实际转化后的标签如下:
+
+```html
+<img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://example.com/image.jpg">
+```
+
+可以看到包含图片浏览器所需的`data-fancybox="gallery"`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`.
+
+类名`ImgLazyLoad`的 CSS 动画我写在了`primer.css`里面, 让图片未加载时有一个加载动画.
+
+当页面加载完成后, 脚本会检测标签里面的`img-src="https://example.com/image.jpg"`内容, 并增加`src`值, 这样图片就能显示了.
+
+图片加载的同时, 延迟 500 毫秒去掉`ImgLazyLoad`类名, 这样动画就能消失并显示正常的图片.
+
+图片加载失败则会显示指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.
+
+大概就是这样的一个流程.
+
+</details>
+
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
 > 来源: [Github](https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file)
@@ -226,8 +263,6 @@ if '<code class="notranslate">Gmeek-imgbox' in post_body:
 ```
 
 </details>
-
-> 懒加载可以结合图片浏览器一起使用, 修改 Gmeek.py 的 imgbox 匹配就行, 这里我就不展示了
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
