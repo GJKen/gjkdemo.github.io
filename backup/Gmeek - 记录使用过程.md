@@ -47,6 +47,14 @@
 
 代码摘抄自网络, 有删改, 都存放在仓库, 使用 jsdelivr CDN 加速.
 
+## [ArticleJs.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleJs.js) - 文章自定义js代码
+
+整合内容:
+
+Gmeek-html<a href="fancybox.js---图片浏览器">Fancybox 的代码</a>
+
+Gmeek-html<a href="###引用-Fancybox-所需文件">Fancybox 的代码</a>
+
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
 > 来源: [Github](https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file)
@@ -76,7 +84,9 @@
 "script":"<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>"
 ```
 
-`ArticleJs.js`需要填写的内容如下:
+这里我把代码写到了👉Gmeek-html<a href="#articleJs.js---文章自定义js代码">文章自定义js代码</a>
+
+内容如下:
 
 ```js
 document.addEventListener('DOMContentLoaded', () => {
@@ -92,48 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.
 
-## lazyImage.js - 图片懒加载
+## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
 
-> lazyImage [官网](https://lazyload.js.org)
+> 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
 
-打开`post.html`文件, 在`<script>`标签里面增加下面 js 代码.
-
-```JavaScript
-	// 图片懒加载所需函数
-	const lazyImage = new LazyImage('.lazy-load-image');
-	// Customize the loading strategy
-	lazyImage.observeWithIntersectionObserver();
-	// Optional: Provide a placeholder image
-	lazyImage.placeholderImage = 'placeholder.jpg';
-	lazyImage.init();
-```
-
-#### 修改 Gmeek 仓库的 Gmeek.py
-
-> 不知道怎么自定义 Gmeek 仓库的看这👉`Gmeek-html<a href="#通过-gmeek-仓库-diy-博客">通过 Gmeek 仓库 DIY 博客</a>`
-
-打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
-
-然后在下面增加代码:
-
-```python
-if '<code class="notranslate">Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox&lt;img src="([^"]+)"&gt;</code>', lambda match: f'<img data-fancybox="gallery" src="{match.group(1)}">', post_body, flags=re.DOTALL)
-```
-
-`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmQu6VykpD9odhGB6bMdtR5PdCT9P89ajzM7YD2sq7YuPy"`
-
-### 示例使用
-
-在 markdown 中插入图片:
-
-```html
-`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq"`
-```
-
-通过 Action 转换后实际效果如下, 在 html 里面图片标签会增加 fancybox 所需的`data-fancybox="gallery"`属性.
-
-`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/Qmb4526u4e4jy4vscE8w3gVRyVkegyotdnwhS1rVCoVm8k"`
+代码内容合并到👉Gmeek-html<a href="#articleJs.js---文章自定义js代码">文章自定义js代码</a>
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -145,12 +118,6 @@ if '<code class="notranslate">Gmeek-imgbox' in post_body:
 ```json
 "allHead":"<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script>"
 ```
-
-## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
-
-> 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
-
-未实际测试过.
 
 ## [NumPagination.js](https://github.com/GJKen/gjken.github.io/blob/main/static/NumPagination.js) - 主页添加数字分页条
 
