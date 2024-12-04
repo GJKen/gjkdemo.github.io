@@ -51,15 +51,9 @@
 
 整合内容:
 
+[图片浏览器的代码](#fancybox.js---图片浏览器)
 
-
-<a href="fancybox.js---图片浏览器">Fancybox 的代码</a>
-
-<a href="###引用-Fancybox-所需文件">Fancybox 的代码</a>
-
-[测试锚点](#articlejs.js---文章自定义-js-代码)
-
-
+[图片懒加载的代码](#imglazyload.js---图片懒加载器)
 
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
@@ -89,7 +83,7 @@
 "script":"<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>"
 ```
 
-这里我把代码写到了👉<a href="#articleJs.js---文章自定义js代码">文章自定义js代码</a>
+这里我把代码写到了👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码)
 
 内容如下:
 
@@ -111,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 > 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
 
-代码内容合并到👉<a href="#articleJs.js---文章自定义js代码">文章自定义js代码</a>
+代码内容合并到👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码)
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
