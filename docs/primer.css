@@ -27355,7 +27355,7 @@ a.branch-name .octicon {
 	font-size: 1.85em;
 	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
 	border-left: .25em solid #32c7dd;
-    padding-left: .25em;
+	padding-left: .25em;
 }
 
 .markdown-body h2 {
@@ -30943,52 +30943,23 @@ html {
 	-webkit-transition: opacity 0.3s ease, visibility 0s 0s
 }
 
-/* 图片容器, 确保图片和占位符尺寸一致 */
-.img-wrapper {
-    position: relative;
-    width: 100%; /* 根据需要调整 */
-    height: 200px; /* 设置固定高度或根据需求调整 */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* 懒加载图片转圈动画 */
+.ImgLazyLoad {
+	width: 1px;
+	border-radius: 50%;
+	border: 6px #f3f3f3 solid;
+	border-top: 6px #8aefff solid;
+	padding: 20px;
+	animation: anime2 1.2s infinite;
+	-webkit-animation: anime2 1.2s infinite;
 }
-
-/* 占位动画 */
-.placeholder {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border: 4px solid rgba(0, 0, 0, 0.2);
-    border-top-color: #000;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+@keyframes anime2{
+	0%{transform: rotate(0deg);}
+	100%{transform: rotate(360deg);}
 }
-
-/* 隐藏未加载的图片 */
-.lazy {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 确保图片按比例填充 */
-}
-
-/* 图片加载完成后显示 */
-.lazy-loaded {
-    display: block;
-}
-
-/* 转圈圈动画关键帧 */
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+@-webkit-keyframes anime2{
+	0%{-webkit-transform: rotate(0deg);}
+	100%{-webkit-transform: rotate(360deg);}
 }
 
 /*# sourceMappingURL=primer.css.map */
