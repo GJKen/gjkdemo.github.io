@@ -1,9 +1,4 @@
-/*!
- * Primer CSS
- * https://primer.style
- *
- * Released under MIT license.
- */
+
 :root {
 	--h00-size-mobile: 2.5rem;
 	--h0-size-mobile: 2rem;
@@ -25,7 +20,7 @@
 :root,
 [data-color-mode=light][data-light-theme=light],
 [data-color-mode=dark][data-dark-theme=light] {
-	/*! */
+	
 }
 
 :root,
@@ -12289,13 +12284,8 @@
 	}
 }
 
-/*!
- * @primer/css/core
- * http://primer.style/css
- *
- * Released under MIT license. Copyright (c) 2019 GitHub Inc.
- */
-/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
+
+
 html {
 	font-size: 16px;
 	font-family: sans-serif;
@@ -12532,38 +12522,7 @@ body {
 	border-radius: 10px;
 }
 
-/* header可以通过Gmeek仓库修改, 这边直接注释了
-#header {
-	flex-direction: column !important;
-	align-items: center !important;
-	gap: 10px;
-	padding-bottom: 0 !important;
-	margin-bottom: 24px !important
-}
 
-#header h1 {
-	display: flex;
-	flex-direction: column !important;
-	align-items: center !important;
-	gap: 15px
-}
-
-#header h1 a {
-	margin: unset !important;
-}
-
-.title-right,
-.title-right.circle,
-.title-right a {
-	margin: unset !important;
-	transition: 0.25s;
-}
-
-.avatar:hover {
-	transform: scale(1.5) rotate(720deg) !important;
-	box-shadow: 0 0 10px rgb(45 250 255 / 74%);
-}
-*/
 
 a {
 	color: var(--fgColor-accent, var(--color-accent-fg));
@@ -26014,12 +25973,7 @@ a.tabnav-extra:hover {
 	z-index: 999
 }
 
-/*!
- * @primer/css/product
- * http://primer.style/css
- *
- * Released under MIT license. Copyright (c) 2019 GitHub Inc.
- */
+
 .flash:not(.Banner) {
 	background-image: linear-gradient(var(--color-accent-subtle), var(--color-accent-subtle));
 	border-color: var(--color-accent-muted);
@@ -27364,16 +27318,7 @@ a.branch-name .octicon {
 	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted))
 }
 
-/*
-.markdown-body h2 {
-	font-size: 1.5em;
-	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
-	background: linear-gradient(45deg, #90d1ff, transparent) no-repeat left bottom;
-	background-size: 0 2px;
-	-webkit-transition: all 0.25s ease;
-	transition: all 0.25s ease;
-}
-*/
+
 
 .markdown-body h2:hover {
 	background-size: 100% 2px;
@@ -27524,7 +27469,7 @@ a.branch-name .octicon {
 }
 
 
-/* 图片hover */
+
 .markdown-body p {
 	position: relative;
 	overflow: visible;
@@ -28277,7 +28222,7 @@ a.branch-name .octicon {
 	background: #81b5daa1;
 }
 
-/* Firefox */
+
 html {
 	scrollbar-color: #97d3ffa1 transparent;
 	scrollbar-width: thin;
@@ -28934,12 +28879,7 @@ html {
 	text-align: left
 }
 
-/*!
- * @primer/css/marketing
- * http://primer.style/css
- *
- * Released under MIT license. Copyright (c) 2019 GitHub Inc.
- */
+
 [data-color-mode=light][data-light-theme*=dark],
 [data-color-mode=dark][data-dark-theme*=dark] {
 	--color-mktg-btn-shadow-outline: rgba(255, 255, 255, 0.25) 0 0 0 1px inset;
@@ -30911,13 +30851,13 @@ html {
 	70%,
 	100% {
 		fill: #ff5a5a;
-		/* 初始颜色 */
+		
 	}
 
 	14%,
 	42% {
 		fill: red;
-		/* 放大时颜色变化 */
+		
 	}
 }
 
@@ -30926,7 +30866,7 @@ html {
 	-webkit-animation: heartBeatScale 1.3s infinite ease-in-out, heartBeatColor 1.3s infinite ease-in-out;
 }
 
-/* 一键复制出入动画 */
+
 .clipboard-container {
 	opacity: 0;
 	visibility: hidden;
@@ -30943,7 +30883,7 @@ html {
 	-webkit-transition: opacity 0.3s ease, visibility 0s 0s
 }
 
-/* 懒加载图片转圈动画 */
+
 .ImgLazyLoad {
 	width: 1px;
 	border-radius: 50%;
@@ -30962,4 +30902,3 @@ html {
 	100%{-webkit-transform: rotate(360deg);}
 }
 
-/*# sourceMappingURL=primer.css.map */
