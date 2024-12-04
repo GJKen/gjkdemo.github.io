@@ -113,7 +113,7 @@ markdown 输入:
 
 > Fancybox [官网](https://www.fancyapps.com)
 
-### 引用 Fancybox 所需的 CSS 和 JS
+### config.json 里引用 Fancybox 所需的 CSS 和 JS
 
 > 注意末尾的标点符号.
 
