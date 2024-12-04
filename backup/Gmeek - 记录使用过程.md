@@ -49,13 +49,11 @@
 
 ## [ArticleJs.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleJs.js) - 文章自定义 js 代码
 
-整合内容:
+### 图片图片浏览器+图片懒加载整合
 
 [图片浏览器的代码](#fancybox.js---图片浏览器)
 
 [图片懒加载的代码](#图片懒加载)
-
-### 图片图片浏览器+图片懒加载整合
 
 这里说明一下, 图片浏览器和图片懒加载的整合后的工作流程:
 
