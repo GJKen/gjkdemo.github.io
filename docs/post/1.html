@@ -65,7 +65,7 @@
 
 [图片浏览器的代码](#fancybox.js---图片浏览器)
 
-[图片懒加载的代码](#imglazyload.js---图片懒加载器)
+[图片懒加载的代码](#imglazyload.js---图片懒加载)
 
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
@@ -85,9 +85,9 @@
 
 > Fancybox [官网](https://www.fancyapps.com)
 
-### 引用 Fancybox 所需文件
+### 引用 Fancybox 所需的 CSS 和 JS
 
-#### 给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.
+> 注意末尾的标点符号.
 
 我这里用的是`5.0`版本, cdn 加速链接.
 
@@ -95,7 +95,9 @@
 'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
 ```
 
-这里我把代码写到了👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码)
+CSS写到了👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码).
+
+意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.
 
 内容如下:
 
@@ -110,8 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
     Fancybox.bind('[data-fancybox='gallery']', {});
 });
 ```
-
-意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.
 
 ## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
 
@@ -1001,7 +1001,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 [图片浏览器的代码](#fancybox.js---图片浏览器)
 
-[图片懒加载的代码](#imglazyload.js---图片懒加载器)
+[图片懒加载的代码](#imglazyload.js---图片懒加载)
 
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
@@ -1021,9 +1021,9 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 > Fancybox [官网](https://www.fancyapps.com)
 
-### 引用 Fancybox 所需文件
+### 引用 Fancybox 所需的 CSS 和 JS
 
-#### 给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.
+> 注意末尾的标点符号.
 
 我这里用的是`5.0`版本, cdn 加速链接.
 
@@ -1031,7 +1031,9 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
 ```
 
-这里我把代码写到了👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码)
+CSS写到了👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码).
+
+意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.
 
 内容如下:
 
@@ -1046,8 +1048,6 @@ document.addEventListener('DOMContentLoaded', () => {
     Fancybox.bind('[data-fancybox='gallery']', {});
 });
 ```
-
-意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.
 
 ## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
 
@@ -1981,7 +1981,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleJs.js">ArticleJs.js</a> - 文章自定义 js 代码</h2>
 <p>整合内容:</p>
 <p><a href="#fancybox.js---%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%88%E5%99%A8">图片浏览器的代码</a></p>
-<p><a href="#imglazyload.js---%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD%E5%99%A8">图片懒加载的代码</a></p>
+<p><a href="#imglazyload.js---%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD">图片懒加载的代码</a></p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js">ArticleToc.js</a> - 文章增加目录列表+一键返回顶部按钮</h2>
 <blockquote>
 <p>来源: <a href="https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file">Github</a><br>
@@ -1998,11 +1998,14 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <blockquote>
 <p>Fancybox <a href="https://www.fancyapps.com" rel="nofollow">官网</a></p>
 </blockquote>
-<h3>引用 Fancybox 所需文件</h3>
-<h4>给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.</h4>
+<h3>引用 Fancybox 所需的 CSS 和 JS</h3>
+<blockquote>
+<p>注意末尾的标点符号.</p>
+</blockquote>
 <p>我这里用的是<code class="notranslate">5.0</code>版本, cdn 加速链接.</p>
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"script"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'&gt;&lt;/script&gt;&lt;script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'&gt;&lt;/script&gt;<span class="pl-pds">"</span></span></pre></div>
-<p>这里我把代码写到了👉<a href="#articleJs.js---%E6%96%87%E7%AB%A0%E8%87%AA%E5%AE%9A%E4%B9%89-js-%E4%BB%A3%E7%A0%81">文章自定义js代码</a></p>
+<p>CSS写到了👉<a href="#articleJs.js---%E6%96%87%E7%AB%A0%E8%87%AA%E5%AE%9A%E4%B9%89-js-%E4%BB%A3%E7%A0%81">文章自定义js代码</a>.</p>
+<p>意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.</p>
 <p>内容如下:</p>
 <div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">addEventListener</span><span class="pl-kos">(</span><span class="pl-s">'DOMContentLoaded'</span><span class="pl-kos">,</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
     <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-c1">head</span><span class="pl-kos">.</span><span class="pl-en">appendChild</span><span class="pl-kos">(</span>
@@ -2013,7 +2016,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-v">Fancybox</span><span class="pl-kos">.</span><span class="pl-en">bind</span><span class="pl-kos">(</span><span class="pl-s">'[data-fancybox="gallery"]'</span><span class="pl-kos">,</span> <span class="pl-kos">{</span><span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
-<p>意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.</p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js">ImgLazyLoad.js</a> - 图片懒加载</h2>
 <blockquote>
 <p>来源: <a href="https://github.com/liyifanniubi/liyifanniubi.github.io">Github</a></p>

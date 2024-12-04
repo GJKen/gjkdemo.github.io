@@ -53,7 +53,7 @@
 
 [图片浏览器的代码](#fancybox.js---图片浏览器)
 
-[图片懒加载的代码](#imglazyload.js---图片懒加载器)
+[图片懒加载的代码](#imglazyload.js---图片懒加载)
 
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
@@ -73,9 +73,9 @@
 
 > Fancybox [官网](https://www.fancyapps.com)
 
-### 引用 Fancybox 所需文件
+### 引用 Fancybox 所需的 CSS 和 JS
 
-#### 给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.
+> 注意末尾的标点符号.
 
 我这里用的是`5.0`版本, cdn 加速链接.
 
@@ -83,7 +83,9 @@
 "script":"<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>"
 ```
 
-这里我把代码写到了👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码)
+CSS写到了👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码).
+
+意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.
 
 内容如下:
 
@@ -98,8 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
     Fancybox.bind('[data-fancybox="gallery"]', {});
 });
 ```
-
-意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.
 
 ## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
 
