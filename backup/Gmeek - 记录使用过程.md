@@ -53,7 +53,7 @@
 
 [图片浏览器的代码](#fancybox.js---图片浏览器)
 
-[图片懒加载的代码](#imglazyload.js---图片懒加载)
+[图片懒加载的代码](#图片懒加载)
 
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
@@ -128,7 +128,7 @@ if '<code class="notranslate">Gmeek-imgbox' in post_body:
 
 `Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2"`
 
-## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
+## 图片懒加载
 
 > 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
 
@@ -181,12 +181,6 @@ if '<code class="notranslate">Gmeek-imgbox' in post_body:
 
 </details>
 
-加载动画 html, 这个 html 是靠 
-
-```html
-<img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://example.com/image.jpg">
-```
-
 加载动画 CSS, 我把它写到了`primer.css`文件里面.
 
 <details><summary>CSS Code</summary>
@@ -233,10 +227,7 @@ if '<code class="notranslate">Gmeek-imgbox' in post_body:
 
 </details>
 
-动画效果演示:
-
-`Gmeek-html<img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://example.com/image.jpg">`
-
+> 懒加载可以结合图片浏览器一起使用, 修改 Gmeek.py 的 imgbox 匹配就行, 这里我就不展示了
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
