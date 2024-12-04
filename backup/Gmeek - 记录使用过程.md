@@ -559,6 +559,7 @@ html {
 
 > [!NOTE]
 > 删除左右 padding.
+> 修改 margin-top 30px.
 
 <details><summary>修改前</summary>
 
@@ -588,7 +589,7 @@ html {
 .markdown-body h5,
 .markdown-body h6 {
 	padding: .22em 0;
-	margin-top: 24px;
+	margin-top: 30px;
 	margin-bottom: 16px;
 	font-weight: var(--base-text-weight-semibold, 600);
 	line-height: 1.25
@@ -604,6 +605,7 @@ html {
 > [!NOTE]
 > 修改字体大小1.85em.
 > 删除下 padding, 增加左 padding .22em.
+> 增加 margin-top.
 > 优化 light & dark 主题下的背景色.
 
 <details><summary>修改前</summary>
@@ -637,6 +639,7 @@ html {
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
     border-left: .25em solid #32c7dd;/* 增加 */
     padding-left: .25em;/* 增加 */
+	margin-top: 42px;/* 增加 */
 }
 ```
 
@@ -647,6 +650,7 @@ html {
 `.markdown-body h2`
 
 > [!NOTE]
+> 删除 padding-bottom.
 > 增加下划线动画.
 
 <details><summary>修改前</summary>
@@ -667,10 +671,10 @@ html {
 .markdown-body h2 {
     font-size: 1.5em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
-    background: linear-gradient(45deg, #90d1ff, transparent) no-repeat left bottom;
-    background-size: 0 2px;
-    -webkit-transition: all 0.25s ease;
-    transition: all 0.25s ease;
+    background: linear-gradient(45deg, #90d1ff, transparent) no-repeat left bottom;/* 增加 */
+    background-size: 0 2px;/* 增加 */
+    -webkit-transition: all 0.25s ease;/* 增加 */
+    transition: all 0.25s ease;/* 增加 */
 }
 /* 增加hover */
 .markdown-body h2:hover {

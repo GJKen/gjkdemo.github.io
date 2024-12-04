@@ -571,6 +571,7 @@ html {
 
 > [!NOTE]
 > 删除左右 padding.
+> 修改 margin-top 30px.
 
 <details><summary>修改前</summary>
 
@@ -600,7 +601,7 @@ html {
 .markdown-body h5,
 .markdown-body h6 {
 	padding: .22em 0;
-	margin-top: 24px;
+	margin-top: 30px;
 	margin-bottom: 16px;
 	font-weight: var(--base-text-weight-semibold, 600);
 	line-height: 1.25
@@ -616,6 +617,7 @@ html {
 > [!NOTE]
 > 修改字体大小1.85em.
 > 删除下 padding, 增加左 padding .22em.
+> 增加 margin-top.
 > 优化 light & dark 主题下的背景色.
 
 <details><summary>修改前</summary>
@@ -649,6 +651,7 @@ html {
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
     border-left: .25em solid #32c7dd;/* 增加 */
     padding-left: .25em;/* 增加 */
+	margin-top: 42px;/* 增加 */
 }
 ```
 
@@ -659,6 +662,7 @@ html {
 `.markdown-body h2`
 
 > [!NOTE]
+> 删除 padding-bottom.
 > 增加下划线动画.
 
 <details><summary>修改前</summary>
@@ -679,10 +683,10 @@ html {
 .markdown-body h2 {
     font-size: 1.5em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
-    background: linear-gradient(45deg, #90d1ff, transparent) no-repeat left bottom;
-    background-size: 0 2px;
-    -webkit-transition: all 0.25s ease;
-    transition: all 0.25s ease;
+    background: linear-gradient(45deg, #90d1ff, transparent) no-repeat left bottom;/* 增加 */
+    background-size: 0 2px;/* 增加 */
+    -webkit-transition: all 0.25s ease;/* 增加 */
+    transition: all 0.25s ease;/* 增加 */
 }
 /* 增加hover */
 .markdown-body h2:hover {
@@ -1681,6 +1685,7 @@ html {
 
 > [!NOTE]
 > 删除左右 padding.
+> 修改 margin-top 30px.
 
 <details><summary>修改前</summary>
 
@@ -1710,7 +1715,7 @@ html {
 .markdown-body h5,
 .markdown-body h6 {
 	padding: .22em 0;
-	margin-top: 24px;
+	margin-top: 30px;
 	margin-bottom: 16px;
 	font-weight: var(--base-text-weight-semibold, 600);
 	line-height: 1.25
@@ -1726,6 +1731,7 @@ html {
 > [!NOTE]
 > 修改字体大小1.85em.
 > 删除下 padding, 增加左 padding .22em.
+> 增加 margin-top.
 > 优化 light & dark 主题下的背景色.
 
 <details><summary>修改前</summary>
@@ -1759,6 +1765,7 @@ html {
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
     border-left: .25em solid #32c7dd;/* 增加 */
     padding-left: .25em;/* 增加 */
+	margin-top: 42px;/* 增加 */
 }
 ```
 
@@ -1769,6 +1776,7 @@ html {
 `.markdown-body h2`
 
 > [!NOTE]
+> 删除 padding-bottom.
 > 增加下划线动画.
 
 <details><summary>修改前</summary>
@@ -1789,10 +1797,10 @@ html {
 .markdown-body h2 {
     font-size: 1.5em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
-    background: linear-gradient(45deg, #90d1ff, transparent) no-repeat left bottom;
-    background-size: 0 2px;
-    -webkit-transition: all 0.25s ease;
-    transition: all 0.25s ease;
+    background: linear-gradient(45deg, #90d1ff, transparent) no-repeat left bottom;/* 增加 */
+    background-size: 0 2px;/* 增加 */
+    -webkit-transition: all 0.25s ease;/* 增加 */
+    transition: all 0.25s ease;/* 增加 */
 }
 /* 增加hover */
 .markdown-body h2:hover {
@@ -2695,7 +2703,8 @@ pv 修改成 uv 计数.</p>
 </div>
 <h2>文章标题通用样式</h2>
 <p><code class="notranslate">.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>删除左右 padding.</p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>删除左右 padding.<br>
+修改 margin-top 30px.</p>
 </div>
 <details><summary>修改前</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h1</span><span class="pl-kos">,</span>
@@ -2719,7 +2728,7 @@ pv 修改成 uv 计数.</p>
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">h5</span><span class="pl-kos">,</span>
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">h6</span> {
 	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">.22<span class="pl-smi">em</span></span> <span class="pl-c1">0</span>;
-	<span class="pl-c1">margin-top</span><span class="pl-kos">:</span> <span class="pl-c1">24<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">margin-top</span><span class="pl-kos">:</span> <span class="pl-c1">30<span class="pl-smi">px</span></span>;
 	<span class="pl-c1">margin-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">16<span class="pl-smi">px</span></span>;
 	<span class="pl-c1">font-weight</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--base-text-weight-semibold</span><span class="pl-kos">,</span> <span class="pl-c1">600</span>);
 	<span class="pl-c1">line-height</span><span class="pl-kos">:</span> <span class="pl-c1">1.25</span>
@@ -2729,6 +2738,7 @@ pv 修改成 uv 计数.</p>
 <p><code class="notranslate">.markdown-body h1</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改字体大小1.85em.<br>
 删除下 padding, 增加左 padding .22em.<br>
+增加 margin-top.<br>
 优化 light &amp; dark 主题下的背景色.</p>
 </div>
 <details><summary>修改前</summary>
@@ -2756,11 +2766,13 @@ pv 修改成 uv 计数.</p>
     <span class="pl-c1">border-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">1<span class="pl-smi">px</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-muted</span>));
     <span class="pl-c1">border-left</span><span class="pl-kos">:</span> <span class="pl-c1">.25<span class="pl-smi">em</span></span> solid <span class="pl-pds"><span class="pl-kos">#</span>32c7dd</span>;<span class="pl-c">/* 增加 */</span>
     <span class="pl-c1">padding-left</span><span class="pl-kos">:</span> <span class="pl-c1">.25<span class="pl-smi">em</span></span>;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">margin-top</span><span class="pl-kos">:</span> <span class="pl-c1">42<span class="pl-smi">px</span></span>;<span class="pl-c">/* 增加 */</span>
 }</pre></div>
 </details>
 <h2>文章 &lt;h2&gt; 标签样式</h2>
 <p><code class="notranslate">.markdown-body h2</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>增加下划线动画.</p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>删除 padding-bottom.<br>
+增加下划线动画.</p>
 </div>
 <details><summary>修改前</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h2</span> {
@@ -2773,10 +2785,10 @@ pv 修改成 uv 计数.</p>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h2</span> {
     <span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">1.5<span class="pl-smi">em</span></span>;
     <span class="pl-c1">border-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">1<span class="pl-smi">px</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-muted</span>));
-    <span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">linear-gradient</span>(<span class="pl-c1">45<span class="pl-smi">deg</span></span><span class="pl-kos">,</span> <span class="pl-pds"><span class="pl-kos">#</span>90d1ff</span><span class="pl-kos">,</span> transparent) no-repeat left bottom;
-    <span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;
-    <span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> all <span class="pl-c1">0.25<span class="pl-smi">s</span></span> ease;
-    <span class="pl-c1">transition</span><span class="pl-kos">:</span> all <span class="pl-c1">0.25<span class="pl-smi">s</span></span> ease;
+    <span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">linear-gradient</span>(<span class="pl-c1">45<span class="pl-smi">deg</span></span><span class="pl-kos">,</span> <span class="pl-pds"><span class="pl-kos">#</span>90d1ff</span><span class="pl-kos">,</span> transparent) no-repeat left bottom;<span class="pl-c">/* 增加 */</span>
+    <span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;<span class="pl-c">/* 增加 */</span>
+    <span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> all <span class="pl-c1">0.25<span class="pl-smi">s</span></span> ease;<span class="pl-c">/* 增加 */</span>
+    <span class="pl-c1">transition</span><span class="pl-kos">:</span> all <span class="pl-c1">0.25<span class="pl-smi">s</span></span> ease;<span class="pl-c">/* 增加 */</span>
 }
 <span class="pl-c">/* 增加hover */</span>
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">h2</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> {
