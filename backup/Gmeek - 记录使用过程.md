@@ -80,9 +80,9 @@ markdown 输入:
 
 ```html
 <img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://example.com/image.jpg">
-```
 
-可以看到包含图片浏览器所需的`data-fancybox="gallery"`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`.
+<!-- 可以看到包含图片浏览器所需的`data-fancybox="gallery"`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`.## -->
+```
 
 类名`ImgLazyLoad`的 CSS 动画我写在了`primer.css`里面, 让图片未加载时有一个加载动画.
 
