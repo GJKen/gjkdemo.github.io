@@ -125,9 +125,9 @@ markdown 输入:
 
 CSS写入到了👉[文章自定义 js 代码](#articlejs.js---文章自定义-js-代码)
 
-意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.
-
 内容如下:
+
+意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.
 
 ```js
 document.addEventListener('DOMContentLoaded', () => {
@@ -940,9 +940,9 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ### 打开 plist.html 文件
 
-定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
++ 定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
 
-到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.
++ 到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.
 
 ## 修改[警报强调信息]样式
 
