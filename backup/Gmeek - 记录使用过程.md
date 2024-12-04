@@ -47,13 +47,13 @@
 
 代码摘抄自网络, 有删改, 都存放在仓库, 使用 jsdelivr CDN 加速.
 
-## [ArticleJs.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleJs.js) - 文章自定义js代码
+## [ArticleJs.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleJs.js) - 文章自定义 js 代码
 
 整合内容:
 
-`Gmeek-html<a href="fancybox.js---图片浏览器">Fancybox 的代码</a>`
+<a href="fancybox.js---图片浏览器">Fancybox 的代码</a>
 
-`Gmeek-html<a href="###引用-Fancybox-所需文件">Fancybox 的代码</a>`
+<a href="###引用-Fancybox-所需文件">Fancybox 的代码</a>
 
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
@@ -64,7 +64,6 @@
 > 修改-增加滚动页面同时滚动章节.
 > 修改-动画和样式.
 > 修改-滚动页面自动显示&隐藏返回顶部按钮.
-> 已知bug: 给body增加`backdrop-filter: blur(30px);`样式时, 会出现页面异常, 待后续修复.
 
 图示:
 
@@ -84,7 +83,7 @@
 "script":"<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>"
 ```
 
-这里我把代码写到了👉`Gmeek-html<a href="#articleJs.js---文章自定义js代码">文章自定义js代码</a>`
+这里我把代码写到了👉<a href="#articleJs.js---文章自定义js代码">文章自定义js代码</a>
 
 内容如下:
 
@@ -106,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 > 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
 
-代码内容合并到👉`Gmeek-html<a href="#articleJs.js---文章自定义js代码">文章自定义js代码</a>`
+代码内容合并到👉<a href="#articleJs.js---文章自定义js代码">文章自定义js代码</a>
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -132,6 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
 对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
 
 下面是修改笔记, 不一定实际使用.
+
+> 已知bug: 给body增加`backdrop-filter: blur(30px);`样式时, 会出现页面异常, 待后续修复.
 
 ## \<html> 标签样式
 
