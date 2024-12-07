@@ -43522,7 +43522,7 @@ body {
 /* body的宽度响应 */
 @media (min-width: 1080px) {
 	body {
-		max-width: 1000px;
+		max-width: 1000px !important;
 	}
 }
 

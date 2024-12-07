@@ -177,44 +177,44 @@ document.addEventListener('DOMContentLoaded', () => {
 <details><summary>Javascript Code</summary>
 
 ```Javascript
-	const ob = new IntersectionObserver((entries) => {
-		entries.forEach(entry => {
-			if (entry.isIntersecting) {
-				const img = entry.target;
-				img.src = img.getAttribute('img-src'); // 获取 img-src 属性的值
-				ob.unobserve(img);
-				setTimeout(() => {
-					img.classList.remove('ImgLazyLoad'); // 增加图片显示延迟, 延迟过程中图片也是会加载的
-				}, 500);
-			}
-		});
-	}, {
-		rootMargin: '0px 0px 500px 0px',
-	});
+    const ob = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.getAttribute('img-src'); // 获取 img-src 属性的值
+                ob.unobserve(img);
+                setTimeout(() => {
+                    img.classList.remove('ImgLazyLoad'); // 增加图片显示延迟, 延迟过程中图片也是会加载的
+                }, 500);
+            }
+        });
+    }, {
+        rootMargin: '0px 0px 500px 0px',
+    });
 
-	const imgs = document.querySelectorAll('[img-src]'); // 选择所有具有 img-src 属性的元素
-	imgs.forEach(img => {
-		ob.observe(img);
-		// 图片加载失败时的处理
-		img.onerror = function() {
-			img.classList.remove('ImgLazyLoad'); // 移除 ImgLazyLoad 类名
-			// 创建一个容器 div
-			const errorContainer = document.createElement('div');
-			errorContainer.classList.add('Imgerror-container');
-			// SVG 内容
-			const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" style="height:60px;" class="Imgerror" viewBox="0 0 1024 1024"><path fill="#ff5b5b" d="M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z"/></svg>`;
-			const pContent = `<p class="Imgerror-message">图片错误</p>`;
+    const imgs = document.querySelectorAll('[img-src]'); // 选择所有具有 img-src 属性的元素
+    imgs.forEach(img => {
+        ob.observe(img);
+        // 图片加载失败时的处理
+        img.onerror = function() {
+            img.classList.remove('ImgLazyLoad'); // 移除 ImgLazyLoad 类名
+            // 创建一个容器 div
+            const errorContainer = document.createElement('div');
+            errorContainer.classList.add('Imgerror-container');
+            // SVG 内容
+            const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" style="height:60px;" class="Imgerror" viewBox="0 0 1024 1024"><path fill="#ff5b5b" d="M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z"/></svg>`;
+            const pContent = `<p class="Imgerror-message">图片错误</p>`;
 
-			// 将 SVG 内容和 <p> 标签插入到 errorContainer div 内
-			errorContainer.innerHTML = svgContent + pContent;
+            // 将 SVG 内容和 <p> 标签插入到 errorContainer div 内
+            errorContainer.innerHTML = svgContent + pContent;
 
-			// 将 errorContainer 插入到 img 元素的同一父元素下
-			img.parentNode.insertBefore(errorContainer, img.nextSibling);
+            // 将 errorContainer 插入到 img 元素的同一父元素下
+            img.parentNode.insertBefore(errorContainer, img.nextSibling);
 
-			// 隐藏 img 元素
-			img.style.display = 'none';
-		};
-	});
+            // 隐藏 img 元素
+            img.style.display = 'none';
+        };
+    });
 ```
 
 </details>
@@ -226,40 +226,40 @@ document.addEventListener('DOMContentLoaded', () => {
 ```css
 /* 图片懒加载占位css动画 */
 .ImgLazyLoad {
-	width: 1px;
-	border-radius: 50%;
-	border: 6px #f3f3f3 solid;
-	border-top: 6px #8aefff solid;
-	padding: 20px;
-	animation: ImgLazyLoadAni 1.2s infinite;
-	-webkit-animation: ImgLazyLoadAni 1.2s infinite
+    width: 1px;
+    border-radius: 50%;
+    border: 6px #f3f3f3 solid;
+    border-top: 6px #8aefff solid;
+    padding: 20px;
+    animation: ImgLazyLoadAni 1.2s infinite;
+    -webkit-animation: ImgLazyLoadAni 1.2s infinite
 }
 
 @keyframes ImgLazyLoadAni {
-	0% {
-		transform: rotate(0)
-	}
+    0% {
+        transform: rotate(0)
+    }
 
-	100% {
-		transform: rotate(360deg)
-	}
+    100% {
+        transform: rotate(360deg)
+    }
 }
 
 @-webkit-keyframes ImgLazyLoadAni {
-	0% {
-		-webkit-transform: rotate(0)
-	}
+    0% {
+        -webkit-transform: rotate(0)
+    }
 
-	100% {
-		-webkit-transform: rotate(360deg)
-	}
+    100% {
+        -webkit-transform: rotate(360deg)
+    }
 }
 
 /* 图片懒加载文字提示样式 */
 .Imgerror-message {
-	color: #ff5b5b;
-	font-size: 100%;
-	user-select: none;
+    color: #ff5b5b;
+    font-size: 100%;
+    user-select: none;
 }
 ```
 
@@ -324,12 +324,12 @@ document.addEventListener('DOMContentLoaded', () => {
     --html-bgColor: #fff;/* 增加 */
 }
 [data-color-mode] {
-	color: var(--fgColor-default, var(--color-fg-default));
-	background-color: var(--html-bgColor);
-	-webkit-transition: background-color 0.5s ease;/* 增加 */
-	-moz-transition: background-color 0.5s ease;/* 增加 */
-	-o-transition: background-color 0.5s ease;/* 增加 */
-	transition: background-color 0.5s ease;/* 增加 */
+    color: var(--fgColor-default, var(--color-fg-default));
+    background-color: var(--html-bgColor);
+    -webkit-transition: background-color 0.5s ease;/* 增加 */
+    -moz-transition: background-color 0.5s ease;/* 增加 */
+    -o-transition: background-color 0.5s ease;/* 增加 */
+    transition: background-color 0.5s ease;/* 增加 */
 }
 ```
 
@@ -347,11 +347,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ```css
 body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-	font-size: var(--body-font-size, 14px);
-	line-height: 1.5;
-	color: var(--fgColor-default, var(--color-fg-default));
-	background-color: var(--bgColor-default, var(--color-canvas-default))
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: var(--body-font-size, 14px);
+    line-height: 1.5;
+    color: var(--fgColor-default, var(--color-fg-default));
+    background-color: var(--bgColor-default, var(--color-canvas-default))
 }
 ```
 
@@ -365,21 +365,27 @@ body {
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
     --body-bgColor: #3b3b3bd9;/* 增加 */
-	--body-shadow-color: #52afff3d;/* 增加 */
+    --body-shadow-color: #52afff3d;/* 增加 */
 }
 :root {
     --body-bgColor: #ffffffde;/* 增加 */
-	--body-shadow-color: #50a8e726;/* 增加 */
+    --body-shadow-color: #50a8e726;/* 增加 */
 }
 body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-	font-size: var(--body-font-size, 14px);
-	line-height: 1.5;
-	color: var(--fgColor-default, var(--color-fg-default));
-	background: var(--body-bgColor);
-	box-shadow: 0 0 100px var(--body-shadow-color);/* 增加 */
-	border-radius: 10px;/* 增加 */
-	transition: height 1s ease,max-width 1s ease;/* 增加 */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: var(--body-font-size, 14px);
+    line-height: 1.5;
+    color: var(--fgColor-default, var(--color-fg-default));
+    background: var(--body-bgColor);
+    box-shadow: 0 0 100px var(--body-shadow-color);/* 增加 */
+    border-radius: 10px;/* 增加 */
+    transition: max-width 1s ease;/* 增加 */
+}
+/* 增加 */
+@media (min-width: 1080px) {
+	body {
+		max-width: 1000px !important;
+	}
 }
 ```
 
@@ -402,7 +408,7 @@ body {
     background: #97d3ffa1;
 }
 ::-webkit-scrollbar-thumb:hover {
-	background: #81b5daa1;
+    background: #81b5daa1;
 }
 
 /* Firefox */
@@ -480,18 +486,18 @@ html {
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
-	/* 增加 */
-	--title-right-btnbg-color: #46ffff61;
-	--title-right-svg-color: #00f0ff;
+    /* 增加 */
+    --title-right-btnbg-color: #46ffff61;
+    --title-right-svg-color: #00f0ff;
 }
 :root {
-	/* 增加 */
-	--title-right-btnbg-color: #b7dbff61;
-	--title-right-svg-color: #71baff;
+    /* 增加 */
+    --title-right-btnbg-color: #b7dbff61;
+    --title-right-svg-color: #71baff;
 }
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
-	background-color: var(--title-right-btnbg-color);
+    background-color: var(--title-right-btnbg-color);
 }
 /* 增加 */
 .btn-invisible:hover svg,
@@ -513,9 +519,9 @@ html {
 
 ```css
 .markdown-body blockquote {
-	padding: 0 1em;
-	color: var(--fgColor-muted, var(--color-fg-muted));
-	border-left: .25em solid var(--borderColor-default, var(--color-border-default))
+    padding: 0 1em;
+    color: var(--fgColor-muted, var(--color-fg-muted));
+    border-left: .25em solid var(--borderColor-default, var(--color-border-default))
 }
 ```
 
@@ -528,19 +534,19 @@ html {
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
-	/* 增加 */
-	--markdown-blockquote-color: #ffffff8c;
-	--markdown-blockquote-borderLeft-color: #bbbbbb8c;
+    /* 增加 */
+    --markdown-blockquote-color: #ffffff8c;
+    --markdown-blockquote-borderLeft-color: #bbbbbb8c;
 }
 :root {
-	/* 增加 */
-	--markdown-blockquote-color: #656d76;
-	--markdown-blockquote-borderLeft-color: #d0d7de;
+    /* 增加 */
+    --markdown-blockquote-color: #656d76;
+    --markdown-blockquote-borderLeft-color: #d0d7de;
 }
 .markdown-body blockquote {
-	padding: 0 1em;
-	color: var(--markdown-blockquote-color);
-	border-left: .25em solid var(--markdown-blockquote-borderLeft-color)
+    padding: 0 1em;
+    color: var(--markdown-blockquote-color);
+    border-left: .25em solid var(--markdown-blockquote-borderLeft-color)
 }
 ```
 
@@ -570,11 +576,11 @@ html {
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-	padding: .22em;
-	margin-top: 24px;
-	margin-bottom: 16px;
-	font-weight: var(--base-text-weight-semibold, 600);
-	line-height: 1.25
+    padding: .22em;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: var(--base-text-weight-semibold, 600);
+    line-height: 1.25
 }
 ```
 
@@ -588,11 +594,11 @@ html {
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-	padding: .22em 0;
-	margin-top: 30px;
-	margin-bottom: 16px;
-	font-weight: var(--base-text-weight-semibold, 600);
-	line-height: 1.25
+    padding: .22em 0;
+    margin-top: 30px;
+    margin-bottom: 16px;
+    font-weight: var(--base-text-weight-semibold, 600);
+    line-height: 1.25
 }
 ```
 
@@ -632,14 +638,14 @@ html {
     --markdown-h1-bgColor: #c8e5ff7a;/* 增加 */
 }
 .markdown-body h1 {
-	padding-left: .22em;
+    padding-left: .22em;
     background: var(--markdown-h1-bgColor);/* 增加 */
     border-radius: 6px;/* 增加 */
     font-size: 1.85em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
     border-left: .25em solid #32c7dd;/* 增加 */
     padding-left: .25em;/* 增加 */
-	margin-top: 42px;/* 增加 */
+    margin-top: 42px;/* 增加 */
 }
 ```
 
@@ -696,9 +702,9 @@ html {
 
 ```css
 .markdown-body img {
-	max-width: 100%;
-	box-sizing: content-box;
-	background-color: var(--bgColor-default, var(--color-canvas-default))
+    max-width: 100%;
+    box-sizing: content-box;
+    background-color: var(--bgColor-default, var(--color-canvas-default))
 }
 ```
 
@@ -709,22 +715,22 @@ html {
 ```css
 /* 增加 */
 .markdown-body p {
-	position: relative;
-	overflow: visible;
-	clip-path: inset(0);
-	-webkit-clip-path: inset(0);
+    position: relative;
+    overflow: visible;
+    clip-path: inset(0);
+    -webkit-clip-path: inset(0);
 }
 .markdown-body img {
-	max-width: 100%;
-	box-sizing: content-box;
-	transition: transform 0.3s ease, clip-path 0.3s ease;/* 增加 */
-	-webkit-transition: -webkit-transform 0.3s ease, -webkit-clip-path 0.3s ease;/* 增加 */
+    max-width: 100%;
+    box-sizing: content-box;
+    transition: transform 0.3s ease, clip-path 0.3s ease;/* 增加 */
+    -webkit-transition: -webkit-transform 0.3s ease, -webkit-clip-path 0.3s ease;/* 增加 */
 }
 /* 增加 */
 .markdown-body img:hover {
-	transform: scale(1.01);
-	clip-path: inset(-4%);
-	cursor: zoom-in;
+    transform: scale(1.01);
+    clip-path: inset(-4%);
+    cursor: zoom-in;
 }
 ```
 
@@ -742,7 +748,7 @@ html {
 ```css
 .markdown-body code,
 .markdown-body tt {
-	background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted));
+    background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted));
 }
 ```
 
@@ -755,14 +761,14 @@ html {
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
-	--markdown-code-bgColor: #3bf6ff52;/* 增加 */
+    --markdown-code-bgColor: #3bf6ff52;/* 增加 */
 }
 :root {
-	--markdown-code-bgColor: #4d4d4d38;/* 增加 */
+    --markdown-code-bgColor: #4d4d4d38;/* 增加 */
 }
 .markdown-body code,
 .markdown-body tt {
-	background-color: var(--markdown-code-bgColor);
+    background-color: var(--markdown-code-bgColor);
 }
 ```
 
@@ -780,7 +786,7 @@ html {
 ```css
 .markdown-body .highlight pre,
 .markdown-body pre {
-	background-color: var(--bgColor-muted, var(--color-canvas-subtle));
+    background-color: var(--bgColor-muted, var(--color-canvas-subtle));
 }
 ```
 
@@ -793,14 +799,14 @@ html {
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
-	--markdown-pre-bgColor: #27282d;/* 增加 */
+    --markdown-pre-bgColor: #27282d;/* 增加 */
 }
 :root {
-	--markdown-pre-bgColor: #f6f8fa;/* 增加 */
+    --markdown-pre-bgColor: #f6f8fa;/* 增加 */
 }
 .markdown-body .highlight pre,
 .markdown-body pre {
-	background-color: var(--markdown-pre-bgColor);
+    background-color: var(--markdown-pre-bgColor);
 }
 ```
 
@@ -817,19 +823,19 @@ html {
 ```css
 /* 一键复制hover出入动画 */
 .clipboard-container {
-	opacity: 0;
-	visibility: hidden;
-	pointer-events: none;
-	transition: opacity 0.3s ease, visibility 0s 0.3s;
-	-webkit-transition: opacity 0.3s ease, visibility 0s 0.3s
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+    -webkit-transition: opacity 0.3s ease, visibility 0s 0.3s
 }
 
 .highlight:hover .clipboard-container {
-	opacity: 1;
-	visibility: visible;
-	pointer-events: auto;
-	transition: opacity 0.3s ease, visibility 0s 0s;
-	-webkit-transition: opacity 0.3s ease, visibility 0s 0s
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.3s ease, visibility 0s 0s;
+    -webkit-transition: opacity 0.3s ease, visibility 0s 0s
 }
 ```
 
@@ -854,7 +860,7 @@ html {
 }
 /* 这条在12345行左右出现 */
 a {
-	background-color: rgba(0, 0, 0, 0)
+    background-color: rgba(0, 0, 0, 0)
 }
 ```
 
@@ -874,15 +880,15 @@ a {
 增加
 */
 a {
-	background: #90d1ff;
-	background: linear-gradient(#90d1ff, #90d1ff) no-repeat left bottom;
-	background-size: 0 2px;
-	transition: all 0.25s ease;
-	-webkit-transition: all 0.25s ease;
+    background: #90d1ff;
+    background: linear-gradient(#90d1ff, #90d1ff) no-repeat left bottom;
+    background-size: 0 2px;
+    transition: all 0.25s ease;
+    -webkit-transition: all 0.25s ease;
 }
 /* 增加 */
 .markdown-body a:hover {
-	background-size: 100% 2px;
+    background-size: 100% 2px;
 }
 ```
 
@@ -944,21 +950,21 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ### 打开 post.html 文件
 
-+ 定位样式`.title-right`, 其内容全部修改为flex布局👉`.title-right{display:flex;}`
++ 定位样式`.title-right`, 需要将这个 CSS 样式全部删除.
 
-+ 增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`
-
-+ 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 [#header-图标样式"](primer.css) 来修改.)
-
-+ 定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
-
-+ 定位样式`.avatar:hover`,其内容全部修改为👉`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
++ 定位样式`.title-right .circle`, 删除`margin-right:8px;`
 
 ### 打开 plist.html 文件
 
-+ 定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
++ 增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`
 
-+ 到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.
++ 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 [header-图标样式](##header-图标样式) 来修改.)
+
++ 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+
++ 定位样式`.avatar:hover`,其内容全部修改为👉`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
+
+**到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.**
 
 ## 修改[警报强调信息]样式
 
@@ -994,30 +1000,30 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ```css
 @keyframes heartBeatScale  {
-	0% {
-		-webkit-transform: scale(1);
-		transform: scale(1)
-	}
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
 
-	14% {
-		-webkit-transform: scale(1.3);
-		transform: scale(1.3)
-	}
+    14% {
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3)
+    }
 
-	28% {
-		-webkit-transform: scale(1);
-		transform: scale(1)
-	}
+    28% {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
 
-	42% {
-		-webkit-transform: scale(1.3);
-		transform: scale(1.3)
-	}
+    42% {
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3)
+    }
 
-	70% {
-		-webkit-transform: scale(1);
-		transform: scale(1)
-	}
+    70% {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
 }
 @keyframes heartBeatColor {
     0%, 28%, 70%, 100% {
@@ -1029,8 +1035,8 @@ fork 之后, 转到搭建博客的 github 源码,
 }
 
 .animate_heartBeatScale {
-	animation: heartBeatScale 1.3s infinite ease-in-out, heartBeatColor 1.3s infinite ease-in-out;
-	-webkit-animation: heartBeatScale 1.3s infinite ease-in-out, heartBeatColor 1.3s infinite ease-in-out;
+    animation: heartBeatScale 1.3s infinite ease-in-out, heartBeatColor 1.3s infinite ease-in-out;
+    -webkit-animation: heartBeatScale 1.3s infinite ease-in-out, heartBeatColor 1.3s infinite ease-in-out;
 }
 ```
 
