@@ -70,7 +70,7 @@
 
 markdown 输入:
 
-```html
+```markdown
 `Gmeek-imgbox="https://example.com/image.jpg"`
 ```
 
@@ -79,8 +79,8 @@ markdown 输入:
 ```html
 <img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://example.com/image.jpg">
 
-<!-- 可以看到包含图片浏览器所需的`data-fancybox="gallery"`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`. -->
-<!-- 类名`ImgLazyLoad`的 CSS 动画我写在了`primer.css`里面, 让图片未加载时有一个加载动画. -->
+<!-- 转换后的标签包含图片浏览器所需的`data-fancybox="gallery"`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`. -->
+<!-- `ImgLazyLoad`这个类名的 CSS 动画我写在了`primer.css`里面, 使图片未加载之前有一个加载动画. -->
 ```
 
 当页面加载完成后, 脚本会检测标签里面的`img-src="https://example.com/image.jpg"`内容, 并增加`src`值, 这样图片就能显示了.
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
 `Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2"`
 ```
 
-通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的`data-fancybox="gallery"`属性.
+通过 Actions 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的`data-fancybox="gallery"`属性.
 
 `Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2"`
 
@@ -913,18 +913,18 @@ fork 之后, 转到搭建博客的 github 源码,
 打开`config.json`文件, 修改右边字段值为main`"GMEEK_VERSION":"main"`
 
 > [!NOTE]
-> 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
+> 如果值是`last`的话, Actions 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
 > ~~创建新的 tag 也可以, 但是挺麻烦.~~
 
-## 修改 Action 定时任务时间
+## 修改 Actions 定时任务时间
 
-原本为每天 UTC 时间 16 点定时 Action
+原本为每天 UTC 时间 16 点定时 Actions.
 
 ```yaml
         - cron: "0 16 * * *"
 ```
 
-改成每周 UTC 时间 18 点定时 Action
+改成每周 UTC 时间 18 点定时 Actions.
 
 ```yaml
         - cron: "0 18 * * 0"
@@ -1068,9 +1068,7 @@ Github 在 issues 插入的图片也会自动转换为 Github 的地址.
 
 # 优化 Gmeek-html, 标签转换匹配
 
-打开`Gmeek.py`
-
-定位字符串`gmeek-html`
+打开`Gmeek.py`, 定位字符串`gmeek-html`
 
 替换成下面的代码:
 
