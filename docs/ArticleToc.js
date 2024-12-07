@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			padding: 10px;
 			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 			overflow-y: auto;
-			z-index: 1000;
+			z-index: 99;
 			opacity: 0;
 			visibility: hidden;
 			transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
