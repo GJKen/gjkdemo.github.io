@@ -4,8 +4,8 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href='../../static/primer.min.css' rel='stylesheet' />
-    <script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/Indextheme.min.js'></script>
+    <link href='../../static/primer.css' rel='stylesheet' />
+    
     <link rel="icon" href="https://pic.imgdb.cn/item/6734c652d29ded1a8cc038aa.jpg"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
@@ -27,7 +27,7 @@
 
 官方虽然没说, 但是经过我后面测试得出:
 
-`script`字段里面引用的 js 代码, 写在尾巴加载越靠前!
+`script`字段里面引用的 js 代码, **写在尾巴加载越靠前!**
 
 > 其它字段还未测试过, 不知道是不是一样的道理.
 
@@ -43,7 +43,7 @@
 
 `Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'`
 
-从图中可以看到, 可用 js 插入 html 实现修改文字.
+从图中可以看到, `subTitle`字段可用 js 插入 html 实现修改文字.
 
 ## subTitle - 隐藏
 
@@ -53,7 +53,7 @@
 
 `Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'`
 
-可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.
+可以用空白字符的方式, 隐藏`subTitle`这个必须字段, 无需使用 js 隐藏.
 
 # 记录功能块代码
 
@@ -61,11 +61,49 @@
 
 ## [ArticleJs.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleJs.js) - 文章自定义 js 代码
 
-整合内容:
+### 图片图片浏览器+图片懒加载整合
 
 [图片浏览器的代码](#fancybox.js---图片浏览器)
 
-[图片懒加载的代码](#imglazyload.js---图片懒加载)
+[图片懒加载的代码](#图片懒加载)
+
+这里说明一下, 图片浏览器和图片懒加载的整合后的工作流程:
+
+<details><summary>点击展开</summary>
+
+`Gmeek-imgbox`首先匹配到关键字后转化标签.
+
+`Gmeek.py`匹配转换的代码如下:
+
+```python
+        if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox='([^']+)'</code>',lambda match: f'<img data-fancybox='gallery' class='ImgLazyLoad' img-src='{match.group(1)}'>',post_body, flags=re.DOTALL)
+```
+
+markdown 输入:
+
+```html
+`Gmeek-imgbox='https://example.com/image.jpg'`
+```
+
+实际转化后的标签如下:
+
+```html
+<img data-fancybox='gallery' class='ImgLazyLoad' img-src='https://example.com/image.jpg'>
+
+<!-- 可以看到包含图片浏览器所需的`data-fancybox='gallery'`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`. -->
+<!-- 类名`ImgLazyLoad`的 CSS 动画我写在了`primer.css`里面, 让图片未加载时有一个加载动画. -->
+```
+
+当页面加载完成后, 脚本会检测标签里面的`img-src='https://example.com/image.jpg'`内容, 并增加`src`值, 这样图片就能显示了.
+
+图片加载的同时, 延迟 500 毫秒去掉`ImgLazyLoad`类名, 这样动画就能消失并显示正常的图片.
+
+图片加载失败则会显示指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.
+
+大概就是这样的一个流程.
+
+</details>
 
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
@@ -85,7 +123,7 @@
 
 > Fancybox [官网](https://www.fancyapps.com)
 
-### 引用 Fancybox 所需的 CSS 和 JS
+### config.json 里引用 Fancybox 所需的 CSS 和 JS
 
 > 注意末尾的标点符号.
 
@@ -95,11 +133,11 @@
 'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
 ```
 
-CSS写到了👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码).
-
-意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.
+CSS写入到了👉[文章自定义 js 代码](#articlejs.js---文章自定义-js-代码)
 
 内容如下:
+
+意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.
 
 ```js
 document.addEventListener('DOMContentLoaded', () => {
@@ -113,11 +151,131 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
+### 增加自定义匹配 - Gmeek-imgbox
+
+修改 Gmeek 仓库的 Gmeek.py
+
+> 不知道怎么自定义 Gmeek 仓库的看这👉[通过 Gmeek 仓库 DIY 博客](#通过-gmeek-仓库-diy-博客)
+
+打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
+
+然后在下面增加代码:
+
+```python
+        if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox='([^']+)'</code>',lambda match: f'<img data-fancybox='gallery' src='{match.group(1)}'>',post_body, flags=re.DOTALL)
+```
+
+### 使用演示
+
+在 markdown 插入图片:
+
+```html
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2'`
+```
+
+通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的`data-fancybox='gallery'`属性.
+
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2'`
+
+## 图片懒加载
 
 > 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
 
-代码内容合并到👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码)
+代码内容合并到👉[文章自定义 js 代码](#articlejs.js---文章自定义-js-代码)
+
+关键内容如下:
+
+<details><summary>Javascript Code</summary>
+
+```Javascript
+	const ob = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				const img = entry.target;
+				img.src = img.getAttribute('img-src'); // 获取 img-src 属性的值
+				ob.unobserve(img);
+				setTimeout(() => {
+					img.classList.remove('ImgLazyLoad'); // 增加图片显示延迟, 延迟过程中图片也是会加载的
+				}, 500);
+			}
+		});
+	}, {
+		rootMargin: '0px 0px 500px 0px',
+	});
+
+	const imgs = document.querySelectorAll('[img-src]'); // 选择所有具有 img-src 属性的元素
+	imgs.forEach(img => {
+		ob.observe(img);
+		// 图片加载失败时的处理
+		img.onerror = function() {
+			img.classList.remove('ImgLazyLoad'); // 移除 ImgLazyLoad 类名
+			// 创建一个容器 div
+			const errorContainer = document.createElement('div');
+			errorContainer.classList.add('Imgerror-container');
+			// SVG 内容
+			const svgContent = `<svg xmlns='http://www.w3.org/2000/svg' style='height:60px;' class='Imgerror' viewBox='0 0 1024 1024'><path fill='#ff5b5b' d='M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z'/></svg>`;
+			const pContent = `<p class='Imgerror-message'>图片错误</p>`;
+
+			// 将 SVG 内容和 <p> 标签插入到 errorContainer div 内
+			errorContainer.innerHTML = svgContent + pContent;
+
+			// 将 errorContainer 插入到 img 元素的同一父元素下
+			img.parentNode.insertBefore(errorContainer, img.nextSibling);
+
+			// 隐藏 img 元素
+			img.style.display = 'none';
+		};
+	});
+```
+
+</details>
+
+加载动画 CSS, 我把它写到了`primer.css`文件里面.
+
+<details><summary>CSS Code</summary>
+
+```css
+/* 图片懒加载占位css动画 */
+.ImgLazyLoad {
+	width: 1px;
+	border-radius: 50%;
+	border: 6px #f3f3f3 solid;
+	border-top: 6px #8aefff solid;
+	padding: 20px;
+	animation: ImgLazyLoadAni 1.2s infinite;
+	-webkit-animation: ImgLazyLoadAni 1.2s infinite
+}
+
+@keyframes ImgLazyLoadAni {
+	0% {
+		transform: rotate(0)
+	}
+
+	100% {
+		transform: rotate(360deg)
+	}
+}
+
+@-webkit-keyframes ImgLazyLoadAni {
+	0% {
+		-webkit-transform: rotate(0)
+	}
+
+	100% {
+		-webkit-transform: rotate(360deg)
+	}
+}
+
+/* 图片懒加载文字提示样式 */
+.Imgerror-message {
+	color: #ff5b5b;
+	font-size: 100%;
+	user-select: none;
+}
+```
+
+</details>
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -195,6 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
+> 增加宽高过渡动画.
 
 <details><summary>修改前</summary>
 
@@ -232,6 +391,7 @@ body {
 	background: var(--body-bgColor);
 	box-shadow: 0 0 100px var(--body-shadow-color);/* 增加 */
 	border-radius: 10px;/* 增加 */
+	transition: height 1s ease,max-width 1s ease;/* 增加 */
 }
 ```
 
@@ -411,6 +571,7 @@ html {
 
 > [!NOTE]
 > 删除左右 padding.
+> 修改 margin-top 30px.
 
 <details><summary>修改前</summary>
 
@@ -440,7 +601,7 @@ html {
 .markdown-body h5,
 .markdown-body h6 {
 	padding: .22em 0;
-	margin-top: 24px;
+	margin-top: 30px;
 	margin-bottom: 16px;
 	font-weight: var(--base-text-weight-semibold, 600);
 	line-height: 1.25
@@ -456,6 +617,7 @@ html {
 > [!NOTE]
 > 修改字体大小1.85em.
 > 删除下 padding, 增加左 padding .22em.
+> 增加 margin-top.
 > 优化 light & dark 主题下的背景色.
 
 <details><summary>修改前</summary>
@@ -489,6 +651,7 @@ html {
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
     border-left: .25em solid #32c7dd;/* 增加 */
     padding-left: .25em;/* 增加 */
+	margin-top: 42px;/* 增加 */
 }
 ```
 
@@ -499,6 +662,7 @@ html {
 `.markdown-body h2`
 
 > [!NOTE]
+> 删除 padding-bottom.
 > 增加下划线动画.
 
 <details><summary>修改前</summary>
@@ -519,10 +683,10 @@ html {
 .markdown-body h2 {
     font-size: 1.5em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
-    background: linear-gradient(45deg, #90d1ff, transparent) no-repeat left bottom;
-    background-size: 0 2px;
-    -webkit-transition: all 0.25s ease;
-    transition: all 0.25s ease;
+    background: linear-gradient(45deg, #90d1ff, transparent) no-repeat left bottom;/* 增加 */
+    background-size: 0 2px;/* 增加 */
+    -webkit-transition: all 0.25s ease;/* 增加 */
+    transition: all 0.25s ease;/* 增加 */
 }
 /* 增加hover */
 .markdown-body h2:hover {
@@ -758,6 +922,20 @@ fork 之后, 转到搭建博客的 github 源码,
 > 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
 > ~~创建新的 tag 也可以, 但是挺麻烦.~~
 
+## 修改 Action 定时任务时间
+
+原本为每天 UTC 时间 16 点定时 Action
+
+```yaml
+        - cron: '0 16 * * *'
+```
+
+改成每周 UTC 时间 18 点定时 Action
+
+```yaml
+        - cron: '0 18 * * 0'
+```
+
 ## 修改网站下方的文字
 
 打开`Gmeek.py`
@@ -778,21 +956,21 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ### 打开 post.html 文件
 
-定位样式`.title-right`, 其内容全部修改为flex布局👉`.title-right{display:flex;}`
++ 定位样式`.title-right`, 其内容全部修改为flex布局👉`.title-right{display:flex;}`
 
-增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`
++ 增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`
 
-定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 <a href='## \#header 图标样式'>primer.css</a> 来修改.)
++ 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 [#header-图标样式'](primer.css) 来修改.)
 
-定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
++ 定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
 
-定位样式`.avatar:hover`,其内容全部修改为👉`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
++ 定位样式`.avatar:hover`,其内容全部修改为👉`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
 
 ### 打开 plist.html 文件
 
-定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
++ 定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
 
-到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.
++ 到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.
 
 ## 修改[警报强调信息]样式
 
@@ -909,9 +1087,9 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 原先匹配的内容为:`<code class='notranslate'>Gmeek-html(.*?)</code>`,
 
-这种情况下, 如果在文章中含有代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,
+这种情况下, 如果在 html 中含有行内代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,
 
-更改后缩小了匹配范围, 可以直接使用`Gmeek-html`让其在文章内正常显示.
+更改后缩小了匹配范围, 可直接用行内代码块👉`Gmeek-html`让其在文章内正常显示.
 
 # 添加自定义单篇文章代码
 
@@ -963,7 +1141,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 官方虽然没说, 但是经过我后面测试得出:
 
-`script`字段里面引用的 js 代码, 写在尾巴加载越靠前!
+`script`字段里面引用的 js 代码, **写在尾巴加载越靠前!**
 
 > 其它字段还未测试过, 不知道是不是一样的道理.
 
@@ -979,7 +1157,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 `Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'`
 
-从图中可以看到, 可用 js 插入 html 实现修改文字.
+从图中可以看到, `subTitle`字段可用 js 插入 html 实现修改文字.
 
 ## subTitle - 隐藏
 
@@ -989,7 +1167,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 `Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'`
 
-可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.
+可以用空白字符的方式, 隐藏`subTitle`这个必须字段, 无需使用 js 隐藏.
 
 # 记录功能块代码
 
@@ -997,11 +1175,49 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 ## [ArticleJs.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleJs.js) - 文章自定义 js 代码
 
-整合内容:
+### 图片图片浏览器+图片懒加载整合
 
 [图片浏览器的代码](#fancybox.js---图片浏览器)
 
-[图片懒加载的代码](#imglazyload.js---图片懒加载)
+[图片懒加载的代码](#图片懒加载)
+
+这里说明一下, 图片浏览器和图片懒加载的整合后的工作流程:
+
+<details><summary>点击展开</summary>
+
+`Gmeek-imgbox`首先匹配到关键字后转化标签.
+
+`Gmeek.py`匹配转换的代码如下:
+
+```python
+        if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox='([^']+)'</code>',lambda match: f'<img data-fancybox='gallery' class='ImgLazyLoad' img-src='{match.group(1)}'>',post_body, flags=re.DOTALL)
+```
+
+markdown 输入:
+
+```html
+`Gmeek-imgbox='https://example.com/image.jpg'`
+```
+
+实际转化后的标签如下:
+
+```html
+<img data-fancybox='gallery' class='ImgLazyLoad' img-src='https://example.com/image.jpg'>
+
+<!-- 可以看到包含图片浏览器所需的`data-fancybox='gallery'`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`. -->
+<!-- 类名`ImgLazyLoad`的 CSS 动画我写在了`primer.css`里面, 让图片未加载时有一个加载动画. -->
+```
+
+当页面加载完成后, 脚本会检测标签里面的`img-src='https://example.com/image.jpg'`内容, 并增加`src`值, 这样图片就能显示了.
+
+图片加载的同时, 延迟 500 毫秒去掉`ImgLazyLoad`类名, 这样动画就能消失并显示正常的图片.
+
+图片加载失败则会显示指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.
+
+大概就是这样的一个流程.
+
+</details>
 
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
@@ -1021,7 +1237,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 > Fancybox [官网](https://www.fancyapps.com)
 
-### 引用 Fancybox 所需的 CSS 和 JS
+### config.json 里引用 Fancybox 所需的 CSS 和 JS
 
 > 注意末尾的标点符号.
 
@@ -1031,11 +1247,11 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
 ```
 
-CSS写到了👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码).
-
-意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.
+CSS写入到了👉[文章自定义 js 代码](#articlejs.js---文章自定义-js-代码)
 
 内容如下:
+
+意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.
 
 ```js
 document.addEventListener('DOMContentLoaded', () => {
@@ -1049,11 +1265,131 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
+### 增加自定义匹配 - Gmeek-imgbox
+
+修改 Gmeek 仓库的 Gmeek.py
+
+> 不知道怎么自定义 Gmeek 仓库的看这👉[通过 Gmeek 仓库 DIY 博客](#通过-gmeek-仓库-diy-博客)
+
+打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
+
+然后在下面增加代码:
+
+```python
+        if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox='([^']+)'</code>',lambda match: f'<img data-fancybox='gallery' src='{match.group(1)}'>',post_body, flags=re.DOTALL)
+```
+
+### 使用演示
+
+在 markdown 插入图片:
+
+```html
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2'`
+```
+
+通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的`data-fancybox='gallery'`属性.
+
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2'`
+
+## 图片懒加载
 
 > 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
 
-代码内容合并到👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码)
+代码内容合并到👉[文章自定义 js 代码](#articlejs.js---文章自定义-js-代码)
+
+关键内容如下:
+
+<details><summary>Javascript Code</summary>
+
+```Javascript
+	const ob = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				const img = entry.target;
+				img.src = img.getAttribute('img-src'); // 获取 img-src 属性的值
+				ob.unobserve(img);
+				setTimeout(() => {
+					img.classList.remove('ImgLazyLoad'); // 增加图片显示延迟, 延迟过程中图片也是会加载的
+				}, 500);
+			}
+		});
+	}, {
+		rootMargin: '0px 0px 500px 0px',
+	});
+
+	const imgs = document.querySelectorAll('[img-src]'); // 选择所有具有 img-src 属性的元素
+	imgs.forEach(img => {
+		ob.observe(img);
+		// 图片加载失败时的处理
+		img.onerror = function() {
+			img.classList.remove('ImgLazyLoad'); // 移除 ImgLazyLoad 类名
+			// 创建一个容器 div
+			const errorContainer = document.createElement('div');
+			errorContainer.classList.add('Imgerror-container');
+			// SVG 内容
+			const svgContent = `<svg xmlns='http://www.w3.org/2000/svg' style='height:60px;' class='Imgerror' viewBox='0 0 1024 1024'><path fill='#ff5b5b' d='M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z'/></svg>`;
+			const pContent = `<p class='Imgerror-message'>图片错误</p>`;
+
+			// 将 SVG 内容和 <p> 标签插入到 errorContainer div 内
+			errorContainer.innerHTML = svgContent + pContent;
+
+			// 将 errorContainer 插入到 img 元素的同一父元素下
+			img.parentNode.insertBefore(errorContainer, img.nextSibling);
+
+			// 隐藏 img 元素
+			img.style.display = 'none';
+		};
+	});
+```
+
+</details>
+
+加载动画 CSS, 我把它写到了`primer.css`文件里面.
+
+<details><summary>CSS Code</summary>
+
+```css
+/* 图片懒加载占位css动画 */
+.ImgLazyLoad {
+	width: 1px;
+	border-radius: 50%;
+	border: 6px #f3f3f3 solid;
+	border-top: 6px #8aefff solid;
+	padding: 20px;
+	animation: ImgLazyLoadAni 1.2s infinite;
+	-webkit-animation: ImgLazyLoadAni 1.2s infinite
+}
+
+@keyframes ImgLazyLoadAni {
+	0% {
+		transform: rotate(0)
+	}
+
+	100% {
+		transform: rotate(360deg)
+	}
+}
+
+@-webkit-keyframes ImgLazyLoadAni {
+	0% {
+		-webkit-transform: rotate(0)
+	}
+
+	100% {
+		-webkit-transform: rotate(360deg)
+	}
+}
+
+/* 图片懒加载文字提示样式 */
+.Imgerror-message {
+	color: #ff5b5b;
+	font-size: 100%;
+	user-select: none;
+}
+```
+
+</details>
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -1131,6 +1467,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
+> 增加宽高过渡动画.
 
 <details><summary>修改前</summary>
 
@@ -1168,6 +1505,7 @@ body {
 	background: var(--body-bgColor);
 	box-shadow: 0 0 100px var(--body-shadow-color);/* 增加 */
 	border-radius: 10px;/* 增加 */
+	transition: height 1s ease,max-width 1s ease;/* 增加 */
 }
 ```
 
@@ -1347,6 +1685,7 @@ html {
 
 > [!NOTE]
 > 删除左右 padding.
+> 修改 margin-top 30px.
 
 <details><summary>修改前</summary>
 
@@ -1376,7 +1715,7 @@ html {
 .markdown-body h5,
 .markdown-body h6 {
 	padding: .22em 0;
-	margin-top: 24px;
+	margin-top: 30px;
 	margin-bottom: 16px;
 	font-weight: var(--base-text-weight-semibold, 600);
 	line-height: 1.25
@@ -1392,6 +1731,7 @@ html {
 > [!NOTE]
 > 修改字体大小1.85em.
 > 删除下 padding, 增加左 padding .22em.
+> 增加 margin-top.
 > 优化 light & dark 主题下的背景色.
 
 <details><summary>修改前</summary>
@@ -1425,6 +1765,7 @@ html {
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
     border-left: .25em solid #32c7dd;/* 增加 */
     padding-left: .25em;/* 增加 */
+	margin-top: 42px;/* 增加 */
 }
 ```
 
@@ -1435,6 +1776,7 @@ html {
 `.markdown-body h2`
 
 > [!NOTE]
+> 删除 padding-bottom.
 > 增加下划线动画.
 
 <details><summary>修改前</summary>
@@ -1455,10 +1797,10 @@ html {
 .markdown-body h2 {
     font-size: 1.5em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
-    background: linear-gradient(45deg, #90d1ff, transparent) no-repeat left bottom;
-    background-size: 0 2px;
-    -webkit-transition: all 0.25s ease;
-    transition: all 0.25s ease;
+    background: linear-gradient(45deg, #90d1ff, transparent) no-repeat left bottom;/* 增加 */
+    background-size: 0 2px;/* 增加 */
+    -webkit-transition: all 0.25s ease;/* 增加 */
+    transition: all 0.25s ease;/* 增加 */
 }
 /* 增加hover */
 .markdown-body h2:hover {
@@ -1694,6 +2036,20 @@ fork 之后, 转到搭建博客的 github 源码,
 > 如果值是`last`的话, Action 会失败, 因为默认值`last`是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.
 > ~~创建新的 tag 也可以, 但是挺麻烦.~~
 
+## 修改 Action 定时任务时间
+
+原本为每天 UTC 时间 16 点定时 Action
+
+```yaml
+        - cron: '0 16 * * *'
+```
+
+改成每周 UTC 时间 18 点定时 Action
+
+```yaml
+        - cron: '0 18 * * 0'
+```
+
 ## 修改网站下方的文字
 
 打开`Gmeek.py`
@@ -1714,21 +2070,21 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ### 打开 post.html 文件
 
-定位样式`.title-right`, 其内容全部修改为flex布局👉`.title-right{display:flex;}`
++ 定位样式`.title-right`, 其内容全部修改为flex布局👉`.title-right{display:flex;}`
 
-增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`
++ 增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`
 
-定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 <a href='## \#header 图标样式'>primer.css</a> 来修改.)
++ 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 [#header-图标样式'](primer.css) 来修改.)
 
-定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
++ 定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
 
-定位样式`.avatar:hover`,其内容全部修改为👉`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
++ 定位样式`.avatar:hover`,其内容全部修改为👉`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
 
 ### 打开 plist.html 文件
 
-定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
++ 定位样式`.title-right .circle`, 删除`margin-right:8px;`(和上面一样, 删除多余间距.)
 
-到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.
++ 到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.
 
 ## 修改[警报强调信息]样式
 
@@ -1845,9 +2201,9 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 原先匹配的内容为:`<code class='notranslate'>Gmeek-html(.*?)</code>`,
 
-这种情况下, 如果在文章中含有代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,
+这种情况下, 如果在 html 中含有行内代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,
 
-更改后缩小了匹配范围, 可以直接使用`Gmeek-html`让其在文章内正常显示.
+更改后缩小了匹配范围, 可直接用行内代码块👉`Gmeek-html`让其在文章内正常显示.
 
 # 添加自定义单篇文章代码
 
@@ -1961,7 +2317,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h1>Config.json 小妙用</h1>
 <h2>引用顺序</h2>
 <p>官方虽然没说, 但是经过我后面测试得出:</p>
-<p><code class="notranslate">script</code>字段里面引用的 js 代码, 写在尾巴加载越靠前!</p>
+<p><code class="notranslate">script</code>字段里面引用的 js 代码, <strong>写在尾巴加载越靠前!</strong></p>
 <blockquote>
 <p>其它字段还未测试过, 不知道是不是一样的道理.</p>
 </blockquote>
@@ -1969,19 +2325,37 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>代码:</p>
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"subTitle"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script&gt;document.getElementById('content').innerHTML = `&lt;div style='text-align: center;'&gt;&lt;p&gt;CV工程师,&lt;/p&gt;&lt;p&gt;一个又菜又爱玩, 喜欢瞎折腾的流浪者.&lt;/p&gt;&lt;/div&gt;`;&lt;/script&gt;<span class="pl-pds">"</span></span>,</pre></div>
 <p>效果图:</p>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/2QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
-<p>从图中可以看到, 可用 js 插入 html 实现修改文字.</p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
+<p>从图中可以看到, <code class="notranslate">subTitle</code>字段可用 js 插入 html 实现修改文字.</p>
 <h2>subTitle - 隐藏</h2>
 <p><code class="notranslate">"subTitle":" ",</code></p>
 <p>效果图:</p>
 <p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"></p>
-<p>可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.</p>
+<p>可以用空白字符的方式, 隐藏<code class="notranslate">subTitle</code>这个必须字段, 无需使用 js 隐藏.</p>
 <h1>记录功能块代码</h1>
 <p>代码摘抄自网络, 有删改, 都存放在仓库, 使用 jsdelivr CDN 加速.</p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleJs.js">ArticleJs.js</a> - 文章自定义 js 代码</h2>
-<p>整合内容:</p>
+<h3>图片图片浏览器+图片懒加载整合</h3>
 <p><a href="#fancybox.js---%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%88%E5%99%A8">图片浏览器的代码</a></p>
-<p><a href="#imglazyload.js---%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD">图片懒加载的代码</a></p>
+<p><a href="#%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD">图片懒加载的代码</a></p>
+<p>这里说明一下, 图片浏览器和图片懒加载的整合后的工作流程:</p>
+<details><summary>点击展开</summary>
+<p><code class="notranslate">Gmeek-imgbox</code>首先匹配到关键字后转化标签.</p>
+<p><code class="notranslate">Gmeek.py</code>匹配转换的代码如下:</p>
+<div class="highlight highlight-source-python"><pre class="notranslate">        <span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
+            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-c1">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox="([^"]+)"&lt;/code&gt;'</span>,<span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" class="ImgLazyLoad" img-src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-c1">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>,<span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-c1">DOTALL</span>)</pre></div>
+<p>markdown 输入:</p>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-imgbox="https://example.com/image.jpg"`</pre></div>
+<p>实际转化后的标签如下:</p>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">data-fancybox</span>="<span class="pl-s">gallery</span>" <span class="pl-c1">class</span>="<span class="pl-s">ImgLazyLoad</span>" <span class="pl-c1">img-src</span>="<span class="pl-s">https://example.com/image.jpg</span>"<span class="pl-kos">&gt;</span>
+
+<span class="pl-c">&lt;!-- 可以看到包含图片浏览器所需的`data-fancybox="gallery"`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`. --&gt;</span>
+<span class="pl-c">&lt;!-- 类名`ImgLazyLoad`的 CSS 动画我写在了`primer.css`里面, 让图片未加载时有一个加载动画. --&gt;</span></pre></div>
+<p>当页面加载完成后, 脚本会检测标签里面的<code class="notranslate">img-src="https://example.com/image.jpg"</code>内容, 并增加<code class="notranslate">src</code>值, 这样图片就能显示了.</p>
+<p>图片加载的同时, 延迟 500 毫秒去掉<code class="notranslate">ImgLazyLoad</code>类名, 这样动画就能消失并显示正常的图片.</p>
+<p>图片加载失败则会显示指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.</p>
+<p>大概就是这样的一个流程.</p>
+</details>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js">ArticleToc.js</a> - 文章增加目录列表+一键返回顶部按钮</h2>
 <blockquote>
 <p>来源: <a href="https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file">Github</a><br>
@@ -1998,15 +2372,15 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <blockquote>
 <p>Fancybox <a href="https://www.fancyapps.com" rel="nofollow">官网</a></p>
 </blockquote>
-<h3>引用 Fancybox 所需的 CSS 和 JS</h3>
+<h3>config.json 里引用 Fancybox 所需的 CSS 和 JS</h3>
 <blockquote>
 <p>注意末尾的标点符号.</p>
 </blockquote>
 <p>我这里用的是<code class="notranslate">5.0</code>版本, cdn 加速链接.</p>
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"script"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'&gt;&lt;/script&gt;&lt;script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'&gt;&lt;/script&gt;<span class="pl-pds">"</span></span></pre></div>
-<p>CSS写到了👉<a href="#articleJs.js---%E6%96%87%E7%AB%A0%E8%87%AA%E5%AE%9A%E4%B9%89-js-%E4%BB%A3%E7%A0%81">文章自定义js代码</a>.</p>
-<p>意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.</p>
+<p>CSS写入到了👉<a href="#articlejs.js---%E6%96%87%E7%AB%A0%E8%87%AA%E5%AE%9A%E4%B9%89-js-%E4%BB%A3%E7%A0%81">文章自定义 js 代码</a></p>
 <p>内容如下:</p>
+<p>意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.</p>
 <div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">addEventListener</span><span class="pl-kos">(</span><span class="pl-s">'DOMContentLoaded'</span><span class="pl-kos">,</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
     <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-c1">head</span><span class="pl-kos">.</span><span class="pl-en">appendChild</span><span class="pl-kos">(</span>
         <span class="pl-v">Object</span><span class="pl-kos">.</span><span class="pl-en">assign</span><span class="pl-kos">(</span><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">createElement</span><span class="pl-kos">(</span><span class="pl-s">'link'</span><span class="pl-kos">)</span><span class="pl-kos">,</span> <span class="pl-kos">{</span>
@@ -2016,11 +2390,106 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-v">Fancybox</span><span class="pl-kos">.</span><span class="pl-en">bind</span><span class="pl-kos">(</span><span class="pl-s">'[data-fancybox="gallery"]'</span><span class="pl-kos">,</span> <span class="pl-kos">{</span><span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
-<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js">ImgLazyLoad.js</a> - 图片懒加载</h2>
+<h3>增加自定义匹配 - Gmeek-imgbox</h3>
+<p>修改 Gmeek 仓库的 Gmeek.py</p>
+<blockquote>
+<p>不知道怎么自定义 Gmeek 仓库的看这👉<a href="#%E9%80%9A%E8%BF%87-gmeek-%E4%BB%93%E5%BA%93-diy-%E5%8D%9A%E5%AE%A2">通过 Gmeek 仓库 DIY 博客</a></p>
+</blockquote>
+<p>打开<code class="notranslate">Gmeek.py</code>文件, 定位字符串<code class="notranslate">Gmeek-html</code></p>
+<p>然后在下面增加代码:</p>
+<div class="highlight highlight-source-python"><pre class="notranslate">        <span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
+            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-c1">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox="([^"]+)"&lt;/code&gt;'</span>,<span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-c1">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>,<span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-c1">DOTALL</span>)</pre></div>
+<h3>使用演示</h3>
+<p>在 markdown 插入图片:</p>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2"`</pre></div>
+<p>通过 Action 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的<code class="notranslate">data-fancybox="gallery"</code>属性.</p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2"></p>
+<h2>图片懒加载</h2>
 <blockquote>
 <p>来源: <a href="https://github.com/liyifanniubi/liyifanniubi.github.io">Github</a></p>
 </blockquote>
-<p>代码内容合并到👉<a href="#articleJs.js---%E6%96%87%E7%AB%A0%E8%87%AA%E5%AE%9A%E4%B9%89-js-%E4%BB%A3%E7%A0%81">文章自定义js代码</a></p>
+<p>代码内容合并到👉<a href="#articlejs.js---%E6%96%87%E7%AB%A0%E8%87%AA%E5%AE%9A%E4%B9%89-js-%E4%BB%A3%E7%A0%81">文章自定义 js 代码</a></p>
+<p>关键内容如下:</p>
+<details><summary>Javascript Code</summary>
+<div class="highlight highlight-source-js"><pre class="notranslate">	<span class="pl-k">const</span> <span class="pl-s1">ob</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">IntersectionObserver</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-s1">entries</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+		<span class="pl-s1">entries</span><span class="pl-kos">.</span><span class="pl-en">forEach</span><span class="pl-kos">(</span><span class="pl-s1">entry</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+			<span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">entry</span><span class="pl-kos">.</span><span class="pl-c1">isIntersecting</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+				<span class="pl-k">const</span> <span class="pl-s1">img</span> <span class="pl-c1">=</span> <span class="pl-s1">entry</span><span class="pl-kos">.</span><span class="pl-c1">target</span><span class="pl-kos">;</span>
+				<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">src</span> <span class="pl-c1">=</span> <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-en">getAttribute</span><span class="pl-kos">(</span><span class="pl-s">'img-src'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 获取 img-src 属性的值</span>
+				<span class="pl-s1">ob</span><span class="pl-kos">.</span><span class="pl-en">unobserve</span><span class="pl-kos">(</span><span class="pl-s1">img</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+				<span class="pl-en">setTimeout</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+					<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">remove</span><span class="pl-kos">(</span><span class="pl-s">'ImgLazyLoad'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 增加图片显示延迟, 延迟过程中图片也是会加载的</span>
+				<span class="pl-kos">}</span><span class="pl-kos">,</span> <span class="pl-c1">500</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+			<span class="pl-kos">}</span>
+		<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+	<span class="pl-kos">}</span><span class="pl-kos">,</span> <span class="pl-kos">{</span>
+		<span class="pl-c1">rootMargin</span>: <span class="pl-s">'0px 0px 500px 0px'</span><span class="pl-kos">,</span>
+	<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+	<span class="pl-k">const</span> <span class="pl-s1">imgs</span> <span class="pl-c1">=</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">querySelectorAll</span><span class="pl-kos">(</span><span class="pl-s">'[img-src]'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 选择所有具有 img-src 属性的元素</span>
+	<span class="pl-s1">imgs</span><span class="pl-kos">.</span><span class="pl-en">forEach</span><span class="pl-kos">(</span><span class="pl-s1">img</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+		<span class="pl-s1">ob</span><span class="pl-kos">.</span><span class="pl-en">observe</span><span class="pl-kos">(</span><span class="pl-s1">img</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+		<span class="pl-c">// 图片加载失败时的处理</span>
+		<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-en">onerror</span> <span class="pl-c1">=</span> <span class="pl-k">function</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+			<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">remove</span><span class="pl-kos">(</span><span class="pl-s">'ImgLazyLoad'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 移除 ImgLazyLoad 类名</span>
+			<span class="pl-c">// 创建一个容器 div</span>
+			<span class="pl-k">const</span> <span class="pl-s1">errorContainer</span> <span class="pl-c1">=</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">createElement</span><span class="pl-kos">(</span><span class="pl-s">'div'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+			<span class="pl-s1">errorContainer</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">add</span><span class="pl-kos">(</span><span class="pl-s">'Imgerror-container'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+			<span class="pl-c">// SVG 内容</span>
+			<span class="pl-k">const</span> <span class="pl-s1">svgContent</span> <span class="pl-c1">=</span> <span class="pl-s">`&lt;svg xmlns="http://www.w3.org/2000/svg" style="height:60px;" class="Imgerror" viewBox="0 0 1024 1024"&gt;&lt;path fill="#ff5b5b" d="M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z"/&gt;&lt;/svg&gt;`</span><span class="pl-kos">;</span>
+			<span class="pl-k">const</span> <span class="pl-s1">pContent</span> <span class="pl-c1">=</span> <span class="pl-s">`&lt;p class="Imgerror-message"&gt;图片错误&lt;/p&gt;`</span><span class="pl-kos">;</span>
+
+			<span class="pl-c">// 将 SVG 内容和 &lt;p&gt; 标签插入到 errorContainer div 内</span>
+			<span class="pl-s1">errorContainer</span><span class="pl-kos">.</span><span class="pl-c1">innerHTML</span> <span class="pl-c1">=</span> <span class="pl-s1">svgContent</span> <span class="pl-c1">+</span> <span class="pl-s1">pContent</span><span class="pl-kos">;</span>
+
+			<span class="pl-c">// 将 errorContainer 插入到 img 元素的同一父元素下</span>
+			<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">parentNode</span><span class="pl-kos">.</span><span class="pl-en">insertBefore</span><span class="pl-kos">(</span><span class="pl-s1">errorContainer</span><span class="pl-kos">,</span> <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">nextSibling</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+			<span class="pl-c">// 隐藏 img 元素</span>
+			<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">style</span><span class="pl-kos">.</span><span class="pl-c1">display</span> <span class="pl-c1">=</span> <span class="pl-s">'none'</span><span class="pl-kos">;</span>
+		<span class="pl-kos">}</span><span class="pl-kos">;</span>
+	<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+</details>
+<p>加载动画 CSS, 我把它写到了<code class="notranslate">primer.css</code>文件里面.</p>
+<details><summary>CSS Code</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-c">/* 图片懒加载占位css动画 */</span>
+.<span class="pl-c1">ImgLazyLoad</span> {
+	<span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">1<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">50<span class="pl-smi">%</span></span>;
+	<span class="pl-c1">border</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-pds"><span class="pl-kos">#</span>f3f3f3</span> solid;
+	<span class="pl-c1">border-top</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-pds"><span class="pl-kos">#</span>8aefff</span> solid;
+	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">20<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">animation</span><span class="pl-kos">:</span> ImgLazyLoadAni <span class="pl-c1">1.2<span class="pl-smi">s</span></span> infinite;
+	<span class="pl-c1">-webkit-animation</span><span class="pl-kos">:</span> ImgLazyLoadAni <span class="pl-c1">1.2<span class="pl-smi">s</span></span> infinite
+}
+
+<span class="pl-k">@keyframes</span> ImgLazyLoadAni {
+	<span class="pl-c1">0<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">rotate</span>(<span class="pl-c1">0</span>)
+	}
+
+	<span class="pl-c1">100<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">rotate</span>(<span class="pl-c1">360<span class="pl-smi">deg</span></span>)
+	}
+}
+
+<span class="pl-k">@-webkit-keyframes</span> ImgLazyLoadAni {
+	<span class="pl-c1">0<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">rotate</span>(<span class="pl-c1">0</span>)
+	}
+
+	<span class="pl-c1">100<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">rotate</span>(<span class="pl-c1">360<span class="pl-smi">deg</span></span>)
+	}
+}
+
+<span class="pl-c">/* 图片懒加载文字提示样式 */</span>
+.<span class="pl-c1">Imgerror-message</span> {
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ff5b5b</span>;
+	<span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span>;
+	<span class="pl-c1">user-select</span><span class="pl-kos">:</span> none;
+}</pre></div>
+</details>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
 <blockquote>
 <p>Vercount <a href="https://github.com/EvanNotFound/vercount">Github</a><br>
@@ -2053,13 +2522,13 @@ pv 修改成 uv 计数.</p>
 </details>
 <details><summary>修改后</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
-    <span class="pl-c1">--html-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>151c2f</span>;<span class="pl-c">/* 增加 */</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span> {
+    <span class="pl-s1">--html-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>151c2f</span>;<span class="pl-c">/* 增加 */</span>
 }
 <span class="pl-kos">:</span><span class="pl-c1">root</span> {
-    <span class="pl-c1">--html-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>fff</span>;<span class="pl-c">/* 增加 */</span>
+    <span class="pl-s1">--html-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>fff</span>;<span class="pl-c">/* 增加 */</span>
 }
 [<span class="pl-c1">data-color-mode</span>] {
 	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));
@@ -2072,7 +2541,8 @@ pv 修改成 uv 计数.</p>
 </details>
 <h2>&lt;body&gt; 标签样式</h2>
 <p><code class="notranslate">body</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.<br>
+增加宽高过渡动画.</p>
 </div>
 <details><summary>修改前</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-ent">body</span> {
@@ -2085,15 +2555,15 @@ pv 修改成 uv 计数.</p>
 </details>
 <details><summary>修改后</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
-    <span class="pl-c1">--body-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>3b3b3bd9</span>;<span class="pl-c">/* 增加 */</span>
-	<span class="pl-c1">--body-shadow-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>52afff3d</span>;<span class="pl-c">/* 增加 */</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span> {
+    <span class="pl-s1">--body-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>3b3b3bd9</span>;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-s1">--body-shadow-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>52afff3d</span>;<span class="pl-c">/* 增加 */</span>
 }
 <span class="pl-kos">:</span><span class="pl-c1">root</span> {
-    <span class="pl-c1">--body-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ffffffde</span>;<span class="pl-c">/* 增加 */</span>
-	<span class="pl-c1">--body-shadow-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>50a8e726</span>;<span class="pl-c">/* 增加 */</span>
+    <span class="pl-s1">--body-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ffffffde</span>;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-s1">--body-shadow-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>50a8e726</span>;<span class="pl-c">/* 增加 */</span>
 }
 <span class="pl-ent">body</span> {
 	<span class="pl-c1">font-family</span><span class="pl-kos">:</span> -apple-system<span class="pl-kos">,</span> BlinkMacSystemFont<span class="pl-kos">,</span> <span class="pl-s">"Segoe UI"</span><span class="pl-kos">,</span> <span class="pl-s">"Noto Sans"</span><span class="pl-kos">,</span> Helvetica<span class="pl-kos">,</span> Arial<span class="pl-kos">,</span> sans-serif<span class="pl-kos">,</span> <span class="pl-s">"Apple Color Emoji"</span><span class="pl-kos">,</span> <span class="pl-s">"Segoe UI Emoji"</span>;
@@ -2103,21 +2573,22 @@ pv 修改成 uv 计数.</p>
 	<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--body-bgColor</span>);
 	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span> <span class="pl-c1">100<span class="pl-smi">px</span></span> <span class="pl-en">var</span>(<span class="pl-s1">--body-shadow-color</span>);<span class="pl-c">/* 增加 */</span>
 	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">transition</span><span class="pl-kos">:</span> height <span class="pl-c1">1<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span>max-width <span class="pl-c1">1<span class="pl-smi">s</span></span> ease;<span class="pl-c">/* 增加 */</span>
 }</pre></div>
 </details>
 <h2>博客滚动条样式</h2>
 <p>直接增加下面代码.</p>
 <details><summary>CSS Code</summary>
-<div class="highlight highlight-source-css"><pre class="notranslate">::<span class="pl-ent">-webkit-scrollbar</span> {
+<div class="highlight highlight-source-css"><pre class="notranslate">::<span class="pl-c1">-webkit-scrollbar</span> {
     <span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">8<span class="pl-smi">px</span></span>;
     <span class="pl-c1">height</span><span class="pl-kos">:</span> <span class="pl-c1">8<span class="pl-smi">px</span></span>;
 }
 
-::<span class="pl-ent">-webkit-scrollbar-thumb</span> {
+::<span class="pl-c1">-webkit-scrollbar-thumb</span> {
     <span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;
     <span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>97d3ffa1</span>;
 }
-::<span class="pl-ent">-webkit-scrollbar-thumb</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> {
+::<span class="pl-c1">-webkit-scrollbar-thumb</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> {
 	<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>81b5daa1</span>;
 }
 
@@ -2173,17 +2644,17 @@ pv 修改成 uv 计数.</p>
 </details>
 <details><summary>修改后</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span> {
 	<span class="pl-c">/* 增加 */</span>
-	<span class="pl-c1">--title-right-btnbg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>46ffff61</span>;
-	<span class="pl-c1">--title-right-svg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>00f0ff</span>;
+	<span class="pl-s1">--title-right-btnbg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>46ffff61</span>;
+	<span class="pl-s1">--title-right-svg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>00f0ff</span>;
 }
 <span class="pl-kos">:</span><span class="pl-c1">root</span> {
 	<span class="pl-c">/* 增加 */</span>
-	<span class="pl-c1">--title-right-btnbg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>b7dbff61</span>;
-	<span class="pl-c1">--title-right-svg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>71baff</span>;
+	<span class="pl-s1">--title-right-btnbg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>b7dbff61</span>;
+	<span class="pl-s1">--title-right-svg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>71baff</span>;
 }
 .<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span><span class="pl-kos">,</span>
 .<span class="pl-c1">btn-invisible</span>.<span class="pl-c1">zeroclipboard-is-hover</span> {
@@ -2208,17 +2679,17 @@ pv 修改成 uv 计数.</p>
 </details>
 <details><summary>修改后</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span> {
 	<span class="pl-c">/* 增加 */</span>
-	<span class="pl-c1">--markdown-blockquote-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ffffff8c</span>;
-	<span class="pl-c1">--markdown-blockquote-borderLeft-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>bbbbbb8c</span>;
+	<span class="pl-s1">--markdown-blockquote-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ffffff8c</span>;
+	<span class="pl-s1">--markdown-blockquote-borderLeft-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>bbbbbb8c</span>;
 }
 <span class="pl-kos">:</span><span class="pl-c1">root</span> {
 	<span class="pl-c">/* 增加 */</span>
-	<span class="pl-c1">--markdown-blockquote-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>656d76</span>;
-	<span class="pl-c1">--markdown-blockquote-borderLeft-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>d0d7de</span>;
+	<span class="pl-s1">--markdown-blockquote-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>656d76</span>;
+	<span class="pl-s1">--markdown-blockquote-borderLeft-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>d0d7de</span>;
 }
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">blockquote</span> {
 	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">1<span class="pl-smi">em</span></span>;
@@ -2232,7 +2703,8 @@ pv 修改成 uv 计数.</p>
 </div>
 <h2>文章标题通用样式</h2>
 <p><code class="notranslate">.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>删除左右 padding.</p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>删除左右 padding.<br>
+修改 margin-top 30px.</p>
 </div>
 <details><summary>修改前</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h1</span><span class="pl-kos">,</span>
@@ -2256,7 +2728,7 @@ pv 修改成 uv 计数.</p>
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">h5</span><span class="pl-kos">,</span>
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">h6</span> {
 	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">.22<span class="pl-smi">em</span></span> <span class="pl-c1">0</span>;
-	<span class="pl-c1">margin-top</span><span class="pl-kos">:</span> <span class="pl-c1">24<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">margin-top</span><span class="pl-kos">:</span> <span class="pl-c1">30<span class="pl-smi">px</span></span>;
 	<span class="pl-c1">margin-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">16<span class="pl-smi">px</span></span>;
 	<span class="pl-c1">font-weight</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--base-text-weight-semibold</span><span class="pl-kos">,</span> <span class="pl-c1">600</span>);
 	<span class="pl-c1">line-height</span><span class="pl-kos">:</span> <span class="pl-c1">1.25</span>
@@ -2266,6 +2738,7 @@ pv 修改成 uv 计数.</p>
 <p><code class="notranslate">.markdown-body h1</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改字体大小1.85em.<br>
 删除下 padding, 增加左 padding .22em.<br>
+增加 margin-top.<br>
 优化 light &amp; dark 主题下的背景色.</p>
 </div>
 <details><summary>修改前</summary>
@@ -2277,13 +2750,13 @@ pv 修改成 uv 计数.</p>
 </details>
 <details><summary>修改后</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
-    <span class="pl-c1">--markdown-h1-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>7dc2ff7a</span>;<span class="pl-c">/* 增加 */</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span> {
+    <span class="pl-s1">--markdown-h1-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>7dc2ff7a</span>;<span class="pl-c">/* 增加 */</span>
 }
 <span class="pl-kos">:</span><span class="pl-c1">root</span> {
-    <span class="pl-c1">--markdown-h1-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>c8e5ff7a</span>;<span class="pl-c">/* 增加 */</span>
+    <span class="pl-s1">--markdown-h1-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>c8e5ff7a</span>;<span class="pl-c">/* 增加 */</span>
 }
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">h1</span> {
 	<span class="pl-c1">padding-left</span><span class="pl-kos">:</span> <span class="pl-c1">.22<span class="pl-smi">em</span></span>;
@@ -2293,11 +2766,13 @@ pv 修改成 uv 计数.</p>
     <span class="pl-c1">border-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">1<span class="pl-smi">px</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-muted</span>));
     <span class="pl-c1">border-left</span><span class="pl-kos">:</span> <span class="pl-c1">.25<span class="pl-smi">em</span></span> solid <span class="pl-pds"><span class="pl-kos">#</span>32c7dd</span>;<span class="pl-c">/* 增加 */</span>
     <span class="pl-c1">padding-left</span><span class="pl-kos">:</span> <span class="pl-c1">.25<span class="pl-smi">em</span></span>;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">margin-top</span><span class="pl-kos">:</span> <span class="pl-c1">42<span class="pl-smi">px</span></span>;<span class="pl-c">/* 增加 */</span>
 }</pre></div>
 </details>
 <h2>文章 &lt;h2&gt; 标签样式</h2>
 <p><code class="notranslate">.markdown-body h2</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>增加下划线动画.</p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>删除 padding-bottom.<br>
+增加下划线动画.</p>
 </div>
 <details><summary>修改前</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h2</span> {
@@ -2310,10 +2785,10 @@ pv 修改成 uv 计数.</p>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">h2</span> {
     <span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">1.5<span class="pl-smi">em</span></span>;
     <span class="pl-c1">border-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">1<span class="pl-smi">px</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-muted</span>));
-    <span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">linear-gradient</span>(<span class="pl-c1">45<span class="pl-smi">deg</span></span><span class="pl-kos">,</span> <span class="pl-pds"><span class="pl-kos">#</span>90d1ff</span><span class="pl-kos">,</span> transparent) no-repeat left bottom;
-    <span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;
-    <span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> all <span class="pl-c1">0.25<span class="pl-smi">s</span></span> ease;
-    <span class="pl-c1">transition</span><span class="pl-kos">:</span> all <span class="pl-c1">0.25<span class="pl-smi">s</span></span> ease;
+    <span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">linear-gradient</span>(<span class="pl-c1">45<span class="pl-smi">deg</span></span><span class="pl-kos">,</span> <span class="pl-pds"><span class="pl-kos">#</span>90d1ff</span><span class="pl-kos">,</span> transparent) no-repeat left bottom;<span class="pl-c">/* 增加 */</span>
+    <span class="pl-c1">background-size</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">2<span class="pl-smi">px</span></span>;<span class="pl-c">/* 增加 */</span>
+    <span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> all <span class="pl-c1">0.25<span class="pl-smi">s</span></span> ease;<span class="pl-c">/* 增加 */</span>
+    <span class="pl-c1">transition</span><span class="pl-kos">:</span> all <span class="pl-c1">0.25<span class="pl-smi">s</span></span> ease;<span class="pl-c">/* 增加 */</span>
 }
 <span class="pl-c">/* 增加hover */</span>
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">h2</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> {
@@ -2365,13 +2840,13 @@ pv 修改成 uv 计数.</p>
 </details>
 <details><summary>修改后</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
-	<span class="pl-c1">--markdown-code-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>3bf6ff52</span>;<span class="pl-c">/* 增加 */</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span> {
+	<span class="pl-s1">--markdown-code-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>3bf6ff52</span>;<span class="pl-c">/* 增加 */</span>
 }
 <span class="pl-kos">:</span><span class="pl-c1">root</span> {
-	<span class="pl-c1">--markdown-code-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>4d4d4d38</span>;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-s1">--markdown-code-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>4d4d4d38</span>;<span class="pl-c">/* 增加 */</span>
 }
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">code</span><span class="pl-kos">,</span>
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">tt</span> {
@@ -2390,13 +2865,13 @@ pv 修改成 uv 计数.</p>
 </details>
 <details><summary>修改后</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
-	<span class="pl-c1">--markdown-pre-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>27282d</span>;<span class="pl-c">/* 增加 */</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span> {
+	<span class="pl-s1">--markdown-pre-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>27282d</span>;<span class="pl-c">/* 增加 */</span>
 }
 <span class="pl-kos">:</span><span class="pl-c1">root</span> {
-	<span class="pl-c1">--markdown-pre-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>f6f8fa</span>;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-s1">--markdown-pre-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>f6f8fa</span>;<span class="pl-c">/* 增加 */</span>
 }
 .<span class="pl-c1">markdown-body</span> .<span class="pl-c1">highlight</span> <span class="pl-ent">pre</span><span class="pl-kos">,</span>
 .<span class="pl-c1">markdown-body</span> <span class="pl-ent">pre</span> {
@@ -2432,10 +2907,10 @@ pv 修改成 uv 计数.</p>
 </div>
 <details><summary>修改前</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
-    <span class="pl-c1">--color-accent-fg</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>2f81f7</span>;
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span> {
+    <span class="pl-s1">--color-accent-fg</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>2f81f7</span>;
 }
 <span class="pl-c">/* 这条在12345行左右出现 */</span>
 <span class="pl-ent">a</span> {
@@ -2444,10 +2919,10 @@ pv 修改成 uv 计数.</p>
 </details>
 <details><summary>修改后</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-ent">selection</span> {
-    <span class="pl-c1">--color-accent-fg</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>20d4ff</span>;
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span> {
+    <span class="pl-s1">--color-accent-fg</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>20d4ff</span>;
 }
 <span class="pl-c">/* </span>
 <span class="pl-c">这条在12345行左右出现</span>
@@ -2477,6 +2952,11 @@ pv 修改成 uv 计数.</p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>如果值是<code class="notranslate">last</code>的话, Action 会失败, 因为默认值<code class="notranslate">last</code>是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.<br>
 <del>创建新的 tag 也可以, 但是挺麻烦.</del></p>
 </div>
+<h2>修改 Action 定时任务时间</h2>
+<p>原本为每天 UTC 时间 16 点定时 Action</p>
+<div class="highlight highlight-source-yaml"><pre class="notranslate">        - <span class="pl-ent">cron</span>: <span class="pl-s"><span class="pl-pds">"</span>0 16 * * *<span class="pl-pds">"</span></span></pre></div>
+<p>改成每周 UTC 时间 18 点定时 Action</p>
+<div class="highlight highlight-source-yaml"><pre class="notranslate">        - <span class="pl-ent">cron</span>: <span class="pl-s"><span class="pl-pds">"</span>0 18 * * 0<span class="pl-pds">"</span></span></pre></div>
 <h2>修改网站下方的文字</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
 <p>下图文字直接修改即可, 不同语言的按需修改.</p>
@@ -2487,14 +2967,32 @@ pv 修改成 uv 计数.</p>
 <p>这里我直接写改成我存放的链接 <a href="https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css" rel="nofollow">https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css</a></p>
 <h2>修改页面头部样式</h2>
 <h3>打开 post.html 文件</h3>
+<ul>
+<li>
 <p>定位样式<code class="notranslate">.title-right</code>, 其内容全部修改为flex布局👉<code class="notranslate">.title-right{display:flex;}</code></p>
+</li>
+<li>
 <p>增加样式<code class="notranslate">.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}</code></p>
-<p>定位样式<code class="notranslate">.title-left a</code>, 删除<code class="notranslate">margin-left:8px;</code>(设置flex布局之后取消图标多余的间距, 样式则通过 <a href="## \#header 图标样式">primer.css</a> 来修改.)</p>
+</li>
+<li>
+<p>定位样式<code class="notranslate">.title-left a</code>, 删除<code class="notranslate">margin-left:8px;</code>(设置flex布局之后取消图标多余的间距, 样式则通过 <a href="primer.css">#header-图标样式"</a> 来修改.)</p>
+</li>
+<li>
 <p>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code>(和上面一样, 删除多余间距.)</p>
+</li>
+<li>
 <p>定位样式<code class="notranslate">.avatar:hover</code>,其内容全部修改为👉<code class="notranslate">.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}</code></p>
+</li>
+</ul>
 <h3>打开 plist.html 文件</h3>
+<ul>
+<li>
 <p>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code>(和上面一样, 删除多余间距.)</p>
+</li>
+<li>
 <p>到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.</p>
+</li>
+</ul>
 <h2>修改[警报强调信息]样式</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
 <p>定位代码<code class="notranslate">markdown-alert-{alert}</code></p>
@@ -2508,7 +3006,7 @@ pv 修改成 uv 计数.</p>
 <p>增加爱心图标动画.</p>
 <p>打开<code class="notranslate">footer.html</code></p>
 <p>在<code class="notranslate">&lt;span id="runday"&gt;</code>前面插入下面一行 SVG 图标.</p>
-<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">svg</span> <span class="pl-c1">viewBox</span>="<span class="pl-s">0 0 1024 1024</span>" <span class="pl-c1">xmlns</span>="<span class="pl-s">http://www.w3.org/2000/svg</span>" <span class="pl-c1">style</span>="<span class="pl-s">margin-right: 4px;height:18px;vertical-align: bottom;fill: #ff5a5a;</span>"<span class="pl-c1">class</span>="<span class="pl-s">animate_heartBeatScale</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;</span><span class="pl-ent">path</span> <span class="pl-c1">d</span>="<span class="pl-s">M1017.152 426.592a263.296 263.296 0 0 0-502.304-133.92 263.328 263.328 0 0 0-502.304 133.92s5.152 259.264 505.536 520.096c500.32-260.832 499.072-520.096 499.072-520.096zM282.016 194.976a43.2 43.2 0 1 1 .096 86.4 43.2 43.2 0 0 1-.096-86.4zm-135.04 323.232a45.12 45.12 0 0 1-55.488-31.328 289.472 289.472 0 0 1-10.816-66.592C76.64 313.824 142.24 261.472 145.504 258.88a45.024 45.024 0 0 1 63.2 8.032c15.168 19.488 11.744 47.36-7.328 62.72-2.336 1.952-30.784 27.52-30.592 82.24.096 14.752 2.208 31.616 7.488 50.784a45.12 45.12 0 0 1-31.296 55.552z</span>"/&gt;<span class="pl-kos">&lt;/</span><span class="pl-ent">svg</span><span class="pl-kos">&gt;</span></pre></div>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">svg</span> <span class="pl-c1">viewBox</span>="<span class="pl-s">0 0 1024 1024</span>" <span class="pl-c1">xmlns</span>="<span class="pl-s">http://www.w3.org/2000/svg</span>" <span class="pl-c1">style</span>="<span class="pl-s">margin-right: 4px;height:18px;vertical-align: bottom;fill: #ff5a5a;</span>"<span class="pl-c1">class</span>="<span class="pl-s">animate_heartBeatScale</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;</span><span class="pl-ent">path</span> <span class="pl-c1">d</span>="<span class="pl-s">M1017.152 426.592a263.296 263.296 0 0 0-502.304-133.92 263.328 263.328 0 0 0-502.304 133.92s5.152 259.264 505.536 520.096c500.32-260.832 499.072-520.096 499.072-520.096zM282.016 194.976a43.2 43.2 0 1 1 .096 86.4 43.2 43.2 0 0 1-.096-86.4zm-135.04 323.232a45.12 45.12 0 0 1-55.488-31.328 289.472 289.472 0 0 1-10.816-66.592C76.64 313.824 142.24 261.472 145.504 258.88a45.024 45.024 0 0 1 63.2 8.032c15.168 19.488 11.744 47.36-7.328 62.72-2.336 1.952-30.784 27.52-30.592 82.24.096 14.752 2.208 31.616 7.488 50.784a45.12 45.12 0 0 1-31.296 55.552z</span>"<span class="pl-kos">/&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">svg</span><span class="pl-kos">&gt;</span></pre></div>
 <p>打开<code class="notranslate">primer.css</code></p>
 <p>直接增加动画 CSS 代码.</p>
 <details><summary>CSS Code</summary>
@@ -2569,10 +3067,10 @@ pv 修改成 uv 计数.</p>
 <p>定位字符串<code class="notranslate">gmeek-html</code></p>
 <p>替换成下面的代码:</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-html'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>:
-            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-html(&amp;lt;.*?&amp;gt;)&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s1">html</span>.<span class="pl-en">unescape</span>(<span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)), <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
+            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-c1">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-html(&amp;lt;.*?&amp;gt;)&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s1">html</span>.<span class="pl-c1">unescape</span>(<span class="pl-s1">match</span>.<span class="pl-c1">group</span>(<span class="pl-c1">1</span>)), <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-c1">DOTALL</span>)</pre></div>
 <p>原先匹配的内容为:<code class="notranslate">&lt;code class="notranslate"&gt;Gmeek-html(.*?)&lt;/code&gt;</code>,</p>
-<p>这种情况下, 如果在文章中含有代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,</p>
-<p>更改后缩小了匹配范围, 可以直接使用<code class="notranslate">Gmeek-html</code>让其在文章内正常显示.</p>
+<p>这种情况下, 如果在 html 中含有行内代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,</p>
+<p>更改后缩小了匹配范围, 可直接用行内代码块👉<code class="notranslate">Gmeek-html</code>让其在文章内正常显示.</p>
 <h1>添加自定义单篇文章代码</h1>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">id</span>="<span class="pl-s">busuanzi</span>"<span class="pl-kos">&gt;</span>
 :heart:感谢第<span class="pl-kos">&lt;</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>小伙伴的<span class="pl-kos">&lt;</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>次访问关于页面.
@@ -2815,6 +3313,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script src='../../static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://cdn.jsdelivr.net/gh/gyanprabhat7/LazyLoad.JS/lazyImage.js'></script>
+<script src='https://www.gjkblog.us.kg/demo/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://cdn.jsdelivr.net/gh/gyanprabhat7/LazyLoad.JS/lazyImage.js'></script>
 
 </html>
