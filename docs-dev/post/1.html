@@ -4,17 +4,13 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href='../../static/primer.css' rel='stylesheet' />
+    <link href='../../static/primer.min.css' rel='stylesheet' />
     <script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/Indextheme.min.js'></script>
     <link rel="icon" href="https://pic.imgdb.cn/item/6734c652d29ded1a8cc038aa.jpg"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="`Gmeek-imgbox='https://example.com/image.jpg'`
-
-[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
-
-`<Gmeek-imgbox src='https://img.shields.io/static/v1?label=&message=网站&color=218155'>`
+<meta name="description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
 # 搭建博客
 
@@ -45,7 +41,7 @@
 
 效果图:
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'`
 
 从图中可以看到, 可用 js 插入 html 实现修改文字.
 
@@ -55,13 +51,21 @@
 
 效果图:
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'`
 
 可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.
 
 # 记录功能块代码
 
 代码摘抄自网络, 有删改, 都存放在仓库, 使用 jsdelivr CDN 加速.
+
+## [ArticleJs.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleJs.js) - 文章自定义 js 代码
+
+整合内容:
+
+[图片浏览器的代码](#fancybox.js---图片浏览器)
+
+[图片懒加载的代码](#imglazyload.js---图片懒加载)
 
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
@@ -72,19 +76,18 @@
 > 修改-增加滚动页面同时滚动章节.
 > 修改-动画和样式.
 > 修改-滚动页面自动显示&隐藏返回顶部按钮.
-> 已知bug: 给body增加`backdrop-filter: blur(30px);`样式时, 会出现页面异常, 待后续修复.
 
 图示:
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H'`
 
 ## Fancybox.js - 图片浏览器
 
 > Fancybox [官网](https://www.fancyapps.com)
 
-### 引用 Fancybox 所需文件
+### 引用 Fancybox 所需的 CSS 和 JS
 
-#### 给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.
+> 注意末尾的标点符号.
 
 我这里用的是`5.0`版本, cdn 加速链接.
 
@@ -92,7 +95,11 @@
 'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
 ```
 
-`ArticleJs.js`需要填写的内容如下:
+CSS写到了👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码).
+
+意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.
+
+内容如下:
 
 ```js
 document.addEventListener('DOMContentLoaded', () => {
@@ -106,50 +113,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.
+## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
 
-## lazyImage.js - 图片懒加载
+> 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
 
-> lazyImage [官网](https://lazyload.js.org)
-
-打开`post.html`文件, 在`<script>`标签里面增加下面 js 代码.
-
-```JavaScript
-	// 图片懒加载所需函数
-	const lazyImage = new LazyImage('.lazy-load-image');
-	// Customize the loading strategy
-	lazyImage.observeWithIntersectionObserver();
-	// Optional: Provide a placeholder image
-	lazyImage.placeholderImage = 'placeholder.jpg';
-	lazyImage.init();
-```
-
-#### 修改 Gmeek 仓库的 Gmeek.py
-
-> 不知道怎么自定义 Gmeek 仓库的看这👉`Gmeek-html<a href='#通过-gmeek-仓库-diy-博客'>通过 Gmeek 仓库 DIY 博客</a>`
-
-打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
-
-然后在下面增加代码:
-
-```python
-if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
-```
-
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmQu6VykpD9odhGB6bMdtR5PdCT9P89ajzM7YD2sq7YuPy'>`
-
-### 示例使用
-
-在 markdown 中插入图片:
-
-```html
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
-```
-
-通过 Action 转换后实际效果如下, 在 html 里面图片标签会增加 fancybox 所需的`data-fancybox='gallery'`属性.
-
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmb4526u4e4jy4vscE8w3gVRyVkegyotdnwhS1rVCoVm8k'>`
+代码内容合并到👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码)
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -161,12 +129,6 @@ if '<code class='notranslate'>Gmeek-imgbox' in post_body:
 ```json
 'allHead':'<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script>'
 ```
-
-## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
-
-> 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
-
-未实际测试过.
 
 ## [NumPagination.js](https://github.com/GJKen/gjken.github.io/blob/main/static/NumPagination.js) - 主页添加数字分页条
 
@@ -181,6 +143,8 @@ if '<code class='notranslate'>Gmeek-imgbox' in post_body:
 对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
 
 下面是修改笔记, 不一定实际使用.
+
+> 已知bug: 给body增加`backdrop-filter: blur(30px);`样式时, 会出现页面异常, 待后续修复.
 
 ## \<html> 标签样式
 
@@ -780,13 +744,13 @@ a {
 
 仓库地址👉 https://github.com/Meekdai/Gmeek
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV'`
 
 fork 之后, 转到搭建博客的 github 源码,
 
 打开`.github/workflows/Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav'`
 
 打开`config.json`文件, 修改右边字段值为main`'GMEEK_VERSION':'main'`
 
@@ -800,13 +764,13 @@ fork 之后, 转到搭建博客的 github 源码,
 
 下图文字直接修改即可, 不同语言的按需修改.
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs'`
 
 ## 修改默认 primer.css 链接
 
 打开`Gmeek.py`
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v'`
 
 这里我直接写改成我存放的链接 https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css
 
@@ -838,11 +802,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 > 增加圆角6px.
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS'`
 
 效果图:
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW'`
 
 ## 页面底部文字增加图标动画
 
@@ -908,7 +872,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 效果图:
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH'`
 
 # 使用 Gmeek-html, 给博客插入图片, 防止链接自动转换
 
@@ -963,17 +927,17 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 | Label Name | Color | 效果
 |-|-|-
-| 网站 | #218155 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=网站&color=218155'>`
-| 日常 | #008672 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=日常&color=008672'>`
-| 教程 | #0075ca | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=教程&color=0075ca'>`
-| Anime | #E77AB1 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Anime&color=E77AB1'>`
-| Win | #5AB3F3 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Win&color=5AB3F3'>`
-| VPS | #5319e7 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=VPS&color=5319e7'>`
-| JS | #AD3152 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=JS&color=AD3152'>`
-| CSS | #218155 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=CSS&color=218155'>`
-| Github | #333333 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Github&color=333333'>`
-| CDN | #cb222c | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=CDN&color=cb222c'>`
-| Bug | #D73A4A | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Bug&color=D73A4A'>`
+| 网站 | #218155 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=网站&color=218155'`
+| 日常 | #008672 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=日常&color=008672'`
+| 教程 | #0075ca | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=教程&color=0075ca'`
+| Anime | #E77AB1 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=Anime&color=E77AB1'`
+| Win | #5AB3F3 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=Win&color=5AB3F3'`
+| VPS | #5319e7 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=VPS&color=5319e7'`
+| JS | #AD3152 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=JS&color=AD3152'`
+| CSS | #218155 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=CSS&color=218155'`
+| Github | #333333 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=Github&color=333333'`
+| CDN | #cb222c | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=CDN&color=cb222c'`
+| Bug | #D73A4A | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=Bug&color=D73A4A'`
 
 # Readme.md
 
@@ -982,11 +946,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 🌺 > 是统计的所有文章的字符数
 ⏰ > 最后一次 Actions 的时间。">
 <meta property="og:title" content="Gmeek - 记录使用过程">
-<meta property="og:description" content="`Gmeek-imgbox='https://example.com/image.jpg'`
-
-[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
-
-`<Gmeek-imgbox src='https://img.shields.io/static/v1?label=&message=网站&color=218155'>`
+<meta property="og:description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
 # 搭建博客
 
@@ -1017,7 +977,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 效果图:
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF'`
 
 从图中可以看到, 可用 js 插入 html 实现修改文字.
 
@@ -1027,13 +987,21 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 效果图:
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy'`
 
 可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.
 
 # 记录功能块代码
 
 代码摘抄自网络, 有删改, 都存放在仓库, 使用 jsdelivr CDN 加速.
+
+## [ArticleJs.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleJs.js) - 文章自定义 js 代码
+
+整合内容:
+
+[图片浏览器的代码](#fancybox.js---图片浏览器)
+
+[图片懒加载的代码](#imglazyload.js---图片懒加载)
 
 ## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
 
@@ -1044,19 +1012,18 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 > 修改-增加滚动页面同时滚动章节.
 > 修改-动画和样式.
 > 修改-滚动页面自动显示&隐藏返回顶部按钮.
-> 已知bug: 给body增加`backdrop-filter: blur(30px);`样式时, 会出现页面异常, 待后续修复.
 
 图示:
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H'`
 
 ## Fancybox.js - 图片浏览器
 
 > Fancybox [官网](https://www.fancyapps.com)
 
-### 引用 Fancybox 所需文件
+### 引用 Fancybox 所需的 CSS 和 JS
 
-#### 给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.
+> 注意末尾的标点符号.
 
 我这里用的是`5.0`版本, cdn 加速链接.
 
@@ -1064,7 +1031,11 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 'script':'<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>'
 ```
 
-`ArticleJs.js`需要填写的内容如下:
+CSS写到了👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码).
+
+意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.
+
+内容如下:
 
 ```js
 document.addEventListener('DOMContentLoaded', () => {
@@ -1078,50 +1049,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.
+## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
 
-## lazyImage.js - 图片懒加载
+> 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
 
-> lazyImage [官网](https://lazyload.js.org)
-
-打开`post.html`文件, 在`<script>`标签里面增加下面 js 代码.
-
-```JavaScript
-	// 图片懒加载所需函数
-	const lazyImage = new LazyImage('.lazy-load-image');
-	// Customize the loading strategy
-	lazyImage.observeWithIntersectionObserver();
-	// Optional: Provide a placeholder image
-	lazyImage.placeholderImage = 'placeholder.jpg';
-	lazyImage.init();
-```
-
-#### 修改 Gmeek 仓库的 Gmeek.py
-
-> 不知道怎么自定义 Gmeek 仓库的看这👉`Gmeek-html<a href='#通过-gmeek-仓库-diy-博客'>通过 Gmeek 仓库 DIY 博客</a>`
-
-打开`Gmeek.py`文件, 定位字符串`Gmeek-html`
-
-然后在下面增加代码:
-
-```python
-if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox&lt;img src='([^']+)'&gt;</code>', lambda match: f'<img data-fancybox='gallery' src='{match.group(1)}'>', post_body, flags=re.DOTALL)
-```
-
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmQu6VykpD9odhGB6bMdtR5PdCT9P89ajzM7YD2sq7YuPy'>`
-
-### 示例使用
-
-在 markdown 中插入图片:
-
-```html
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq'>`
-```
-
-通过 Action 转换后实际效果如下, 在 html 里面图片标签会增加 fancybox 所需的`data-fancybox='gallery'`属性.
-
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmb4526u4e4jy4vscE8w3gVRyVkegyotdnwhS1rVCoVm8k'>`
+代码内容合并到👉[文章自定义js代码](#articleJs.js---文章自定义-js-代码)
 
 ## [GmeekVercount_uv.js](https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js) - 网站增加访客计数器
 
@@ -1133,12 +1065,6 @@ if '<code class='notranslate'>Gmeek-imgbox' in post_body:
 ```json
 'allHead':'<script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'></script>'
 ```
-
-## [ImgLazyLoad.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js) - 图片懒加载
-
-> 来源: [Github](https://github.com/liyifanniubi/liyifanniubi.github.io)
-
-未实际测试过.
 
 ## [NumPagination.js](https://github.com/GJKen/gjken.github.io/blob/main/static/NumPagination.js) - 主页添加数字分页条
 
@@ -1153,6 +1079,8 @@ if '<code class='notranslate'>Gmeek-imgbox' in post_body:
 对应的选择器只张贴出关键 CSS 部分的修改, ~~不然代码太多了.~~
 
 下面是修改笔记, 不一定实际使用.
+
+> 已知bug: 给body增加`backdrop-filter: blur(30px);`样式时, 会出现页面异常, 待后续修复.
 
 ## \<html> 标签样式
 
@@ -1752,13 +1680,13 @@ a {
 
 仓库地址👉 https://github.com/Meekdai/Gmeek
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV'`
 
 fork 之后, 转到搭建博客的 github 源码,
 
 打开`.github/workflows/Gmeek.yml`文件, 修改构建博客仓库的地址为你自己的仓库地址
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav'`
 
 打开`config.json`文件, 修改右边字段值为main`'GMEEK_VERSION':'main'`
 
@@ -1772,13 +1700,13 @@ fork 之后, 转到搭建博客的 github 源码,
 
 下图文字直接修改即可, 不同语言的按需修改.
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs'`
 
 ## 修改默认 primer.css 链接
 
 打开`Gmeek.py`
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v'`
 
 这里我直接写改成我存放的链接 https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css
 
@@ -1810,11 +1738,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 > 增加圆角6px.
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS'`
 
 效果图:
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW'`
 
 ## 页面底部文字增加图标动画
 
@@ -1880,7 +1808,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 效果图:
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH'`
 
 # 使用 Gmeek-html, 给博客插入图片, 防止链接自动转换
 
@@ -1935,17 +1863,17 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 | Label Name | Color | 效果
 |-|-|-
-| 网站 | #218155 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=网站&color=218155'>`
-| 日常 | #008672 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=日常&color=008672'>`
-| 教程 | #0075ca | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=教程&color=0075ca'>`
-| Anime | #E77AB1 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Anime&color=E77AB1'>`
-| Win | #5AB3F3 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Win&color=5AB3F3'>`
-| VPS | #5319e7 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=VPS&color=5319e7'>`
-| JS | #AD3152 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=JS&color=AD3152'>`
-| CSS | #218155 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=CSS&color=218155'>`
-| Github | #333333 | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Github&color=333333'>`
-| CDN | #cb222c | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=CDN&color=cb222c'>`
-| Bug | #D73A4A | `Gmeek-imgbox<img src='https://img.shields.io/static/v1?label=&message=Bug&color=D73A4A'>`
+| 网站 | #218155 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=网站&color=218155'`
+| 日常 | #008672 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=日常&color=008672'`
+| 教程 | #0075ca | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=教程&color=0075ca'`
+| Anime | #E77AB1 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=Anime&color=E77AB1'`
+| Win | #5AB3F3 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=Win&color=5AB3F3'`
+| VPS | #5319e7 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=VPS&color=5319e7'`
+| JS | #AD3152 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=JS&color=AD3152'`
+| CSS | #218155 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=CSS&color=218155'`
+| Github | #333333 | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=Github&color=333333'`
+| CDN | #cb222c | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=CDN&color=cb222c'`
+| Bug | #D73A4A | `Gmeek-imgbox='https://img.shields.io/static/v1?label=&message=Bug&color=D73A4A'`
 
 # Readme.md
 
@@ -2024,9 +1952,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://example.com/image.jpg"></p>
-<p><a href="https://github.com/Meekdai/Gmeek">Gmeek</a> 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.</p>
-<p><code class="notranslate">&lt;Gmeek-imgbox src="https://img.shields.io/static/v1?label=&amp;message=网站&amp;color=218155"&gt;</code></p>
+<div class="markdown-body" id="postBody"><p><a href="https://github.com/Meekdai/Gmeek">Gmeek</a> 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.</p>
 <h1>搭建博客</h1>
 <p><strong>如何搭建博客我就不写了, 强烈建议看完<a href="https://blog.meekdai.com/tag.html#gmeek" rel="nofollow">官方文档</a>.</strong></p>
 <p><strong>这里主要记录一些 js 和 CSS 的修改.</strong></p>
@@ -2043,15 +1969,19 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>代码:</p>
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"subTitle"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script&gt;document.getElementById('content').innerHTML = `&lt;div style='text-align: center;'&gt;&lt;p&gt;CV工程师,&lt;/p&gt;&lt;p&gt;一个又菜又爱玩, 喜欢瞎折腾的流浪者.&lt;/p&gt;&lt;/div&gt;`;&lt;/script&gt;<span class="pl-pds">"</span></span>,</pre></div>
 <p>效果图:</p>
-<p><code class="notranslate">Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"&gt;</code></p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/2QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
 <p>从图中可以看到, 可用 js 插入 html 实现修改文字.</p>
 <h2>subTitle - 隐藏</h2>
 <p><code class="notranslate">"subTitle":" ",</code></p>
 <p>效果图:</p>
-<p><code class="notranslate">Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"&gt;</code></p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"></p>
 <p>可以用空白字符的方式, 隐藏 subTitle 必须字段, 无需使用 js 隐藏.</p>
 <h1>记录功能块代码</h1>
 <p>代码摘抄自网络, 有删改, 都存放在仓库, 使用 jsdelivr CDN 加速.</p>
+<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleJs.js">ArticleJs.js</a> - 文章自定义 js 代码</h2>
+<p>整合内容:</p>
+<p><a href="#fancybox.js---%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%88%E5%99%A8">图片浏览器的代码</a></p>
+<p><a href="#imglazyload.js---%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD">图片懒加载的代码</a></p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js">ArticleToc.js</a> - 文章增加目录列表+一键返回顶部按钮</h2>
 <blockquote>
 <p>来源: <a href="https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file">Github</a><br>
@@ -2060,20 +1990,23 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 修改-适配切换博客主题颜色.<br>
 修改-增加滚动页面同时滚动章节.<br>
 修改-动画和样式.<br>
-修改-滚动页面自动显示&amp;隐藏返回顶部按钮.<br>
-已知bug: 给body增加<code class="notranslate">backdrop-filter: blur(30px);</code>样式时, 会出现页面异常, 待后续修复.</p>
+修改-滚动页面自动显示&amp;隐藏返回顶部按钮.</p>
 </blockquote>
 <p>图示:</p>
-<p><code class="notranslate">Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H"&gt;</code></p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H"></p>
 <h2>Fancybox.js - 图片浏览器</h2>
 <blockquote>
 <p>Fancybox <a href="https://www.fancyapps.com" rel="nofollow">官网</a></p>
 </blockquote>
-<h3>引用 Fancybox 所需文件</h3>
-<h4>给文章引用 CSS 和 JS 标签, 注意末尾的标点符号.</h4>
+<h3>引用 Fancybox 所需的 CSS 和 JS</h3>
+<blockquote>
+<p>注意末尾的标点符号.</p>
+</blockquote>
 <p>我这里用的是<code class="notranslate">5.0</code>版本, cdn 加速链接.</p>
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"script"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleJs.js'&gt;&lt;/script&gt;&lt;script src='https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'&gt;&lt;/script&gt;<span class="pl-pds">"</span></span></pre></div>
-<p><code class="notranslate">ArticleJs.js</code>需要填写的内容如下:</p>
+<p>CSS写到了👉<a href="#articleJs.js---%E6%96%87%E7%AB%A0%E8%87%AA%E5%AE%9A%E4%B9%89-js-%E4%BB%A3%E7%A0%81">文章自定义js代码</a>.</p>
+<p>意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.</p>
+<p>内容如下:</p>
 <div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">addEventListener</span><span class="pl-kos">(</span><span class="pl-s">'DOMContentLoaded'</span><span class="pl-kos">,</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
     <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-c1">head</span><span class="pl-kos">.</span><span class="pl-en">appendChild</span><span class="pl-kos">(</span>
         <span class="pl-v">Object</span><span class="pl-kos">.</span><span class="pl-en">assign</span><span class="pl-kos">(</span><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">createElement</span><span class="pl-kos">(</span><span class="pl-s">'link'</span><span class="pl-kos">)</span><span class="pl-kos">,</span> <span class="pl-kos">{</span>
@@ -2083,33 +2016,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-v">Fancybox</span><span class="pl-kos">.</span><span class="pl-en">bind</span><span class="pl-kos">(</span><span class="pl-s">'[data-fancybox="gallery"]'</span><span class="pl-kos">,</span> <span class="pl-kos">{</span><span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
-<p>意思是页面加载完成后, 加载 fancybox 所需的 CSS 文件, 同时增加 fancybox 必要的绑定函数.</p>
-<h2>lazyImage.js - 图片懒加载</h2>
+<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js">ImgLazyLoad.js</a> - 图片懒加载</h2>
 <blockquote>
-<p>lazyImage <a href="https://lazyload.js.org" rel="nofollow">官网</a></p>
+<p>来源: <a href="https://github.com/liyifanniubi/liyifanniubi.github.io">Github</a></p>
 </blockquote>
-<p>打开<code class="notranslate">post.html</code>文件, 在<code class="notranslate">&lt;script&gt;</code>标签里面增加下面 js 代码.</p>
-<div class="highlight highlight-source-js"><pre class="notranslate">	<span class="pl-c">// 图片懒加载所需函数</span>
-	<span class="pl-k">const</span> <span class="pl-s1">lazyImage</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">LazyImage</span><span class="pl-kos">(</span><span class="pl-s">'.lazy-load-image'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-	<span class="pl-c">// Customize the loading strategy</span>
-	<span class="pl-s1">lazyImage</span><span class="pl-kos">.</span><span class="pl-en">observeWithIntersectionObserver</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-	<span class="pl-c">// Optional: Provide a placeholder image</span>
-	<span class="pl-s1">lazyImage</span><span class="pl-kos">.</span><span class="pl-c1">placeholderImage</span> <span class="pl-c1">=</span> <span class="pl-s">'placeholder.jpg'</span><span class="pl-kos">;</span>
-	<span class="pl-s1">lazyImage</span><span class="pl-kos">.</span><span class="pl-en">init</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
-<h4>修改 Gmeek 仓库的 Gmeek.py</h4>
-<blockquote>
-<p>不知道怎么自定义 Gmeek 仓库的看这👉<a href="#通过-gmeek-仓库-diy-博客">通过 Gmeek 仓库 DIY 博客</a></p>
-</blockquote>
-<p>打开<code class="notranslate">Gmeek.py</code>文件, 定位字符串<code class="notranslate">Gmeek-html</code></p>
-<p>然后在下面增加代码:</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
-            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox&amp;lt;img src="([^"]+)"&amp;gt;&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-en">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-v">DOTALL</span>)</pre></div>
-<p><code class="notranslate">Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/QmQu6VykpD9odhGB6bMdtR5PdCT9P89ajzM7YD2sq7YuPy"&gt;</code></p>
-<h3>示例使用</h3>
-<p>在 markdown 中插入图片:</p>
-<div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-imgbox<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">src</span>="<span class="pl-s">https://i0.img2ipfs.com/ipfs/QmbAZqtwu2G9vXrJ8oC7ixvKh4tY8uL8NvPA9zAxDqWFPq</span>"<span class="pl-kos">&gt;</span>`</pre></div>
-<p>通过 Action 转换后实际效果如下, 在 html 里面图片标签会增加 fancybox 所需的<code class="notranslate">data-fancybox="gallery"</code>属性.</p>
-<p><code class="notranslate">Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/Qmb4526u4e4jy4vscE8w3gVRyVkegyotdnwhS1rVCoVm8k"&gt;</code></p>
+<p>代码内容合并到👉<a href="#articleJs.js---%E6%96%87%E7%AB%A0%E8%87%AA%E5%AE%9A%E4%B9%89-js-%E4%BB%A3%E7%A0%81">文章自定义js代码</a></p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
 <blockquote>
 <p>Vercount <a href="https://github.com/EvanNotFound/vercount">Github</a><br>
@@ -2117,11 +2028,6 @@ pv 修改成 uv 计数.</p>
 </blockquote>
 <p>建议放入<code class="notranslate">allHead</code>里全站添加 js.</p>
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"allHead"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script src='https://cdn.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/GmeekVercount_uv.min.js'&gt;&lt;/script&gt;<span class="pl-pds">"</span></span></pre></div>
-<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ImgLazyLoad.js">ImgLazyLoad.js</a> - 图片懒加载</h2>
-<blockquote>
-<p>来源: <a href="https://github.com/liyifanniubi/liyifanniubi.github.io">Github</a></p>
-</blockquote>
-<p>未实际测试过.</p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/NumPagination.js">NumPagination.js</a> - 主页添加数字分页条</h2>
 <blockquote>
 <p>来源 <a href="https://github.com/liyifanniubi/liyifanniubi.github.io">Github</a></p>
@@ -2131,6 +2037,9 @@ pv 修改成 uv 计数.</p>
 <p><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/primer.css">primer.css</a>, 这个文件用来控制网站的整体样式, 存放在我的 git 仓库, 使用 jsdelivr CDN 加速.</p>
 <p>对应的选择器只张贴出关键 CSS 部分的修改, <del>不然代码太多了.</del></p>
 <p>下面是修改笔记, 不一定实际使用.</p>
+<blockquote>
+<p>已知bug: 给body增加<code class="notranslate">backdrop-filter: blur(30px);</code>样式时, 会出现页面异常, 待后续修复.</p>
+</blockquote>
 <h2>&lt;html&gt; 标签样式</h2>
 <p><code class="notranslate">[data-color-mode]</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.<br>
@@ -2560,10 +2469,10 @@ pv 修改成 uv 计数.</p>
 <p>为什么这样做? <del>自娱自乐.</del></p>
 <h2>Fork Gmeek 仓库</h2>
 <p>仓库地址👉 <a href="https://github.com/Meekdai/Gmeek">https://github.com/Meekdai/Gmeek</a></p>
-<p><code class="notranslate">Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV"&gt;</code></p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV"></p>
 <p>fork 之后, 转到搭建博客的 github 源码,</p>
 <p>打开<code class="notranslate">.github/workflows/Gmeek.yml</code>文件, 修改构建博客仓库的地址为你自己的仓库地址</p>
-<p><code class="notranslate">Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav"&gt;</code></p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav"></p>
 <p>打开<code class="notranslate">config.json</code>文件, 修改右边字段值为main<code class="notranslate">"GMEEK_VERSION":"main"</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>如果值是<code class="notranslate">last</code>的话, Action 会失败, 因为默认值<code class="notranslate">last</code>是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.<br>
 <del>创建新的 tag 也可以, 但是挺麻烦.</del></p>
@@ -2571,10 +2480,10 @@ pv 修改成 uv 计数.</p>
 <h2>修改网站下方的文字</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
 <p>下图文字直接修改即可, 不同语言的按需修改.</p>
-<p><code class="notranslate">Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs"&gt;</code></p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs"></p>
 <h2>修改默认 primer.css 链接</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
-<p><code class="notranslate">Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"&gt;</code></p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"></p>
 <p>这里我直接写改成我存放的链接 <a href="https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css" rel="nofollow">https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css</a></p>
 <h2>修改页面头部样式</h2>
 <h3>打开 post.html 文件</h3>
@@ -2592,9 +2501,9 @@ pv 修改成 uv 计数.</p>
 <blockquote>
 <p>增加圆角6px.</p>
 </blockquote>
-<p><code class="notranslate">Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS"&gt;</code></p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS"></p>
 <p>效果图:</p>
-<p><code class="notranslate">Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW"&gt;</code></p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW"></p>
 <h2>页面底部文字增加图标动画</h2>
 <p>增加爱心图标动画.</p>
 <p>打开<code class="notranslate">footer.html</code></p>
@@ -2644,7 +2553,7 @@ pv 修改成 uv 计数.</p>
 }</pre></div>
 </details>
 <p>效果图:</p>
-<p><code class="notranslate">Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH"&gt;</code></p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH"></p>
 <h1>使用 Gmeek-html, 给博客插入图片, 防止链接自动转换</h1>
 <p>Github 在 issues 插入的图片也会自动转换为 Github 的地址.</p>
 <p>为了文章的多样性, 在 Gmeek 的<code class="notranslate">v2.19</code>版本中添加了支持 html 标签的功能.</p>
@@ -2683,57 +2592,57 @@ pv 修改成 uv 计数.</p>
 <tr>
 <td>网站</td>
 <td>#218155</td>
-<td><code class="notranslate">Gmeek-imgbox&lt;img src="https://img.shields.io/static/v1?label=&amp;message=网站&amp;color=218155"&gt;</code></td>
+<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=网站&amp;color=218155"></td>
 </tr>
 <tr>
 <td>日常</td>
 <td>#008672</td>
-<td><code class="notranslate">Gmeek-imgbox&lt;img src="https://img.shields.io/static/v1?label=&amp;message=日常&amp;color=008672"&gt;</code></td>
+<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=日常&amp;color=008672"></td>
 </tr>
 <tr>
 <td>教程</td>
 <td>#0075ca</td>
-<td><code class="notranslate">Gmeek-imgbox&lt;img src="https://img.shields.io/static/v1?label=&amp;message=教程&amp;color=0075ca"&gt;</code></td>
+<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=教程&amp;color=0075ca"></td>
 </tr>
 <tr>
 <td>Anime</td>
 <td>#E77AB1</td>
-<td><code class="notranslate">Gmeek-imgbox&lt;img src="https://img.shields.io/static/v1?label=&amp;message=Anime&amp;color=E77AB1"&gt;</code></td>
+<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=Anime&amp;color=E77AB1"></td>
 </tr>
 <tr>
 <td>Win</td>
 <td>#5AB3F3</td>
-<td><code class="notranslate">Gmeek-imgbox&lt;img src="https://img.shields.io/static/v1?label=&amp;message=Win&amp;color=5AB3F3"&gt;</code></td>
+<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=Win&amp;color=5AB3F3"></td>
 </tr>
 <tr>
 <td>VPS</td>
 <td>#5319e7</td>
-<td><code class="notranslate">Gmeek-imgbox&lt;img src="https://img.shields.io/static/v1?label=&amp;message=VPS&amp;color=5319e7"&gt;</code></td>
+<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=VPS&amp;color=5319e7"></td>
 </tr>
 <tr>
 <td>JS</td>
 <td>#AD3152</td>
-<td><code class="notranslate">Gmeek-imgbox&lt;img src="https://img.shields.io/static/v1?label=&amp;message=JS&amp;color=AD3152"&gt;</code></td>
+<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=JS&amp;color=AD3152"></td>
 </tr>
 <tr>
 <td>CSS</td>
 <td>#218155</td>
-<td><code class="notranslate">Gmeek-imgbox&lt;img src="https://img.shields.io/static/v1?label=&amp;message=CSS&amp;color=218155"&gt;</code></td>
+<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=CSS&amp;color=218155"></td>
 </tr>
 <tr>
 <td>Github</td>
 <td>#333333</td>
-<td><code class="notranslate">Gmeek-imgbox&lt;img src="https://img.shields.io/static/v1?label=&amp;message=Github&amp;color=333333"&gt;</code></td>
+<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=Github&amp;color=333333"></td>
 </tr>
 <tr>
 <td>CDN</td>
 <td>#cb222c</td>
-<td><code class="notranslate">Gmeek-imgbox&lt;img src="https://img.shields.io/static/v1?label=&amp;message=CDN&amp;color=cb222c"&gt;</code></td>
+<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=CDN&amp;color=cb222c"></td>
 </tr>
 <tr>
 <td>Bug</td>
 <td>#D73A4A</td>
-<td><code class="notranslate">Gmeek-imgbox&lt;img src="https://img.shields.io/static/v1?label=&amp;message=Bug&amp;color=D73A4A"&gt;</code></td>
+<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=Bug&amp;color=D73A4A"></td>
 </tr>
 </tbody>
 </table></markdown-accessiblity-table>
@@ -2906,9 +2815,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script src='../../static/ArticleJs.js'></script>
-<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>
-<!-- <script src='https://cdn.jsdelivr.net/gh/gyanprabhat7/LazyLoad.JS/lazyImage.js'></script> -->
+<script src='../../static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://cdn.jsdelivr.net/gh/gyanprabhat7/LazyLoad.JS/lazyImage.js'></script>
 
 </html>

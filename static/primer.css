@@ -12530,6 +12530,7 @@ body {
 	background: var(--body-bgColor);
 	box-shadow: 0 0 100px var(--body-shadow-color);
 	border-radius: 10px;
+	transition: height 1s ease, max-width 1s ease;
 }
 
 /* header可以通过Gmeek仓库修改, 这边直接注释了
@@ -27215,7 +27216,7 @@ a.branch-name .octicon {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 	font-size: 16px;
 	line-height: 1.5;
-	word-wrap: break-word
+	word-wrap: break-word;
 }
 
 .markdown-body::before {
@@ -27355,13 +27356,14 @@ a.branch-name .octicon {
 	font-size: 1.85em;
 	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
 	border-left: .25em solid #32c7dd;
-    padding-left: .25em;
+	padding-left: .25em;
+	margin-top: 42px;
 }
 
 .markdown-body h2 {
 	padding-bottom: .3em;
 	font-size: 1.5em;
-	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted))
+	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted)) margin-top: 28px;
 }
 
 /*
@@ -27537,6 +27539,44 @@ a.branch-name .octicon {
 	box-sizing: content-box;
 	transition: transform 0.3s ease, clip-path 0.3s ease;
 	-webkit-transition: -webkit-transform 0.3s ease, -webkit-clip-path 0.3s ease;
+}
+
+/* 图片懒加载占位css动画 */
+.ImgLazyLoad {
+	width: 1px;
+	border-radius: 50%;
+	border: 6px #f3f3f3 solid;
+	border-top: 6px #8aefff solid;
+	padding: 20px;
+	animation: ImgLazyLoadAni 1.2s infinite;
+	-webkit-animation: ImgLazyLoadAni 1.2s infinite
+}
+
+@keyframes ImgLazyLoadAni {
+	0% {
+		transform: rotate(0)
+	}
+
+	100% {
+		transform: rotate(360deg)
+	}
+}
+
+@-webkit-keyframes ImgLazyLoadAni {
+	0% {
+		-webkit-transform: rotate(0)
+	}
+
+	100% {
+		-webkit-transform: rotate(360deg)
+	}
+}
+
+/* 图片懒加载文字提示样式 */
+.Imgerror-message {
+	color: #ff5b5b;
+	font-size: 100%;
+	user-select: none;
 }
 
 .markdown-body img:hover {
@@ -30943,7 +30983,8 @@ html {
 	-webkit-transition: opacity 0.3s ease, visibility 0s 0s
 }
 
-/*# sourceMappingURL=primer.css.map *//*!
+/*# sourceMappingURL=primer.css.map */
+/*!
  * Primer CSS
  * https://primer.style
  *
@@ -43475,6 +43516,14 @@ body {
 	background: var(--body-bgColor);
 	box-shadow: 0 0 100px var(--body-shadow-color);
 	border-radius: 10px;
+	transition: max-width 1s ease;
+}
+
+/* body的宽度响应 */
+@media (min-width: 1080px) {
+	body {
+		max-width: 1000px;
+	}
 }
 
 /* header可以通过Gmeek仓库修改, 这边直接注释了
@@ -58156,13 +58205,6 @@ a.branch-name .octicon {
 	}
 }
 
-.markdown-body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-	font-size: 16px;
-	line-height: 1.5;
-	word-wrap: break-word
-}
-
 .markdown-body::before {
 	display: table;
 	content: ""
@@ -58243,7 +58285,7 @@ a.branch-name .octicon {
 .markdown-body h5,
 .markdown-body h6 {
 	padding: .22em 0;
-	margin-top: 24px;
+	margin-top: 30px;
 	margin-bottom: 16px;
 	font-weight: var(--base-text-weight-semibold, 600);
 	line-height: 1.25
@@ -58300,7 +58342,7 @@ a.branch-name .octicon {
 	font-size: 1.85em;
 	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
 	border-left: .25em solid #32c7dd;
-    padding-left: .25em;
+	padding-left: .25em;
 }
 
 .markdown-body h2 {
