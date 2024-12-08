@@ -354,6 +354,8 @@ document.addEventListener('DOMContentLoaded', () => {
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
 > 增加宽高过渡动画.
+> 增加 1080px 屏幕宽度响应
+> primer.css 有重复的 body 选择器, 顺带合并了
 
 <details><summary>修改前</summary>
 
@@ -395,9 +397,9 @@ body {
 }
 /* 增加 */
 @media (min-width: 1080px) {
-	body {
-		max-width: 1000px !important;
-	}
+    body {
+        max-width: 1000px !important;
+    }
 }
 ```
 
@@ -960,21 +962,118 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ## 修改页面头部样式
 
+## 打开 base.html 文件
+
+1. 增加所需的颜色样式.
+
+```CSS
+:root{--header-article-bgColor: #3b3b3b6b;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor: #ffffff00;}
+```
+
+2. 定位`#header`, 修改样式.
+
+```CSS
+#header{display:flex;flex-direction: column;align-items: center;gap: 10px;margin-bottom: 24px;}
+```
+
+3. 增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.
+
+```CSS
+#header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 5px;}
+
+#header.article-header.hidden{transform:translate(-50%,-120%);}
+```
+4. 增加文章内容的上边距.
+
+`.article-content{margin-top:80px;}`
+
+4. 大概在第27行, 增加了类名变量, 这样通过 Actions 时渲染出来的页面有 `homepage` `article` 的关键类名, 有了不同类名就可更方便的使用 CSS控制不同页面的样式.
+
+```html
+<body class='{% block body_class %}homepage{% endblock %}'>
+    <div id='header' class='{% block header_class %}homepage-header{% endblock %}'>{% block header %}{% endblock %}</div>
+    <div id='content' class='{% block content_class %}homepage-content{% endblock %}'>{% block content %}{% endblock %}</div>
+    <div id='footer'>{% include 'footer.html' %}</div>
+</body>
+```
+
+5. JS 代码部分, 我写在了 ([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)) 里面, 作用是滚动页面让头部显示或隐藏.
+
+<details><summary>Javascript Code</summary>
+
+```Javascript
+let lastScrollTop = 0; // 上一次的滚动位置
+const header = document.getElementById('header');
+let isAtTop = true;  // 判断是否在页面顶部
+
+window.addEventListener('scroll', () => {
+	let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+	// 判断页面是否滚动到顶部
+	if (currentScrollTop === 0) {
+		isAtTop = true;
+	} else {
+		isAtTop = false;
+	}
+
+	// 向下滚动时隐藏 header
+	if (currentScrollTop > lastScrollTop && !isAtTop) {
+		header.classList.add('hidden');
+	} else if (currentScrollTop < lastScrollTop && currentScrollTop > 100) {
+		// 向上滚动超过 100px 时显示 header
+		header.classList.remove('hidden');
+	}
+
+	lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // 防止负值
+});
+```
+
+</details>
+
 ### 打开 post.html 文件
+1. 增加所需的颜色样式.
 
-+ 定位样式`.title-right`, 需要将这个 CSS 样式全部删除.
+```CSS
+:root{--postTitle-textshadow: #ffffff80;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow: #00000080;}
+```
 
-+ 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+2. 定位`.postTitle`, 修改样式(打字机效果)
+
+```CSS
+.postTitle{margin: auto 0;font-size: 35px;text-shadow: 0 1px 2px var(--postTitle-textshadow);font-weight: bold;display: inline-block;white-space: nowrap;overflow: hidden;width: auto;max-width: -webkit-fit-content;max-width: fit-content;border-right: 2px solid var(--fgColor-default,var(--color-fg-default));animation: typing 2s steps(20) 1s forwards, blink 0.75s step-end infinite;-webkit-animation: typing 2s steps(20) 1s forwards, blink 0.75s step-end infinite;}@keyframes typing {from {width: 0;}to {width: 100%;}}@keyframes blink {50% {border-color: transparent;}100% {border-color: var(--fgColor-default,var(--color-fg-default));}}@-webkit-keyframes typing {from {width: 0;}to {width: 100%;}}@-webkit-keyframes blink {50% {border-color: transparent;}100% {border-color: var(--fgColor-default,var(--color-fg-default));}}
+```
+
+3. 定位样式`.title-right`, 需要将这个 CSS 样式全部删除.
+
+4. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+
+5. 定位`{% block header %}`, 在上方增加类名块.
+
+```hmlt
+{% block body_class %}article{% endblock %}
+{% block header_class %}article-header{% endblock %}
+{% block header_class %}article-content{% endblock %}
+```
 
 ### 打开 plist.html 文件
 
-+ 增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`
+1. 增加样式
 
-+ 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 [header-图标样式](##header-图标样式) 来修改.)
+```CSS
+.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}
+```
 
-+ 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+2. 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 [header-图标样式](##header-图标样式) 来修改.)
 
-+ 定位样式`.avatar:hover`,其内容全部修改为👉`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
+3. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+
+4. 定位`.avatar:hover`, 修改样式.
+
+```CSS
+.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}
+```
 
 **到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.**
 
@@ -1472,6 +1571,8 @@ document.addEventListener('DOMContentLoaded', () => {
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
 > 增加宽高过渡动画.
+> 增加 1080px 屏幕宽度响应
+> primer.css 有重复的 body 选择器, 顺带合并了
 
 <details><summary>修改前</summary>
 
@@ -1513,9 +1614,9 @@ body {
 }
 /* 增加 */
 @media (min-width: 1080px) {
-	body {
-		max-width: 1000px !important;
-	}
+    body {
+        max-width: 1000px !important;
+    }
 }
 ```
 
@@ -2078,21 +2179,118 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ## 修改页面头部样式
 
+## 打开 base.html 文件
+
+1. 增加所需的颜色样式.
+
+```CSS
+:root{--header-article-bgColor: #3b3b3b6b;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor: #ffffff00;}
+```
+
+2. 定位`#header`, 修改样式.
+
+```CSS
+#header{display:flex;flex-direction: column;align-items: center;gap: 10px;margin-bottom: 24px;}
+```
+
+3. 增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.
+
+```CSS
+#header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 5px;}
+
+#header.article-header.hidden{transform:translate(-50%,-120%);}
+```
+4. 增加文章内容的上边距.
+
+`.article-content{margin-top:80px;}`
+
+4. 大概在第27行, 增加了类名变量, 这样通过 Actions 时渲染出来的页面有 `homepage` `article` 的关键类名, 有了不同类名就可更方便的使用 CSS控制不同页面的样式.
+
+```html
+<body class='{% block body_class %}homepage{% endblock %}'>
+    <div id='header' class='{% block header_class %}homepage-header{% endblock %}'>{% block header %}{% endblock %}</div>
+    <div id='content' class='{% block content_class %}homepage-content{% endblock %}'>{% block content %}{% endblock %}</div>
+    <div id='footer'>{% include 'footer.html' %}</div>
+</body>
+```
+
+5. JS 代码部分, 我写在了 ([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)) 里面, 作用是滚动页面让头部显示或隐藏.
+
+<details><summary>Javascript Code</summary>
+
+```Javascript
+let lastScrollTop = 0; // 上一次的滚动位置
+const header = document.getElementById('header');
+let isAtTop = true;  // 判断是否在页面顶部
+
+window.addEventListener('scroll', () => {
+	let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+	// 判断页面是否滚动到顶部
+	if (currentScrollTop === 0) {
+		isAtTop = true;
+	} else {
+		isAtTop = false;
+	}
+
+	// 向下滚动时隐藏 header
+	if (currentScrollTop > lastScrollTop && !isAtTop) {
+		header.classList.add('hidden');
+	} else if (currentScrollTop < lastScrollTop && currentScrollTop > 100) {
+		// 向上滚动超过 100px 时显示 header
+		header.classList.remove('hidden');
+	}
+
+	lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // 防止负值
+});
+```
+
+</details>
+
 ### 打开 post.html 文件
+1. 增加所需的颜色样式.
 
-+ 定位样式`.title-right`, 需要将这个 CSS 样式全部删除.
+```CSS
+:root{--postTitle-textshadow: #ffffff80;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow: #00000080;}
+```
 
-+ 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+2. 定位`.postTitle`, 修改样式(打字机效果)
+
+```CSS
+.postTitle{margin: auto 0;font-size: 35px;text-shadow: 0 1px 2px var(--postTitle-textshadow);font-weight: bold;display: inline-block;white-space: nowrap;overflow: hidden;width: auto;max-width: -webkit-fit-content;max-width: fit-content;border-right: 2px solid var(--fgColor-default,var(--color-fg-default));animation: typing 2s steps(20) 1s forwards, blink 0.75s step-end infinite;-webkit-animation: typing 2s steps(20) 1s forwards, blink 0.75s step-end infinite;}@keyframes typing {from {width: 0;}to {width: 100%;}}@keyframes blink {50% {border-color: transparent;}100% {border-color: var(--fgColor-default,var(--color-fg-default));}}@-webkit-keyframes typing {from {width: 0;}to {width: 100%;}}@-webkit-keyframes blink {50% {border-color: transparent;}100% {border-color: var(--fgColor-default,var(--color-fg-default));}}
+```
+
+3. 定位样式`.title-right`, 需要将这个 CSS 样式全部删除.
+
+4. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+
+5. 定位`{% block header %}`, 在上方增加类名块.
+
+```hmlt
+{% block body_class %}article{% endblock %}
+{% block header_class %}article-header{% endblock %}
+{% block header_class %}article-content{% endblock %}
+```
 
 ### 打开 plist.html 文件
 
-+ 增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`
+1. 增加样式
 
-+ 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 [header-图标样式](##header-图标样式) 来修改.)
+```CSS
+.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}
+```
 
-+ 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+2. 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 [header-图标样式](##header-图标样式) 来修改.)
 
-+ 定位样式`.avatar:hover`,其内容全部修改为👉`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
+3. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+
+4. 定位`.avatar:hover`, 修改样式.
+
+```CSS
+.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}
+```
 
 **到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.**
 
@@ -2556,7 +2754,9 @@ pv 修改成 uv 计数.</p>
 <h2>&lt;body&gt; 标签样式</h2>
 <p><code class="notranslate">body</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.<br>
-增加宽高过渡动画.</p>
+增加宽高过渡动画.<br>
+增加 1080px 屏幕宽度响应<br>
+primer.css 有重复的 body 选择器, 顺带合并了</p>
 </div>
 <details><summary>修改前</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-ent">body</span> {
@@ -2591,9 +2791,9 @@ pv 修改成 uv 计数.</p>
 }
 <span class="pl-c">/* 增加 */</span>
 <span class="pl-k">@media</span> (<span class="pl-c1">min-width</span><span class="pl-kos">:</span> <span class="pl-c1">1080<span class="pl-smi">px</span></span>) {
-	<span class="pl-ent">body</span> {
-		<span class="pl-c1">max-width</span><span class="pl-kos">:</span> <span class="pl-c1">1000<span class="pl-smi">px</span></span> <span class="pl-k">!important</span>;
-	}
+    <span class="pl-ent">body</span> {
+        <span class="pl-c1">max-width</span><span class="pl-kos">:</span> <span class="pl-c1">1000<span class="pl-smi">px</span></span> <span class="pl-k">!important</span>;
+    }
 }</pre></div>
 </details>
 <h2>博客滚动条样式</h2>
@@ -2986,20 +3186,94 @@ pv 修改成 uv 计数.</p>
 <p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"></p>
 <p>这里我直接写改成我存放的链接 <a href="https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css" rel="nofollow">https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css</a></p>
 <h2>修改页面头部样式</h2>
+<h2>打开 base.html 文件</h2>
+<ol>
+<li>增加所需的颜色样式.</li>
+</ol>
+<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">:</span><span class="pl-c1">root</span>{<span class="pl-s1">--header-article-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>3b3b3b6b</span>;}
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span>{<span class="pl-s1">--header-article-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ffffff00</span>;}</pre></div>
+<ol start="2">
+<li>定位<code class="notranslate">#header</code>, 修改样式.</li>
+</ol>
+<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">#</span><span class="pl-c1">header</span>{<span class="pl-c1">display</span><span class="pl-kos">:</span>flex;<span class="pl-c1">flex-direction</span><span class="pl-kos">:</span> column;<span class="pl-c1">align-items</span><span class="pl-kos">:</span> center;<span class="pl-c1">gap</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;<span class="pl-c1">margin-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">24<span class="pl-smi">px</span></span>;}</pre></div>
+<ol start="3">
+<li>增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.</li>
+</ol>
+<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">#</span><span class="pl-c1">header</span>.<span class="pl-c1">article-header</span>{<span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span>;<span class="pl-c1">max-width</span><span class="pl-kos">:</span> inherit;<span class="pl-c1">position</span><span class="pl-kos">:</span> fixed;<span class="pl-c1">top</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;<span class="pl-c1">left</span><span class="pl-kos">:</span> <span class="pl-c1">50<span class="pl-smi">%</span></span>;<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">translateX</span>(<span class="pl-c1">-50<span class="pl-smi">%</span></span>);<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--header-articel-bgColor</span>);<span class="pl-c1">backdrop-filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">15<span class="pl-smi">px</span></span>);<span class="pl-c1">-webkit-backdrop-filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">15<span class="pl-smi">px</span></span>);<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">2<span class="pl-smi">px</span></span> <span class="pl-c1">10<span class="pl-smi">px</span></span> <span class="pl-en">rgba</span>(<span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">.1</span>);<span class="pl-c1">transition</span><span class="pl-kos">:</span> transform <span class="pl-c1">0.6<span class="pl-smi">s</span></span> ease-in-out;<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> transform <span class="pl-c1">0.6<span class="pl-smi">s</span></span> ease-in-out;<span class="pl-c1">z-index</span><span class="pl-kos">:</span> <span class="pl-c1">99</span>;<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span> <span class="pl-c1">15<span class="pl-smi">px</span></span> <span class="pl-c1">15<span class="pl-smi">px</span></span>;<span class="pl-c1">gap</span><span class="pl-kos">:</span> <span class="pl-c1">5<span class="pl-smi">px</span></span>;}
+
+<span class="pl-kos">#</span><span class="pl-c1">header</span>.<span class="pl-c1">article-header</span>.<span class="pl-c1">hidden</span>{<span class="pl-c1">transform</span><span class="pl-kos">:</span><span class="pl-en">translate</span>(<span class="pl-c1">-50<span class="pl-smi">%</span></span><span class="pl-kos">,</span><span class="pl-c1">-120<span class="pl-smi">%</span></span>);}</pre></div>
+<ol start="4">
+<li>增加文章内容的上边距.</li>
+</ol>
+<p><code class="notranslate">.article-content{margin-top:80px;}</code></p>
+<ol start="4">
+<li>大概在第27行, 增加了类名变量, 这样通过 Actions 时渲染出来的页面有 <code class="notranslate">homepage</code> <code class="notranslate">article</code> 的关键类名, 有了不同类名就可更方便的使用 CSS控制不同页面的样式.</li>
+</ol>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">body</span> <span class="pl-c1">class</span>="<span class="pl-s">{% block body_class %}homepage{% endblock %}</span>"<span class="pl-kos">&gt;</span>
+    <span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">id</span>="<span class="pl-s">header</span>" <span class="pl-c1">class</span>="<span class="pl-s">{% block header_class %}homepage-header{% endblock %}</span>"<span class="pl-kos">&gt;</span>{% block header %}{% endblock %}<span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span>
+    <span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">id</span>="<span class="pl-s">content</span>" <span class="pl-c1">class</span>="<span class="pl-s">{% block content_class %}homepage-content{% endblock %}</span>"<span class="pl-kos">&gt;</span>{% block content %}{% endblock %}<span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span>
+    <span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">id</span>="<span class="pl-s">footer</span>"<span class="pl-kos">&gt;</span>{% include 'footer.html' %}<span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span>
+<span class="pl-kos">&lt;/</span><span class="pl-ent">body</span><span class="pl-kos">&gt;</span></pre></div>
+<ol start="5">
+<li>JS 代码部分, 我写在了 (<a href="#articletoc.js---%E6%96%87%E7%AB%A0%E5%A2%9E%E5%8A%A0%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8+%E4%B8%80%E9%94%AE%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE">ArticleJs.js</a>) 里面, 作用是滚动页面让头部显示或隐藏.</li>
+</ol>
+<details><summary>Javascript Code</summary>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">let</span> <span class="pl-s1">lastScrollTop</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">;</span> <span class="pl-c">// 上一次的滚动位置</span>
+<span class="pl-k">const</span> <span class="pl-s1">header</span> <span class="pl-c1">=</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">getElementById</span><span class="pl-kos">(</span><span class="pl-s">'header'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-k">let</span> <span class="pl-s1">isAtTop</span> <span class="pl-c1">=</span> <span class="pl-c1">true</span><span class="pl-kos">;</span>  <span class="pl-c">// 判断是否在页面顶部</span>
+
+<span class="pl-smi">window</span><span class="pl-kos">.</span><span class="pl-en">addEventListener</span><span class="pl-kos">(</span><span class="pl-s">'scroll'</span><span class="pl-kos">,</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+	<span class="pl-k">let</span> <span class="pl-s1">currentScrollTop</span> <span class="pl-c1">=</span> <span class="pl-smi">window</span><span class="pl-kos">.</span><span class="pl-c1">pageYOffset</span> <span class="pl-c1">||</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-c1">documentElement</span><span class="pl-kos">.</span><span class="pl-c1">scrollTop</span><span class="pl-kos">;</span>
+
+	<span class="pl-c">// 判断页面是否滚动到顶部</span>
+	<span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">currentScrollTop</span> <span class="pl-c1">===</span> <span class="pl-c1">0</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+		<span class="pl-s1">isAtTop</span> <span class="pl-c1">=</span> <span class="pl-c1">true</span><span class="pl-kos">;</span>
+	<span class="pl-kos">}</span> <span class="pl-k">else</span> <span class="pl-kos">{</span>
+		<span class="pl-s1">isAtTop</span> <span class="pl-c1">=</span> <span class="pl-c1">false</span><span class="pl-kos">;</span>
+	<span class="pl-kos">}</span>
+
+	<span class="pl-c">// 向下滚动时隐藏 header</span>
+	<span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">currentScrollTop</span> <span class="pl-c1">&gt;</span> <span class="pl-s1">lastScrollTop</span> <span class="pl-c1">&amp;&amp;</span> <span class="pl-c1">!</span><span class="pl-s1">isAtTop</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+		<span class="pl-s1">header</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">add</span><span class="pl-kos">(</span><span class="pl-s">'hidden'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+	<span class="pl-kos">}</span> <span class="pl-k">else</span> <span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">currentScrollTop</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">lastScrollTop</span> <span class="pl-c1">&amp;&amp;</span> <span class="pl-s1">currentScrollTop</span> <span class="pl-c1">&gt;</span> <span class="pl-c1">100</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+		<span class="pl-c">// 向上滚动超过 100px 时显示 header</span>
+		<span class="pl-s1">header</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">remove</span><span class="pl-kos">(</span><span class="pl-s">'hidden'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+	<span class="pl-kos">}</span>
+
+	<span class="pl-s1">lastScrollTop</span> <span class="pl-c1">=</span> <span class="pl-s1">currentScrollTop</span> <span class="pl-c1">&lt;=</span> <span class="pl-c1">0</span> ? <span class="pl-c1">0</span> : <span class="pl-s1">currentScrollTop</span><span class="pl-kos">;</span> <span class="pl-c">// 防止负值</span>
+<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+</details>
 <h3>打开 post.html 文件</h3>
-<ul>
+<ol>
+<li>增加所需的颜色样式.</li>
+</ol>
+<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">:</span><span class="pl-c1">root</span>{<span class="pl-s1">--postTitle-textshadow</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ffffff80</span>;}
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span>{<span class="pl-s1">--postTitle-textshadow</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>00000080</span>;}</pre></div>
+<ol start="2">
+<li>定位<code class="notranslate">.postTitle</code>, 修改样式(打字机效果)</li>
+</ol>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">postTitle</span>{<span class="pl-c1">margin</span><span class="pl-kos">:</span> auto <span class="pl-c1">0</span>;<span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">35<span class="pl-smi">px</span></span>;<span class="pl-c1">text-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">1<span class="pl-smi">px</span></span> <span class="pl-c1">2<span class="pl-smi">px</span></span> <span class="pl-en">var</span>(<span class="pl-s1">--postTitle-textshadow</span>);<span class="pl-c1">font-weight</span><span class="pl-kos">:</span> bold;<span class="pl-c1">display</span><span class="pl-kos">:</span> inline-block;<span class="pl-c1">white-space</span><span class="pl-kos">:</span> nowrap;<span class="pl-c1">overflow</span><span class="pl-kos">:</span> hidden;<span class="pl-c1">width</span><span class="pl-kos">:</span> auto;<span class="pl-c1">max-width</span><span class="pl-kos">:</span> -webkit-fit-content;<span class="pl-c1">max-width</span><span class="pl-kos">:</span> fit-content;<span class="pl-c1">border-right</span><span class="pl-kos">:</span> <span class="pl-c1">2<span class="pl-smi">px</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span><span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));<span class="pl-c1">animation</span><span class="pl-kos">:</span> typing <span class="pl-c1">2<span class="pl-smi">s</span></span> <span class="pl-en">steps</span>(<span class="pl-c1">20</span>) <span class="pl-c1">1<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span> blink <span class="pl-c1">0.75<span class="pl-smi">s</span></span> step-end infinite;<span class="pl-c1">-webkit-animation</span><span class="pl-kos">:</span> typing <span class="pl-c1">2<span class="pl-smi">s</span></span> <span class="pl-en">steps</span>(<span class="pl-c1">20</span>) <span class="pl-c1">1<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span> blink <span class="pl-c1">0.75<span class="pl-smi">s</span></span> step-end infinite;}<span class="pl-k">@keyframes</span> typing {<span class="pl-k">from</span> {<span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;}<span class="pl-k">to</span> {<span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span>;}}<span class="pl-k">@keyframes</span> blink {<span class="pl-c1">50<span class="pl-smi">%</span></span> {<span class="pl-c1">border-color</span><span class="pl-kos">:</span> transparent;}<span class="pl-c1">100<span class="pl-smi">%</span></span> {<span class="pl-c1">border-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span><span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));}}<span class="pl-k">@-webkit-keyframes</span> typing {<span class="pl-k">from</span> {<span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;}<span class="pl-k">to</span> {<span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span>;}}<span class="pl-k">@-webkit-keyframes</span> blink {<span class="pl-c1">50<span class="pl-smi">%</span></span> {<span class="pl-c1">border-color</span><span class="pl-kos">:</span> transparent;}<span class="pl-c1">100<span class="pl-smi">%</span></span> {<span class="pl-c1">border-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span><span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));}}</pre></div>
+<ol start="3">
 <li>
 <p>定位样式<code class="notranslate">.title-right</code>, 需要将这个 CSS 样式全部删除.</p>
 </li>
 <li>
 <p>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code></p>
 </li>
-</ul>
-<h3>打开 plist.html 文件</h3>
-<ul>
 <li>
-<p>增加样式<code class="notranslate">.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}</code></p>
+<p>定位<code class="notranslate">{% block header %}</code>, 在上方增加类名块.</p>
 </li>
+</ol>
+<pre lang="hmlt" class="notranslate"><code class="notranslate">{% block body_class %}article{% endblock %}
+{% block header_class %}article-header{% endblock %}
+{% block header_class %}article-content{% endblock %}
+</code></pre>
+<h3>打开 plist.html 文件</h3>
+<ol>
+<li>增加样式</li>
+</ol>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">title-left</span>{<span class="pl-c1">display</span><span class="pl-kos">:</span> flex;<span class="pl-c1">flex-direction</span><span class="pl-kos">:</span> column;<span class="pl-c1">align-items</span><span class="pl-kos">:</span> center;<span class="pl-c1">gap</span><span class="pl-kos">:</span> <span class="pl-c1">20<span class="pl-smi">px</span></span>;}</pre></div>
+<ol start="2">
 <li>
 <p>定位样式<code class="notranslate">.title-left a</code>, 删除<code class="notranslate">margin-left:8px;</code>(设置flex布局之后取消图标多余的间距, 样式则通过 <a href="##header-%E5%9B%BE%E6%A0%87%E6%A0%B7%E5%BC%8F">header-图标样式</a> 来修改.)</p>
 </li>
@@ -3007,9 +3281,10 @@ pv 修改成 uv 计数.</p>
 <p>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code></p>
 </li>
 <li>
-<p>定位样式<code class="notranslate">.avatar:hover</code>,其内容全部修改为👉<code class="notranslate">.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}</code></p>
+<p>定位<code class="notranslate">.avatar:hover</code>, 修改样式.</p>
 </li>
-</ul>
+</ol>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">avatar</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> {<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1.5</span>) <span class="pl-en">rotate</span>(<span class="pl-c1">720<span class="pl-smi">deg</span></span>);<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span> <span class="pl-c1">10<span class="pl-smi">px</span></span> <span class="pl-en">rgb</span>(<span class="pl-c1">45</span> <span class="pl-c1">250</span> <span class="pl-c1">255</span> <span class="pl-c1">/</span> <span class="pl-c1">74<span class="pl-smi">%</span></span>);}</pre></div>
 <p><strong>到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.</strong></p>
 <h2>修改[警报强调信息]样式</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>

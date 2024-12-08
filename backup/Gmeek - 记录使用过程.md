@@ -342,6 +342,8 @@ document.addEventListener('DOMContentLoaded', () => {
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
 > 增加宽高过渡动画.
+> 增加 1080px 屏幕宽度响应
+> primer.css 有重复的 body 选择器, 顺带合并了
 
 <details><summary>修改前</summary>
 
@@ -383,9 +385,9 @@ body {
 }
 /* 增加 */
 @media (min-width: 1080px) {
-	body {
-		max-width: 1000px !important;
-	}
+    body {
+        max-width: 1000px !important;
+    }
 }
 ```
 
@@ -948,21 +950,118 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ## 修改页面头部样式
 
+## 打开 base.html 文件
+
+1. 增加所需的颜色样式.
+
+```CSS
+:root{--header-article-bgColor: #3b3b3b6b;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor: #ffffff00;}
+```
+
+2. 定位`#header`, 修改样式.
+
+```CSS
+#header{display:flex;flex-direction: column;align-items: center;gap: 10px;margin-bottom: 24px;}
+```
+
+3. 增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.
+
+```CSS
+#header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 5px;}
+
+#header.article-header.hidden{transform:translate(-50%,-120%);}
+```
+4. 增加文章内容的上边距.
+
+`.article-content{margin-top:80px;}`
+
+4. 大概在第27行, 增加了类名变量, 这样通过 Actions 时渲染出来的页面有 `homepage` `article` 的关键类名, 有了不同类名就可更方便的使用 CSS控制不同页面的样式.
+
+```html
+<body class="{% block body_class %}homepage{% endblock %}">
+    <div id="header" class="{% block header_class %}homepage-header{% endblock %}">{% block header %}{% endblock %}</div>
+    <div id="content" class="{% block content_class %}homepage-content{% endblock %}">{% block content %}{% endblock %}</div>
+    <div id="footer">{% include 'footer.html' %}</div>
+</body>
+```
+
+5. JS 代码部分, 我写在了 ([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)) 里面, 作用是滚动页面让头部显示或隐藏.
+
+<details><summary>Javascript Code</summary>
+
+```Javascript
+let lastScrollTop = 0; // 上一次的滚动位置
+const header = document.getElementById('header');
+let isAtTop = true;  // 判断是否在页面顶部
+
+window.addEventListener('scroll', () => {
+	let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+	// 判断页面是否滚动到顶部
+	if (currentScrollTop === 0) {
+		isAtTop = true;
+	} else {
+		isAtTop = false;
+	}
+
+	// 向下滚动时隐藏 header
+	if (currentScrollTop > lastScrollTop && !isAtTop) {
+		header.classList.add('hidden');
+	} else if (currentScrollTop < lastScrollTop && currentScrollTop > 100) {
+		// 向上滚动超过 100px 时显示 header
+		header.classList.remove('hidden');
+	}
+
+	lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // 防止负值
+});
+```
+
+</details>
+
 ### 打开 post.html 文件
+1. 增加所需的颜色样式.
 
-+ 定位样式`.title-right`, 需要将这个 CSS 样式全部删除.
+```CSS
+:root{--postTitle-textshadow: #ffffff80;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow: #00000080;}
+```
 
-+ 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+2. 定位`.postTitle`, 修改样式(打字机效果)
+
+```CSS
+.postTitle{margin: auto 0;font-size: 35px;text-shadow: 0 1px 2px var(--postTitle-textshadow);font-weight: bold;display: inline-block;white-space: nowrap;overflow: hidden;width: auto;max-width: -webkit-fit-content;max-width: fit-content;border-right: 2px solid var(--fgColor-default,var(--color-fg-default));animation: typing 2s steps(20) 1s forwards, blink 0.75s step-end infinite;-webkit-animation: typing 2s steps(20) 1s forwards, blink 0.75s step-end infinite;}@keyframes typing {from {width: 0;}to {width: 100%;}}@keyframes blink {50% {border-color: transparent;}100% {border-color: var(--fgColor-default,var(--color-fg-default));}}@-webkit-keyframes typing {from {width: 0;}to {width: 100%;}}@-webkit-keyframes blink {50% {border-color: transparent;}100% {border-color: var(--fgColor-default,var(--color-fg-default));}}
+```
+
+3. 定位样式`.title-right`, 需要将这个 CSS 样式全部删除.
+
+4. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+
+5. 定位`{% block header %}`, 在上方增加类名块.
+
+```hmlt
+{% block body_class %}article{% endblock %}
+{% block header_class %}article-header{% endblock %}
+{% block header_class %}article-content{% endblock %}
+```
 
 ### 打开 plist.html 文件
 
-+ 增加样式`.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}`
+1. 增加样式
 
-+ 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 [header-图标样式](##header-图标样式) 来修改.)
+```CSS
+.title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}
+```
 
-+ 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+2. 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 [header-图标样式](##header-图标样式) 来修改.)
 
-+ 定位样式`.avatar:hover`,其内容全部修改为👉`.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}`
+3. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+
+4. 定位`.avatar:hover`, 修改样式.
+
+```CSS
+.avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}
+```
 
 **到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.**
 
