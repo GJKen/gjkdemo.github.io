@@ -1266,8 +1266,8 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 + 增加 CSS 样式:
 
 ```CSS
+.spoiled{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
 .spoilerText{transition:filter .3s ease}
-.title-right .circle{padding: 14px 16px;}
 ```
 
 + 定位`document.addEventListener('DOMContentLoaded', () => {`, 在里面增加 JS 代码:

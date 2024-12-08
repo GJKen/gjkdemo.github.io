@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Sun, 08 Dec 2024 19:09:37 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>Serv00 - 使用记录</title><link>https://GJKen.github.io/demo/post/5.html</link><description># 注册 Serv00&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Sun, 08 Dec 2024 19:10:30 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>Serv00 - 使用记录</title><link>https://GJKen.github.io/demo/post/5.html</link><description># 注册 Serv00&#13;
 &#13;
 注册没什么好说的, gmail+干净一点的ip基本上都可以成功, 这里不多做展开.&#13;
 收不到邮件信息的估计是邮箱问题. 比如:https://mail.proton.me&#13;
@@ -1714,8 +1714,8 @@ if '&lt;code class='notranslate'&gt;Gmeek-html' in post_body:&#13;
 + 增加 CSS 样式:&#13;
 &#13;
 ```CSS&#13;
+.spoiled{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}&#13;
 .spoilerText{transition:filter .3s ease}&#13;
-.title-right .circle{padding: 14px 16px;}&#13;
 ```&#13;
 &#13;
 + 定位`document.addEventListener('DOMContentLoaded', () =&gt; {`, 在里面增加 JS 代码:&#13;
