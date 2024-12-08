@@ -1133,11 +1133,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 </details>
 
-效果图:
-
-`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/Qmb3JmVReGPYgCiwmgYQtuurn67FXZ3m4dGtw83aM5nSQH"`
-
-实际效果👉 [点我](#footer2)
+转到页脚查看实际效果👉 [点我](#footer2)
 
 # 使用 Gmeek-html, 给博客插入图片, 防止链接自动转换
 
