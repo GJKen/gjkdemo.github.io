@@ -690,13 +690,14 @@ async function loginAccount(account) {
 <style>
 body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
 #header{display:flex;flex-direction: column;align-items: center;gap: 10px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 24px;}
+#header.article-header{width:100%;max-width:inherit;position:fixed;top:0;left:50%;right:0;transform:translateX(-50%);background:var(--body-bgColor);backdrop-filter:blur(15px);border-bottom:1pxsolidvar(--borderColor-muted,var(--color-border-muted));padding:10px;box-shadow:0px2px5pxrgba(0,0,0,0.1);transition:transform0.6sease-in-out;z-index:99;border-radius:0010px10px;box-shadow:02px8pxrgba(0,0,0,.1);}#header.article-header.hidden{transform:translate(-50%,-120%);}#content{margin-top:80px;}
 #header h1 a {margin: unset;}
 #footer {margin-top:64px; text-align: center;font-size: small;}
 
 </style>
 
 <style>
-.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.postTitle{margin: auto 0;font-size:35px;font-weight:bold;}
 .title-right .circle{padding: 14px 16px;}
 #postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
 #postBody hr{height:2px;}
@@ -723,8 +724,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 
 
-<body class="default">
-    <div id="header" class="default-header">
+<body class="article">
+    <div id="header" class="article-header">
 <h1 class="postTitle">Serv00 - 使用记录</h1>
 <div class="title-right">
     <a href="https://GJKen.github.io/demo" id="buttonHome" class="btn btn-invisible circle" title="首页">
@@ -1184,7 +1185,6 @@ function utterancesTheme(theme){
     iframe.contentWindow.postMessage(message,'https://utteranc.es');
 }
 if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
-console.log("\n %c Gmeek main https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
 </script>
 
 <script>

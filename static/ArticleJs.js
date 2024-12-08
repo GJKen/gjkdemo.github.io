@@ -45,4 +45,22 @@ document.addEventListener('DOMContentLoaded', () => {
 		href: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'
 	}));
 	Fancybox.bind('[data-fancybox="gallery"]', {});
+
+	// 滚动显示或隐藏#header
+	const header = document.querySelector('#header');
+	let lastScrollTop = 0;
+	window.addEventListener('scroll', () => {
+		let currentScroll = window.scrollY;
+
+		if (currentScroll > lastScrollTop) {
+			// 向下滚动，隐藏header
+			header.classList.add('hidden');
+		} else {
+			// 向上滚动，显示header
+			header.classList.remove('hidden');
+		}
+		// 防止负值
+		lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+	});
+
 });
