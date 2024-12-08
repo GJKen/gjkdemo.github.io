@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Sun, 08 Dec 2024 18:51:49 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>Serv00 - 使用记录</title><link>https://GJKen.github.io/demo/post/5.html</link><description># 注册 Serv00&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Sun, 08 Dec 2024 18:53:26 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>Serv00 - 使用记录</title><link>https://GJKen.github.io/demo/post/5.html</link><description># 注册 Serv00&#13;
 &#13;
 注册没什么好说的, gmail+干净一点的ip基本上都可以成功, 这里不多做展开.&#13;
 收不到邮件信息的估计是邮箱问题. 比如:https://mail.proton.me&#13;
@@ -446,7 +446,7 @@ test1.jsdelivr.net&#13;
 | [GitHub 用户名] | 写你的 GitHub 用户名.&#13;
 | [仓库名]  | 写你的 GitHub 仓库名称.&#13;
 | [标签或分支] | 例如 `https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js`&lt;br&gt;都不写默认访问最新版本.&lt;/br&gt;&#13;
-| [文件路径] | 写你的 GitHub 仓库文件路径.。</description><guid isPermaLink="true">https://GJKen.github.io/demo/post/2.html</guid><pubDate>Thu, 14 Nov 2024 05:30:47 +0000</pubDate></item><item><title>Gmeek - 记录使用过程</title><link>https://GJKen.github.io/demo/post/1.html</link><description>测试剧透👉`Gmeek-spoliertxt='好好好'&#13;
+| [文件路径] | 写你的 GitHub 仓库文件路径.。</description><guid isPermaLink="true">https://GJKen.github.io/demo/post/2.html</guid><pubDate>Thu, 14 Nov 2024 05:30:47 +0000</pubDate></item><item><title>Gmeek - 记录使用过程</title><link>https://GJKen.github.io/demo/post/1.html</link><description>测试剧透👉`Gmeek-spoliertxt='好好好'`&#13;
 &#13;
 [Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.&#13;
 &#13;
