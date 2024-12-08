@@ -19,10 +19,10 @@
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor: #ffffff00;}
 body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
 #header{display:flex;flex-direction: column;align-items: center;gap: 10px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 24px;}
-#header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 5px;}
+#header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 #header h1 a{margin: unset;}
-.article-content{margin-top:80px;}
+.article-content{margin-top:90px;}
 #footer{margin-top:64px; text-align: center;font-size: small;}
 
 </style>
@@ -127,30 +127,6 @@ function utterancesTheme(theme){
     const iframe=document.getElementsByClassName('utterances-frame')[0];
     iframe.contentWindow.postMessage(message,'https://utteranc.es');
 }
-let lastScrollTop = 0; // 上一次的滚动位置
-const header = document.getElementById('header');
-let isAtTop = true;  // 判断是否在页面顶部
-
-window.addEventListener('scroll', () => {
-	let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-	// 判断页面是否滚动到顶部
-	if (currentScrollTop === 0) {
-		isAtTop = true;
-	} else {
-		isAtTop = false;
-	}
-
-	// 向下滚动时隐藏 header
-	if (currentScrollTop > lastScrollTop && !isAtTop) {
-		header.classList.add('hidden');
-	} else if (currentScrollTop < lastScrollTop && currentScrollTop > 100) {
-		// 向上滚动超过 100px 时显示 header
-		header.classList.remove('hidden');
-	}
-
-	lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // 防止负值
-});
 if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
 </script>
 
