@@ -1,5 +1,3 @@
-测试剧透👉`Gmeek-spoliertxt="好好好"`
-
 [Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
 # 搭建博客
@@ -72,7 +70,7 @@
 
 markdown 输入:
 
-```markdown
+```
 `Gmeek-imgbox="https://example.com/image.jpg"`
 ```
 
@@ -1245,6 +1243,52 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 这种情况下, 如果在 html 中含有行内代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,
 
 更改后缩小了匹配范围, 可直接用行内代码块👉`Gmeek-html`让其在文章内正常显示.
+
+# 添加 Gmeek-spoliertxt
+
+## 打开 Gmeek.py
+
+增加匹配内容:
+
+```python
+        if '<code class="notranslate">Gmeek-imgbox' in post_body: 
+            post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>',lambda match: f'<img data-fancybox="gallery" class="ImgLazyLoad" img-src="{match.group(1)}">',post_body, flags=re.DOTALL)
+```
+## 打开 post.html
+
+增加 CSS 样式:
+
+```CSS
+.spoilerText{transition:filter .3s ease}
+.title-right .circle{padding: 14px 16px;}
+```
+
+定位`document.addEventListener('DOMContentLoaded', () => {`, 在里面增加 JS 代码:
+```
+    const blurText = document.querySelector(".spoilerText");
+    if (blurText) {
+        blurText.addEventListener("click", (event) => {
+            blurText.classList.remove("spoiled");
+            event.stopPropagation();
+        });
+        document.addEventListener("click", () => {
+            blurText.classList.add("spoiled");
+        });
+    } else {
+        console.log("未发现类名'spoilerText'");
+    }
+```
+
+markdown 输入:
+
+```
+测试剧透👉`Gmeek-spoliertxt="666666"`
+```
+
+实际转化后的标签如下:
+
+
+
 
 # 添加自定义单篇文章代码
 
