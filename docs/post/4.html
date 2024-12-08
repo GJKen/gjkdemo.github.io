@@ -324,7 +324,6 @@ function iFrameLoading(){
 }
 
 const blurText = document.querySelector(".spoilerText");
-if (!blurText) return;
 blurText.addEventListener("click", (event) => {
 	blurText.classList.remove("spoiled");
 	event.stopPropagation();
