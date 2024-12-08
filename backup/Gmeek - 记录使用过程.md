@@ -87,7 +87,7 @@ markdown 输入:
 
 图片加载的同时, 延迟 500 毫秒去掉`ImgLazyLoad`类名, 这样动画就能消失并显示正常的图片.
 
-图片加载失败则会显示指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.
+图片加载失败则会创建指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.
 
 大概就是这样的一个流程.
 
@@ -177,44 +177,46 @@ document.addEventListener('DOMContentLoaded', () => {
 <details><summary>Javascript Code</summary>
 
 ```Javascript
-    const ob = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.getAttribute('img-src'); // 获取 img-src 属性的值
-                ob.unobserve(img);
-                setTimeout(() => {
-                    img.classList.remove('ImgLazyLoad'); // 增加图片显示延迟, 延迟过程中图片也是会加载的
-                }, 500);
-            }
-        });
-    }, {
-        rootMargin: '0px 0px 500px 0px',
-    });
+	const ob = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				const img = entry.target;
+				img.src = img.getAttribute('img-src'); // 获取 img-src 属性的值
+				ob.unobserve(img);
+				setTimeout(() => {
+					img.classList.remove('ImgLazyLoad'); // 增加图片显示延迟, 延迟过程中图片也是会加载的
+					img.classList.add('ImgLoaded') //增加图片显示后的类名
+				}, 500);
+			}
+		});
+	}, {
+		rootMargin: '0px 0px 500px 0px',
+	});
 
-    const imgs = document.querySelectorAll('[img-src]'); // 选择所有具有 img-src 属性的元素
-    imgs.forEach(img => {
-        ob.observe(img);
-        // 图片加载失败时的处理
-        img.onerror = function() {
-            img.classList.remove('ImgLazyLoad'); // 移除 ImgLazyLoad 类名
-            // 创建一个容器 div
-            const errorContainer = document.createElement('div');
-            errorContainer.classList.add('Imgerror-container');
-            // SVG 内容
-            const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" style="height:60px;" class="Imgerror" viewBox="0 0 1024 1024"><path fill="#ff5b5b" d="M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z"/></svg>`;
-            const pContent = `<p class="Imgerror-message">图片错误</p>`;
+	const imgs = document.querySelectorAll('[img-src]'); // 选择所有具有 img-src 属性的元素
+	imgs.forEach(img => {
+		ob.observe(img);
+		// 图片加载失败时的处理
+		img.onerror = function() {
+			img.classList.remove('ImgLazyLoad'); // 移除 ImgLazyLoad 类名
+			// 创建一个容器 div
+			const errorContainer = document.createElement('div');
+			errorContainer.classList.add('Imgerror-container');
+			// SVG 内容
+			const svgContent =
+				`<svg xmlns="http://www.w3.org/2000/svg" style="height:60px;" class="Imgerror" viewBox="0 0 1024 1024"><path fill="#ff5b5b" d="M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z"/></svg>`;
+			const pContent = `<p class="Imgerror-message">图片错误</p>`;
 
-            // 将 SVG 内容和 <p> 标签插入到 errorContainer div 内
-            errorContainer.innerHTML = svgContent + pContent;
+			// 将 SVG 内容和 <p> 标签插入到 errorContainer div 内
+			errorContainer.innerHTML = svgContent + pContent;
 
-            // 将 errorContainer 插入到 img 元素的同一父元素下
-            img.parentNode.insertBefore(errorContainer, img.nextSibling);
+			// 将 errorContainer 插入到 img 元素的同一父元素下
+			img.parentNode.insertBefore(errorContainer, img.nextSibling);
 
-            // 隐藏 img 元素
-            img.style.display = 'none';
-        };
-    });
+			// 隐藏 img 元素
+			img.style.display = 'none';
+		};
+	});
 ```
 
 </details>
@@ -260,6 +262,36 @@ document.addEventListener('DOMContentLoaded', () => {
     color: #ff5b5b;
     font-size: 100%;
     user-select: none;
+}
+
+/* 图片模糊渐显样式 */
+.ImgLoaded {
+	-webkit-filter: blur(115px);
+	filter: blur(115px);
+	opacity: 0;
+	-webkit-animation: ImgLoadedAni 0.8s ease forwards;
+	animation: ImgLoadedAni 0.8s ease forwards;
+}
+@-webkit-keyframes ImgLoadedAni {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		-webkit-filter: blur(0);
+		filter: blur(0);
+		opacity: 1;
+	}
+}
+@keyframes ImgLoadedAni {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		filter: blur(0);
+		opacity: 1;
+	}
 }
 ```
 
@@ -343,7 +375,6 @@ document.addEventListener('DOMContentLoaded', () => {
 > 优化 light & dark 主题下的背景色.
 > 增加宽高过渡动画.
 > 增加 1080px 屏幕宽度响应
-> primer.css 有重复的 body 选择器, 顺带合并了
 
 <details><summary>修改前</summary>
 
@@ -469,14 +500,26 @@ html {
 `.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
 
 > [!NOTE]
+> 增加阴影.
 > 修改图标 hover 样式.
 
 <details><summary>修改前</summary>
 
 ```css
+.btn-invisible {
+	color: var(--fgColor-accent, var(--color-accent-fg));
+	background-color: rgba(0, 0, 0, 0);
+	border: 0;
+	border-radius: 6px;
+	box-shadow: none
+}
+
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
-    background-color: var(--button-default-bgColor-hover, var(--color-btn-hover-bg));
+	color: var(--fgColor-accent, var(--color-accent-fg));
+	background-color: var(--title-right-btnbg-color);
+	outline: none;
+	box-shadow: none
 }
 ```
 
@@ -489,17 +532,27 @@ html {
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
     /* 增加 */
-    --title-right-btnbg-color: #46ffff61;
-    --title-right-svg-color: #00f0ff;
+	--header-btn-shadowColor:#00000045;
+	--header-btn-shadowColor2:#ffffff26;
 }
 :root {
     /* 增加 */
-    --title-right-btnbg-color: #b7dbff61;
-    --title-right-svg-color: #71baff;
+	--header-btn-shadowColor:#fbfbfb26;
+	--header-btn-shadowColor2:#5f5f5f26;
+}
+.btn-invisible {
+	color: var(--fgColor-accent, var(--color-accent-fg));
+	background-color: rgba(0, 0, 0, 0);
+	border: 0;
+	border-radius: 6px;
+	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor), -7px -7px 16px 0 var(--header-btn-shadowColor2);
 }
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
-    background-color: var(--title-right-btnbg-color);
+	color: var(--fgColor-accent, var(--color-accent-fg));
+	background-color: rgba(0, 0, 0, 0);
+	outline: none;
+	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor) inset,-7px -7px 12px 0 var(--header-btn-shadowColor2) inset;
 }
 /* 增加 */
 .btn-invisible:hover svg,
@@ -698,7 +751,7 @@ html {
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
-> 增加 hover 动画缩放和阴影.
+> 增加 hover 动画.
 
 <details><summary>修改前</summary>
 

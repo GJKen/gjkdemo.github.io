@@ -99,7 +99,7 @@ markdown 输入:
 
 图片加载的同时, 延迟 500 毫秒去掉`ImgLazyLoad`类名, 这样动画就能消失并显示正常的图片.
 
-图片加载失败则会显示指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.
+图片加载失败则会创建指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.
 
 大概就是这样的一个流程.
 
@@ -189,44 +189,46 @@ document.addEventListener('DOMContentLoaded', () => {
 <details><summary>Javascript Code</summary>
 
 ```Javascript
-    const ob = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.getAttribute('img-src'); // 获取 img-src 属性的值
-                ob.unobserve(img);
-                setTimeout(() => {
-                    img.classList.remove('ImgLazyLoad'); // 增加图片显示延迟, 延迟过程中图片也是会加载的
-                }, 500);
-            }
-        });
-    }, {
-        rootMargin: '0px 0px 500px 0px',
-    });
+	const ob = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				const img = entry.target;
+				img.src = img.getAttribute('img-src'); // 获取 img-src 属性的值
+				ob.unobserve(img);
+				setTimeout(() => {
+					img.classList.remove('ImgLazyLoad'); // 增加图片显示延迟, 延迟过程中图片也是会加载的
+					img.classList.add('ImgLoaded') //增加图片显示后的类名
+				}, 500);
+			}
+		});
+	}, {
+		rootMargin: '0px 0px 500px 0px',
+	});
 
-    const imgs = document.querySelectorAll('[img-src]'); // 选择所有具有 img-src 属性的元素
-    imgs.forEach(img => {
-        ob.observe(img);
-        // 图片加载失败时的处理
-        img.onerror = function() {
-            img.classList.remove('ImgLazyLoad'); // 移除 ImgLazyLoad 类名
-            // 创建一个容器 div
-            const errorContainer = document.createElement('div');
-            errorContainer.classList.add('Imgerror-container');
-            // SVG 内容
-            const svgContent = `<svg xmlns='http://www.w3.org/2000/svg' style='height:60px;' class='Imgerror' viewBox='0 0 1024 1024'><path fill='#ff5b5b' d='M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z'/></svg>`;
-            const pContent = `<p class='Imgerror-message'>图片错误</p>`;
+	const imgs = document.querySelectorAll('[img-src]'); // 选择所有具有 img-src 属性的元素
+	imgs.forEach(img => {
+		ob.observe(img);
+		// 图片加载失败时的处理
+		img.onerror = function() {
+			img.classList.remove('ImgLazyLoad'); // 移除 ImgLazyLoad 类名
+			// 创建一个容器 div
+			const errorContainer = document.createElement('div');
+			errorContainer.classList.add('Imgerror-container');
+			// SVG 内容
+			const svgContent =
+				`<svg xmlns='http://www.w3.org/2000/svg' style='height:60px;' class='Imgerror' viewBox='0 0 1024 1024'><path fill='#ff5b5b' d='M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z'/></svg>`;
+			const pContent = `<p class='Imgerror-message'>图片错误</p>`;
 
-            // 将 SVG 内容和 <p> 标签插入到 errorContainer div 内
-            errorContainer.innerHTML = svgContent + pContent;
+			// 将 SVG 内容和 <p> 标签插入到 errorContainer div 内
+			errorContainer.innerHTML = svgContent + pContent;
 
-            // 将 errorContainer 插入到 img 元素的同一父元素下
-            img.parentNode.insertBefore(errorContainer, img.nextSibling);
+			// 将 errorContainer 插入到 img 元素的同一父元素下
+			img.parentNode.insertBefore(errorContainer, img.nextSibling);
 
-            // 隐藏 img 元素
-            img.style.display = 'none';
-        };
-    });
+			// 隐藏 img 元素
+			img.style.display = 'none';
+		};
+	});
 ```
 
 </details>
@@ -272,6 +274,36 @@ document.addEventListener('DOMContentLoaded', () => {
     color: #ff5b5b;
     font-size: 100%;
     user-select: none;
+}
+
+/* 图片模糊渐显样式 */
+.ImgLoaded {
+	-webkit-filter: blur(115px);
+	filter: blur(115px);
+	opacity: 0;
+	-webkit-animation: ImgLoadedAni 0.8s ease forwards;
+	animation: ImgLoadedAni 0.8s ease forwards;
+}
+@-webkit-keyframes ImgLoadedAni {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		-webkit-filter: blur(0);
+		filter: blur(0);
+		opacity: 1;
+	}
+}
+@keyframes ImgLoadedAni {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		filter: blur(0);
+		opacity: 1;
+	}
 }
 ```
 
@@ -355,7 +387,6 @@ document.addEventListener('DOMContentLoaded', () => {
 > 优化 light & dark 主题下的背景色.
 > 增加宽高过渡动画.
 > 增加 1080px 屏幕宽度响应
-> primer.css 有重复的 body 选择器, 顺带合并了
 
 <details><summary>修改前</summary>
 
@@ -481,14 +512,26 @@ html {
 `.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
 
 > [!NOTE]
+> 增加阴影.
 > 修改图标 hover 样式.
 
 <details><summary>修改前</summary>
 
 ```css
+.btn-invisible {
+	color: var(--fgColor-accent, var(--color-accent-fg));
+	background-color: rgba(0, 0, 0, 0);
+	border: 0;
+	border-radius: 6px;
+	box-shadow: none
+}
+
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
-    background-color: var(--button-default-bgColor-hover, var(--color-btn-hover-bg));
+	color: var(--fgColor-accent, var(--color-accent-fg));
+	background-color: var(--title-right-btnbg-color);
+	outline: none;
+	box-shadow: none
 }
 ```
 
@@ -501,17 +544,27 @@ html {
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
     /* 增加 */
-    --title-right-btnbg-color: #46ffff61;
-    --title-right-svg-color: #00f0ff;
+	--header-btn-shadowColor:#00000045;
+	--header-btn-shadowColor2:#ffffff26;
 }
 :root {
     /* 增加 */
-    --title-right-btnbg-color: #b7dbff61;
-    --title-right-svg-color: #71baff;
+	--header-btn-shadowColor:#fbfbfb26;
+	--header-btn-shadowColor2:#5f5f5f26;
+}
+.btn-invisible {
+	color: var(--fgColor-accent, var(--color-accent-fg));
+	background-color: rgba(0, 0, 0, 0);
+	border: 0;
+	border-radius: 6px;
+	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor), -7px -7px 16px 0 var(--header-btn-shadowColor2);
 }
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
-    background-color: var(--title-right-btnbg-color);
+	color: var(--fgColor-accent, var(--color-accent-fg));
+	background-color: rgba(0, 0, 0, 0);
+	outline: none;
+	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor) inset,-7px -7px 12px 0 var(--header-btn-shadowColor2) inset;
 }
 /* 增加 */
 .btn-invisible:hover svg,
@@ -710,7 +763,7 @@ html {
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
-> 增加 hover 动画缩放和阴影.
+> 增加 hover 动画.
 
 <details><summary>修改前</summary>
 
@@ -1306,7 +1359,7 @@ markdown 输入:
 
 图片加载的同时, 延迟 500 毫秒去掉`ImgLazyLoad`类名, 这样动画就能消失并显示正常的图片.
 
-图片加载失败则会显示指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.
+图片加载失败则会创建指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.
 
 大概就是这样的一个流程.
 
@@ -1396,44 +1449,46 @@ document.addEventListener('DOMContentLoaded', () => {
 <details><summary>Javascript Code</summary>
 
 ```Javascript
-    const ob = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.getAttribute('img-src'); // 获取 img-src 属性的值
-                ob.unobserve(img);
-                setTimeout(() => {
-                    img.classList.remove('ImgLazyLoad'); // 增加图片显示延迟, 延迟过程中图片也是会加载的
-                }, 500);
-            }
-        });
-    }, {
-        rootMargin: '0px 0px 500px 0px',
-    });
+	const ob = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				const img = entry.target;
+				img.src = img.getAttribute('img-src'); // 获取 img-src 属性的值
+				ob.unobserve(img);
+				setTimeout(() => {
+					img.classList.remove('ImgLazyLoad'); // 增加图片显示延迟, 延迟过程中图片也是会加载的
+					img.classList.add('ImgLoaded') //增加图片显示后的类名
+				}, 500);
+			}
+		});
+	}, {
+		rootMargin: '0px 0px 500px 0px',
+	});
 
-    const imgs = document.querySelectorAll('[img-src]'); // 选择所有具有 img-src 属性的元素
-    imgs.forEach(img => {
-        ob.observe(img);
-        // 图片加载失败时的处理
-        img.onerror = function() {
-            img.classList.remove('ImgLazyLoad'); // 移除 ImgLazyLoad 类名
-            // 创建一个容器 div
-            const errorContainer = document.createElement('div');
-            errorContainer.classList.add('Imgerror-container');
-            // SVG 内容
-            const svgContent = `<svg xmlns='http://www.w3.org/2000/svg' style='height:60px;' class='Imgerror' viewBox='0 0 1024 1024'><path fill='#ff5b5b' d='M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z'/></svg>`;
-            const pContent = `<p class='Imgerror-message'>图片错误</p>`;
+	const imgs = document.querySelectorAll('[img-src]'); // 选择所有具有 img-src 属性的元素
+	imgs.forEach(img => {
+		ob.observe(img);
+		// 图片加载失败时的处理
+		img.onerror = function() {
+			img.classList.remove('ImgLazyLoad'); // 移除 ImgLazyLoad 类名
+			// 创建一个容器 div
+			const errorContainer = document.createElement('div');
+			errorContainer.classList.add('Imgerror-container');
+			// SVG 内容
+			const svgContent =
+				`<svg xmlns='http://www.w3.org/2000/svg' style='height:60px;' class='Imgerror' viewBox='0 0 1024 1024'><path fill='#ff5b5b' d='M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z'/></svg>`;
+			const pContent = `<p class='Imgerror-message'>图片错误</p>`;
 
-            // 将 SVG 内容和 <p> 标签插入到 errorContainer div 内
-            errorContainer.innerHTML = svgContent + pContent;
+			// 将 SVG 内容和 <p> 标签插入到 errorContainer div 内
+			errorContainer.innerHTML = svgContent + pContent;
 
-            // 将 errorContainer 插入到 img 元素的同一父元素下
-            img.parentNode.insertBefore(errorContainer, img.nextSibling);
+			// 将 errorContainer 插入到 img 元素的同一父元素下
+			img.parentNode.insertBefore(errorContainer, img.nextSibling);
 
-            // 隐藏 img 元素
-            img.style.display = 'none';
-        };
-    });
+			// 隐藏 img 元素
+			img.style.display = 'none';
+		};
+	});
 ```
 
 </details>
@@ -1479,6 +1534,36 @@ document.addEventListener('DOMContentLoaded', () => {
     color: #ff5b5b;
     font-size: 100%;
     user-select: none;
+}
+
+/* 图片模糊渐显样式 */
+.ImgLoaded {
+	-webkit-filter: blur(115px);
+	filter: blur(115px);
+	opacity: 0;
+	-webkit-animation: ImgLoadedAni 0.8s ease forwards;
+	animation: ImgLoadedAni 0.8s ease forwards;
+}
+@-webkit-keyframes ImgLoadedAni {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		-webkit-filter: blur(0);
+		filter: blur(0);
+		opacity: 1;
+	}
+}
+@keyframes ImgLoadedAni {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		filter: blur(0);
+		opacity: 1;
+	}
 }
 ```
 
@@ -1562,7 +1647,6 @@ document.addEventListener('DOMContentLoaded', () => {
 > 优化 light & dark 主题下的背景色.
 > 增加宽高过渡动画.
 > 增加 1080px 屏幕宽度响应
-> primer.css 有重复的 body 选择器, 顺带合并了
 
 <details><summary>修改前</summary>
 
@@ -1688,14 +1772,26 @@ html {
 `.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
 
 > [!NOTE]
+> 增加阴影.
 > 修改图标 hover 样式.
 
 <details><summary>修改前</summary>
 
 ```css
+.btn-invisible {
+	color: var(--fgColor-accent, var(--color-accent-fg));
+	background-color: rgba(0, 0, 0, 0);
+	border: 0;
+	border-radius: 6px;
+	box-shadow: none
+}
+
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
-    background-color: var(--button-default-bgColor-hover, var(--color-btn-hover-bg));
+	color: var(--fgColor-accent, var(--color-accent-fg));
+	background-color: var(--title-right-btnbg-color);
+	outline: none;
+	box-shadow: none
 }
 ```
 
@@ -1708,17 +1804,27 @@ html {
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
     /* 增加 */
-    --title-right-btnbg-color: #46ffff61;
-    --title-right-svg-color: #00f0ff;
+	--header-btn-shadowColor:#00000045;
+	--header-btn-shadowColor2:#ffffff26;
 }
 :root {
     /* 增加 */
-    --title-right-btnbg-color: #b7dbff61;
-    --title-right-svg-color: #71baff;
+	--header-btn-shadowColor:#fbfbfb26;
+	--header-btn-shadowColor2:#5f5f5f26;
+}
+.btn-invisible {
+	color: var(--fgColor-accent, var(--color-accent-fg));
+	background-color: rgba(0, 0, 0, 0);
+	border: 0;
+	border-radius: 6px;
+	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor), -7px -7px 16px 0 var(--header-btn-shadowColor2);
 }
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
-    background-color: var(--title-right-btnbg-color);
+	color: var(--fgColor-accent, var(--color-accent-fg));
+	background-color: rgba(0, 0, 0, 0);
+	outline: none;
+	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor) inset,-7px -7px 12px 0 var(--header-btn-shadowColor2) inset;
 }
 /* 增加 */
 .btn-invisible:hover svg,
@@ -1917,7 +2023,7 @@ html {
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
-> 增加 hover 动画缩放和阴影.
+> 增加 hover 动画.
 
 <details><summary>修改前</summary>
 
@@ -2545,7 +2651,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-c">&lt;!-- `ImgLazyLoad`这个类名的 CSS 动画我写在了`primer.css`里面, 使图片未加载之前有一个加载动画. --&gt;</span></pre></div>
 <p>当页面加载完成后, 脚本会检测标签里面的<code class="notranslate">img-src="https://example.com/image.jpg"</code>内容, 并增加<code class="notranslate">src</code>值, 这样图片就能显示了.</p>
 <p>图片加载的同时, 延迟 500 毫秒去掉<code class="notranslate">ImgLazyLoad</code>类名, 这样动画就能消失并显示正常的图片.</p>
-<p>图片加载失败则会显示指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.</p>
+<p>图片加载失败则会创建指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.</p>
 <p>大概就是这样的一个流程.</p>
 </details>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js">ArticleToc.js</a> - 文章增加目录列表+一键返回顶部按钮</h2>
@@ -2603,44 +2709,46 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>代码内容合并到👉<a href="#articlejs.js---%E6%96%87%E7%AB%A0%E8%87%AA%E5%AE%9A%E4%B9%89-js-%E4%BB%A3%E7%A0%81">文章自定义 js 代码</a></p>
 <p>关键内容如下:</p>
 <details><summary>Javascript Code</summary>
-<div class="highlight highlight-source-js"><pre class="notranslate">    <span class="pl-k">const</span> <span class="pl-s1">ob</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">IntersectionObserver</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-s1">entries</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
-        <span class="pl-s1">entries</span><span class="pl-kos">.</span><span class="pl-en">forEach</span><span class="pl-kos">(</span><span class="pl-s1">entry</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
-            <span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">entry</span><span class="pl-kos">.</span><span class="pl-c1">isIntersecting</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
-                <span class="pl-k">const</span> <span class="pl-s1">img</span> <span class="pl-c1">=</span> <span class="pl-s1">entry</span><span class="pl-kos">.</span><span class="pl-c1">target</span><span class="pl-kos">;</span>
-                <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">src</span> <span class="pl-c1">=</span> <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-en">getAttribute</span><span class="pl-kos">(</span><span class="pl-s">'img-src'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 获取 img-src 属性的值</span>
-                <span class="pl-s1">ob</span><span class="pl-kos">.</span><span class="pl-en">unobserve</span><span class="pl-kos">(</span><span class="pl-s1">img</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-                <span class="pl-en">setTimeout</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
-                    <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">remove</span><span class="pl-kos">(</span><span class="pl-s">'ImgLazyLoad'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 增加图片显示延迟, 延迟过程中图片也是会加载的</span>
-                <span class="pl-kos">}</span><span class="pl-kos">,</span> <span class="pl-c1">500</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-            <span class="pl-kos">}</span>
-        <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-kos">}</span><span class="pl-kos">,</span> <span class="pl-kos">{</span>
-        <span class="pl-c1">rootMargin</span>: <span class="pl-s">'0px 0px 500px 0px'</span><span class="pl-kos">,</span>
-    <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<div class="highlight highlight-source-js"><pre class="notranslate">	<span class="pl-k">const</span> <span class="pl-s1">ob</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">IntersectionObserver</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-s1">entries</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+		<span class="pl-s1">entries</span><span class="pl-kos">.</span><span class="pl-en">forEach</span><span class="pl-kos">(</span><span class="pl-s1">entry</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+			<span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">entry</span><span class="pl-kos">.</span><span class="pl-c1">isIntersecting</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+				<span class="pl-k">const</span> <span class="pl-s1">img</span> <span class="pl-c1">=</span> <span class="pl-s1">entry</span><span class="pl-kos">.</span><span class="pl-c1">target</span><span class="pl-kos">;</span>
+				<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">src</span> <span class="pl-c1">=</span> <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-en">getAttribute</span><span class="pl-kos">(</span><span class="pl-s">'img-src'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 获取 img-src 属性的值</span>
+				<span class="pl-s1">ob</span><span class="pl-kos">.</span><span class="pl-en">unobserve</span><span class="pl-kos">(</span><span class="pl-s1">img</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+				<span class="pl-en">setTimeout</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+					<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">remove</span><span class="pl-kos">(</span><span class="pl-s">'ImgLazyLoad'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 增加图片显示延迟, 延迟过程中图片也是会加载的</span>
+					<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">add</span><span class="pl-kos">(</span><span class="pl-s">'ImgLoaded'</span><span class="pl-kos">)</span> <span class="pl-c">//增加图片显示后的类名</span>
+				<span class="pl-kos">}</span><span class="pl-kos">,</span> <span class="pl-c1">500</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+			<span class="pl-kos">}</span>
+		<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+	<span class="pl-kos">}</span><span class="pl-kos">,</span> <span class="pl-kos">{</span>
+		<span class="pl-c1">rootMargin</span>: <span class="pl-s">'0px 0px 500px 0px'</span><span class="pl-kos">,</span>
+	<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
-    <span class="pl-k">const</span> <span class="pl-s1">imgs</span> <span class="pl-c1">=</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">querySelectorAll</span><span class="pl-kos">(</span><span class="pl-s">'[img-src]'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 选择所有具有 img-src 属性的元素</span>
-    <span class="pl-s1">imgs</span><span class="pl-kos">.</span><span class="pl-en">forEach</span><span class="pl-kos">(</span><span class="pl-s1">img</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
-        <span class="pl-s1">ob</span><span class="pl-kos">.</span><span class="pl-en">observe</span><span class="pl-kos">(</span><span class="pl-s1">img</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-        <span class="pl-c">// 图片加载失败时的处理</span>
-        <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-en">onerror</span> <span class="pl-c1">=</span> <span class="pl-k">function</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
-            <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">remove</span><span class="pl-kos">(</span><span class="pl-s">'ImgLazyLoad'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 移除 ImgLazyLoad 类名</span>
-            <span class="pl-c">// 创建一个容器 div</span>
-            <span class="pl-k">const</span> <span class="pl-s1">errorContainer</span> <span class="pl-c1">=</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">createElement</span><span class="pl-kos">(</span><span class="pl-s">'div'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-            <span class="pl-s1">errorContainer</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">add</span><span class="pl-kos">(</span><span class="pl-s">'Imgerror-container'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-            <span class="pl-c">// SVG 内容</span>
-            <span class="pl-k">const</span> <span class="pl-s1">svgContent</span> <span class="pl-c1">=</span> <span class="pl-s">`&lt;svg xmlns="http://www.w3.org/2000/svg" style="height:60px;" class="Imgerror" viewBox="0 0 1024 1024"&gt;&lt;path fill="#ff5b5b" d="M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z"/&gt;&lt;/svg&gt;`</span><span class="pl-kos">;</span>
-            <span class="pl-k">const</span> <span class="pl-s1">pContent</span> <span class="pl-c1">=</span> <span class="pl-s">`&lt;p class="Imgerror-message"&gt;图片错误&lt;/p&gt;`</span><span class="pl-kos">;</span>
+	<span class="pl-k">const</span> <span class="pl-s1">imgs</span> <span class="pl-c1">=</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">querySelectorAll</span><span class="pl-kos">(</span><span class="pl-s">'[img-src]'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 选择所有具有 img-src 属性的元素</span>
+	<span class="pl-s1">imgs</span><span class="pl-kos">.</span><span class="pl-en">forEach</span><span class="pl-kos">(</span><span class="pl-s1">img</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+		<span class="pl-s1">ob</span><span class="pl-kos">.</span><span class="pl-en">observe</span><span class="pl-kos">(</span><span class="pl-s1">img</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+		<span class="pl-c">// 图片加载失败时的处理</span>
+		<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-en">onerror</span> <span class="pl-c1">=</span> <span class="pl-k">function</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+			<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">remove</span><span class="pl-kos">(</span><span class="pl-s">'ImgLazyLoad'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 移除 ImgLazyLoad 类名</span>
+			<span class="pl-c">// 创建一个容器 div</span>
+			<span class="pl-k">const</span> <span class="pl-s1">errorContainer</span> <span class="pl-c1">=</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">createElement</span><span class="pl-kos">(</span><span class="pl-s">'div'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+			<span class="pl-s1">errorContainer</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">add</span><span class="pl-kos">(</span><span class="pl-s">'Imgerror-container'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+			<span class="pl-c">// SVG 内容</span>
+			<span class="pl-k">const</span> <span class="pl-s1">svgContent</span> <span class="pl-c1">=</span>
+				<span class="pl-s">`&lt;svg xmlns="http://www.w3.org/2000/svg" style="height:60px;" class="Imgerror" viewBox="0 0 1024 1024"&gt;&lt;path fill="#ff5b5b" d="M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z"/&gt;&lt;/svg&gt;`</span><span class="pl-kos">;</span>
+			<span class="pl-k">const</span> <span class="pl-s1">pContent</span> <span class="pl-c1">=</span> <span class="pl-s">`&lt;p class="Imgerror-message"&gt;图片错误&lt;/p&gt;`</span><span class="pl-kos">;</span>
 
-            <span class="pl-c">// 将 SVG 内容和 &lt;p&gt; 标签插入到 errorContainer div 内</span>
-            <span class="pl-s1">errorContainer</span><span class="pl-kos">.</span><span class="pl-c1">innerHTML</span> <span class="pl-c1">=</span> <span class="pl-s1">svgContent</span> <span class="pl-c1">+</span> <span class="pl-s1">pContent</span><span class="pl-kos">;</span>
+			<span class="pl-c">// 将 SVG 内容和 &lt;p&gt; 标签插入到 errorContainer div 内</span>
+			<span class="pl-s1">errorContainer</span><span class="pl-kos">.</span><span class="pl-c1">innerHTML</span> <span class="pl-c1">=</span> <span class="pl-s1">svgContent</span> <span class="pl-c1">+</span> <span class="pl-s1">pContent</span><span class="pl-kos">;</span>
 
-            <span class="pl-c">// 将 errorContainer 插入到 img 元素的同一父元素下</span>
-            <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">parentNode</span><span class="pl-kos">.</span><span class="pl-en">insertBefore</span><span class="pl-kos">(</span><span class="pl-s1">errorContainer</span><span class="pl-kos">,</span> <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">nextSibling</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+			<span class="pl-c">// 将 errorContainer 插入到 img 元素的同一父元素下</span>
+			<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">parentNode</span><span class="pl-kos">.</span><span class="pl-en">insertBefore</span><span class="pl-kos">(</span><span class="pl-s1">errorContainer</span><span class="pl-kos">,</span> <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">nextSibling</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
-            <span class="pl-c">// 隐藏 img 元素</span>
-            <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">style</span><span class="pl-kos">.</span><span class="pl-c1">display</span> <span class="pl-c1">=</span> <span class="pl-s">'none'</span><span class="pl-kos">;</span>
-        <span class="pl-kos">}</span><span class="pl-kos">;</span>
-    <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+			<span class="pl-c">// 隐藏 img 元素</span>
+			<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">style</span><span class="pl-kos">.</span><span class="pl-c1">display</span> <span class="pl-c1">=</span> <span class="pl-s">'none'</span><span class="pl-kos">;</span>
+		<span class="pl-kos">}</span><span class="pl-kos">;</span>
+	<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
 </details>
 <p>加载动画 CSS, 我把它写到了<code class="notranslate">primer.css</code>文件里面.</p>
 <details><summary>CSS Code</summary>
@@ -2680,6 +2788,36 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ff5b5b</span>;
     <span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span>;
     <span class="pl-c1">user-select</span><span class="pl-kos">:</span> none;
+}
+
+<span class="pl-c">/* 图片模糊渐显样式 */</span>
+.<span class="pl-c1">ImgLoaded</span> {
+	<span class="pl-c1">-webkit-filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">115<span class="pl-smi">px</span></span>);
+	<span class="pl-c1">filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">115<span class="pl-smi">px</span></span>);
+	<span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;
+	<span class="pl-c1">-webkit-animation</span><span class="pl-kos">:</span> ImgLoadedAni <span class="pl-c1">0.8<span class="pl-smi">s</span></span> ease forwards;
+	<span class="pl-c1">animation</span><span class="pl-kos">:</span> ImgLoadedAni <span class="pl-c1">0.8<span class="pl-smi">s</span></span> ease forwards;
+}
+<span class="pl-k">@-webkit-keyframes</span> ImgLoadedAni {
+	<span class="pl-c1">0<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;
+	}
+
+	<span class="pl-c1">100<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">-webkit-filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">0</span>);
+		<span class="pl-c1">filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">0</span>);
+		<span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">1</span>;
+	}
+}
+<span class="pl-k">@keyframes</span> ImgLoadedAni {
+	<span class="pl-c1">0<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;
+	}
+
+	<span class="pl-c1">100<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">0</span>);
+		<span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">1</span>;
+	}
 }</pre></div>
 </details>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>
@@ -2735,8 +2873,7 @@ pv 修改成 uv 计数.</p>
 <p><code class="notranslate">body</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.<br>
 增加宽高过渡动画.<br>
-增加 1080px 屏幕宽度响应<br>
-primer.css 有重复的 body 选择器, 顺带合并了</p>
+增加 1080px 屏幕宽度响应</p>
 </div>
 <details><summary>修改前</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-ent">body</span> {
@@ -2834,12 +2971,24 @@ primer.css 有重复的 body 选择器, 顺带合并了</p>
 </details>
 <h2>#header 图标样式</h2>
 <p><code class="notranslate">.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改图标 hover 样式.</p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>增加阴影.<br>
+修改图标 hover 样式.</p>
 </div>
 <details><summary>修改前</summary>
-<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span><span class="pl-kos">,</span>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">btn-invisible</span> {
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-accent</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-accent-fg</span>));
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">rgba</span>(<span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span>);
+	<span class="pl-c1">border</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;
+	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> none
+}
+
+.<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span><span class="pl-kos">,</span>
 .<span class="pl-c1">btn-invisible</span>.<span class="pl-c1">zeroclipboard-is-hover</span> {
-    <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--button-default-bgColor-hover</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-btn-hover-bg</span>));
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-accent</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-accent-fg</span>));
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--title-right-btnbg-color</span>);
+	<span class="pl-c1">outline</span><span class="pl-kos">:</span> none;
+	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> none
 }</pre></div>
 </details>
 <details><summary>修改后</summary>
@@ -2848,17 +2997,27 @@ primer.css 有重复的 body 选择器, 顺带合并了</p>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span> {
     <span class="pl-c">/* 增加 */</span>
-    <span class="pl-s1">--title-right-btnbg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>46ffff61</span>;
-    <span class="pl-s1">--title-right-svg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>00f0ff</span>;
+	<span class="pl-s1">--header-btn-shadowColor</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>00000045</span>;
+	<span class="pl-s1">--header-btn-shadowColor2</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>ffffff26</span>;
 }
 <span class="pl-kos">:</span><span class="pl-c1">root</span> {
     <span class="pl-c">/* 增加 */</span>
-    <span class="pl-s1">--title-right-btnbg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>b7dbff61</span>;
-    <span class="pl-s1">--title-right-svg-color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>71baff</span>;
+	<span class="pl-s1">--header-btn-shadowColor</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>fbfbfb26</span>;
+	<span class="pl-s1">--header-btn-shadowColor2</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>5f5f5f26</span>;
+}
+.<span class="pl-c1">btn-invisible</span> {
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-accent</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-accent-fg</span>));
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">rgba</span>(<span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span>);
+	<span class="pl-c1">border</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;
+	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-c1">14<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--header-btn-shadowColor</span>)<span class="pl-kos">,</span> <span class="pl-c1">-7<span class="pl-smi">px</span></span> <span class="pl-c1">-7<span class="pl-smi">px</span></span> <span class="pl-c1">16<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--header-btn-shadowColor2</span>);
 }
 .<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span><span class="pl-kos">,</span>
 .<span class="pl-c1">btn-invisible</span>.<span class="pl-c1">zeroclipboard-is-hover</span> {
-    <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--title-right-btnbg-color</span>);
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-accent</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-accent-fg</span>));
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">rgba</span>(<span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span>);
+	<span class="pl-c1">outline</span><span class="pl-kos">:</span> none;
+	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-c1">14<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--header-btn-shadowColor</span>) inset<span class="pl-kos">,</span><span class="pl-c1">-7<span class="pl-smi">px</span></span> <span class="pl-c1">-7<span class="pl-smi">px</span></span> <span class="pl-c1">12<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--header-btn-shadowColor2</span>) inset;
 }
 <span class="pl-c">/* 增加 */</span>
 .<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> <span class="pl-ent">svg</span><span class="pl-kos">,</span>
@@ -2998,7 +3157,7 @@ primer.css 有重复的 body 选择器, 顺带合并了</p>
 <h2>文章 &lt;img&gt; 标签样式</h2>
 <p><code class="notranslate">.markdown-body img</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.<br>
-增加 hover 动画缩放和阴影.</p>
+增加 hover 动画.</p>
 </div>
 <details><summary>修改前</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">img</span> {
