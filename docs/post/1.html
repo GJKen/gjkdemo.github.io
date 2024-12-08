@@ -235,45 +235,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
 加载动画 CSS, 我把它写到了`primer.css`文件里面.
 
+> [NOTE]
+> 这个主要样式一定要写在`:root`选择器的前面!
+
 <details><summary>CSS Code</summary>
 
-```css
+```CSS
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--ImgLazyLoad-circle-shadowColor:#27272745;
+	--ImgLazyLoad-circle-shadowColor2:#28dddf4a;
+}
+
 /* 图片懒加载占位css动画 */
 .ImgLazyLoad {
-    width: 1px;
-    border-radius: 50%;
-    border: 6px #f3f3f3 solid;
-    border-top: 6px #8aefff solid;
-    padding: 20px;
-    animation: ImgLazyLoadAni 1.2s infinite;
-    -webkit-animation: ImgLazyLoadAni 1.2s infinite
+	width: 1.2px;
+	height: 1.1px;
+	border-radius: 50%;
+	border: 6px #f3f3f3 solid;
+	border-top: 6px #8aefff solid;
+	padding: 20px;
+	transition: filter 0.5s ease, opacity 0.5s ease;
+	animation: ImgLazyLoadAni 1.2s infinite;
+	-webkit-animation: ImgLazyLoadAni 1.2s infinite;
+	box-shadow: 6px 6px 14px 0 var(--ImgLazyLoad-circle-shadowColor), -7px -7px 16px 0 var(--ImgLazyLoad-circle-shadowColor2);
 }
 
 @keyframes ImgLazyLoadAni {
-    0% {
-        transform: rotate(0)
-    }
+	0% {
+		transform: rotate(0)
+	}
 
-    100% {
-        transform: rotate(360deg)
-    }
+	100% {
+		transform: rotate(360deg)
+	}
 }
 
 @-webkit-keyframes ImgLazyLoadAni {
-    0% {
-        -webkit-transform: rotate(0)
-    }
+	0% {
+		-webkit-transform: rotate(0)
+	}
 
-    100% {
-        -webkit-transform: rotate(360deg)
-    }
+	100% {
+		-webkit-transform: rotate(360deg)
+	}
 }
 
 /* 图片懒加载文字提示样式 */
 .Imgerror-message {
-    color: #ff5b5b;
-    font-size: 100%;
-    user-select: none;
+	color: #ff5b5b;
+	font-size: 100%;
+	user-select: none;
 }
 
 /* 图片模糊渐显样式 */
@@ -281,8 +295,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	-webkit-filter: blur(115px);
 	filter: blur(115px);
 	opacity: 0;
-	-webkit-animation: ImgLoadedAni 0.8s ease forwards;
-	animation: ImgLoadedAni 0.8s ease forwards;
+	-webkit-animation: ImgLoadedAni 0.5s ease forwards;
+	animation: ImgLoadedAni 0.5s ease forwards;
 }
 @-webkit-keyframes ImgLoadedAni {
 	0% {
@@ -304,6 +318,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		filter: blur(0);
 		opacity: 1;
 	}
+}
+
+:root {
+	--ImgLazyLoad-circle-shadowColor:#0000;
+	--ImgLazyLoad-circle-shadowColor2:#ebfffe
 }
 ```
 
@@ -1495,45 +1514,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
 加载动画 CSS, 我把它写到了`primer.css`文件里面.
 
+> [NOTE]
+> 这个主要样式一定要写在`:root`选择器的前面!
+
 <details><summary>CSS Code</summary>
 
-```css
+```CSS
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--ImgLazyLoad-circle-shadowColor:#27272745;
+	--ImgLazyLoad-circle-shadowColor2:#28dddf4a;
+}
+
 /* 图片懒加载占位css动画 */
 .ImgLazyLoad {
-    width: 1px;
-    border-radius: 50%;
-    border: 6px #f3f3f3 solid;
-    border-top: 6px #8aefff solid;
-    padding: 20px;
-    animation: ImgLazyLoadAni 1.2s infinite;
-    -webkit-animation: ImgLazyLoadAni 1.2s infinite
+	width: 1.2px;
+	height: 1.1px;
+	border-radius: 50%;
+	border: 6px #f3f3f3 solid;
+	border-top: 6px #8aefff solid;
+	padding: 20px;
+	transition: filter 0.5s ease, opacity 0.5s ease;
+	animation: ImgLazyLoadAni 1.2s infinite;
+	-webkit-animation: ImgLazyLoadAni 1.2s infinite;
+	box-shadow: 6px 6px 14px 0 var(--ImgLazyLoad-circle-shadowColor), -7px -7px 16px 0 var(--ImgLazyLoad-circle-shadowColor2);
 }
 
 @keyframes ImgLazyLoadAni {
-    0% {
-        transform: rotate(0)
-    }
+	0% {
+		transform: rotate(0)
+	}
 
-    100% {
-        transform: rotate(360deg)
-    }
+	100% {
+		transform: rotate(360deg)
+	}
 }
 
 @-webkit-keyframes ImgLazyLoadAni {
-    0% {
-        -webkit-transform: rotate(0)
-    }
+	0% {
+		-webkit-transform: rotate(0)
+	}
 
-    100% {
-        -webkit-transform: rotate(360deg)
-    }
+	100% {
+		-webkit-transform: rotate(360deg)
+	}
 }
 
 /* 图片懒加载文字提示样式 */
 .Imgerror-message {
-    color: #ff5b5b;
-    font-size: 100%;
-    user-select: none;
+	color: #ff5b5b;
+	font-size: 100%;
+	user-select: none;
 }
 
 /* 图片模糊渐显样式 */
@@ -1541,8 +1574,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	-webkit-filter: blur(115px);
 	filter: blur(115px);
 	opacity: 0;
-	-webkit-animation: ImgLoadedAni 0.8s ease forwards;
-	animation: ImgLoadedAni 0.8s ease forwards;
+	-webkit-animation: ImgLoadedAni 0.5s ease forwards;
+	animation: ImgLoadedAni 0.5s ease forwards;
 }
 @-webkit-keyframes ImgLoadedAni {
 	0% {
@@ -1564,6 +1597,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		filter: blur(0);
 		opacity: 1;
 	}
+}
+
+:root {
+	--ImgLazyLoad-circle-shadowColor:#0000;
+	--ImgLazyLoad-circle-shadowColor2:#ebfffe
 }
 ```
 
@@ -2751,43 +2789,58 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 	<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
 </details>
 <p>加载动画 CSS, 我把它写到了<code class="notranslate">primer.css</code>文件里面.</p>
+<blockquote>
+<p>[NOTE]<br>
+这个主要样式一定要写在<code class="notranslate">:root</code>选择器的前面!</p>
+</blockquote>
 <details><summary>CSS Code</summary>
-<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-c">/* 图片懒加载占位css动画 */</span>
+<div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span> {
+	<span class="pl-s1">--ImgLazyLoad-circle-shadowColor</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>27272745</span>;
+	<span class="pl-s1">--ImgLazyLoad-circle-shadowColor2</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>28dddf4a</span>;
+}
+
+<span class="pl-c">/* 图片懒加载占位css动画 */</span>
 .<span class="pl-c1">ImgLazyLoad</span> {
-    <span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">1<span class="pl-smi">px</span></span>;
-    <span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">50<span class="pl-smi">%</span></span>;
-    <span class="pl-c1">border</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-pds"><span class="pl-kos">#</span>f3f3f3</span> solid;
-    <span class="pl-c1">border-top</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-pds"><span class="pl-kos">#</span>8aefff</span> solid;
-    <span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">20<span class="pl-smi">px</span></span>;
-    <span class="pl-c1">animation</span><span class="pl-kos">:</span> ImgLazyLoadAni <span class="pl-c1">1.2<span class="pl-smi">s</span></span> infinite;
-    <span class="pl-c1">-webkit-animation</span><span class="pl-kos">:</span> ImgLazyLoadAni <span class="pl-c1">1.2<span class="pl-smi">s</span></span> infinite
+	<span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">1.2<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">height</span><span class="pl-kos">:</span> <span class="pl-c1">1.1<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">50<span class="pl-smi">%</span></span>;
+	<span class="pl-c1">border</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-pds"><span class="pl-kos">#</span>f3f3f3</span> solid;
+	<span class="pl-c1">border-top</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-pds"><span class="pl-kos">#</span>8aefff</span> solid;
+	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">20<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">transition</span><span class="pl-kos">:</span> filter <span class="pl-c1">0.5<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> opacity <span class="pl-c1">0.5<span class="pl-smi">s</span></span> ease;
+	<span class="pl-c1">animation</span><span class="pl-kos">:</span> ImgLazyLoadAni <span class="pl-c1">1.2<span class="pl-smi">s</span></span> infinite;
+	<span class="pl-c1">-webkit-animation</span><span class="pl-kos">:</span> ImgLazyLoadAni <span class="pl-c1">1.2<span class="pl-smi">s</span></span> infinite;
+	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-c1">14<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--ImgLazyLoad-circle-shadowColor</span>)<span class="pl-kos">,</span> <span class="pl-c1">-7<span class="pl-smi">px</span></span> <span class="pl-c1">-7<span class="pl-smi">px</span></span> <span class="pl-c1">16<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--ImgLazyLoad-circle-shadowColor2</span>);
 }
 
 <span class="pl-k">@keyframes</span> ImgLazyLoadAni {
-    <span class="pl-c1">0<span class="pl-smi">%</span></span> {
-        <span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">rotate</span>(<span class="pl-c1">0</span>)
-    }
+	<span class="pl-c1">0<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">rotate</span>(<span class="pl-c1">0</span>)
+	}
 
-    <span class="pl-c1">100<span class="pl-smi">%</span></span> {
-        <span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">rotate</span>(<span class="pl-c1">360<span class="pl-smi">deg</span></span>)
-    }
+	<span class="pl-c1">100<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">rotate</span>(<span class="pl-c1">360<span class="pl-smi">deg</span></span>)
+	}
 }
 
 <span class="pl-k">@-webkit-keyframes</span> ImgLazyLoadAni {
-    <span class="pl-c1">0<span class="pl-smi">%</span></span> {
-        <span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">rotate</span>(<span class="pl-c1">0</span>)
-    }
+	<span class="pl-c1">0<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">rotate</span>(<span class="pl-c1">0</span>)
+	}
 
-    <span class="pl-c1">100<span class="pl-smi">%</span></span> {
-        <span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">rotate</span>(<span class="pl-c1">360<span class="pl-smi">deg</span></span>)
-    }
+	<span class="pl-c1">100<span class="pl-smi">%</span></span> {
+		<span class="pl-c1">-webkit-transform</span><span class="pl-kos">:</span> <span class="pl-en">rotate</span>(<span class="pl-c1">360<span class="pl-smi">deg</span></span>)
+	}
 }
 
 <span class="pl-c">/* 图片懒加载文字提示样式 */</span>
 .<span class="pl-c1">Imgerror-message</span> {
-    <span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ff5b5b</span>;
-    <span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span>;
-    <span class="pl-c1">user-select</span><span class="pl-kos">:</span> none;
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ff5b5b</span>;
+	<span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span>;
+	<span class="pl-c1">user-select</span><span class="pl-kos">:</span> none;
 }
 
 <span class="pl-c">/* 图片模糊渐显样式 */</span>
@@ -2795,8 +2848,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 	<span class="pl-c1">-webkit-filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">115<span class="pl-smi">px</span></span>);
 	<span class="pl-c1">filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">115<span class="pl-smi">px</span></span>);
 	<span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;
-	<span class="pl-c1">-webkit-animation</span><span class="pl-kos">:</span> ImgLoadedAni <span class="pl-c1">0.8<span class="pl-smi">s</span></span> ease forwards;
-	<span class="pl-c1">animation</span><span class="pl-kos">:</span> ImgLoadedAni <span class="pl-c1">0.8<span class="pl-smi">s</span></span> ease forwards;
+	<span class="pl-c1">-webkit-animation</span><span class="pl-kos">:</span> ImgLoadedAni <span class="pl-c1">0.5<span class="pl-smi">s</span></span> ease forwards;
+	<span class="pl-c1">animation</span><span class="pl-kos">:</span> ImgLoadedAni <span class="pl-c1">0.5<span class="pl-smi">s</span></span> ease forwards;
 }
 <span class="pl-k">@-webkit-keyframes</span> ImgLoadedAni {
 	<span class="pl-c1">0<span class="pl-smi">%</span></span> {
@@ -2818,6 +2871,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 		<span class="pl-c1">filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">0</span>);
 		<span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">1</span>;
 	}
+}
+
+<span class="pl-kos">:</span><span class="pl-c1">root</span> {
+	<span class="pl-s1">--ImgLazyLoad-circle-shadowColor</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>0000</span>;
+	<span class="pl-s1">--ImgLazyLoad-circle-shadowColor2</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>ebfffe</span>
 }</pre></div>
 </details>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/GmeekVercount_uv.min.js">GmeekVercount_uv.js</a> - 网站增加访客计数器</h2>

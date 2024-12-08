@@ -223,45 +223,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
 加载动画 CSS, 我把它写到了`primer.css`文件里面.
 
+> [NOTE]
+> 这个主要样式一定要写在`:root`选择器的前面!
+
 <details><summary>CSS Code</summary>
 
-```css
+```CSS
+[data-color-mode=light][data-light-theme=dark],
+[data-color-mode=light][data-light-theme=dark]::selection,
+[data-color-mode=dark][data-dark-theme=dark],
+[data-color-mode=dark][data-dark-theme=dark]::selection {
+	--ImgLazyLoad-circle-shadowColor:#27272745;
+	--ImgLazyLoad-circle-shadowColor2:#28dddf4a;
+}
+
 /* 图片懒加载占位css动画 */
 .ImgLazyLoad {
-    width: 1px;
-    border-radius: 50%;
-    border: 6px #f3f3f3 solid;
-    border-top: 6px #8aefff solid;
-    padding: 20px;
-    animation: ImgLazyLoadAni 1.2s infinite;
-    -webkit-animation: ImgLazyLoadAni 1.2s infinite
+	width: 1.2px;
+	height: 1.1px;
+	border-radius: 50%;
+	border: 6px #f3f3f3 solid;
+	border-top: 6px #8aefff solid;
+	padding: 20px;
+	transition: filter 0.5s ease, opacity 0.5s ease;
+	animation: ImgLazyLoadAni 1.2s infinite;
+	-webkit-animation: ImgLazyLoadAni 1.2s infinite;
+	box-shadow: 6px 6px 14px 0 var(--ImgLazyLoad-circle-shadowColor), -7px -7px 16px 0 var(--ImgLazyLoad-circle-shadowColor2);
 }
 
 @keyframes ImgLazyLoadAni {
-    0% {
-        transform: rotate(0)
-    }
+	0% {
+		transform: rotate(0)
+	}
 
-    100% {
-        transform: rotate(360deg)
-    }
+	100% {
+		transform: rotate(360deg)
+	}
 }
 
 @-webkit-keyframes ImgLazyLoadAni {
-    0% {
-        -webkit-transform: rotate(0)
-    }
+	0% {
+		-webkit-transform: rotate(0)
+	}
 
-    100% {
-        -webkit-transform: rotate(360deg)
-    }
+	100% {
+		-webkit-transform: rotate(360deg)
+	}
 }
 
 /* 图片懒加载文字提示样式 */
 .Imgerror-message {
-    color: #ff5b5b;
-    font-size: 100%;
-    user-select: none;
+	color: #ff5b5b;
+	font-size: 100%;
+	user-select: none;
 }
 
 /* 图片模糊渐显样式 */
@@ -269,8 +283,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	-webkit-filter: blur(115px);
 	filter: blur(115px);
 	opacity: 0;
-	-webkit-animation: ImgLoadedAni 0.8s ease forwards;
-	animation: ImgLoadedAni 0.8s ease forwards;
+	-webkit-animation: ImgLoadedAni 0.5s ease forwards;
+	animation: ImgLoadedAni 0.5s ease forwards;
 }
 @-webkit-keyframes ImgLoadedAni {
 	0% {
@@ -292,6 +306,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		filter: blur(0);
 		opacity: 1;
 	}
+}
+
+:root {
+	--ImgLazyLoad-circle-shadowColor:#0000;
+	--ImgLazyLoad-circle-shadowColor2:#ebfffe
 }
 ```
 
