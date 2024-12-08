@@ -1,16 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-	// header滚动显示或隐藏
-	const header = document.querySelector("#header");
-	let lastScrollY = window.scrollY;
-	window.addEventListener("scroll", () => {
-		if (window.scrollY > lastScrollY) {
-			header.classList.add("hidden");
-		} else {
-			header.classList.remove("hidden");
-		}
-		lastScrollY = window.scrollY;
-	});
-
 	const ob = new IntersectionObserver((entries) => {
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {
@@ -57,39 +45,4 @@ document.addEventListener('DOMContentLoaded', () => {
 		href: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'
 	}));
 	Fancybox.bind('[data-fancybox="gallery"]', {});
-	
-	// 定义应用样式的函数
-	function applyStyles(styles) {
-		let style = document.createElement("style");
-		style.innerHTML = styles;
-		document.head.appendChild(style);
-	}
-
-	// header滚动显示或隐藏
-	applyStyles(`
-		#header {
-			width: 100%;
-			max-width: inherit;
-			position: fixed;
-			top: 0;
-			left: 50%;
-			right: 0;
-			transform: translateX(-50%);
-			background: var(--body-bgColor);
-			backdrop-filter: blur(15px);
-			border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
-			padding: 10px;
-			box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-			transition: transform 0.6s ease-in-out;
-			z-index: 99;
-			border-radius: 0 0 10px 10px;
-			box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
-		}
-		#header.hidden {
-			transform: translate(-50%, -120%);
-		}
-		#content {
-			margin-top: 80px;
-		}
-	`);
 });
