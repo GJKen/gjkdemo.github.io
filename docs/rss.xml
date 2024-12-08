@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Sun, 08 Dec 2024 17:39:54 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>Serv00 - 使用记录</title><link>https://GJKen.github.io/demo/post/5.html</link><description># 注册 Serv00&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Sun, 08 Dec 2024 18:06:04 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>Serv00 - 使用记录</title><link>https://GJKen.github.io/demo/post/5.html</link><description># 注册 Serv00&#13;
 &#13;
 注册没什么好说的, gmail+干净一点的ip基本上都可以成功, 这里不多做展开.&#13;
 收不到邮件信息的估计是邮箱问题. 比如:https://mail.proton.me&#13;
@@ -1488,13 +1488,13 @@ fork 之后, 转到搭建博客的 github 源码,&#13;
 3. 增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.&#13;
 &#13;
 ```CSS&#13;
-#header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 5px;}&#13;
+#header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}&#13;
 &#13;
 #header.article-header.hidden{transform:translate(-50%,-120%);}&#13;
 ```&#13;
 4. 增加文章内容的上边距.&#13;
 &#13;
-`.article-content{margin-top:80px;}`&#13;
+`.article-content{margin-top:90px;}`&#13;
 &#13;
 5. 大概在第27行, 增加了类名变量, 这样通过 Actions 时渲染出来的页面有 `homepage` `article` 的关键类名, 有了不同类名就可更方便的使用 CSS 控制不同页面的样式.&#13;
 &#13;
