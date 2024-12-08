@@ -1,5 +1,3 @@
-测试剧透 `Gmeek-spoliertxt="6666666"`
-
 [Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
 # 搭建博客
@@ -1250,22 +1248,29 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 
 ## 打开 Gmeek.py
 
-增加匹配内容:
++ 增加匹配内容:
 
 ```python
         if '<code class="notranslate">Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>',lambda match: f'<img data-fancybox="gallery" class="ImgLazyLoad" img-src="{match.group(1)}">',post_body, flags=re.DOTALL)
 ```
+
++ 实际转化后的标签如下:
+
+```
+<p>测试剧透 <span class="spoilerText">剧透内容</span></p>
+```
+
 ## 打开 post.html
 
-增加 CSS 样式:
++ 增加 CSS 样式:
 
 ```CSS
 .spoilerText{transition:filter .3s ease}
 .title-right .circle{padding: 14px 16px;}
 ```
 
-定位`document.addEventListener('DOMContentLoaded', () => {`, 在里面增加 JS 代码:
++ 定位`document.addEventListener('DOMContentLoaded', () => {`, 在里面增加 JS 代码:
 ```
     const blurText = document.querySelector(".spoilerText");
     if (blurText) {
@@ -1281,16 +1286,15 @@ if '<code class="notranslate">Gmeek-html' in post_body:
     }
 ```
 
-markdown 输入:
++ markdown 输入:
 
 ```
 测试剧透👉`Gmeek-spoliertxt="666666"`
 ```
 
-实际转化后的标签如下:
++ 实际展示👇:
 
-
-
+测试剧透`Gmeek-spoliertxt="666666"`
 
 # 添加自定义单篇文章代码
 
