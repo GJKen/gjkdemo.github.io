@@ -976,7 +976,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 `.article-content{margin-top:80px;}`
 
-4. 大概在第27行, 增加了类名变量, 这样通过 Actions 时渲染出来的页面有 `homepage` `article` 的关键类名, 有了不同类名就可更方便的使用 CSS控制不同页面的样式.
+5. 大概在第27行, 增加了类名变量, 这样通过 Actions 时渲染出来的页面有 `homepage` `article` 的关键类名, 有了不同类名就可更方便的使用 CSS 控制不同页面的样式.
 
 ```html
 <body class="{% block body_class %}homepage{% endblock %}">
@@ -991,30 +991,22 @@ fork 之后, 转到搭建博客的 github 源码,
 <details><summary>Javascript Code</summary>
 
 ```Javascript
-let lastScrollTop = 0; // 上一次的滚动位置
-const header = document.getElementById('header');
-let isAtTop = true;  // 判断是否在页面顶部
+	// 滚动显示或隐藏#header
+	const header = document.querySelector('#header');
+	let lastScrollTop = 0;
+	window.addEventListener('scroll', () => {
+		let currentScroll = window.scrollY;
 
-window.addEventListener('scroll', () => {
-	let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-	// 判断页面是否滚动到顶部
-	if (currentScrollTop === 0) {
-		isAtTop = true;
-	} else {
-		isAtTop = false;
-	}
-
-	// 向下滚动时隐藏 header
-	if (currentScrollTop > lastScrollTop && !isAtTop) {
-		header.classList.add('hidden');
-	} else if (currentScrollTop < lastScrollTop && currentScrollTop > 100) {
-		// 向上滚动超过 100px 时显示 header
-		header.classList.remove('hidden');
-	}
-
-	lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // 防止负值
-});
+		if (currentScroll > lastScrollTop) {
+			// 向下滚动，隐藏header
+			header.classList.add('hidden');
+		} else {
+			// 向上滚动，显示header
+			header.classList.remove('hidden');
+		}
+		// 防止负值
+		lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+	});
 ```
 
 </details>
@@ -1039,10 +1031,10 @@ window.addEventListener('scroll', () => {
 
 5. 定位`{% block header %}`, 在上方增加类名块.
 
-```hmlt
+```Django
 {% block body_class %}article{% endblock %}
 {% block header_class %}article-header{% endblock %}
-{% block header_class %}article-content{% endblock %}
+{% block content_class %}article-content{% endblock %}
 ```
 
 ### 打开 plist.html 文件
@@ -1053,7 +1045,7 @@ window.addEventListener('scroll', () => {
 .title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}
 ```
 
-2. 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距, 样式则通过 [header-图标样式](##header-图标样式) 来修改.)
+2. 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距.)
 
 3. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
 
