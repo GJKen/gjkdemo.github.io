@@ -1248,14 +1248,14 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 
 ## 打开 Gmeek.py
 
-+ 增加匹配内容:
+1. 增加匹配内容:
 
 ```python
         if '<code class="notranslate">Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>',lambda match: f'<img data-fancybox="gallery" class="ImgLazyLoad" img-src="{match.group(1)}">',post_body, flags=re.DOTALL)
 ```
 
-+ 实际转化后的标签如下:
+2. 实际转化后的标签如下:
 
 ```
 <p>测试剧透 <span class="spoilerText">剧透内容</span></p>
@@ -1263,14 +1263,14 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 
 ## 打开 post.html
 
-+ 增加 CSS 样式:
+1. 增加 CSS 样式:
 
 ```CSS
 .spoiled{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
 .spoilerText{transition:filter .3s ease}
 ```
 
-+ 定位`document.addEventListener('DOMContentLoaded', () => {`, 在里面增加 JS 代码:
+2. 定位`document.addEventListener('DOMContentLoaded', () => {`, 在里面增加 JS 代码:
 ```
     const blurText = document.querySelector(".spoilerText");
     if (blurText) {
@@ -1286,13 +1286,13 @@ if '<code class="notranslate">Gmeek-html' in post_body:
     }
 ```
 
-+ markdown 输入:
+3. markdown 输入:
 
 ```
 测试剧透👉`Gmeek-spoliertxt="666666"`
 ```
 
-+ 实际展示👇:
+4. 实际展示👇:
 
 测试剧透`Gmeek-spoliertxt="666666"`
 
