@@ -1243,6 +1243,8 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 
 # 添加 Gmeek-spoilertxt - 文字防剧透模糊效果
 
+**默认模糊效果, 反复点击可反复显示或隐藏**
+
 ## 打开 Gmeek.py
 
 1. 增加匹配内容:
