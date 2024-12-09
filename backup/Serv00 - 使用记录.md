@@ -8,7 +8,7 @@
 进入 Additional services 选项卡中找到 Run your own applications 项目,
 如下图所示, 必须要设置成如图所示的 Enabled.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmUg8VV61q7DApUWcijdA1xdZar5wE5TUhcfMq5femCMYs">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmUg8VV61q7DApUWcijdA1xdZar5wE5TUhcfMq5femCMYs"`
 
 如果不开启这一项, 自己的用户目录下的所有文件都无法添加可执行权限.
 
@@ -21,7 +21,7 @@
 每个账户只能创建3个端口.
 其中一个用来反代本地搭建 Alist 的端口, 这里我用 26666 端口.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmNSXAsz4QFnkTp3JRHGLuUJStNoPaK7yERRqPj9spXSc9">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmNSXAsz4QFnkTp3JRHGLuUJStNoPaK7yERRqPj9spXSc9"`
 
 ### 创建网站
 
@@ -30,7 +30,7 @@
 这里可以用自己的域名或者用 Serv00 的域名.
 下图我写的是自己的域名.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmX3mkbrv5EfzsCzJXTTGqKdYDiXc2eu5BJMuK7ozD3PNC"`
 
 其中 26666 这个端口是 Alist 服务的端口.
 
@@ -38,15 +38,15 @@
 
 站点创建完成后, 点击上方的 Manage SSL certificates.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmWRkpfidsY2KGkX47dAW4tKmNe2hStW6vzodRe7GUG2dw"`
 
 点击 Manage.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmcXdLQSy2PJpuWMCVzMZebNFpdt2w3P6Px1wQ84Pi9jbx"`
 
 点击 Add certificate.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/Qmd9CV8BxtjSMZivZnCQrVd1dqByaj6HoUWKi8UMrC8ZX6"`
 
 ### 安装 Alist
 
@@ -73,7 +73,7 @@ mkdir -p ~/domains/alist && cd ~/domains/alist && curl -L -o alist.tar.gz https:
 
 回到 Panel 面板, 找到 MySQL 选项卡, 使用 Add database 功能新建一个数据库:
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/Qmd1bF66pa9RihfeYZ6odBBG9htemSi57jy2A32Q4wDt7r"`
 
 Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
@@ -85,13 +85,13 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 定位文件:
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmXmXQRv5AfHqy2sRYS4dNCPQL2xPiGfaGtgTJjwGsX5Et">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmXmXQRv5AfHqy2sRYS4dNCPQL2xPiGfaGtgTJjwGsX5Et"`
 
 双击编辑这个`config.json`文件.
 
 我主要修改了`CDN` `database` `scheme`三个部分,
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmXLJa8YMr9KufMYVNQjVW1wXCjWmJ3Q9V1PqR5BRXHtHU">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmXLJa8YMr9KufMYVNQjVW1wXCjWmJ3Q9V1PqR5BRXHtHU"`
 
 <table>
   <tr>
@@ -146,7 +146,7 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 ./alist server
 ```
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmYL72sd2Wyb5C6WrJe6G7w1NvAdpqXiUwFWUEm6FCSGxt">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmYL72sd2Wyb5C6WrJe6G7w1NvAdpqXiUwFWUEm6FCSGxt"`
 
 运行正常, 显示的管理员账号的密码一定要记住. 接着使用 Ctrl+c 停止运行.
 
@@ -160,23 +160,23 @@ Database name 和 Username 字段为了方便好记就写 Alist 就行了.
 
 点击添加域.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD"`
 
 输入自己的域名.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmWEwsF7kjqWYZET8AbyPbVizciT3pLDbi6Pjm4xkYZvCS">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmWEwsF7kjqWYZET8AbyPbVizciT3pLDbi6Pjm4xkYZvCS"`
 
 选择 free 计划.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmeYbZ48awUqAPApdLrRckVqbtLB71XWTpCafpHCwE2hHG">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmeYbZ48awUqAPApdLrRckVqbtLB71XWTpCafpHCwE2hHG"`
 
 复制 dns 名称服务器.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmakCvRG52FLk2NV1XFjmWmz5LZuhPg3oD2SdiTunQH8TU">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmakCvRG52FLk2NV1XFjmWmz5LZuhPg3oD2SdiTunQH8TU"`
 
 然后转到你的域名提供服务商, 添加 dns 记录.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a"`
 
 如果没问题就可以通过自定义域名访问了.
 
@@ -200,7 +200,7 @@ echo "$(date '+%Y-%m-%d %H:%M:%S')" > ~/domains/alist/logfile.txt
 
 计划任务执行我的`runAlist.sh`脚本进行进程保活. 如下图:
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a"`
 https://ipfs.mbzj.org/ipfs/QmRgagQ4tvQ6BeD5Hcjm2tx7YdWFL6Fo3BYCiHZJD9wgSd
 
 成功后不出意外的话, 隔一段时间进入 Alist 网盘需要重新登陆账号, 因为定时脚本会先杀原来的 Alist 进程再重启.
@@ -458,19 +458,19 @@ function delay(ms) {
 
 进入 Cloudflare 面板, 然后按照下图点击创建.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmXBBc5zsb3vZEbXWKjw9oUv7u6899kPV8eDz8MXZKyUpe">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmXBBc5zsb3vZEbXWKjw9oUv7u6899kPV8eDz8MXZKyUpe"`
 
 名字随意, 建议写`Serv00Keep`方便好记, 然后右下角点部署.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmNP8RrwuUE6LEauh1tEAVApPXkLzf1nH28r6mWZgV5GEg">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmNP8RrwuUE6LEauh1tEAVApPXkLzf1nH28r6mWZgV5GEg"`
 
 部署完成后点击编辑代码.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmNVaEi6uUU7AaprzNaPGGwRbKNmc1kHvXEAE6pZTPZzqa">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmNVaEi6uUU7AaprzNaPGGwRbKNmc1kHvXEAE6pZTPZzqa"`
 
 粘贴 Worker 代码, 粘贴好之后点击部署.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmPh4ziXe3Wg4cagzdq5vzyn3NUTYVr3pNXpKSfbZ7v6NT">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmPh4ziXe3Wg4cagzdq5vzyn3NUTYVr3pNXpKSfbZ7v6NT"`
 
 返回到`Serv00Keep`的设置, 找到`变量和机密`
 
@@ -479,17 +479,17 @@ function delay(ms) {
 按照`Json`格式编辑好自己的 serv00 账号和密码, 填入`ACCOUNTS_JSON`值.
 按照`Json`格式编辑好自己的 telegram bot token, 填入`TELEGRAM_JSON`值.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmWrhPXgkyqwjRSPE3EbT18eCq8XtLYUPL1JaPc9bQbPw2">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmWrhPXgkyqwjRSPE3EbT18eCq8XtLYUPL1JaPc9bQbPw2"`
 
 ### 添加触发事件
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmPmUCuANQN2UP9jKodZwiVN5xLWLNg315q8dqZdQsXuch">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmPmUCuANQN2UP9jKodZwiVN5xLWLNg315q8dqZdQsXuch"`
 
 ## 手动部署
 
 机密和触发事件填写完成之后, 我们手动部署一次.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmZvTJW7bMwv5jWK7H4sJG1GMvqBwmAiLzdhehTgLpdyao">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmZvTJW7bMwv5jWK7H4sJG1GMvqBwmAiLzdhehTgLpdyao"`
 
 ## 手动执行验证效果
 
@@ -497,4 +497,4 @@ function delay(ms) {
 
 同时可以看到正常运行没问题, 接下来就是定时执行不用再管它了.
 
-`Gmeek-imgbox<img src="https://ipfs.mbzj.org/ipfs/QmSZWMYTY92JjWUxipWBLb9ipAWpAayYY3Jwint8Zp8XAK">`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmSZWMYTY92JjWUxipWBLb9ipAWpAayYY3Jwint8Zp8XAK"`
