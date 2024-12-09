@@ -5466,7 +5466,7 @@
 	--markdown-h1-bgColor: #7dc2ff7a;
 	--html-bgColor: #151c2f;
 	--header-btn-shadowColor:#00000045;
-	--header-btn-shadowColor2:#ffffff26;
+	--header-btn-shadowColor2:#9bdfff14;
 	--ImgLazyLoad-circle-shadowColor:#27272745;
 	--ImgLazyLoad-circle-shadowColor2:#28dddf4a;
 	--color-canvas-default-transparent: rgba(13, 17, 23, 0);
@@ -16327,6 +16327,7 @@ input.FormControl-radio[type=radio]:focus-visible {
 	--markdown-blockquote-color: #656d76;
 	--markdown-blockquote-borderLeft-color: #d0d7de;
 	--markdown-pre-bgColor: #f6f8fa;
+	--markdown-pre-shadowColor: #00000026;
 	--html-bgColor: #fff;
 	--animate-duration: 1s;
 	--header-btn-shadowColor:#fbfbfb26;
