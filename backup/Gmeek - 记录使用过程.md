@@ -970,7 +970,7 @@ a {
 
 # 通过 Gmeek 仓库 DIY 博客
 
-为什么这样做? ~~自娱自乐.~~
+为什么这样做? `Gmeek-spoilertxt="自娱自乐.~~"`
 
 ## Fork Gmeek 仓库
 
@@ -1243,15 +1243,15 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 
 更改后缩小了匹配范围, 可直接用行内代码块👉`Gmeek-html`让其在文章内正常显示.
 
-# 添加 Gmeek-spoliertxt - 文字防剧透模糊效果
+# 添加 Gmeek-spoilertxt - 文字防剧透模糊效果
 
 ## 打开 Gmeek.py
 
 1. 增加匹配内容:
 
 ```python
-        if '<code class="notranslate">Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>',lambda match: f'<img data-fancybox="gallery" class="ImgLazyLoad" img-src="{match.group(1)}">',post_body, flags=re.DOTALL)
+        if '<code class="notranslate">Gmeek-spoliertxt' in post_body: 
+            post_body = re.sub(r'<code class="notranslate">Gmeek-spoilertxt="([^"]+)"</code>', lambda match: f'<span class="spoilerText">{match.group(1)}</span>', post_body, flags=re.DOTALL)
 ```
 
 2. 实际转化后的标签如下:
@@ -1288,12 +1288,12 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 3. markdown 输入:
 
 ```
-测试剧透👉`Gmeek-spoliertxt="666666"`
+测试剧透👉`Gmeek-spoilertxt="666666"`
 ```
 
 4. 实际展示👇:
 
-测试剧透👉`Gmeek-spoliertxt="666666"`.
+测试剧透👉`Gmeek-spoilertxt="666666"`.
 
 # 添加自定义单篇文章代码
 
