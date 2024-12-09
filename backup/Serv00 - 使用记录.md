@@ -198,9 +198,9 @@ echo "$(date '+%Y-%m-%d %H:%M:%S')" > ~/domains/alist/logfile.txt
 
 我们需要创建2条定时任务, 一个是每小时执行, 一个是 reboot 执行,
 
-计划任务执行我的`runAlist.sh`脚本进行进程保活. 如下图:
+计划任务执行的是我的`runAlist.sh`脚本进行进程保活. 如下图:
 
-`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a"`
+`Gmeek-imgbox="https://ipfs.mbzj.org/ipfs/QmRgagQ4tvQ6BeD5Hcjm2tx7YdWFL6Fo3BYCiHZJD9wgSd"`
 
 成功后不出意外的话, 隔一段时间进入 Alist 网盘需要重新登陆账号, 因为定时脚本会先杀原来的 Alist 进程再重启.
 
