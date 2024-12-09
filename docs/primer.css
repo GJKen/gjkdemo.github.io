@@ -27751,7 +27751,7 @@ a.branch-name .octicon {
 	font-size: 85%;
 	line-height: 1.45;
 	color: var(--fgColor-default, var(--color-fg-default));
-	border-radius: 6px
+	border-radius: 6px;
 	background-color: var(--markdown-pre-bgColor);
 	box-shadow: 4px 5px 14px 0 var(--markdown-pre-shadowColor) inset;
 }
