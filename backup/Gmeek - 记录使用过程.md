@@ -1020,7 +1020,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ## 修改页面头部样式
 
-## 打开 base.html 文件
+### 打开 base.html 文件
 
 1. 增加所需的颜色样式.
 
@@ -1055,7 +1055,7 @@ fork 之后, 转到搭建博客的 github 源码,
 </body>
 ```
 
-5. JS 代码部分, 我写在了 ([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)) 里面, 作用是滚动页面让头部显示或隐藏.
+6. JS 代码部分, 我写在了 ([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)) 里面, 作用是滚动页面让头部显示或隐藏.
 
 <details><summary>Javascript Code</summary>
 
@@ -1080,7 +1080,14 @@ fork 之后, 转到搭建博客的 github 源码,
 
 </details>
 
+7. 头部图标动画渐显.
+
+增加 CSS, `fadeIn`动画已经在打字机动画增加过了.
+
+`.title-right{animation: fadeIn .3s ease-in 0s forwards;}`
+
 ### 打开 post.html 文件
+
 1. 增加所需的颜色样式.
 
 ```CSS

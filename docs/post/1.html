@@ -1032,7 +1032,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ## 修改页面头部样式
 
-## 打开 base.html 文件
+### 打开 base.html 文件
 
 1. 增加所需的颜色样式.
 
@@ -1067,7 +1067,7 @@ fork 之后, 转到搭建博客的 github 源码,
 </body>
 ```
 
-5. JS 代码部分, 我写在了 ([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)) 里面, 作用是滚动页面让头部显示或隐藏.
+6. JS 代码部分, 我写在了 ([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)) 里面, 作用是滚动页面让头部显示或隐藏.
 
 <details><summary>Javascript Code</summary>
 
@@ -1092,7 +1092,14 @@ fork 之后, 转到搭建博客的 github 源码,
 
 </details>
 
+7. 头部图标动画渐显.
+
+增加 CSS, `fadeIn`动画已经在打字机动画增加过了.
+
+`.title-right{animation: fadeIn .3s ease-in 0s forwards;}`
+
 ### 打开 post.html 文件
+
 1. 增加所需的颜色样式.
 
 ```CSS
@@ -2363,7 +2370,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ## 修改页面头部样式
 
-## 打开 base.html 文件
+### 打开 base.html 文件
 
 1. 增加所需的颜色样式.
 
@@ -2398,7 +2405,7 @@ fork 之后, 转到搭建博客的 github 源码,
 </body>
 ```
 
-5. JS 代码部分, 我写在了 ([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)) 里面, 作用是滚动页面让头部显示或隐藏.
+6. JS 代码部分, 我写在了 ([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)) 里面, 作用是滚动页面让头部显示或隐藏.
 
 <details><summary>Javascript Code</summary>
 
@@ -2423,7 +2430,14 @@ fork 之后, 转到搭建博客的 github 源码,
 
 </details>
 
+7. 头部图标动画渐显.
+
+增加 CSS, `fadeIn`动画已经在打字机动画增加过了.
+
+`.title-right{animation: fadeIn .3s ease-in 0s forwards;}`
+
 ### 打开 post.html 文件
+
 1. 增加所需的颜色样式.
 
 ```CSS
@@ -2687,6 +2701,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 #header.article-header{border-bottom:none;width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 #header h1 a{margin: unset;}
+.title-right{animation: fadeIn .3s ease-in 0s forwards;}
 .article-content{margin-top:90px;}
 #footer{margin-top:64px; text-align: center;font-size: small;}
 
@@ -2698,7 +2713,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 .postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
 .spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
 .spoilerText.clear{filter: none;}
-.title-right{animation: fadeIn .3s ease-in 0s forwards;}
 .title-right a{padding: 14px 16px;}
 #postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
 #postBody hr{height:2px;}
@@ -3487,7 +3501,7 @@ pv 修改成 uv 计数.</p>
 <p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"></p>
 <p>这里我直接写改成我存放的链接 <a href="https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css" rel="nofollow">https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css</a></p>
 <h2>修改页面头部样式</h2>
-<h2>打开 base.html 文件</h2>
+<h3>打开 base.html 文件</h3>
 <ol>
 <li>增加所需的颜色样式.</li>
 </ol>
@@ -3514,7 +3528,7 @@ pv 修改成 uv 计数.</p>
     <span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">id</span>="<span class="pl-s">content</span>" <span class="pl-c1">class</span>="<span class="pl-s">{% block content_class %}homepage-content{% endblock %}</span>"<span class="pl-kos">&gt;</span>{% block content %}{% endblock %}<span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span>
     <span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">id</span>="<span class="pl-s">footer</span>"<span class="pl-kos">&gt;</span>{% include 'footer.html' %}<span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span>
 <span class="pl-kos">&lt;/</span><span class="pl-ent">body</span><span class="pl-kos">&gt;</span></pre></div>
-<ol start="5">
+<ol start="6">
 <li>JS 代码部分, 我写在了 (<a href="#articletoc.js---%E6%96%87%E7%AB%A0%E5%A2%9E%E5%8A%A0%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8+%E4%B8%80%E9%94%AE%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE">ArticleJs.js</a>) 里面, 作用是滚动页面让头部显示或隐藏.</li>
 </ol>
 <details><summary>Javascript Code</summary>
@@ -3535,6 +3549,11 @@ pv 修改成 uv 计数.</p>
 		<span class="pl-s1">lastScrollTop</span> <span class="pl-c1">=</span> <span class="pl-s1">currentScroll</span> <span class="pl-c1">&lt;=</span> <span class="pl-c1">0</span> ? <span class="pl-c1">0</span> : <span class="pl-s1">currentScroll</span><span class="pl-kos">;</span>
 	<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
 </details>
+<ol start="7">
+<li>头部图标动画渐显.</li>
+</ol>
+<p>增加 CSS, <code class="notranslate">fadeIn</code>动画已经在打字机动画增加过了.</p>
+<p><code class="notranslate">.title-right{animation: fadeIn .3s ease-in 0s forwards;}</code></p>
 <h3>打开 post.html 文件</h3>
 <ol>
 <li>增加所需的颜色样式.</li>
