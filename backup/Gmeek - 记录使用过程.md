@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 加载动画 CSS, 我把它写到了`primer.css`文件里面.
 
-> [!NOTE]
+> [!Important]
 > 👇这个主要样式一定要写在`:root`选择器的前面!
 
 <details><summary>CSS Code</summary>
@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 [data-color-mode] {
     color: var(--fgColor-default, var(--color-fg-default));
     background-color: var(--bgColor-default, var(--color-canvas-default))
@@ -364,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -397,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: var(--body-font-size, 14px);
@@ -411,7 +411,7 @@ body {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -449,7 +449,7 @@ body {
 
 <details><summary>CSS Code</summary>
 
-```css
+```CSS
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -482,7 +482,7 @@ html {
 
 <details><summary>CSS Code</summary>
 
-```css
+```CSS
 /* 优化header样式 */
 #header {
     flex-direction: column !important;
@@ -522,7 +522,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .btn-invisible {
 	color: var(--fgColor-accent, var(--color-accent-fg));
 	background-color: rgba(0, 0, 0, 0);
@@ -543,7 +543,7 @@ html {
 </details>
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -555,7 +555,7 @@ html {
 :root {
     /* 增加 */
 	--header-btn-shadowColor:#fbfbfb26;
-	--header-btn-shadowColor2:#5f5f5f26;
+	--header-btn-shadowColor2:#9bdfff14;
 }
 .btn-invisible {
 	color: var(--fgColor-accent, var(--color-accent-fg));
@@ -580,6 +580,31 @@ html {
 
 </details>
 
+## 修改文章主页, 文章的列表样式
+
+> [!NOTE]
+> 还没想好要怎么改.
+
+<details><summary>修改前</summary>
+
+```CSS
+.border {
+	border: var(--borderWidth-thin, 1px) solid var(--borderColor-default, var(--color-border-default)) !important
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```CSS
+.border {
+	border: var(--borderWidth-thin, 1px) solid var(--borderColor-default, var(--color-border-default)) !important
+}
+```
+
+</details>
+
 ## 文章 \<blockquote> 标签样式
 
 `.markdown-body blockquote`
@@ -589,7 +614,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body blockquote {
     padding: 0 1em;
     color: var(--fgColor-muted, var(--color-fg-muted));
@@ -601,7 +626,7 @@ html {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -631,6 +656,50 @@ html {
 > [!NOTE]
 > 直接移除这个选择器的所有样式.
 
+## 文章文字通用样式
+
+`.markdown-body p, .markdown-body blockquote, .markdown-body ul, .markdown-body ol, .markdown-body dl, .markdown-body table, .markdown-body pre, .markdown-body details`
+
+> [!NOTE]
+> 修改行高为 1.75
+
+<details><summary>修改前</summary>
+
+```CSS
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body details {
+	margin-top: 0;
+	margin-bottom: 16px;
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```CSS
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body details {
+	margin-top: 0;
+	margin-bottom: 16px;
+	line-height: 1.75;/* 增加 */
+}
+```
+
+</details>
+
 ## 文章标题通用样式
 
 `.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6`
@@ -641,7 +710,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
@@ -657,9 +726,10 @@ html {
 ```
 
 </details>
+
 <details><summary>修改后</summary>
 
-```css
+```CSS
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
@@ -688,7 +758,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body h1 {
     padding-bottom: .3em;
     font-size: 2em;
@@ -699,7 +769,7 @@ html {
 </details>
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -733,7 +803,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body h2 {
     padding-bottom: .3em;
     font-size: 1.5em;
@@ -745,7 +815,7 @@ html {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 .markdown-body h2 {
     font-size: 1.5em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
@@ -772,7 +842,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body img {
     max-width: 100%;
     box-sizing: content-box;
@@ -784,7 +854,7 @@ html {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 /* 增加 */
 .markdown-body p {
     position: relative;
@@ -817,7 +887,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body code,
 .markdown-body tt {
     background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted));
@@ -828,7 +898,7 @@ html {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -848,17 +918,23 @@ html {
 
 ## 文章代码块样式
 
-`.markdown-body .highlight pre, .markdown-body pre {`
+`.markdown-body .highlight pre, .markdown-body pre`
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
+> 增加内阴影
 
 <details><summary>修改前</summary>
 
-```css
-.markdown-body .highlight pre,
-.markdown-body pre {
+```CSS
+.markdown-body .highlight pre,.markdown-body pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    color: var(--fgColor-default, var(--color-fg-default));
     background-color: var(--bgColor-muted, var(--color-canvas-subtle));
+    border-radius: 6px
 }
 ```
 
@@ -866,19 +942,27 @@ html {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
     --markdown-pre-bgColor: #27282d;/* 增加 */
+	--markdown-pre-shadowColor: #00000026;/* 增加 */
 }
 :root {
     --markdown-pre-bgColor: #f6f8fa;/* 增加 */
+	--markdown-pre-shadowColor: #5f5f5f26;/* 增加 */
 }
-.markdown-body .highlight pre,
-.markdown-body pre {
-    background-color: var(--markdown-pre-bgColor);
+.markdown-body .highlight pre, .markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	color: var(--fgColor-default, var(--color-fg-default));
+	border-radius: 6px;
+	background-color: var(--markdown-pre-bgColor);/* 增加 */
+	box-shadow: 4px 5px 14px 0 var(--markdown-pre-shadowColor) inset;/* 增加 */
 }
 ```
 
@@ -892,7 +976,7 @@ html {
 
 <details><summary>CSS Code</summary>
 
-```css
+```CSS
 /* 一键复制hover出入动画 */
 .clipboard-container {
     opacity: 0;
@@ -923,7 +1007,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -940,7 +1024,7 @@ a {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -1024,21 +1108,29 @@ fork 之后, 转到搭建博客的 github 源码,
 
 1. 增加所需的颜色样式.
 
+> 文章头部背景色.
+> 打字效果动画
+> 头部图标渐显动画
+
 ```CSS
 :root{--header-article-bgColor: #3b3b3b6b;}
+
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor: #ffffff00;}
+
+@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
 ```
 
 2. 定位`#header`, 修改样式.
 
 ```CSS
-#header{display:flex;flex-direction: column;align-items: center;gap: 10px;margin-bottom: 24px;}
+#header{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:24px;}
 ```
 
 3. 增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.
 
 ```CSS
-#header.article-header{border-bottom:none;width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
+#header.article-header{border-bottom:none;width:100%;max-width:inherit;position:fixed;top:0;left:50%;transform:translateX(-50%);background:var(--header-articel-bgColor);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);padding:10px;box-shadow:0 2px 10px rgba(0, 0, 0, .1);transition:transform 0.6s ease-in-out;-webkit-transition:transform 0.6s ease-in-out;z-index:99;border-radius:0 0 15px 15px;gap:15px;}
+
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 ```
 4. 增加文章内容的上边距.
@@ -1080,11 +1172,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 </details>
 
-7. 头部图标动画渐显.
+7. 头部图标渐显动画.
 
 增加 CSS, `fadeIn`动画已经在打字机动画增加过了.
 
-`.title-right{animation: fadeIn .3s ease-in 0s forwards;}`
+`.title-right{display:flex;gap:25px;animation:fadeIn 1.2s ease-in 0s forwards;}`
 
 ### 打开 post.html 文件
 
@@ -1098,14 +1190,14 @@ fork 之后, 转到搭建博客的 github 源码,
 2. 定位`.postTitle`, 修改样式(打字机效果.)
 
 ```CSS
-.postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
+.postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}
 ```
-
-3. 定位样式`.title-right`, 需要将这个 CSS 样式全部删除.
 
 4. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
 
 5. 定位`{% block header %}`, 在上方增加类名块.
+
+> 这是为了用 class 区分`首页`和`文章页`
 
 ```Django
 {% block body_class %}article{% endblock %}
@@ -1121,7 +1213,7 @@ fork 之后, 转到搭建博客的 github 源码,
 .title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}
 ```
 
-2. 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距.)
+2. 定位样式`.title-left a`, 删除`margin-left:8px;`(设置 flex 布局之后取消图标多余的间距.)
 
 3. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
 
@@ -1165,7 +1257,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 <details><summary>CSS Code</summary>
 
-```css
+```CSS
 @keyframes heartBeatScale  {
     0% {
         -webkit-transform: scale(1);
@@ -1299,7 +1391,7 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 测试剧透👉`Gmeek-spoilertxt="666666"`
 ```
 
-4. 实际展示👇:
+4. 实际展示:
 
 测试剧透👉`Gmeek-spoilertxt="666666"`.
 
@@ -1335,5 +1427,3 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 💬 > 评论总数.
 🌺 > 是统计的所有文章的字符数.
 ⏰ > 最后一次 Actions 的时间.
-
-`Gmeek-imgbox="https://yuzhi.tech/img/wenyan/10.gif"`

@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 加载动画 CSS, 我把它写到了`primer.css`文件里面.
 
-> [!NOTE]
+> [!Important]
 > 👇这个主要样式一定要写在`:root`选择器的前面!
 
 <details><summary>CSS Code</summary>
@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 [data-color-mode] {
     color: var(--fgColor-default, var(--color-fg-default));
     background-color: var(--bgColor-default, var(--color-canvas-default))
@@ -376,7 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -409,7 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
     font-size: var(--body-font-size, 14px);
@@ -423,7 +423,7 @@ body {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -461,7 +461,7 @@ body {
 
 <details><summary>CSS Code</summary>
 
-```css
+```CSS
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -494,7 +494,7 @@ html {
 
 <details><summary>CSS Code</summary>
 
-```css
+```CSS
 /* 优化header样式 */
 #header {
     flex-direction: column !important;
@@ -534,7 +534,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .btn-invisible {
 	color: var(--fgColor-accent, var(--color-accent-fg));
 	background-color: rgba(0, 0, 0, 0);
@@ -555,7 +555,7 @@ html {
 </details>
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -567,7 +567,7 @@ html {
 :root {
     /* 增加 */
 	--header-btn-shadowColor:#fbfbfb26;
-	--header-btn-shadowColor2:#5f5f5f26;
+	--header-btn-shadowColor2:#9bdfff14;
 }
 .btn-invisible {
 	color: var(--fgColor-accent, var(--color-accent-fg));
@@ -592,6 +592,31 @@ html {
 
 </details>
 
+## 修改文章主页, 文章的列表样式
+
+> [!NOTE]
+> 还没想好要怎么改.
+
+<details><summary>修改前</summary>
+
+```CSS
+.border {
+	border: var(--borderWidth-thin, 1px) solid var(--borderColor-default, var(--color-border-default)) !important
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```CSS
+.border {
+	border: var(--borderWidth-thin, 1px) solid var(--borderColor-default, var(--color-border-default)) !important
+}
+```
+
+</details>
+
 ## 文章 \<blockquote> 标签样式
 
 `.markdown-body blockquote`
@@ -601,7 +626,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body blockquote {
     padding: 0 1em;
     color: var(--fgColor-muted, var(--color-fg-muted));
@@ -613,7 +638,7 @@ html {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -643,6 +668,50 @@ html {
 > [!NOTE]
 > 直接移除这个选择器的所有样式.
 
+## 文章文字通用样式
+
+`.markdown-body p, .markdown-body blockquote, .markdown-body ul, .markdown-body ol, .markdown-body dl, .markdown-body table, .markdown-body pre, .markdown-body details`
+
+> [!NOTE]
+> 修改行高为 1.75
+
+<details><summary>修改前</summary>
+
+```CSS
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body details {
+	margin-top: 0;
+	margin-bottom: 16px;
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```CSS
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body details {
+	margin-top: 0;
+	margin-bottom: 16px;
+	line-height: 1.75;/* 增加 */
+}
+```
+
+</details>
+
 ## 文章标题通用样式
 
 `.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6`
@@ -653,7 +722,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
@@ -669,9 +738,10 @@ html {
 ```
 
 </details>
+
 <details><summary>修改后</summary>
 
-```css
+```CSS
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
@@ -700,7 +770,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body h1 {
     padding-bottom: .3em;
     font-size: 2em;
@@ -711,7 +781,7 @@ html {
 </details>
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -745,7 +815,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body h2 {
     padding-bottom: .3em;
     font-size: 1.5em;
@@ -757,7 +827,7 @@ html {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 .markdown-body h2 {
     font-size: 1.5em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
@@ -784,7 +854,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body img {
     max-width: 100%;
     box-sizing: content-box;
@@ -796,7 +866,7 @@ html {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 /* 增加 */
 .markdown-body p {
     position: relative;
@@ -829,7 +899,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body code,
 .markdown-body tt {
     background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted));
@@ -840,7 +910,7 @@ html {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -860,17 +930,23 @@ html {
 
 ## 文章代码块样式
 
-`.markdown-body .highlight pre, .markdown-body pre {`
+`.markdown-body .highlight pre, .markdown-body pre`
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
+> 增加内阴影
 
 <details><summary>修改前</summary>
 
-```css
-.markdown-body .highlight pre,
-.markdown-body pre {
+```CSS
+.markdown-body .highlight pre,.markdown-body pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    color: var(--fgColor-default, var(--color-fg-default));
     background-color: var(--bgColor-muted, var(--color-canvas-subtle));
+    border-radius: 6px
 }
 ```
 
@@ -878,19 +954,27 @@ html {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
     --markdown-pre-bgColor: #27282d;/* 增加 */
+	--markdown-pre-shadowColor: #00000026;/* 增加 */
 }
 :root {
     --markdown-pre-bgColor: #f6f8fa;/* 增加 */
+	--markdown-pre-shadowColor: #5f5f5f26;/* 增加 */
 }
-.markdown-body .highlight pre,
-.markdown-body pre {
-    background-color: var(--markdown-pre-bgColor);
+.markdown-body .highlight pre, .markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	color: var(--fgColor-default, var(--color-fg-default));
+	border-radius: 6px;
+	background-color: var(--markdown-pre-bgColor);/* 增加 */
+	box-shadow: 4px 5px 14px 0 var(--markdown-pre-shadowColor) inset;/* 增加 */
 }
 ```
 
@@ -904,7 +988,7 @@ html {
 
 <details><summary>CSS Code</summary>
 
-```css
+```CSS
 /* 一键复制hover出入动画 */
 .clipboard-container {
     opacity: 0;
@@ -935,7 +1019,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -952,7 +1036,7 @@ a {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -1036,21 +1120,29 @@ fork 之后, 转到搭建博客的 github 源码,
 
 1. 增加所需的颜色样式.
 
+> 文章头部背景色.
+> 打字效果动画
+> 头部图标渐显动画
+
 ```CSS
 :root{--header-article-bgColor: #3b3b3b6b;}
+
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor: #ffffff00;}
+
+@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
 ```
 
 2. 定位`#header`, 修改样式.
 
 ```CSS
-#header{display:flex;flex-direction: column;align-items: center;gap: 10px;margin-bottom: 24px;}
+#header{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:24px;}
 ```
 
 3. 增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.
 
 ```CSS
-#header.article-header{border-bottom:none;width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
+#header.article-header{border-bottom:none;width:100%;max-width:inherit;position:fixed;top:0;left:50%;transform:translateX(-50%);background:var(--header-articel-bgColor);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);padding:10px;box-shadow:0 2px 10px rgba(0, 0, 0, .1);transition:transform 0.6s ease-in-out;-webkit-transition:transform 0.6s ease-in-out;z-index:99;border-radius:0 0 15px 15px;gap:15px;}
+
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 ```
 4. 增加文章内容的上边距.
@@ -1092,11 +1184,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 </details>
 
-7. 头部图标动画渐显.
+7. 头部图标渐显动画.
 
 增加 CSS, `fadeIn`动画已经在打字机动画增加过了.
 
-`.title-right{animation: fadeIn .3s ease-in 0s forwards;}`
+`.title-right{display:flex;gap:25px;animation:fadeIn 1.2s ease-in 0s forwards;}`
 
 ### 打开 post.html 文件
 
@@ -1110,14 +1202,14 @@ fork 之后, 转到搭建博客的 github 源码,
 2. 定位`.postTitle`, 修改样式(打字机效果.)
 
 ```CSS
-.postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
+.postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}
 ```
-
-3. 定位样式`.title-right`, 需要将这个 CSS 样式全部删除.
 
 4. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
 
 5. 定位`{% block header %}`, 在上方增加类名块.
+
+> 这是为了用 class 区分`首页`和`文章页`
 
 ```Django
 {% block body_class %}article{% endblock %}
@@ -1133,7 +1225,7 @@ fork 之后, 转到搭建博客的 github 源码,
 .title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}
 ```
 
-2. 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距.)
+2. 定位样式`.title-left a`, 删除`margin-left:8px;`(设置 flex 布局之后取消图标多余的间距.)
 
 3. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
 
@@ -1177,7 +1269,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 <details><summary>CSS Code</summary>
 
-```css
+```CSS
 @keyframes heartBeatScale  {
     0% {
         -webkit-transform: scale(1);
@@ -1311,7 +1403,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 测试剧透👉`Gmeek-spoilertxt='666666'`
 ```
 
-4. 实际展示👇:
+4. 实际展示:
 
 测试剧透👉`Gmeek-spoilertxt='666666'`.
 
@@ -1346,9 +1438,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 📄 > 文章总数.
 💬 > 评论总数.
 🌺 > 是统计的所有文章的字符数.
-⏰ > 最后一次 Actions 的时间.
-
-`Gmeek-imgbox='https://yuzhi.tech/img/wenyan/10.gif'`。">
+⏰ > 最后一次 Actions 的时间.。">
 <meta property="og:title" content="Gmeek - 记录使用过程">
 <meta property="og:description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
@@ -1575,7 +1665,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 加载动画 CSS, 我把它写到了`primer.css`文件里面.
 
-> [!NOTE]
+> [!Important]
 > 👇这个主要样式一定要写在`:root`选择器的前面!
 
 <details><summary>CSS Code</summary>
@@ -1705,7 +1795,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 [data-color-mode] {
     color: var(--fgColor-default, var(--color-fg-default));
     background-color: var(--bgColor-default, var(--color-canvas-default))
@@ -1716,7 +1806,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -1749,7 +1839,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
     font-size: var(--body-font-size, 14px);
@@ -1763,7 +1853,7 @@ body {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -1801,7 +1891,7 @@ body {
 
 <details><summary>CSS Code</summary>
 
-```css
+```CSS
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -1834,7 +1924,7 @@ html {
 
 <details><summary>CSS Code</summary>
 
-```css
+```CSS
 /* 优化header样式 */
 #header {
     flex-direction: column !important;
@@ -1874,7 +1964,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .btn-invisible {
 	color: var(--fgColor-accent, var(--color-accent-fg));
 	background-color: rgba(0, 0, 0, 0);
@@ -1895,7 +1985,7 @@ html {
 </details>
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -1907,7 +1997,7 @@ html {
 :root {
     /* 增加 */
 	--header-btn-shadowColor:#fbfbfb26;
-	--header-btn-shadowColor2:#5f5f5f26;
+	--header-btn-shadowColor2:#9bdfff14;
 }
 .btn-invisible {
 	color: var(--fgColor-accent, var(--color-accent-fg));
@@ -1932,6 +2022,31 @@ html {
 
 </details>
 
+## 修改文章主页, 文章的列表样式
+
+> [!NOTE]
+> 还没想好要怎么改.
+
+<details><summary>修改前</summary>
+
+```CSS
+.border {
+	border: var(--borderWidth-thin, 1px) solid var(--borderColor-default, var(--color-border-default)) !important
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```CSS
+.border {
+	border: var(--borderWidth-thin, 1px) solid var(--borderColor-default, var(--color-border-default)) !important
+}
+```
+
+</details>
+
 ## 文章 \<blockquote> 标签样式
 
 `.markdown-body blockquote`
@@ -1941,7 +2056,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body blockquote {
     padding: 0 1em;
     color: var(--fgColor-muted, var(--color-fg-muted));
@@ -1953,7 +2068,7 @@ html {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -1983,6 +2098,50 @@ html {
 > [!NOTE]
 > 直接移除这个选择器的所有样式.
 
+## 文章文字通用样式
+
+`.markdown-body p, .markdown-body blockquote, .markdown-body ul, .markdown-body ol, .markdown-body dl, .markdown-body table, .markdown-body pre, .markdown-body details`
+
+> [!NOTE]
+> 修改行高为 1.75
+
+<details><summary>修改前</summary>
+
+```CSS
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body details {
+	margin-top: 0;
+	margin-bottom: 16px;
+}
+```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```CSS
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body details {
+	margin-top: 0;
+	margin-bottom: 16px;
+	line-height: 1.75;/* 增加 */
+}
+```
+
+</details>
+
 ## 文章标题通用样式
 
 `.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6`
@@ -1993,7 +2152,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
@@ -2009,9 +2168,10 @@ html {
 ```
 
 </details>
+
 <details><summary>修改后</summary>
 
-```css
+```CSS
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
@@ -2040,7 +2200,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body h1 {
     padding-bottom: .3em;
     font-size: 2em;
@@ -2051,7 +2211,7 @@ html {
 </details>
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -2085,7 +2245,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body h2 {
     padding-bottom: .3em;
     font-size: 1.5em;
@@ -2097,7 +2257,7 @@ html {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 .markdown-body h2 {
     font-size: 1.5em;
     border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
@@ -2124,7 +2284,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body img {
     max-width: 100%;
     box-sizing: content-box;
@@ -2136,7 +2296,7 @@ html {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 /* 增加 */
 .markdown-body p {
     position: relative;
@@ -2169,7 +2329,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 .markdown-body code,
 .markdown-body tt {
     background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted));
@@ -2180,7 +2340,7 @@ html {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -2200,17 +2360,23 @@ html {
 
 ## 文章代码块样式
 
-`.markdown-body .highlight pre, .markdown-body pre {`
+`.markdown-body .highlight pre, .markdown-body pre`
 
 > [!NOTE]
 > 优化 light & dark 主题下的背景色.
+> 增加内阴影
 
 <details><summary>修改前</summary>
 
-```css
-.markdown-body .highlight pre,
-.markdown-body pre {
+```CSS
+.markdown-body .highlight pre,.markdown-body pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    color: var(--fgColor-default, var(--color-fg-default));
     background-color: var(--bgColor-muted, var(--color-canvas-subtle));
+    border-radius: 6px
 }
 ```
 
@@ -2218,19 +2384,27 @@ html {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
     --markdown-pre-bgColor: #27282d;/* 增加 */
+	--markdown-pre-shadowColor: #00000026;/* 增加 */
 }
 :root {
     --markdown-pre-bgColor: #f6f8fa;/* 增加 */
+	--markdown-pre-shadowColor: #5f5f5f26;/* 增加 */
 }
-.markdown-body .highlight pre,
-.markdown-body pre {
-    background-color: var(--markdown-pre-bgColor);
+.markdown-body .highlight pre, .markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	color: var(--fgColor-default, var(--color-fg-default));
+	border-radius: 6px;
+	background-color: var(--markdown-pre-bgColor);/* 增加 */
+	box-shadow: 4px 5px 14px 0 var(--markdown-pre-shadowColor) inset;/* 增加 */
 }
 ```
 
@@ -2244,7 +2418,7 @@ html {
 
 <details><summary>CSS Code</summary>
 
-```css
+```CSS
 /* 一键复制hover出入动画 */
 .clipboard-container {
     opacity: 0;
@@ -2275,7 +2449,7 @@ html {
 
 <details><summary>修改前</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -2292,7 +2466,7 @@ a {
 
 <details><summary>修改后</summary>
 
-```css
+```CSS
 [data-color-mode=light][data-light-theme=dark],
 [data-color-mode=light][data-light-theme=dark]::selection,
 [data-color-mode=dark][data-dark-theme=dark],
@@ -2376,21 +2550,29 @@ fork 之后, 转到搭建博客的 github 源码,
 
 1. 增加所需的颜色样式.
 
+> 文章头部背景色.
+> 打字效果动画
+> 头部图标渐显动画
+
 ```CSS
 :root{--header-article-bgColor: #3b3b3b6b;}
+
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor: #ffffff00;}
+
+@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
 ```
 
 2. 定位`#header`, 修改样式.
 
 ```CSS
-#header{display:flex;flex-direction: column;align-items: center;gap: 10px;margin-bottom: 24px;}
+#header{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:24px;}
 ```
 
 3. 增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.
 
 ```CSS
-#header.article-header{border-bottom:none;width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
+#header.article-header{border-bottom:none;width:100%;max-width:inherit;position:fixed;top:0;left:50%;transform:translateX(-50%);background:var(--header-articel-bgColor);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);padding:10px;box-shadow:0 2px 10px rgba(0, 0, 0, .1);transition:transform 0.6s ease-in-out;-webkit-transition:transform 0.6s ease-in-out;z-index:99;border-radius:0 0 15px 15px;gap:15px;}
+
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 ```
 4. 增加文章内容的上边距.
@@ -2432,11 +2614,11 @@ fork 之后, 转到搭建博客的 github 源码,
 
 </details>
 
-7. 头部图标动画渐显.
+7. 头部图标渐显动画.
 
 增加 CSS, `fadeIn`动画已经在打字机动画增加过了.
 
-`.title-right{animation: fadeIn .3s ease-in 0s forwards;}`
+`.title-right{display:flex;gap:25px;animation:fadeIn 1.2s ease-in 0s forwards;}`
 
 ### 打开 post.html 文件
 
@@ -2450,14 +2632,14 @@ fork 之后, 转到搭建博客的 github 源码,
 2. 定位`.postTitle`, 修改样式(打字机效果.)
 
 ```CSS
-.postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
+.postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}
 ```
-
-3. 定位样式`.title-right`, 需要将这个 CSS 样式全部删除.
 
 4. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
 
 5. 定位`{% block header %}`, 在上方增加类名块.
+
+> 这是为了用 class 区分`首页`和`文章页`
 
 ```Django
 {% block body_class %}article{% endblock %}
@@ -2473,7 +2655,7 @@ fork 之后, 转到搭建博客的 github 源码,
 .title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}
 ```
 
-2. 定位样式`.title-left a`, 删除`margin-left:8px;`(设置flex布局之后取消图标多余的间距.)
+2. 定位样式`.title-left a`, 删除`margin-left:8px;`(设置 flex 布局之后取消图标多余的间距.)
 
 3. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
 
@@ -2517,7 +2699,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 <details><summary>CSS Code</summary>
 
-```css
+```CSS
 @keyframes heartBeatScale  {
     0% {
         -webkit-transform: scale(1);
@@ -2651,7 +2833,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 测试剧透👉`Gmeek-spoilertxt='666666'`
 ```
 
-4. 实际展示👇:
+4. 实际展示:
 
 测试剧透👉`Gmeek-spoilertxt='666666'`.
 
@@ -2686,9 +2868,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 📄 > 文章总数.
 💬 > 评论总数.
 🌺 > 是统计的所有文章的字符数.
-⏰ > 最后一次 Actions 的时间.
-
-`Gmeek-imgbox='https://yuzhi.tech/img/wenyan/10.gif'`。">
+⏰ > 最后一次 Actions 的时间.。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://GJKen.github.io/demo/post/1.html">
 <meta property="og:image" content="https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp">
@@ -2917,7 +3097,7 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 	<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
 </details>
 <p>加载动画 CSS, 我把它写到了<code class="notranslate">primer.css</code>文件里面.</p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>👇这个主要样式一定要写在<code class="notranslate">:root</code>选择器的前面!</p>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>👇这个主要样式一定要写在<code class="notranslate">:root</code>选择器的前面!</p>
 </div>
 <details><summary>CSS Code</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
@@ -3185,7 +3365,7 @@ pv 修改成 uv 计数.</p>
 <span class="pl-kos">:</span><span class="pl-c1">root</span> {
     <span class="pl-c">/* 增加 */</span>
 	<span class="pl-s1">--header-btn-shadowColor</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>fbfbfb26</span>;
-	<span class="pl-s1">--header-btn-shadowColor2</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>5f5f5f26</span>;
+	<span class="pl-s1">--header-btn-shadowColor2</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>9bdfff14</span>;
 }
 .<span class="pl-c1">btn-invisible</span> {
 	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-accent</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-accent-fg</span>));
@@ -3205,6 +3385,19 @@ pv 修改成 uv 计数.</p>
 .<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> <span class="pl-ent">svg</span><span class="pl-kos">,</span>
 .<span class="pl-c1">btn-invisible</span>.<span class="pl-c1">zeroclipboard-is-hover</span> <span class="pl-ent">svg</span> {
     <span class="pl-c1">fill</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--title-right-svg-color</span>);
+}</pre></div>
+</details>
+<h2>修改文章主页, 文章的列表样式</h2>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>还没想好要怎么改.</p>
+</div>
+<details><summary>修改前</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">border</span> {
+	<span class="pl-c1">border</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--borderWidth-thin</span><span class="pl-kos">,</span> <span class="pl-c1">1<span class="pl-smi">px</span></span>) solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-default</span>)) <span class="pl-k">!important</span>
+}</pre></div>
+</details>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">border</span> {
+	<span class="pl-c1">border</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--borderWidth-thin</span><span class="pl-kos">,</span> <span class="pl-c1">1<span class="pl-smi">px</span></span>) solid <span class="pl-en">var</span>(<span class="pl-s1">--borderColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-border-default</span>)) <span class="pl-k">!important</span>
 }</pre></div>
 </details>
 <h2>文章 &lt;blockquote&gt; 标签样式</h2>
@@ -3242,6 +3435,37 @@ pv 修改成 uv 计数.</p>
 <p><code class="notranslate">.SideNav-item:last-child</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>直接移除这个选择器的所有样式.</p>
 </div>
+<h2>文章文字通用样式</h2>
+<p><code class="notranslate">.markdown-body p, .markdown-body blockquote, .markdown-body ul, .markdown-body ol, .markdown-body dl, .markdown-body table, .markdown-body pre, .markdown-body details</code></p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改行高为 1.75</p>
+</div>
+<details><summary>修改前</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">p</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">blockquote</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">ul</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">ol</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">dl</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">table</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">pre</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">details</span> {
+	<span class="pl-c1">margin-top</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;
+	<span class="pl-c1">margin-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">16<span class="pl-smi">px</span></span>;
+}</pre></div>
+</details>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> <span class="pl-ent">p</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">blockquote</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">ul</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">ol</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">dl</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">table</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">pre</span><span class="pl-kos">,</span>
+.<span class="pl-c1">markdown-body</span> <span class="pl-ent">details</span> {
+	<span class="pl-c1">margin-top</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;
+	<span class="pl-c1">margin-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">16<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">line-height</span><span class="pl-kos">:</span> <span class="pl-c1">1.75</span>;<span class="pl-c">/* 增加 */</span>
+}</pre></div>
+</details>
 <h2>文章标题通用样式</h2>
 <p><code class="notranslate">.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>删除左右 padding.<br>
@@ -3395,13 +3619,19 @@ pv 修改成 uv 计数.</p>
 }</pre></div>
 </details>
 <h2>文章代码块样式</h2>
-<p><code class="notranslate">.markdown-body .highlight pre, .markdown-body pre {</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.</p>
+<p><code class="notranslate">.markdown-body .highlight pre, .markdown-body pre</code></p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>优化 light &amp; dark 主题下的背景色.<br>
+增加内阴影</p>
 </div>
 <details><summary>修改前</summary>
-<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> .<span class="pl-c1">highlight</span> <span class="pl-ent">pre</span><span class="pl-kos">,</span>
-.<span class="pl-c1">markdown-body</span> <span class="pl-ent">pre</span> {
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">markdown-body</span> .<span class="pl-c1">highlight</span> <span class="pl-ent">pre</span><span class="pl-kos">,</span>.<span class="pl-c1">markdown-body</span> <span class="pl-ent">pre</span> {
+    <span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">16<span class="pl-smi">px</span></span>;
+    <span class="pl-c1">overflow</span><span class="pl-kos">:</span> auto;
+    <span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">85<span class="pl-smi">%</span></span>;
+    <span class="pl-c1">line-height</span><span class="pl-kos">:</span> <span class="pl-c1">1.45</span>;
+    <span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));
     <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--bgColor-muted</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-canvas-subtle</span>));
+    <span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span>
 }</pre></div>
 </details>
 <details><summary>修改后</summary>
@@ -3410,13 +3640,21 @@ pv 修改成 uv 计数.</p>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span> {
     <span class="pl-s1">--markdown-pre-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>27282d</span>;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-s1">--markdown-pre-shadowColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>00000026</span>;<span class="pl-c">/* 增加 */</span>
 }
 <span class="pl-kos">:</span><span class="pl-c1">root</span> {
     <span class="pl-s1">--markdown-pre-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>f6f8fa</span>;<span class="pl-c">/* 增加 */</span>
+	<span class="pl-s1">--markdown-pre-shadowColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>5f5f5f26</span>;<span class="pl-c">/* 增加 */</span>
 }
-.<span class="pl-c1">markdown-body</span> .<span class="pl-c1">highlight</span> <span class="pl-ent">pre</span><span class="pl-kos">,</span>
-.<span class="pl-c1">markdown-body</span> <span class="pl-ent">pre</span> {
-    <span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-pre-bgColor</span>);
+.<span class="pl-c1">markdown-body</span> .<span class="pl-c1">highlight</span> <span class="pl-ent">pre</span><span class="pl-kos">,</span> .<span class="pl-c1">markdown-body</span> <span class="pl-ent">pre</span> {
+	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">16<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">overflow</span><span class="pl-kos">:</span> auto;
+	<span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">85<span class="pl-smi">%</span></span>;
+	<span class="pl-c1">line-height</span><span class="pl-kos">:</span> <span class="pl-c1">1.45</span>;
+	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));
+	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">background-color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-pre-bgColor</span>);<span class="pl-c">/* 增加 */</span>
+	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">4<span class="pl-smi">px</span></span> <span class="pl-c1">5<span class="pl-smi">px</span></span> <span class="pl-c1">14<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-pre-shadowColor</span>) inset;<span class="pl-c">/* 增加 */</span>
 }</pre></div>
 </details>
 <h2>文章一键复制代码按钮样式</h2>
@@ -3511,16 +3749,25 @@ pv 修改成 uv 计数.</p>
 <ol>
 <li>增加所需的颜色样式.</li>
 </ol>
+<blockquote>
+<p>文章头部背景色.<br>
+打字效果动画<br>
+头部图标渐显动画</p>
+</blockquote>
 <div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">:</span><span class="pl-c1">root</span>{<span class="pl-s1">--header-article-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>3b3b3b6b</span>;}
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span>{<span class="pl-s1">--header-article-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ffffff00</span>;}</pre></div>
+
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span>{<span class="pl-s1">--header-article-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ffffff00</span>;}
+
+<span class="pl-k">@keyframes</span> fadeIn{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">1</span>}}<span class="pl-k">@keyframes</span> typing{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">100<span class="pl-smi">%</span></span>}}<span class="pl-k">@keyframes</span> blink{<span class="pl-c1">50<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span>transparent}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span><span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span><span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>))}}<span class="pl-k">@-webkit-keyframes</span> fadeIn{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">1</span>}}<span class="pl-k">@-webkit-keyframes</span> typing{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">100<span class="pl-smi">%</span></span>}}<span class="pl-k">@-webkit-keyframes</span> blink{<span class="pl-c1">50<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span>transparent}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span><span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span><span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>))}}</pre></div>
 <ol start="2">
 <li>定位<code class="notranslate">#header</code>, 修改样式.</li>
 </ol>
-<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">#</span><span class="pl-c1">header</span>{<span class="pl-c1">display</span><span class="pl-kos">:</span>flex;<span class="pl-c1">flex-direction</span><span class="pl-kos">:</span> column;<span class="pl-c1">align-items</span><span class="pl-kos">:</span> center;<span class="pl-c1">gap</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;<span class="pl-c1">margin-bottom</span><span class="pl-kos">:</span> <span class="pl-c1">24<span class="pl-smi">px</span></span>;}</pre></div>
+<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">#</span><span class="pl-c1">header</span>{<span class="pl-c1">display</span><span class="pl-kos">:</span>flex;<span class="pl-c1">flex-direction</span><span class="pl-kos">:</span>column;<span class="pl-c1">align-items</span><span class="pl-kos">:</span>center;<span class="pl-c1">gap</span><span class="pl-kos">:</span><span class="pl-c1">10<span class="pl-smi">px</span></span>;<span class="pl-c1">margin-bottom</span><span class="pl-kos">:</span><span class="pl-c1">24<span class="pl-smi">px</span></span>;}</pre></div>
 <ol start="3">
 <li>增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.</li>
 </ol>
-<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">#</span><span class="pl-c1">header</span>.<span class="pl-c1">article-header</span>{<span class="pl-c1">border-bottom</span><span class="pl-kos">:</span>none;<span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span>;<span class="pl-c1">max-width</span><span class="pl-kos">:</span> inherit;<span class="pl-c1">position</span><span class="pl-kos">:</span> fixed;<span class="pl-c1">top</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;<span class="pl-c1">left</span><span class="pl-kos">:</span> <span class="pl-c1">50<span class="pl-smi">%</span></span>;<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">translateX</span>(<span class="pl-c1">-50<span class="pl-smi">%</span></span>);<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--header-articel-bgColor</span>);<span class="pl-c1">backdrop-filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">15<span class="pl-smi">px</span></span>);<span class="pl-c1">-webkit-backdrop-filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">15<span class="pl-smi">px</span></span>);<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">2<span class="pl-smi">px</span></span> <span class="pl-c1">10<span class="pl-smi">px</span></span> <span class="pl-en">rgba</span>(<span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">.1</span>);<span class="pl-c1">transition</span><span class="pl-kos">:</span> transform <span class="pl-c1">0.6<span class="pl-smi">s</span></span> ease-in-out;<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> transform <span class="pl-c1">0.6<span class="pl-smi">s</span></span> ease-in-out;<span class="pl-c1">z-index</span><span class="pl-kos">:</span> <span class="pl-c1">99</span>;<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span> <span class="pl-c1">15<span class="pl-smi">px</span></span> <span class="pl-c1">15<span class="pl-smi">px</span></span>;<span class="pl-c1">gap</span><span class="pl-kos">:</span> <span class="pl-c1">15<span class="pl-smi">px</span></span>;}
+<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">#</span><span class="pl-c1">header</span>.<span class="pl-c1">article-header</span>{<span class="pl-c1">border-bottom</span><span class="pl-kos">:</span>none;<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">100<span class="pl-smi">%</span></span>;<span class="pl-c1">max-width</span><span class="pl-kos">:</span>inherit;<span class="pl-c1">position</span><span class="pl-kos">:</span>fixed;<span class="pl-c1">top</span><span class="pl-kos">:</span><span class="pl-c1">0</span>;<span class="pl-c1">left</span><span class="pl-kos">:</span><span class="pl-c1">50<span class="pl-smi">%</span></span>;<span class="pl-c1">transform</span><span class="pl-kos">:</span><span class="pl-en">translateX</span>(<span class="pl-c1">-50<span class="pl-smi">%</span></span>);<span class="pl-c1">background</span><span class="pl-kos">:</span><span class="pl-en">var</span>(<span class="pl-s1">--header-articel-bgColor</span>);<span class="pl-c1">backdrop-filter</span><span class="pl-kos">:</span><span class="pl-en">blur</span>(<span class="pl-c1">15<span class="pl-smi">px</span></span>);<span class="pl-c1">-webkit-backdrop-filter</span><span class="pl-kos">:</span><span class="pl-en">blur</span>(<span class="pl-c1">15<span class="pl-smi">px</span></span>);<span class="pl-c1">padding</span><span class="pl-kos">:</span><span class="pl-c1">10<span class="pl-smi">px</span></span>;<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span><span class="pl-c1">0</span> <span class="pl-c1">2<span class="pl-smi">px</span></span> <span class="pl-c1">10<span class="pl-smi">px</span></span> <span class="pl-en">rgba</span>(<span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">.1</span>);<span class="pl-c1">transition</span><span class="pl-kos">:</span>transform <span class="pl-c1">0.6<span class="pl-smi">s</span></span> ease-in-out;<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span>transform <span class="pl-c1">0.6<span class="pl-smi">s</span></span> ease-in-out;<span class="pl-c1">z-index</span><span class="pl-kos">:</span><span class="pl-c1">99</span>;<span class="pl-c1">border-radius</span><span class="pl-kos">:</span><span class="pl-c1">0</span> <span class="pl-c1">0</span> <span class="pl-c1">15<span class="pl-smi">px</span></span> <span class="pl-c1">15<span class="pl-smi">px</span></span>;<span class="pl-c1">gap</span><span class="pl-kos">:</span><span class="pl-c1">15<span class="pl-smi">px</span></span>;}
+
 <span class="pl-kos">#</span><span class="pl-c1">header</span>.<span class="pl-c1">article-header</span>.<span class="pl-c1">hidden</span>{<span class="pl-c1">transform</span><span class="pl-kos">:</span><span class="pl-en">translate</span>(<span class="pl-c1">-50<span class="pl-smi">%</span></span><span class="pl-kos">,</span><span class="pl-c1">-120<span class="pl-smi">%</span></span>);}</pre></div>
 <ol start="4">
 <li>增加文章内容的上边距.</li>
@@ -3556,10 +3803,10 @@ pv 修改成 uv 计数.</p>
 	<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
 </details>
 <ol start="7">
-<li>头部图标动画渐显.</li>
+<li>头部图标渐显动画.</li>
 </ol>
 <p>增加 CSS, <code class="notranslate">fadeIn</code>动画已经在打字机动画增加过了.</p>
-<p><code class="notranslate">.title-right{animation: fadeIn .3s ease-in 0s forwards;}</code></p>
+<p><code class="notranslate">.title-right{display:flex;gap:25px;animation:fadeIn 1.2s ease-in 0s forwards;}</code></p>
 <h3>打开 post.html 文件</h3>
 <ol>
 <li>增加所需的颜色样式.</li>
@@ -3569,11 +3816,8 @@ pv 修改成 uv 计数.</p>
 <ol start="2">
 <li>定位<code class="notranslate">.postTitle</code>, 修改样式(打字机效果.)</li>
 </ol>
-<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">postTitle</span>{<span class="pl-c1">margin</span><span class="pl-kos">:</span>auto <span class="pl-c1">0</span>;<span class="pl-c1">font-size</span><span class="pl-kos">:</span><span class="pl-c1">35<span class="pl-smi">px</span></span>;<span class="pl-c1">text-shadow</span><span class="pl-kos">:</span><span class="pl-c1">0</span> <span class="pl-c1">1<span class="pl-smi">px</span></span> <span class="pl-c1">2<span class="pl-smi">px</span></span> <span class="pl-en">var</span>(<span class="pl-s1">--postTitle-textshadow</span>);<span class="pl-c1">font-weight</span><span class="pl-kos">:</span><span class="pl-c1">700</span>;<span class="pl-c1">display</span><span class="pl-kos">:</span>inline-block;<span class="pl-c1">white-space</span><span class="pl-kos">:</span>nowrap;<span class="pl-c1">overflow</span><span class="pl-kos">:</span>hidden;<span class="pl-c1">width</span><span class="pl-kos">:</span>auto;<span class="pl-c1">max-width</span><span class="pl-kos">:</span>-webkit-fit-content;<span class="pl-c1">max-width</span><span class="pl-kos">:</span>fit-content;<span class="pl-c1">border-right</span><span class="pl-kos">:</span><span class="pl-c1">2<span class="pl-smi">px</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span><span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>;<span class="pl-c1">animation</span><span class="pl-kos">:</span>fadeIn <span class="pl-c1">.3<span class="pl-smi">s</span></span> ease-in <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>typing <span class="pl-c1">2<span class="pl-smi">s</span></span> <span class="pl-en">steps</span>(<span class="pl-c1">20</span>) <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>blink <span class="pl-c1">.75<span class="pl-smi">s</span></span> step-end infinite <span class="pl-c1">1.2<span class="pl-smi">s</span></span>;<span class="pl-c1">-webkit-animation</span><span class="pl-kos">:</span>fadeIn <span class="pl-c1">.3<span class="pl-smi">s</span></span> ease-in <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>typing <span class="pl-c1">2<span class="pl-smi">s</span></span> <span class="pl-en">steps</span>(<span class="pl-c1">20</span>) <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>blink <span class="pl-c1">.75<span class="pl-smi">s</span></span> step-end infinite <span class="pl-c1">1.2<span class="pl-smi">s</span></span>}<span class="pl-k">@keyframes</span> fadeIn{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">1</span>}}<span class="pl-k">@keyframes</span> typing{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">100<span class="pl-smi">%</span></span>}}<span class="pl-k">@keyframes</span> blink{<span class="pl-c1">50<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span>transparent}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span><span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span><span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>))}}<span class="pl-k">@-webkit-keyframes</span> fadeIn{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">1</span>}}<span class="pl-k">@-webkit-keyframes</span> typing{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">100<span class="pl-smi">%</span></span>}}<span class="pl-k">@-webkit-keyframes</span> blink{<span class="pl-c1">50<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span>transparent}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span><span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span><span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>))}}</pre></div>
-<ol start="3">
-<li>
-<p>定位样式<code class="notranslate">.title-right</code>, 需要将这个 CSS 样式全部删除.</p>
-</li>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">postTitle</span>{<span class="pl-c1">margin</span><span class="pl-kos">:</span>auto <span class="pl-c1">0</span>;<span class="pl-c1">font-size</span><span class="pl-kos">:</span><span class="pl-c1">35<span class="pl-smi">px</span></span>;<span class="pl-c1">text-shadow</span><span class="pl-kos">:</span><span class="pl-c1">0</span> <span class="pl-c1">1<span class="pl-smi">px</span></span> <span class="pl-c1">2<span class="pl-smi">px</span></span> <span class="pl-en">var</span>(<span class="pl-s1">--postTitle-textshadow</span>);<span class="pl-c1">font-weight</span><span class="pl-kos">:</span><span class="pl-c1">700</span>;<span class="pl-c1">display</span><span class="pl-kos">:</span>inline-block;<span class="pl-c1">white-space</span><span class="pl-kos">:</span>nowrap;<span class="pl-c1">overflow</span><span class="pl-kos">:</span>hidden;<span class="pl-c1">width</span><span class="pl-kos">:</span>auto;<span class="pl-c1">max-width</span><span class="pl-kos">:</span>-webkit-fit-content;<span class="pl-c1">max-width</span><span class="pl-kos">:</span>fit-content;<span class="pl-c1">border-right</span><span class="pl-kos">:</span><span class="pl-c1">2<span class="pl-smi">px</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span><span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>;<span class="pl-c1">animation</span><span class="pl-kos">:</span>fadeIn <span class="pl-c1">.3<span class="pl-smi">s</span></span> ease-in <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>typing <span class="pl-c1">2<span class="pl-smi">s</span></span> <span class="pl-en">steps</span>(<span class="pl-c1">20</span>) <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>blink <span class="pl-c1">.75<span class="pl-smi">s</span></span> step-end infinite <span class="pl-c1">1.2<span class="pl-smi">s</span></span>;<span class="pl-c1">-webkit-animation</span><span class="pl-kos">:</span>fadeIn <span class="pl-c1">.3<span class="pl-smi">s</span></span> ease-in <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>typing <span class="pl-c1">2<span class="pl-smi">s</span></span> <span class="pl-en">steps</span>(<span class="pl-c1">20</span>) <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>blink <span class="pl-c1">.75<span class="pl-smi">s</span></span> step-end infinite <span class="pl-c1">1.2<span class="pl-smi">s</span></span>}</pre></div>
+<ol start="4">
 <li>
 <p>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code></p>
 </li>
@@ -3581,6 +3825,9 @@ pv 修改成 uv 计数.</p>
 <p>定位<code class="notranslate">{% block header %}</code>, 在上方增加类名块.</p>
 </li>
 </ol>
+<blockquote>
+<p>这是为了用 class 区分<code class="notranslate">首页</code>和<code class="notranslate">文章页</code></p>
+</blockquote>
 <div class="highlight highlight-text-html-django"><pre class="notranslate"><span class="pl-e">{%</span> <span class="pl-k">block</span> <span class="pl-s">body_class</span> <span class="pl-e">%}</span>article<span class="pl-e">{%</span> <span class="pl-k">endblock</span> <span class="pl-e">%}</span>
 <span class="pl-e">{%</span> <span class="pl-k">block</span> <span class="pl-s">header_class</span> <span class="pl-e">%}</span>article-header<span class="pl-e">{%</span> <span class="pl-k">endblock</span> <span class="pl-e">%}</span>
 <span class="pl-e">{%</span> <span class="pl-k">block</span> <span class="pl-s">content_class</span> <span class="pl-e">%}</span>article-content<span class="pl-e">{%</span> <span class="pl-k">endblock</span> <span class="pl-e">%}</span></pre></div>
@@ -3591,7 +3838,7 @@ pv 修改成 uv 计数.</p>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">title-left</span>{<span class="pl-c1">display</span><span class="pl-kos">:</span> flex;<span class="pl-c1">flex-direction</span><span class="pl-kos">:</span> column;<span class="pl-c1">align-items</span><span class="pl-kos">:</span> center;<span class="pl-c1">gap</span><span class="pl-kos">:</span> <span class="pl-c1">20<span class="pl-smi">px</span></span>;}</pre></div>
 <ol start="2">
 <li>
-<p>定位样式<code class="notranslate">.title-left a</code>, 删除<code class="notranslate">margin-left:8px;</code>(设置flex布局之后取消图标多余的间距.)</p>
+<p>定位样式<code class="notranslate">.title-left a</code>, 删除<code class="notranslate">margin-left:8px;</code>(设置 flex 布局之后取消图标多余的间距.)</p>
 </li>
 <li>
 <p>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code></p>
@@ -3715,7 +3962,7 @@ pv 修改成 uv 计数.</p>
 <pre class="notranslate"><code class="notranslate">测试剧透👉`Gmeek-spoilertxt="666666"`
 </code></pre>
 <ol start="4">
-<li>实际展示👇:</li>
+<li>实际展示:</li>
 </ol>
 <p>测试剧透👉<span class="spoilerText">666666</span>.</p>
 <h1>添加自定义单篇文章代码</h1>
@@ -3795,8 +4042,7 @@ pv 修改成 uv 计数.</p>
 <p>📄 &gt; 文章总数.<br>
 💬 &gt; 评论总数.<br>
 🌺 &gt; 是统计的所有文章的字符数.<br>
-⏰ &gt; 最后一次 Actions 的时间.</p>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://yuzhi.tech/img/wenyan/10.gif"></p></div>
+⏰ &gt; 最后一次 Actions 的时间.</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">🥰转载请注明,谢谢!🥰</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
