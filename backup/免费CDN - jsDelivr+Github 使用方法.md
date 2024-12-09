@@ -10,17 +10,17 @@
 
 进入仓库点击 Releases.
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmezvVPRyL9frLHxBtG5SnuxNLjxwN6tbHDTPK7zhYeSM7">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmezvVPRyL9frLHxBtG5SnuxNLjxwN6tbHDTPK7zhYeSM7"`
 
 简单命名版本
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/Qmb81JPfuBkDAaVSSFSNEC31q6nPfQw3BeTWK48u96kAza">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/Qmb81JPfuBkDAaVSSFSNEC31q6nPfQw3BeTWK48u96kAza"`
 
 # 创建标签(Tags)
 
 创建 Tags 和 Releases 步骤一样, 下图是入口.
 
-`Gmeek-imgbox<img src="https://i0.img2ipfs.com/ipfs/QmbpnHcxKXJNYuEvrT5tg4CwAiJNgpc3BRNE7h6ebhYgsK">`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmbpnHcxKXJNYuEvrT5tg4CwAiJNgpc3BRNE7h6ebhYgsK"`
 
 # 使用方法
 
