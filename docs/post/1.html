@@ -67,7 +67,7 @@
 
 [图片懒加载的代码](#图片懒加载)
 
-这里说明一下, 图片浏览器和图片懒加载的整合后的工作流程:
+👇这里说明一下, 图片浏览器和图片懒加载的整合后的工作流程:
 
 <details><summary>点击展开</summary>
 
@@ -235,8 +235,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 加载动画 CSS, 我把它写到了`primer.css`文件里面.
 
-> [NOTE]
-> 这个主要样式一定要写在`:root`选择器的前面!
+> [!NOTE]
+> 👇这个主要样式一定要写在`:root`选择器的前面!
 
 <details><summary>CSS Code</summary>
 
@@ -1053,7 +1053,6 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ```CSS
 #header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
-
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 ```
 4. 增加文章内容的上边距.
@@ -1103,7 +1102,7 @@ fork 之后, 转到搭建博客的 github 源码,
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow: #00000080;}
 ```
 
-2. 定位`.postTitle`, 修改样式(打字机效果)
+2. 定位`.postTitle`, 修改样式(打字机效果.)
 
 ```CSS
 .postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
@@ -1123,7 +1122,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ### 打开 plist.html 文件
 
-1. 增加样式
+1. 增加样式.
 
 ```CSS
 .title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}
@@ -1256,7 +1255,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 更改后缩小了匹配范围, 可直接用行内代码块👉`Gmeek-html`让其在文章内正常显示.
 
-# 添加 Gmeek-spoliertxt
+# 添加 Gmeek-spoliertxt - 文字防剧透模糊效果
 
 ## 打开 Gmeek.py
 
@@ -1269,7 +1268,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 2. 实际转化后的标签如下:
 
-```
+```html
 <p>测试剧透 <span class='spoilerText'>剧透内容</span></p>
 ```
 
@@ -1306,7 +1305,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 4. 实际展示👇:
 
-测试剧透`Gmeek-spoliertxt='666666'`
+测试剧透👉`Gmeek-spoliertxt='666666'`.
 
 # 添加自定义单篇文章代码
 
@@ -1336,10 +1335,10 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 # Readme.md
 
-📄 > 文章总数
-💬 > 评论总数
-🌺 > 是统计的所有文章的字符数
-⏰ > 最后一次 Actions 的时间。">
+📄 > 文章总数.
+💬 > 评论总数.
+🌺 > 是统计的所有文章的字符数.
+⏰ > 最后一次 Actions 的时间.。">
 <meta property="og:title" content="Gmeek - 记录使用过程">
 <meta property="og:description" content="[Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
@@ -1398,7 +1397,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 [图片懒加载的代码](#图片懒加载)
 
-这里说明一下, 图片浏览器和图片懒加载的整合后的工作流程:
+👇这里说明一下, 图片浏览器和图片懒加载的整合后的工作流程:
 
 <details><summary>点击展开</summary>
 
@@ -1566,8 +1565,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 加载动画 CSS, 我把它写到了`primer.css`文件里面.
 
-> [NOTE]
-> 这个主要样式一定要写在`:root`选择器的前面!
+> [!NOTE]
+> 👇这个主要样式一定要写在`:root`选择器的前面!
 
 <details><summary>CSS Code</summary>
 
@@ -2384,7 +2383,6 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ```CSS
 #header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
-
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 ```
 4. 增加文章内容的上边距.
@@ -2434,7 +2432,7 @@ fork 之后, 转到搭建博客的 github 源码,
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow: #00000080;}
 ```
 
-2. 定位`.postTitle`, 修改样式(打字机效果)
+2. 定位`.postTitle`, 修改样式(打字机效果.)
 
 ```CSS
 .postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
@@ -2454,7 +2452,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ### 打开 plist.html 文件
 
-1. 增加样式
+1. 增加样式.
 
 ```CSS
 .title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}
@@ -2587,7 +2585,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 更改后缩小了匹配范围, 可直接用行内代码块👉`Gmeek-html`让其在文章内正常显示.
 
-# 添加 Gmeek-spoliertxt
+# 添加 Gmeek-spoliertxt - 文字防剧透模糊效果
 
 ## 打开 Gmeek.py
 
@@ -2600,7 +2598,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 2. 实际转化后的标签如下:
 
-```
+```html
 <p>测试剧透 <span class='spoilerText'>剧透内容</span></p>
 ```
 
@@ -2637,7 +2635,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 4. 实际展示👇:
 
-测试剧透`Gmeek-spoliertxt='666666'`
+测试剧透👉`Gmeek-spoliertxt='666666'`.
 
 # 添加自定义单篇文章代码
 
@@ -2667,10 +2665,10 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 # Readme.md
 
-📄 > 文章总数
-💬 > 评论总数
-🌺 > 是统计的所有文章的字符数
-⏰ > 最后一次 Actions 的时间。">
+📄 > 文章总数.
+💬 > 评论总数.
+🌺 > 是统计的所有文章的字符数.
+⏰ > 最后一次 Actions 的时间.。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://GJKen.github.io/demo/post/1.html">
 <meta property="og:image" content="https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp">
@@ -2780,7 +2778,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>图片图片浏览器+图片懒加载整合</h3>
 <p><a href="#fancybox.js---%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%88%E5%99%A8">图片浏览器的代码</a></p>
 <p><a href="#%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD">图片懒加载的代码</a></p>
-<p>这里说明一下, 图片浏览器和图片懒加载的整合后的工作流程:</p>
+<p>👇这里说明一下, 图片浏览器和图片懒加载的整合后的工作流程:</p>
 <details><summary>点击展开</summary>
 <p><code class="notranslate">Gmeek-imgbox</code>首先匹配到关键字后转化标签.</p>
 <p><code class="notranslate">Gmeek.py</code>匹配转换的代码如下:</p>
@@ -2896,10 +2894,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 	<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
 </details>
 <p>加载动画 CSS, 我把它写到了<code class="notranslate">primer.css</code>文件里面.</p>
-<blockquote>
-<p>[NOTE]<br>
-这个主要样式一定要写在<code class="notranslate">:root</code>选择器的前面!</p>
-</blockquote>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>👇这个主要样式一定要写在<code class="notranslate">:root</code>选择器的前面!</p>
+</div>
 <details><summary>CSS Code</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>
@@ -3504,7 +3500,6 @@ pv 修改成 uv 计数.</p>
 <li>增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.</li>
 </ol>
 <div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">#</span><span class="pl-c1">header</span>.<span class="pl-c1">article-header</span>{<span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span>;<span class="pl-c1">max-width</span><span class="pl-kos">:</span> inherit;<span class="pl-c1">position</span><span class="pl-kos">:</span> fixed;<span class="pl-c1">top</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;<span class="pl-c1">left</span><span class="pl-kos">:</span> <span class="pl-c1">50<span class="pl-smi">%</span></span>;<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">translateX</span>(<span class="pl-c1">-50<span class="pl-smi">%</span></span>);<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--header-articel-bgColor</span>);<span class="pl-c1">backdrop-filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">15<span class="pl-smi">px</span></span>);<span class="pl-c1">-webkit-backdrop-filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">15<span class="pl-smi">px</span></span>);<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">2<span class="pl-smi">px</span></span> <span class="pl-c1">10<span class="pl-smi">px</span></span> <span class="pl-en">rgba</span>(<span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">.1</span>);<span class="pl-c1">transition</span><span class="pl-kos">:</span> transform <span class="pl-c1">0.6<span class="pl-smi">s</span></span> ease-in-out;<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> transform <span class="pl-c1">0.6<span class="pl-smi">s</span></span> ease-in-out;<span class="pl-c1">z-index</span><span class="pl-kos">:</span> <span class="pl-c1">99</span>;<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span> <span class="pl-c1">15<span class="pl-smi">px</span></span> <span class="pl-c1">15<span class="pl-smi">px</span></span>;<span class="pl-c1">gap</span><span class="pl-kos">:</span> <span class="pl-c1">15<span class="pl-smi">px</span></span>;}
-
 <span class="pl-kos">#</span><span class="pl-c1">header</span>.<span class="pl-c1">article-header</span>.<span class="pl-c1">hidden</span>{<span class="pl-c1">transform</span><span class="pl-kos">:</span><span class="pl-en">translate</span>(<span class="pl-c1">-50<span class="pl-smi">%</span></span><span class="pl-kos">,</span><span class="pl-c1">-120<span class="pl-smi">%</span></span>);}</pre></div>
 <ol start="4">
 <li>增加文章内容的上边距.</li>
@@ -3546,7 +3541,7 @@ pv 修改成 uv 计数.</p>
 <div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">:</span><span class="pl-c1">root</span>{<span class="pl-s1">--postTitle-textshadow</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ffffff80</span>;}
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span>{<span class="pl-s1">--postTitle-textshadow</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>00000080</span>;}</pre></div>
 <ol start="2">
-<li>定位<code class="notranslate">.postTitle</code>, 修改样式(打字机效果)</li>
+<li>定位<code class="notranslate">.postTitle</code>, 修改样式(打字机效果.)</li>
 </ol>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">postTitle</span>{<span class="pl-c1">margin</span><span class="pl-kos">:</span>auto <span class="pl-c1">0</span>;<span class="pl-c1">font-size</span><span class="pl-kos">:</span><span class="pl-c1">35<span class="pl-smi">px</span></span>;<span class="pl-c1">text-shadow</span><span class="pl-kos">:</span><span class="pl-c1">0</span> <span class="pl-c1">1<span class="pl-smi">px</span></span> <span class="pl-c1">2<span class="pl-smi">px</span></span> <span class="pl-en">var</span>(<span class="pl-s1">--postTitle-textshadow</span>);<span class="pl-c1">font-weight</span><span class="pl-kos">:</span><span class="pl-c1">700</span>;<span class="pl-c1">display</span><span class="pl-kos">:</span>inline-block;<span class="pl-c1">white-space</span><span class="pl-kos">:</span>nowrap;<span class="pl-c1">overflow</span><span class="pl-kos">:</span>hidden;<span class="pl-c1">width</span><span class="pl-kos">:</span>auto;<span class="pl-c1">max-width</span><span class="pl-kos">:</span>-webkit-fit-content;<span class="pl-c1">max-width</span><span class="pl-kos">:</span>fit-content;<span class="pl-c1">border-right</span><span class="pl-kos">:</span><span class="pl-c1">2<span class="pl-smi">px</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span><span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>;<span class="pl-c1">animation</span><span class="pl-kos">:</span>fadeIn <span class="pl-c1">.3<span class="pl-smi">s</span></span> ease-in <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>typing <span class="pl-c1">2<span class="pl-smi">s</span></span> <span class="pl-en">steps</span>(<span class="pl-c1">20</span>) <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>blink <span class="pl-c1">.75<span class="pl-smi">s</span></span> step-end infinite <span class="pl-c1">1.2<span class="pl-smi">s</span></span>;<span class="pl-c1">-webkit-animation</span><span class="pl-kos">:</span>fadeIn <span class="pl-c1">.3<span class="pl-smi">s</span></span> ease-in <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>typing <span class="pl-c1">2<span class="pl-smi">s</span></span> <span class="pl-en">steps</span>(<span class="pl-c1">20</span>) <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>blink <span class="pl-c1">.75<span class="pl-smi">s</span></span> step-end infinite <span class="pl-c1">1.2<span class="pl-smi">s</span></span>}<span class="pl-k">@keyframes</span> fadeIn{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">1</span>}}<span class="pl-k">@keyframes</span> typing{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">100<span class="pl-smi">%</span></span>}}<span class="pl-k">@keyframes</span> blink{<span class="pl-c1">50<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span>transparent}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span><span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span><span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>))}}<span class="pl-k">@-webkit-keyframes</span> fadeIn{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">1</span>}}<span class="pl-k">@-webkit-keyframes</span> typing{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">100<span class="pl-smi">%</span></span>}}<span class="pl-k">@-webkit-keyframes</span> blink{<span class="pl-c1">50<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span>transparent}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span><span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span><span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>))}}</pre></div>
 <ol start="3">
@@ -3565,7 +3560,7 @@ pv 修改成 uv 计数.</p>
 <span class="pl-e">{%</span> <span class="pl-k">block</span> <span class="pl-s">content_class</span> <span class="pl-e">%}</span>article-content<span class="pl-e">{%</span> <span class="pl-k">endblock</span> <span class="pl-e">%}</span></pre></div>
 <h3>打开 plist.html 文件</h3>
 <ol>
-<li>增加样式</li>
+<li>增加样式.</li>
 </ol>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">title-left</span>{<span class="pl-c1">display</span><span class="pl-kos">:</span> flex;<span class="pl-c1">flex-direction</span><span class="pl-kos">:</span> column;<span class="pl-c1">align-items</span><span class="pl-kos">:</span> center;<span class="pl-c1">gap</span><span class="pl-kos">:</span> <span class="pl-c1">20<span class="pl-smi">px</span></span>;}</pre></div>
 <ol start="2">
@@ -3657,7 +3652,7 @@ pv 修改成 uv 计数.</p>
 <p>原先匹配的内容为:<code class="notranslate">&lt;code class="notranslate"&gt;Gmeek-html(.*?)&lt;/code&gt;</code>,</p>
 <p>这种情况下, 如果在 html 中含有行内代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,</p>
 <p>更改后缩小了匹配范围, 可直接用行内代码块👉<code class="notranslate">Gmeek-html</code>让其在文章内正常显示.</p>
-<h1>添加 Gmeek-spoliertxt</h1>
+<h1>添加 Gmeek-spoliertxt - 文字防剧透模糊效果</h1>
 <h2>打开 Gmeek.py</h2>
 <ol>
 <li>增加匹配内容:</li>
@@ -3667,8 +3662,7 @@ pv 修改成 uv 计数.</p>
 <ol start="2">
 <li>实际转化后的标签如下:</li>
 </ol>
-<pre class="notranslate"><code class="notranslate">&lt;p&gt;测试剧透 &lt;span class="spoilerText"&gt;剧透内容&lt;/span&gt;&lt;/p&gt;
-</code></pre>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span>测试剧透 <span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">class</span>="<span class="pl-s">spoilerText</span>"<span class="pl-kos">&gt;</span>剧透内容<span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span></pre></div>
 <h2>打开 post.html</h2>
 <ol>
 <li>增加 CSS 样式:</li>
@@ -3699,7 +3693,7 @@ pv 修改成 uv 计数.</p>
 <ol start="4">
 <li>实际展示👇:</li>
 </ol>
-<p>测试剧透<span class="spoilerText">666666</span></p>
+<p>测试剧透👉<span class="spoilerText">666666</span>.</p>
 <h1>添加自定义单篇文章代码</h1>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">id</span>="<span class="pl-s">busuanzi</span>"<span class="pl-kos">&gt;</span>
 :heart:感谢第<span class="pl-kos">&lt;</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>小伙伴的<span class="pl-kos">&lt;</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span>次访问关于页面.
@@ -3774,10 +3768,10 @@ pv 修改成 uv 计数.</p>
 </tbody>
 </table></markdown-accessiblity-table>
 <h1>Readme.md</h1>
-<p>📄 &gt; 文章总数<br>
-💬 &gt; 评论总数<br>
-🌺 &gt; 是统计的所有文章的字符数<br>
-⏰ &gt; 最后一次 Actions 的时间</p></div>
+<p>📄 &gt; 文章总数.<br>
+💬 &gt; 评论总数.<br>
+🌺 &gt; 是统计的所有文章的字符数.<br>
+⏰ &gt; 最后一次 Actions 的时间.</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">🥰转载请注明,谢谢!🥰</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

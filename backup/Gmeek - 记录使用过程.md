@@ -55,7 +55,7 @@
 
 [图片懒加载的代码](#图片懒加载)
 
-这里说明一下, 图片浏览器和图片懒加载的整合后的工作流程:
+👇这里说明一下, 图片浏览器和图片懒加载的整合后的工作流程:
 
 <details><summary>点击展开</summary>
 
@@ -223,8 +223,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 加载动画 CSS, 我把它写到了`primer.css`文件里面.
 
-> [NOTE]
-> 这个主要样式一定要写在`:root`选择器的前面!
+> [!NOTE]
+> 👇这个主要样式一定要写在`:root`选择器的前面!
 
 <details><summary>CSS Code</summary>
 
@@ -1041,7 +1041,6 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ```CSS
 #header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
-
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 ```
 4. 增加文章内容的上边距.
@@ -1091,7 +1090,7 @@ fork 之后, 转到搭建博客的 github 源码,
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow: #00000080;}
 ```
 
-2. 定位`.postTitle`, 修改样式(打字机效果)
+2. 定位`.postTitle`, 修改样式(打字机效果.)
 
 ```CSS
 .postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
@@ -1111,7 +1110,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ### 打开 plist.html 文件
 
-1. 增加样式
+1. 增加样式.
 
 ```CSS
 .title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}
@@ -1244,7 +1243,7 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 
 更改后缩小了匹配范围, 可直接用行内代码块👉`Gmeek-html`让其在文章内正常显示.
 
-# 添加 Gmeek-spoliertxt
+# 添加 Gmeek-spoliertxt - 文字防剧透模糊效果
 
 ## 打开 Gmeek.py
 
@@ -1257,7 +1256,7 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 
 2. 实际转化后的标签如下:
 
-```
+```html
 <p>测试剧透 <span class="spoilerText">剧透内容</span></p>
 ```
 
@@ -1294,7 +1293,7 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 
 4. 实际展示👇:
 
-测试剧透`Gmeek-spoliertxt="666666"`
+测试剧透👉`Gmeek-spoliertxt="666666"`.
 
 # 添加自定义单篇文章代码
 
@@ -1324,7 +1323,7 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 
 # Readme.md
 
-📄 > 文章总数
-💬 > 评论总数
-🌺 > 是统计的所有文章的字符数
-⏰ > 最后一次 Actions 的时间
+📄 > 文章总数.
+💬 > 评论总数.
+🌺 > 是统计的所有文章的字符数.
+⏰ > 最后一次 Actions 的时间.
