@@ -1,5 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Mon, 09 Dec 2024 05:49:37 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>Github Markdown 使用笔记</title><link>https://GJKen.github.io/demo/post/6.html</link><description>&gt; [!NOTE]&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Mon, 09 Dec 2024 07:02:58 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>Cloudflare Web Analytics 的 beacon.min.js 加载缓慢, 记录它的关闭方法</title><link>https://GJKen.github.io/demo/post/7.html</link><description>Cloudflare Web Analytics CDN 国内加载缓慢的解决方法&#13;
+&#13;
+# 前言&#13;
+&#13;
+最近在访问博客的时候发现个别js加载失败, 检查发现原来是 CloudFlare 的 beacon.min.js 加载失败, 如下图.&#13;
+&#13;
+卡顿文件👉`https://static.cloudflareinsights.com/beacon.min.js`&#13;
+&#13;
+`Gmeek-imgbox='https://cdn.img2ipfs.com/ipfs/QmfVdyTJMzA3acSeMMYX3cLq7BoWLQ4pYpjr6u4HYsmhi1'`&#13;
+&#13;
+网上找了点教程打算关闭它.&#13;
+&#13;
+&gt; 引用来源 [ruimian](https://www.ruimian.com/cloudflare-web-analytics-slow-loading)&#13;
+&#13;
+## Cloudflare 官方解释:&#13;
+&#13;
+&gt; [!TIP]&#13;
+&gt; Cloudflare Web Analytics功能，为您的网站提供免费的隐私优先分析，无需更改 DNS 或使用 Cloudflare 的代理。</description><guid isPermaLink="true">https://GJKen.github.io/demo/post/7.html</guid><pubDate>Mon, 09 Dec 2024 07:02:34 +0000</pubDate></item><item><title>Github Markdown 使用笔记</title><link>https://GJKen.github.io/demo/post/6.html</link><description>&gt; [!NOTE]&#13;
 &gt;Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成结构化的HTML代码。</description><guid isPermaLink="true">https://GJKen.github.io/demo/post/6.html</guid><pubDate>Tue, 19 Nov 2024 05:04:05 +0000</pubDate></item><item><title>Serv00 - 使用记录</title><link>https://GJKen.github.io/demo/post/5.html</link><description># 注册 Serv00&#13;
 &#13;
 注册没什么好说的, gmail+干净一点的ip基本上都可以成功, 这里不多做展开.&#13;
