@@ -1263,13 +1263,13 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 ```python
         if '<code class='notranslate'>Gmeek-spoliertxt' in post_body: 
-            post_body = re.sub(r'<code class='notranslate'>Gmeek-spoilertxt='([^']+)'</code>', lambda match: f'<span class='spoilerText'>{match.group(1)}</span>', post_body, flags=re.DOTALL)
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-spoilertxt='([^']+)'</code>', lambda match: f'<span id='spoilerText'>{match.group(1)}</span>', post_body, flags=re.DOTALL)
 ```
 
 2. 实际转化后的标签如下:
 
 ```html
-<p>测试剧透 <span class='spoilerText'>剧透内容</span></p>
+<p>测试剧透 <span id='spoilerText'>剧透内容</span></p>
 ```
 
 ## 打开 post.html
@@ -2593,13 +2593,13 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 ```python
         if '<code class='notranslate'>Gmeek-spoliertxt' in post_body: 
-            post_body = re.sub(r'<code class='notranslate'>Gmeek-spoilertxt='([^']+)'</code>', lambda match: f'<span class='spoilerText'>{match.group(1)}</span>', post_body, flags=re.DOTALL)
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-spoilertxt='([^']+)'</code>', lambda match: f'<span id='spoilerText'>{match.group(1)}</span>', post_body, flags=re.DOTALL)
 ```
 
 2. 实际转化后的标签如下:
 
 ```html
-<p>测试剧透 <span class='spoilerText'>剧透内容</span></p>
+<p>测试剧透 <span id='spoilerText'>剧透内容</span></p>
 ```
 
 ## 打开 post.html
@@ -3658,11 +3658,11 @@ pv 修改成 uv 计数.</p>
 <li>增加匹配内容:</li>
 </ol>
 <div class="highlight highlight-source-python"><pre class="notranslate">        <span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-spoliertxt'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
-            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-c1">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-spoilertxt="([^"]+)"&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;span class="spoilerText"&gt;<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-c1">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>&lt;/span&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-c1">DOTALL</span>)</pre></div>
+            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-c1">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-spoilertxt="([^"]+)"&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;span id="spoilerText"&gt;<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-c1">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>&lt;/span&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-c1">DOTALL</span>)</pre></div>
 <ol start="2">
 <li>实际转化后的标签如下:</li>
 </ol>
-<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span>测试剧透 <span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">class</span>="<span class="pl-s">spoilerText</span>"<span class="pl-kos">&gt;</span>剧透内容<span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span></pre></div>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span>测试剧透 <span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">id</span>="<span class="pl-s">spoilerText</span>"<span class="pl-kos">&gt;</span>剧透内容<span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span></pre></div>
 <h2>打开 post.html</h2>
 <ol>
 <li>增加 CSS 样式:</li>
