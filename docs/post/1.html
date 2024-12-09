@@ -139,7 +139,7 @@ CSS写入到了👉[文章自定义 js 代码](#articlejs.js---文章自定义-j
 
 意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.
 
-```js
+```Javascript
 document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(
         Object.assign(document.createElement('link'), {
@@ -491,8 +491,6 @@ html {
 > [!NOTE]
 > 修改顶部为 flex 居中布局, 更加美观.
 > 修改头像 hover 样式.
-> 无论是博客首页还是文章页都能生效.
-> 直接增加下面代码.
 
 <details><summary>CSS Code</summary>
 
@@ -1052,7 +1050,7 @@ fork 之后, 转到搭建博客的 github 源码,
 3. 增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.
 
 ```CSS
-#header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
+#header.article-header{border-bottom:none;width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 ```
 4. 增加文章内容的上边距.
@@ -1284,6 +1282,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 2. 定位`document.addEventListener('DOMContentLoaded', () => {`, 在里面增加 JS 代码:
 
 <details><summary>Javascript Code</summary>
+
 ```Javascript
     const spoilerTexts = document.querySelectorAll('.spoilerText');
     if (spoilerTexts.length > 0) {
@@ -1294,6 +1293,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
         });
     }
 ```
+
 </details>
 
 3. markdown 输入:
@@ -1468,7 +1468,7 @@ CSS写入到了👉[文章自定义 js 代码](#articlejs.js---文章自定义-j
 
 意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.
 
-```js
+```Javascript
 document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(
         Object.assign(document.createElement('link'), {
@@ -1820,8 +1820,6 @@ html {
 > [!NOTE]
 > 修改顶部为 flex 居中布局, 更加美观.
 > 修改头像 hover 样式.
-> 无论是博客首页还是文章页都能生效.
-> 直接增加下面代码.
 
 <details><summary>CSS Code</summary>
 
@@ -2381,7 +2379,7 @@ fork 之后, 转到搭建博客的 github 源码,
 3. 增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.
 
 ```CSS
-#header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
+#header.article-header{border-bottom:none;width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 ```
 4. 增加文章内容的上边距.
@@ -2613,6 +2611,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 2. 定位`document.addEventListener('DOMContentLoaded', () => {`, 在里面增加 JS 代码:
 
 <details><summary>Javascript Code</summary>
+
 ```Javascript
     const spoilerTexts = document.querySelectorAll('.spoilerText');
     if (spoilerTexts.length > 0) {
@@ -2623,6 +2622,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
         });
     }
 ```
+
 </details>
 
 3. markdown 输入:
@@ -3098,9 +3098,7 @@ pv 修改成 uv 计数.</p>
 <h2>#header 样式</h2>
 <p><code class="notranslate">#header</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>修改顶部为 flex 居中布局, 更加美观.<br>
-修改头像 hover 样式.<br>
-无论是博客首页还是文章页都能生效.<br>
-直接增加下面代码.</p>
+修改头像 hover 样式.</p>
 </div>
 <details><summary>CSS Code</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-c">/* 优化header样式 */</span>
@@ -3498,7 +3496,7 @@ pv 修改成 uv 计数.</p>
 <ol start="3">
 <li>增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.</li>
 </ol>
-<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">#</span><span class="pl-c1">header</span>.<span class="pl-c1">article-header</span>{<span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span>;<span class="pl-c1">max-width</span><span class="pl-kos">:</span> inherit;<span class="pl-c1">position</span><span class="pl-kos">:</span> fixed;<span class="pl-c1">top</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;<span class="pl-c1">left</span><span class="pl-kos">:</span> <span class="pl-c1">50<span class="pl-smi">%</span></span>;<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">translateX</span>(<span class="pl-c1">-50<span class="pl-smi">%</span></span>);<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--header-articel-bgColor</span>);<span class="pl-c1">backdrop-filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">15<span class="pl-smi">px</span></span>);<span class="pl-c1">-webkit-backdrop-filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">15<span class="pl-smi">px</span></span>);<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">2<span class="pl-smi">px</span></span> <span class="pl-c1">10<span class="pl-smi">px</span></span> <span class="pl-en">rgba</span>(<span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">.1</span>);<span class="pl-c1">transition</span><span class="pl-kos">:</span> transform <span class="pl-c1">0.6<span class="pl-smi">s</span></span> ease-in-out;<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> transform <span class="pl-c1">0.6<span class="pl-smi">s</span></span> ease-in-out;<span class="pl-c1">z-index</span><span class="pl-kos">:</span> <span class="pl-c1">99</span>;<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span> <span class="pl-c1">15<span class="pl-smi">px</span></span> <span class="pl-c1">15<span class="pl-smi">px</span></span>;<span class="pl-c1">gap</span><span class="pl-kos">:</span> <span class="pl-c1">15<span class="pl-smi">px</span></span>;}
+<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">#</span><span class="pl-c1">header</span>.<span class="pl-c1">article-header</span>{<span class="pl-c1">border-bottom</span><span class="pl-kos">:</span>none;<span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">100<span class="pl-smi">%</span></span>;<span class="pl-c1">max-width</span><span class="pl-kos">:</span> inherit;<span class="pl-c1">position</span><span class="pl-kos">:</span> fixed;<span class="pl-c1">top</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;<span class="pl-c1">left</span><span class="pl-kos">:</span> <span class="pl-c1">50<span class="pl-smi">%</span></span>;<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">translateX</span>(<span class="pl-c1">-50<span class="pl-smi">%</span></span>);<span class="pl-c1">background</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--header-articel-bgColor</span>);<span class="pl-c1">backdrop-filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">15<span class="pl-smi">px</span></span>);<span class="pl-c1">-webkit-backdrop-filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">15<span class="pl-smi">px</span></span>);<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">10<span class="pl-smi">px</span></span>;<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">2<span class="pl-smi">px</span></span> <span class="pl-c1">10<span class="pl-smi">px</span></span> <span class="pl-en">rgba</span>(<span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">.1</span>);<span class="pl-c1">transition</span><span class="pl-kos">:</span> transform <span class="pl-c1">0.6<span class="pl-smi">s</span></span> ease-in-out;<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span> transform <span class="pl-c1">0.6<span class="pl-smi">s</span></span> ease-in-out;<span class="pl-c1">z-index</span><span class="pl-kos">:</span> <span class="pl-c1">99</span>;<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span> <span class="pl-c1">15<span class="pl-smi">px</span></span> <span class="pl-c1">15<span class="pl-smi">px</span></span>;<span class="pl-c1">gap</span><span class="pl-kos">:</span> <span class="pl-c1">15<span class="pl-smi">px</span></span>;}
 <span class="pl-kos">#</span><span class="pl-c1">header</span>.<span class="pl-c1">article-header</span>.<span class="pl-c1">hidden</span>{<span class="pl-c1">transform</span><span class="pl-kos">:</span><span class="pl-en">translate</span>(<span class="pl-c1">-50<span class="pl-smi">%</span></span><span class="pl-kos">,</span><span class="pl-c1">-120<span class="pl-smi">%</span></span>);}</pre></div>
 <ol start="4">
 <li>增加文章内容的上边距.</li>
@@ -3672,16 +3670,14 @@ pv 修改成 uv 计数.</p>
 <li>定位<code class="notranslate">document.addEventListener('DOMContentLoaded', () =&gt; {</code>, 在里面增加 JS 代码:</li>
 </ol>
 <details><summary>Javascript Code</summary>
-```Javascript
-    const spoilerTexts = document.querySelectorAll(".spoilerText");
-    if (spoilerTexts.length &gt; 0) {
-        spoilerTexts.forEach(spoilerText =&gt; {
-            spoilerText.addEventListener("click", () =&gt; {
-                spoilerText.classList.toggle("clear");
-            });
-        });
-    }
-```
+<div class="highlight highlight-source-js"><pre class="notranslate">    <span class="pl-k">const</span> <span class="pl-s1">spoilerTexts</span> <span class="pl-c1">=</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">querySelectorAll</span><span class="pl-kos">(</span><span class="pl-s">".spoilerText"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">spoilerTexts</span><span class="pl-kos">.</span><span class="pl-c1">length</span> <span class="pl-c1">&gt;</span> <span class="pl-c1">0</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+        <span class="pl-s1">spoilerTexts</span><span class="pl-kos">.</span><span class="pl-en">forEach</span><span class="pl-kos">(</span><span class="pl-s1">spoilerText</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+            <span class="pl-s1">spoilerText</span><span class="pl-kos">.</span><span class="pl-en">addEventListener</span><span class="pl-kos">(</span><span class="pl-s">"click"</span><span class="pl-kos">,</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+                <span class="pl-s1">spoilerText</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">toggle</span><span class="pl-kos">(</span><span class="pl-s">"clear"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-kos">}</span></pre></div>
 </details>
 <ol start="3">
 <li>markdown 输入:</li>

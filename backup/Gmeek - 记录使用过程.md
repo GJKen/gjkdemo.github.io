@@ -127,7 +127,7 @@ CSS写入到了👉[文章自定义 js 代码](#articlejs.js---文章自定义-j
 
 意思是页面加载完成再加载 CSS, 同时增加 fancybox 必要的绑定函数.
 
-```js
+```Javascript
 document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(
         Object.assign(document.createElement('link'), {
@@ -479,8 +479,6 @@ html {
 > [!NOTE]
 > 修改顶部为 flex 居中布局, 更加美观.
 > 修改头像 hover 样式.
-> 无论是博客首页还是文章页都能生效.
-> 直接增加下面代码.
 
 <details><summary>CSS Code</summary>
 
@@ -1040,7 +1038,7 @@ fork 之后, 转到搭建博客的 github 源码,
 3. 增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.
 
 ```CSS
-#header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
+#header.article-header{border-bottom:none;width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 ```
 4. 增加文章内容的上边距.
@@ -1272,6 +1270,7 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 2. 定位`document.addEventListener('DOMContentLoaded', () => {`, 在里面增加 JS 代码:
 
 <details><summary>Javascript Code</summary>
+
 ```Javascript
     const spoilerTexts = document.querySelectorAll(".spoilerText");
     if (spoilerTexts.length > 0) {
@@ -1282,6 +1281,7 @@ if '<code class="notranslate">Gmeek-html' in post_body:
         });
     }
 ```
+
 </details>
 
 3. markdown 输入:
