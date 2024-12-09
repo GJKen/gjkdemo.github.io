@@ -1237,17 +1237,13 @@ function iFrameLoading(){
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    const blurText = document.querySelector(".spoilerText");
-    if (blurText) {
-        blurText.addEventListener("click", (event) => {
-            blurText.classList.remove("spoiled");
-            event.stopPropagation();
+    const spoilerTexts = document.querySelectorAll(".spoilerText");
+    if (spoilerTexts.length > 0) {
+        spoilerTexts.forEach(spoilerText => {
+            spoilerText.addEventListener("click", () => {
+                spoilerText.classList.toggle("clear");
+            });
         });
-        document.addEventListener("click", () => {
-            blurText.classList.add("spoiled");
-        });
-    } else {
-        console.log("未发现类名'spoilerText'");
     }
 
     const createClipboardHTML = (codeContent, additionalClasses = '') => `
