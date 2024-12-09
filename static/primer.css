@@ -5460,6 +5460,7 @@
 	--markdown-blockquote-color: #ffffff8c;
 	--markdown-blockquote-borderLeft-color: #bbbbbb8c;
 	--markdown-pre-bgColor: #27282d;
+	--markdown-pre-shadowColor: #00000026;
 	--SideNav-bgColor: #ffffff21;
 	--title-right-svg-color: #00f0ff;
 	--markdown-h1-bgColor: #7dc2ff7a;
@@ -27748,8 +27749,9 @@ a.branch-name .octicon {
 	font-size: 85%;
 	line-height: 1.45;
 	color: var(--fgColor-default, var(--color-fg-default));
-	background-color: var(--markdown-pre-bgColor);
 	border-radius: 6px
+	background-color: var(--markdown-pre-bgColor);
+	box-shadow: 4px 5px 14px 0 var(--markdown-pre-shadowColor) inset;
 }
 
 .markdown-body pre code,
