@@ -982,7 +982,7 @@ a {
 
 # 通过 Gmeek 仓库 DIY 博客
 
-为什么这样做? ~~自娱自乐.~~
+为什么这样做? `Gmeek-spoilertxt='自娱自乐.~~'`
 
 ## Fork Gmeek 仓库
 
@@ -1255,21 +1255,21 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 更改后缩小了匹配范围, 可直接用行内代码块👉`Gmeek-html`让其在文章内正常显示.
 
-# 添加 Gmeek-spoliertxt - 文字防剧透模糊效果
+# 添加 Gmeek-spoilertxt - 文字防剧透模糊效果
 
 ## 打开 Gmeek.py
 
 1. 增加匹配内容:
 
 ```python
-        if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox='([^']+)'</code>',lambda match: f'<img data-fancybox='gallery' class='ImgLazyLoad' img-src='{match.group(1)}'>',post_body, flags=re.DOTALL)
+        if '<code class='notranslate'>Gmeek-spoliertxt' in post_body: 
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-spoilertxt='([^']+)'</code>', lambda match: f'<span id='spoilerText'>{match.group(1)}</span>', post_body, flags=re.DOTALL)
 ```
 
 2. 实际转化后的标签如下:
 
 ```html
-<p>测试剧透 <span class='spoilerText'>剧透内容</span></p>
+<p>测试剧透 <span id='spoilerText'>剧透内容</span></p>
 ```
 
 ## 打开 post.html
@@ -1300,12 +1300,12 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 3. markdown 输入:
 
 ```
-测试剧透👉`Gmeek-spoliertxt='666666'`
+测试剧透👉`Gmeek-spoilertxt='666666'`
 ```
 
 4. 实际展示👇:
 
-测试剧透👉`Gmeek-spoliertxt='666666'`.
+测试剧透👉`Gmeek-spoilertxt='666666'`.
 
 # 添加自定义单篇文章代码
 
@@ -2312,7 +2312,7 @@ a {
 
 # 通过 Gmeek 仓库 DIY 博客
 
-为什么这样做? ~~自娱自乐.~~
+为什么这样做? `Gmeek-spoilertxt='自娱自乐.~~'`
 
 ## Fork Gmeek 仓库
 
@@ -2585,21 +2585,21 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 更改后缩小了匹配范围, 可直接用行内代码块👉`Gmeek-html`让其在文章内正常显示.
 
-# 添加 Gmeek-spoliertxt - 文字防剧透模糊效果
+# 添加 Gmeek-spoilertxt - 文字防剧透模糊效果
 
 ## 打开 Gmeek.py
 
 1. 增加匹配内容:
 
 ```python
-        if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox='([^']+)'</code>',lambda match: f'<img data-fancybox='gallery' class='ImgLazyLoad' img-src='{match.group(1)}'>',post_body, flags=re.DOTALL)
+        if '<code class='notranslate'>Gmeek-spoliertxt' in post_body: 
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-spoilertxt='([^']+)'</code>', lambda match: f'<span id='spoilerText'>{match.group(1)}</span>', post_body, flags=re.DOTALL)
 ```
 
 2. 实际转化后的标签如下:
 
 ```html
-<p>测试剧透 <span class='spoilerText'>剧透内容</span></p>
+<p>测试剧透 <span id='spoilerText'>剧透内容</span></p>
 ```
 
 ## 打开 post.html
@@ -2630,12 +2630,12 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 3. markdown 输入:
 
 ```
-测试剧透👉`Gmeek-spoliertxt='666666'`
+测试剧透👉`Gmeek-spoilertxt='666666'`
 ```
 
 4. 实际展示👇:
 
-测试剧透👉`Gmeek-spoliertxt='666666'`.
+测试剧透👉`Gmeek-spoilertxt='666666'`.
 
 # 添加自定义单篇文章代码
 
@@ -2694,13 +2694,10 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 :root{--postTitle-textshadow: #ffffff80;}
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow: #00000080;}
 .postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
-/* .spoiled{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease} */
-/* .spoilerText{transition:filter .3s ease} */
-
-#spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
-.spoilerText.clear{filter: none;-webkit-filter: none;}
-
-.title-right .circle{padding: 14px 16px;}
+.spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
+.spoilerText.clear{filter: none;}
+.title-right{animation: fadeIn .3s ease-in 0s forwards;}
+.title-right a{padding: 14px 16px;}
 #postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
 #postBody hr{height:2px;}
 #cmButton{height:48px;margin-top:48px;}
@@ -3465,7 +3462,7 @@ pv 修改成 uv 计数.</p>
 }</pre></div>
 </details>
 <h1>通过 Gmeek 仓库 DIY 博客</h1>
-<p>为什么这样做? <del>自娱自乐.</del></p>
+<p>为什么这样做? <span class="spoilerText">自娱自乐.~~</span></p>
 <h2>Fork Gmeek 仓库</h2>
 <p>仓库地址👉 <a href="https://github.com/Meekdai/Gmeek">https://github.com/Meekdai/Gmeek</a></p>
 <p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV"></p>
@@ -3656,17 +3653,17 @@ pv 修改成 uv 计数.</p>
 <p>原先匹配的内容为:<code class="notranslate">&lt;code class="notranslate"&gt;Gmeek-html(.*?)&lt;/code&gt;</code>,</p>
 <p>这种情况下, 如果在 html 中含有行内代码块标签并且内容含有 Gmeek-html, 会导致转换文章内容时出现显示错误,</p>
 <p>更改后缩小了匹配范围, 可直接用行内代码块👉<code class="notranslate">Gmeek-html</code>让其在文章内正常显示.</p>
-<h1>添加 Gmeek-spoliertxt - 文字防剧透模糊效果</h1>
+<h1>添加 Gmeek-spoilertxt - 文字防剧透模糊效果</h1>
 <h2>打开 Gmeek.py</h2>
 <ol>
 <li>增加匹配内容:</li>
 </ol>
-<div class="highlight highlight-source-python"><pre class="notranslate">        <span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
-            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-c1">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox="([^"]+)"&lt;/code&gt;'</span>,<span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" class="ImgLazyLoad" img-src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-c1">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>,<span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-c1">DOTALL</span>)</pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate">        <span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-spoliertxt'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
+            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-c1">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-spoilertxt="([^"]+)"&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;span id="spoilerText"&gt;<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-c1">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>&lt;/span&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-c1">DOTALL</span>)</pre></div>
 <ol start="2">
 <li>实际转化后的标签如下:</li>
 </ol>
-<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span>测试剧透 <span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">class</span>="<span class="pl-s">spoilerText</span>"<span class="pl-kos">&gt;</span>剧透内容<span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span></pre></div>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span>测试剧透 <span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">id</span>="<span class="pl-s">spoilerText</span>"<span class="pl-kos">&gt;</span>剧透内容<span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span></pre></div>
 <h2>打开 post.html</h2>
 <ol>
 <li>增加 CSS 样式:</li>
@@ -3692,7 +3689,7 @@ pv 修改成 uv 计数.</p>
 <ol start="3">
 <li>markdown 输入:</li>
 </ol>
-<pre class="notranslate"><code class="notranslate">测试剧透👉`Gmeek-spoliertxt="666666"`
+<pre class="notranslate"><code class="notranslate">测试剧透👉`Gmeek-spoilertxt="666666"`
 </code></pre>
 <ol start="4">
 <li>实际展示👇:</li>
@@ -3875,18 +3872,14 @@ function iFrameLoading(){
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // const blurText = document.querySelector(".spoilerText");
-    // if (blurText) {
-    //     blurText.addEventListener("click", (event) => {
-    //         blurText.classList.remove("spoiled");
-    //         event.stopPropagation();
-    //     });
-    //     document.addEventListener("click", () => {
-    //         blurText.classList.add("spoiled");
-    //     });
-    // } else {
-    //     console.log("未发现类名'spoilerText'");
-    // }
+    const spoilerTexts = document.querySelectorAll(".spoilerText");
+    if (spoilerTexts.length > 0) {
+        spoilerTexts.forEach(spoilerText => {
+            spoilerText.addEventListener("click", () => {
+                spoilerText.classList.toggle("clear");
+            });
+        });
+    }
 
     const createClipboardHTML = (codeContent, additionalClasses = '') => `
         <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
@@ -3953,8 +3946,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script src='../../static/ArticleJs.js'></script>
-<script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://cdn.jsdelivr.net/gh/gyanprabhat7/LazyLoad.JS/lazyImage.js'></script>
+<script src='../../static/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://cdn.jsdelivr.net/gh/gyanprabhat7/LazyLoad.JS/lazyImage.js'></script>
 
 </html>
