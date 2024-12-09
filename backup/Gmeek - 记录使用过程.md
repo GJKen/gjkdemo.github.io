@@ -1250,14 +1250,14 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 1. 增加匹配内容:
 
 ```python
-        if '<code class="notranslate">Gmeek-spoliertxt' in post_body: 
-            post_body = re.sub(r'<code class="notranslate">Gmeek-spoilertxt="([^"]+)"</code>', lambda match: f'<span id="spoilerText">{match.group(1)}</span>', post_body, flags=re.DOTALL)
+        if '<code class="notranslate">Gmeek-spoilertxt' in post_body: 
+            post_body = re.sub(r'<code class="notranslate">Gmeek-spoilertxt="([^"]+)"</code>', lambda match: f'<span class="spoilerText">{match.group(1)}</span>', post_body, flags=re.DOTALL)
 ```
 
 2. 实际转化后的标签如下:
 
 ```html
-<p>测试剧透 <span id="spoilerText">剧透内容</span></p>
+<p>测试剧透 <span class="spoilerText">剧透内容</span></p>
 ```
 
 ## 打开 post.html
@@ -1265,25 +1265,24 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 1. 增加 CSS 样式:
 
 ```CSS
-.spoiled{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
-.spoilerText{transition:filter .3s ease}
+.spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
+.spoilerText.clear{filter: none;}
 ```
 
 2. 定位`document.addEventListener('DOMContentLoaded', () => {`, 在里面增加 JS 代码:
-```
-    const blurText = document.querySelector(".spoilerText");
-    if (blurText) {
-        blurText.addEventListener("click", (event) => {
-            blurText.classList.remove("spoiled");
-            event.stopPropagation();
+
+<details><summary>Javascript Code</summary>
+```Javascript
+    const spoilerTexts = document.querySelectorAll(".spoilerText");
+    if (spoilerTexts.length > 0) {
+        spoilerTexts.forEach(spoilerText => {
+            spoilerText.addEventListener("click", () => {
+                spoilerText.classList.toggle("clear");
+            });
         });
-        document.addEventListener("click", () => {
-            blurText.classList.add("spoiled");
-        });
-    } else {
-        console.log("未发现类名'spoilerText'");
     }
 ```
+</details>
 
 3. markdown 输入:
 

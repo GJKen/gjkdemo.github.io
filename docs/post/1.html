@@ -1262,14 +1262,14 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 1. 增加匹配内容:
 
 ```python
-        if '<code class='notranslate'>Gmeek-spoliertxt' in post_body: 
-            post_body = re.sub(r'<code class='notranslate'>Gmeek-spoilertxt='([^']+)'</code>', lambda match: f'<span id='spoilerText'>{match.group(1)}</span>', post_body, flags=re.DOTALL)
+        if '<code class='notranslate'>Gmeek-spoilertxt' in post_body: 
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-spoilertxt='([^']+)'</code>', lambda match: f'<span class='spoilerText'>{match.group(1)}</span>', post_body, flags=re.DOTALL)
 ```
 
 2. 实际转化后的标签如下:
 
 ```html
-<p>测试剧透 <span id='spoilerText'>剧透内容</span></p>
+<p>测试剧透 <span class='spoilerText'>剧透内容</span></p>
 ```
 
 ## 打开 post.html
@@ -1277,25 +1277,24 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 1. 增加 CSS 样式:
 
 ```CSS
-.spoiled{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
-.spoilerText{transition:filter .3s ease}
+.spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
+.spoilerText.clear{filter: none;}
 ```
 
 2. 定位`document.addEventListener('DOMContentLoaded', () => {`, 在里面增加 JS 代码:
-```
-    const blurText = document.querySelector('.spoilerText');
-    if (blurText) {
-        blurText.addEventListener('click', (event) => {
-            blurText.classList.remove('spoiled');
-            event.stopPropagation();
+
+<details><summary>Javascript Code</summary>
+```Javascript
+    const spoilerTexts = document.querySelectorAll('.spoilerText');
+    if (spoilerTexts.length > 0) {
+        spoilerTexts.forEach(spoilerText => {
+            spoilerText.addEventListener('click', () => {
+                spoilerText.classList.toggle('clear');
+            });
         });
-        document.addEventListener('click', () => {
-            blurText.classList.add('spoiled');
-        });
-    } else {
-        console.log('未发现类名'spoilerText'');
     }
 ```
+</details>
 
 3. markdown 输入:
 
@@ -2592,14 +2591,14 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 1. 增加匹配内容:
 
 ```python
-        if '<code class='notranslate'>Gmeek-spoliertxt' in post_body: 
-            post_body = re.sub(r'<code class='notranslate'>Gmeek-spoilertxt='([^']+)'</code>', lambda match: f'<span id='spoilerText'>{match.group(1)}</span>', post_body, flags=re.DOTALL)
+        if '<code class='notranslate'>Gmeek-spoilertxt' in post_body: 
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-spoilertxt='([^']+)'</code>', lambda match: f'<span class='spoilerText'>{match.group(1)}</span>', post_body, flags=re.DOTALL)
 ```
 
 2. 实际转化后的标签如下:
 
 ```html
-<p>测试剧透 <span id='spoilerText'>剧透内容</span></p>
+<p>测试剧透 <span class='spoilerText'>剧透内容</span></p>
 ```
 
 ## 打开 post.html
@@ -2607,25 +2606,24 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 1. 增加 CSS 样式:
 
 ```CSS
-.spoiled{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
-.spoilerText{transition:filter .3s ease}
+.spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
+.spoilerText.clear{filter: none;}
 ```
 
 2. 定位`document.addEventListener('DOMContentLoaded', () => {`, 在里面增加 JS 代码:
-```
-    const blurText = document.querySelector('.spoilerText');
-    if (blurText) {
-        blurText.addEventListener('click', (event) => {
-            blurText.classList.remove('spoiled');
-            event.stopPropagation();
+
+<details><summary>Javascript Code</summary>
+```Javascript
+    const spoilerTexts = document.querySelectorAll('.spoilerText');
+    if (spoilerTexts.length > 0) {
+        spoilerTexts.forEach(spoilerText => {
+            spoilerText.addEventListener('click', () => {
+                spoilerText.classList.toggle('clear');
+            });
         });
-        document.addEventListener('click', () => {
-            blurText.classList.add('spoiled');
-        });
-    } else {
-        console.log('未发现类名'spoilerText'');
     }
 ```
+</details>
 
 3. markdown 输入:
 
@@ -3657,34 +3655,33 @@ pv 修改成 uv 计数.</p>
 <ol>
 <li>增加匹配内容:</li>
 </ol>
-<div class="highlight highlight-source-python"><pre class="notranslate">        <span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-spoliertxt'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
-            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-c1">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-spoilertxt="([^"]+)"&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;span id="spoilerText"&gt;<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-c1">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>&lt;/span&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-c1">DOTALL</span>)</pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate">        <span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-spoilertxt'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
+            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-c1">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-spoilertxt="([^"]+)"&lt;/code&gt;'</span>, <span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;span class="spoilerText"&gt;<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-c1">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>&lt;/span&gt;'</span>, <span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-c1">DOTALL</span>)</pre></div>
 <ol start="2">
 <li>实际转化后的标签如下:</li>
 </ol>
-<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span>测试剧透 <span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">id</span>="<span class="pl-s">spoilerText</span>"<span class="pl-kos">&gt;</span>剧透内容<span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span></pre></div>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span>测试剧透 <span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">class</span>="<span class="pl-s">spoilerText</span>"<span class="pl-kos">&gt;</span>剧透内容<span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span></pre></div>
 <h2>打开 post.html</h2>
 <ol>
 <li>增加 CSS 样式:</li>
 </ol>
-<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">spoiled</span>{<span class="pl-c1">filter</span><span class="pl-kos">:</span><span class="pl-en">blur</span>(<span class="pl-c1">5<span class="pl-smi">px</span></span>);<span class="pl-c1">-webkit-filter</span><span class="pl-kos">:</span><span class="pl-en">blur</span>(<span class="pl-c1">5<span class="pl-smi">px</span></span>);<span class="pl-c1">cursor</span><span class="pl-kos">:</span>pointer;<span class="pl-c1">transition</span><span class="pl-kos">:</span>filter <span class="pl-c1">.3<span class="pl-smi">s</span></span> ease}
-.<span class="pl-c1">spoilerText</span>{<span class="pl-c1">transition</span><span class="pl-kos">:</span>filter <span class="pl-c1">.3<span class="pl-smi">s</span></span> ease}</pre></div>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">spoilerText</span>{<span class="pl-c1">filter</span><span class="pl-kos">:</span><span class="pl-en">blur</span>(<span class="pl-c1">5<span class="pl-smi">px</span></span>);<span class="pl-c1">-webkit-filter</span><span class="pl-kos">:</span><span class="pl-en">blur</span>(<span class="pl-c1">5<span class="pl-smi">px</span></span>);<span class="pl-c1">cursor</span><span class="pl-kos">:</span>pointer;<span class="pl-c1">transition</span><span class="pl-kos">:</span>filter <span class="pl-c1">.3<span class="pl-smi">s</span></span> ease}
+.<span class="pl-c1">spoilerText</span>.<span class="pl-c1">clear</span>{<span class="pl-c1">filter</span><span class="pl-kos">:</span> none;}</pre></div>
 <ol start="2">
 <li>定位<code class="notranslate">document.addEventListener('DOMContentLoaded', () =&gt; {</code>, 在里面增加 JS 代码:</li>
 </ol>
-<pre class="notranslate"><code class="notranslate">    const blurText = document.querySelector(".spoilerText");
-    if (blurText) {
-        blurText.addEventListener("click", (event) =&gt; {
-            blurText.classList.remove("spoiled");
-            event.stopPropagation();
+<details><summary>Javascript Code</summary>
+```Javascript
+    const spoilerTexts = document.querySelectorAll(".spoilerText");
+    if (spoilerTexts.length &gt; 0) {
+        spoilerTexts.forEach(spoilerText =&gt; {
+            spoilerText.addEventListener("click", () =&gt; {
+                spoilerText.classList.toggle("clear");
+            });
         });
-        document.addEventListener("click", () =&gt; {
-            blurText.classList.add("spoiled");
-        });
-    } else {
-        console.log("未发现类名'spoilerText'");
     }
-</code></pre>
+```
+</details>
 <ol start="3">
 <li>markdown 输入:</li>
 </ol>
