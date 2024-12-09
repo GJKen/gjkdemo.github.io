@@ -63,12 +63,4 @@ document.addEventListener('DOMContentLoaded', () => {
 		// 防止负值
 		lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 	});
-	
-	document.addEventListener("DOMContentLoaded", () => {
-    const spoilerText = document.getElementById("spoilerText");
-
-    spoilerText.addEventListener("click", () => {
-        spoilerText.classList.toggle("clear");
-    });
-});
 });

@@ -12535,39 +12535,6 @@ body {
 	border-radius: 10px;
 }
 
-/* header可以通过Gmeek仓库修改, 这边直接注释了
-#header {
-	flex-direction: column !important;
-	align-items: center !important;
-	gap: 10px;
-	padding-bottom: 0 !important;
-	margin-bottom: 24px !important
-}
-
-#header h1 {
-	display: flex;
-	flex-direction: column !important;
-	align-items: center !important;
-	gap: 15px
-}
-
-#header h1 a {
-	margin: unset !important;
-}
-
-.title-right,
-.title-right.circle,
-.title-right a {
-	margin: unset !important;
-	transition: 0.25s;
-}
-
-.avatar:hover {
-	transform: scale(1.5) rotate(720deg) !important;
-	box-shadow: 0 0 10px rgb(45 250 255 / 74%);
-}
-*/
-
 a {
 	color: var(--fgColor-accent, var(--color-accent-fg));
 	text-decoration: none
