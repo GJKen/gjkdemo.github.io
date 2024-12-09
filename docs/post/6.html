@@ -269,7 +269,7 @@ Markdown 支持直接插入 HTML 代码, 但某些平台可能会限制这一功
 <meta property="og:url" content="https://GJKen.github.io/demo/post/6.html">
 <meta property="og:image" content="https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp">
 <title>Github Markdown 使用笔记</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 
 </head>
@@ -349,12 +349,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>以下是 Markdown 的一些常用语法:</p>
 <h2>标题</h2>
 <p>在文字前面加上<code class="notranslate">#</code>表示标题, 然后<code class="notranslate"># </code>与文字之间用空格隔开,<code class="notranslate">#</code> 的数量表示标题的级别:</p>
-<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-mh"># <span class="pl-en">一级标题</span></span>
-<span class="pl-mh">## <span class="pl-en">二级标题</span></span>
-<span class="pl-mh">### <span class="pl-en">三级标题</span></span>
-<span class="pl-mh">#### <span class="pl-en">四级标题</span></span>
-<span class="pl-mh">##### <span class="pl-en">五级标题</span></span>
-<span class="pl-mh">###### <span class="pl-en">六级标题</span></span></pre></div>
+<pre lang="md" class="notranslate"><code class="notranslate"># 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题
+</code></pre>
 <h2>强调</h2>
 <ul>
 <li><em>斜体</em> :将文字两边各加上一个 <code class="notranslate">*</code> 或 <code class="notranslate">_</code>.</li>
@@ -370,11 +371,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <ul>
 <li>
 <p>链接:<code class="notranslate">[显示文本](链接地址 "标题")</code></p>
-<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">[</span>百度<span class="pl-s">]</span><span class="pl-s">(</span><span class="pl-corl">https://www.baidu.com</span><span class="pl-s">)</span></pre></div>
+<pre lang="md" class="notranslate"><code class="notranslate">[百度](https://www.baidu.com)
+</code></pre>
 </li>
 <li>
 <p>图片:<code class="notranslate">![替代文字](图片链接 "标题")</code></p>
-<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">![</span>这是一张图片<span class="pl-s">]</span><span class="pl-s">(</span><span class="pl-corl">https://example.com/image.jpg</span><span class="pl-s">)</span></pre></div>
+<pre lang="md" class="notranslate"><code class="notranslate">![这是一张图片](https://example.com/image.jpg)
+</code></pre>
 </li>
 <li>
 <p>锚点链接:<code class="notranslate">![替代文字](#标题1)</code></p>
@@ -394,10 +397,11 @@ print("Hello World")<br>
 </blockquote>
 <h2>表格</h2>
 <p>使用 <code class="notranslate">|</code> 和 <code class="notranslate">-</code> 创建表格:</p>
-<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-ml">|</span> 标题1 <span class="pl-ml">|</span> 标题2 <span class="pl-ml">|</span> 标题3 <span class="pl-ml">|</span>
-<span class="pl-ml">|</span>-------<span class="pl-ml">|</span>-------<span class="pl-ml">|</span>-------<span class="pl-ml">|</span>
-<span class="pl-ml">|</span> 单元格1 <span class="pl-ml">|</span> 单元格2 <span class="pl-ml">|</span> 单元格3 <span class="pl-ml">|</span>
-<span class="pl-ml">|</span> 单元格4 <span class="pl-ml">|</span> 单元格5 <span class="pl-ml">|</span> 单元格6 <span class="pl-ml">|</span></pre></div>
+<pre lang="md" class="notranslate"><code class="notranslate">| 标题1 | 标题2 | 标题3 |
+|-------|-------|-------|
+| 单元格1 | 单元格2 | 单元格3 |
+| 单元格4 | 单元格5 | 单元格6 |
+</code></pre>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>在 Git markdown 中可以直接用更加省略的写法</p>
 </div>
 <pre class="notranslate"><code class="notranslate">| 标题1 | 标题2 | 标题3
