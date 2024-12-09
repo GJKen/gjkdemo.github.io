@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				ob.unobserve(img);
 				setTimeout(() => {
 					img.classList.remove('ImgLazyLoad'); // 增加图片显示延迟, 延迟过程中图片也是会加载的
+					img.classList.add('ImgLoaded') //增加图片显示后的类名
 				}, 500);
 			}
 		});
@@ -63,4 +64,21 @@ document.addEventListener('DOMContentLoaded', () => {
 		lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 	});
 
+    const blurTarget = document.getElementById('blurTarget');
+    
+    // 给所有 <span> 标签添加点击事件
+    document.querySelectorAll('span').forEach(span => {
+        span.addEventListener('click', function(event) {
+            // 防止事件冒泡到 document 上，确保只有点击 span 时才取消模糊
+            event.stopPropagation();
+            
+            // 取消模糊效果
+            blurTarget.classList.remove('blurred');
+        });
+    });
+
+    // 点击页面其他地方时恢复模糊效果
+    document.addEventListener('click', function() {
+        blurTarget.classList.add('blurred');
+    });
 });
