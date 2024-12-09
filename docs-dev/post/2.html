@@ -22,17 +22,17 @@
 
 进入仓库点击 Releases.
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmezvVPRyL9frLHxBtG5SnuxNLjxwN6tbHDTPK7zhYeSM7'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmezvVPRyL9frLHxBtG5SnuxNLjxwN6tbHDTPK7zhYeSM7'`
 
 简单命名版本
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmb81JPfuBkDAaVSSFSNEC31q6nPfQw3BeTWK48u96kAza'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/Qmb81JPfuBkDAaVSSFSNEC31q6nPfQw3BeTWK48u96kAza'`
 
 # 创建标签(Tags)
 
 创建 Tags 和 Releases 步骤一样, 下图是入口.
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbpnHcxKXJNYuEvrT5tg4CwAiJNgpc3BRNE7h6ebhYgsK'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmbpnHcxKXJNYuEvrT5tg4CwAiJNgpc3BRNE7h6ebhYgsK'`
 
 # 使用方法
 
@@ -76,17 +76,17 @@ test1.jsdelivr.net
 
 进入仓库点击 Releases.
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmezvVPRyL9frLHxBtG5SnuxNLjxwN6tbHDTPK7zhYeSM7'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmezvVPRyL9frLHxBtG5SnuxNLjxwN6tbHDTPK7zhYeSM7'`
 
 简单命名版本
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/Qmb81JPfuBkDAaVSSFSNEC31q6nPfQw3BeTWK48u96kAza'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/Qmb81JPfuBkDAaVSSFSNEC31q6nPfQw3BeTWK48u96kAza'`
 
 # 创建标签(Tags)
 
 创建 Tags 和 Releases 步骤一样, 下图是入口.
 
-`Gmeek-imgbox<img src='https://i0.img2ipfs.com/ipfs/QmbpnHcxKXJNYuEvrT5tg4CwAiJNgpc3BRNE7h6ebhYgsK'>`
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmbpnHcxKXJNYuEvrT5tg4CwAiJNgpc3BRNE7h6ebhYgsK'`
 
 # 使用方法
 
@@ -126,16 +126,24 @@ test1.jsdelivr.net
 
 </head>
 <style>
+:root{--header-article-bgColor: #3b3b3b6b;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor: #ffffff00;}
 body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
 #header{display:flex;flex-direction: column;align-items: center;gap: 10px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 24px;}
-#header.article-header{width:100%;max-width:inherit;position:fixed;top:0;left:50%;right:0;transform:translateX(-50%);background:var(--body-bgColor);backdrop-filter:blur(15px);border-bottom:1pxsolidvar(--borderColor-muted,var(--color-border-muted));padding:10px;box-shadow:0px2px5pxrgba(0,0,0,0.1);transition:transform0.6sease-in-out;z-index:99;border-radius:0010px10px;box-shadow:02px8pxrgba(0,0,0,.1);}#header.article-header.hidden{transform:translate(-50%,-120%);}#content{margin-top:80px;}
-#header h1 a {margin: unset;}
-#footer {margin-top:64px; text-align: center;font-size: small;}
+#header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
+#header.article-header.hidden{transform:translate(-50%,-120%);}
+#header h1 a{margin: unset;}
+.article-content{margin-top:90px;}
+#footer{margin-top:64px; text-align: center;font-size: small;}
 
 </style>
 
 <style>
-.postTitle{margin: auto 0;font-size:35px;font-weight:bold;}
+:root{--postTitle-textshadow: #ffffff80;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow: #00000080;}
+.postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
+.spoiled{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
+.spoilerText{transition:filter .3s ease}
 .title-right .circle{padding: 14px 16px;}
 #postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
 #postBody hr{height:2px;}
@@ -187,7 +195,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 </div>
 </div>
-    <div id="content">
+    <div id="content" class="article-content">
 <div class="markdown-body" id="postBody"><h1>jsDelivr 官网</h1>
 <blockquote>
 <p><a href="https://www.jsdelivr.com" rel="nofollow">https://www.jsdelivr.com</a></p>
@@ -196,12 +204,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>必须要创建一个 GitHub 仓库, 并且存放你需要加速的文件.</p>
 <h1>创建版本号</h1>
 <p>进入仓库点击 Releases.</p>
-<p><code class="notranslate">Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/QmezvVPRyL9frLHxBtG5SnuxNLjxwN6tbHDTPK7zhYeSM7"&gt;</code></p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmezvVPRyL9frLHxBtG5SnuxNLjxwN6tbHDTPK7zhYeSM7"></p>
 <p>简单命名版本</p>
-<p><code class="notranslate">Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/Qmb81JPfuBkDAaVSSFSNEC31q6nPfQw3BeTWK48u96kAza"&gt;</code></p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/Qmb81JPfuBkDAaVSSFSNEC31q6nPfQw3BeTWK48u96kAza"></p>
 <h1>创建标签(Tags)</h1>
 <p>创建 Tags 和 Releases 步骤一样, 下图是入口.</p>
-<p><code class="notranslate">Gmeek-imgbox&lt;img src="https://i0.img2ipfs.com/ipfs/QmbpnHcxKXJNYuEvrT5tg4CwAiJNgpc3BRNE7h6ebhYgsK"&gt;</code></p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmbpnHcxKXJNYuEvrT5tg4CwAiJNgpc3BRNE7h6ebhYgsK"></p>
 <h1>使用方法</h1>
 <p>例如:</p>
 <p><code class="notranslate">https://cdn.jsdelivr.net/gh/[GitHub用户名]/[仓库名]@[版本号或者标签]/[文件路径]</code></p>
@@ -339,6 +347,20 @@ function iFrameLoading(){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    const blurText = document.querySelector(".spoilerText");
+    if (blurText) {
+        blurText.addEventListener("click", (event) => {
+            blurText.classList.remove("spoiled");
+            event.stopPropagation();
+        });
+        document.addEventListener("click", () => {
+            blurText.classList.add("spoiled");
+        });
+    } else {
+        console.log("未发现类名'spoilerText'");
+    }
+
     const createClipboardHTML = (codeContent, additionalClasses = '') => `
         <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
         <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">

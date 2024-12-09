@@ -11,10 +11,260 @@
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
 <meta name="description" content="> [!NOTE]
->Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成结构化的HTML代码。">
+> Markdown 是一种轻量级标记语言, 它允许人们使用易读易写的纯文本格式编写文档, 然后转换成结构化的 HTML 代码. Markdown 语法简单, 但功能强大, 广泛应用于博客、笔记、文档编写等方面.  
+
+以下是 Markdown 的一些常用语法:
+
+## 标题
+
+在文字前面加上`#`表示标题, 然后`# `与文字之间用空格隔开,`#` 的数量表示标题的级别:
+
+```md
+# 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题
+```
+
+## 强调
+
+-   _斜体_ :将文字两边各加上一个 `*` 或 `_`.
+-   **粗体**:将文字两边各加上两个 `*` 或 `_`.
+-   _**粗斜体**_:将文字两边各加上三个 `*` 或 `_`.
+
+## 列表
+
+-   无序列表:使用 `*`、`+` 或 `-` 加上一个空格.
+-   有序列表:使用数字加点加空格.
+
+## 链接与图片
+
+-   链接:`[显示文本](链接地址 '标题')`
+
+    ```md
+    [百度](https://www.baidu.com)
+    ```
+
+-   图片:`![替代文字](图片链接 '标题')`
+    
+    ```md
+    ![这是一张图片](https://example.com/image.jpg)
+    ```
+
+-   锚点链接:`![替代文字](#标题1)`
+
+## 引用
+
+在引用的文字前加上 `>` 符号:
+
+## 代码
+
+-   行内代码:用一对反引号'\`'包围代码:\`code\`→`code`
+-   代码块:用一对三个反引号上下包围代码块.
+
+> \`\`\`（可以在后面加上代码语言如:python）  
+> print('Hello World')  
+> \`\`\`
+
+## 表格
+
+使用 `|` 和 `-` 创建表格:
+
+```md
+| 标题1 | 标题2 | 标题3 |
+|-------|-------|-------|
+| 单元格1 | 单元格2 | 单元格3 |
+| 单元格4 | 单元格5 | 单元格6 |
+```
+> [!NOTE]
+> 在 Git markdown 中可以直接用更加省略的写法
+
+```
+| 标题1 | 标题2 | 标题3
+|-|-|-
+| 单元格1 | 单元格2 | 单元格3
+| 单元格4 | 单元格5 | 单元格6
+```
+
+## 分隔线
+
+使用三个以上的 `*`、`-` 或 `_` 来创建分隔线:
+
+## 警报
+```
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
+```
+
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
+
+
+## HTML 代码
+
+Markdown 支持直接插入 HTML 代码, 但某些平台可能会限制这一功能.
+
+## 转义字符
+
+您可以在 Markdown 字符前使用 \\ 命令 Markdown 解析器忽略（转义）Markdown 格式:\*这不是一个斜体\*
+ 
+
+> [!TIP]
+> 根据不同的解析器或平台（如 Github）, 还可能支持额外的功能或语法.详见[Github Markdown语法官方文档](https://docs.github.com/zh/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)。">
 <meta property="og:title" content="Github Markdown 使用笔记">
 <meta property="og:description" content="> [!NOTE]
->Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成结构化的HTML代码。">
+> Markdown 是一种轻量级标记语言, 它允许人们使用易读易写的纯文本格式编写文档, 然后转换成结构化的 HTML 代码. Markdown 语法简单, 但功能强大, 广泛应用于博客、笔记、文档编写等方面.  
+
+以下是 Markdown 的一些常用语法:
+
+## 标题
+
+在文字前面加上`#`表示标题, 然后`# `与文字之间用空格隔开,`#` 的数量表示标题的级别:
+
+```md
+# 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题
+```
+
+## 强调
+
+-   _斜体_ :将文字两边各加上一个 `*` 或 `_`.
+-   **粗体**:将文字两边各加上两个 `*` 或 `_`.
+-   _**粗斜体**_:将文字两边各加上三个 `*` 或 `_`.
+
+## 列表
+
+-   无序列表:使用 `*`、`+` 或 `-` 加上一个空格.
+-   有序列表:使用数字加点加空格.
+
+## 链接与图片
+
+-   链接:`[显示文本](链接地址 '标题')`
+
+    ```md
+    [百度](https://www.baidu.com)
+    ```
+
+-   图片:`![替代文字](图片链接 '标题')`
+    
+    ```md
+    ![这是一张图片](https://example.com/image.jpg)
+    ```
+
+-   锚点链接:`![替代文字](#标题1)`
+
+## 引用
+
+在引用的文字前加上 `>` 符号:
+
+## 代码
+
+-   行内代码:用一对反引号'\`'包围代码:\`code\`→`code`
+-   代码块:用一对三个反引号上下包围代码块.
+
+> \`\`\`（可以在后面加上代码语言如:python）  
+> print('Hello World')  
+> \`\`\`
+
+## 表格
+
+使用 `|` 和 `-` 创建表格:
+
+```md
+| 标题1 | 标题2 | 标题3 |
+|-------|-------|-------|
+| 单元格1 | 单元格2 | 单元格3 |
+| 单元格4 | 单元格5 | 单元格6 |
+```
+> [!NOTE]
+> 在 Git markdown 中可以直接用更加省略的写法
+
+```
+| 标题1 | 标题2 | 标题3
+|-|-|-
+| 单元格1 | 单元格2 | 单元格3
+| 单元格4 | 单元格5 | 单元格6
+```
+
+## 分隔线
+
+使用三个以上的 `*`、`-` 或 `_` 来创建分隔线:
+
+## 警报
+```
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
+```
+
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
+
+
+## HTML 代码
+
+Markdown 支持直接插入 HTML 代码, 但某些平台可能会限制这一功能.
+
+## 转义字符
+
+您可以在 Markdown 字符前使用 \\ 命令 Markdown 解析器忽略（转义）Markdown 格式:\*这不是一个斜体\*
+ 
+
+> [!TIP]
+> 根据不同的解析器或平台（如 Github）, 还可能支持额外的功能或语法.详见[Github Markdown语法官方文档](https://docs.github.com/zh/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://GJKen.github.io/demo/post/6.html">
 <meta property="og:image" content="https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp">
@@ -24,16 +274,24 @@
 
 </head>
 <style>
+:root{--header-article-bgColor: #3b3b3b6b;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor: #ffffff00;}
 body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
 #header{display:flex;flex-direction: column;align-items: center;gap: 10px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 24px;}
-#header.article-header{width:100%;max-width:inherit;position:fixed;top:0;left:50%;right:0;transform:translateX(-50%);background:var(--body-bgColor);backdrop-filter:blur(15px);border-bottom:1pxsolidvar(--borderColor-muted,var(--color-border-muted));padding:10px;box-shadow:0px2px5pxrgba(0,0,0,0.1);transition:transform0.6sease-in-out;z-index:99;border-radius:0010px10px;box-shadow:02px8pxrgba(0,0,0,.1);}#header.article-header.hidden{transform:translate(-50%,-120%);}#content{margin-top:80px;}
-#header h1 a {margin: unset;}
-#footer {margin-top:64px; text-align: center;font-size: small;}
+#header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
+#header.article-header.hidden{transform:translate(-50%,-120%);}
+#header h1 a{margin: unset;}
+.article-content{margin-top:90px;}
+#footer{margin-top:64px; text-align: center;font-size: small;}
 
 </style>
 
 <style>
-.postTitle{margin: auto 0;font-size:35px;font-weight:bold;}
+:root{--postTitle-textshadow: #ffffff80;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow: #00000080;}
+.postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
+.spoiled{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
+.spoilerText{transition:filter .3s ease}
 .title-right .circle{padding: 14px 16px;}
 #postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
 #postBody hr{height:2px;}
@@ -85,12 +343,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 </div>
 </div>
-    <div id="content">
-<div class="markdown-body" id="postBody"><div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成结构化的HTML代码。Markdown 语法简单，但功能强大，广泛应用于博客、笔记、文档编写等方面。</p>
+    <div id="content" class="article-content">
+<div class="markdown-body" id="postBody"><div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>Markdown 是一种轻量级标记语言, 它允许人们使用易读易写的纯文本格式编写文档, 然后转换成结构化的 HTML 代码. Markdown 语法简单, 但功能强大, 广泛应用于博客、笔记、文档编写等方面.</p>
 </div>
-<p>以下是 Markdown 的一些常用语法：</p>
+<p>以下是 Markdown 的一些常用语法:</p>
 <h2>标题</h2>
-<p>在文字前面加上 <code class="notranslate">#</code> 表示标题，然后 <code class="notranslate"># </code>与文字之间用空格隔开，<code class="notranslate">#</code> 的数量表示标题的级别：</p>
+<p>在文字前面加上<code class="notranslate">#</code>表示标题, 然后<code class="notranslate"># </code>与文字之间用空格隔开,<code class="notranslate">#</code> 的数量表示标题的级别:</p>
 <div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-mh"># <span class="pl-en">一级标题</span></span>
 <span class="pl-mh">## <span class="pl-en">二级标题</span></span>
 <span class="pl-mh">### <span class="pl-en">三级标题</span></span>
@@ -99,70 +357,56 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-mh">###### <span class="pl-en">六级标题</span></span></pre></div>
 <h2>强调</h2>
 <ul>
-<li><em>斜体</em> ：将文字两边各加上一个 <code class="notranslate">*</code> 或 <code class="notranslate">_</code>。</li>
-<li><strong>粗体</strong>：将文字两边各加上两个 <code class="notranslate">*</code> 或 <code class="notranslate">_</code>。</li>
-<li><em><strong>粗斜体</strong></em>：将文字两边各加上三个 <code class="notranslate">*</code> 或 <code class="notranslate">_</code>。</li>
+<li><em>斜体</em> :将文字两边各加上一个 <code class="notranslate">*</code> 或 <code class="notranslate">_</code>.</li>
+<li><strong>粗体</strong>:将文字两边各加上两个 <code class="notranslate">*</code> 或 <code class="notranslate">_</code>.</li>
+<li><em><strong>粗斜体</strong></em>:将文字两边各加上三个 <code class="notranslate">*</code> 或 <code class="notranslate">_</code>.</li>
 </ul>
 <h2>列表</h2>
 <ul>
-<li>无序列表：使用 <code class="notranslate">*</code>、<code class="notranslate">+</code> 或 <code class="notranslate">-</code> 加上一个空格。</li>
-<li>有序列表：使用数字加点加空格。</li>
+<li>无序列表:使用 <code class="notranslate">*</code>、<code class="notranslate">+</code> 或 <code class="notranslate">-</code> 加上一个空格.</li>
+<li>有序列表:使用数字加点加空格.</li>
 </ul>
 <h2>链接与图片</h2>
 <ul>
 <li>
-<p>链接：<code class="notranslate">[显示文本](链接地址 "标题")</code></p>
+<p>链接:<code class="notranslate">[显示文本](链接地址 "标题")</code></p>
 <div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">[</span>百度<span class="pl-s">]</span><span class="pl-s">(</span><span class="pl-corl">https://www.baidu.com</span><span class="pl-s">)</span></pre></div>
 </li>
 <li>
-<p>图片：<code class="notranslate">![替代文字](图片链接 "标题")</code></p>
+<p>图片:<code class="notranslate">![替代文字](图片链接 "标题")</code></p>
 <div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">![</span>这是一张图片<span class="pl-s">]</span><span class="pl-s">(</span><span class="pl-corl">https://example.com/image.jpg</span><span class="pl-s">)</span></pre></div>
 </li>
+<li>
+<p>锚点链接:<code class="notranslate">![替代文字](#标题1)</code></p>
+</li>
 </ul>
-<blockquote>
-<p>"标题"指鼠标悬停在链接上时显示的文本，该项非必要项</p>
-</blockquote>
 <h2>引用</h2>
-<p>在引用的文字前加上 <code class="notranslate">&gt;</code> 符号：</p>
+<p>在引用的文字前加上 <code class="notranslate">&gt;</code> 符号:</p>
 <h2>代码</h2>
 <ul>
-<li>行内代码：用一对反引号"`"包围代码:`code`→<code class="notranslate">code</code></li>
-<li>代码块：用一对三个反引号上下包围代码块。</li>
+<li>行内代码:用一对反引号"`"包围代码:`code`→<code class="notranslate">code</code></li>
+<li>代码块:用一对三个反引号上下包围代码块.</li>
 </ul>
 <blockquote>
-<p>```（可以在后面加上代码语言如：python）<br>
+<p>```（可以在后面加上代码语言如:python）<br>
 print("Hello World")<br>
 ```</p>
 </blockquote>
 <h2>表格</h2>
-<p>使用 <code class="notranslate">|</code> 和 <code class="notranslate">-</code> 创建表格：</p>
+<p>使用 <code class="notranslate">|</code> 和 <code class="notranslate">-</code> 创建表格:</p>
 <div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-ml">|</span> 标题1 <span class="pl-ml">|</span> 标题2 <span class="pl-ml">|</span> 标题3 <span class="pl-ml">|</span>
 <span class="pl-ml">|</span>-------<span class="pl-ml">|</span>-------<span class="pl-ml">|</span>-------<span class="pl-ml">|</span>
 <span class="pl-ml">|</span> 单元格1 <span class="pl-ml">|</span> 单元格2 <span class="pl-ml">|</span> 单元格3 <span class="pl-ml">|</span>
 <span class="pl-ml">|</span> 单元格4 <span class="pl-ml">|</span> 单元格5 <span class="pl-ml">|</span> 单元格6 <span class="pl-ml">|</span></pre></div>
-<markdown-accessiblity-table><table role="table">
-<thead>
-<tr>
-<th>标题1</th>
-<th>标题2</th>
-<th>标题3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>单元格1</td>
-<td>单元格2</td>
-<td>单元格3</td>
-</tr>
-<tr>
-<td>单元格4</td>
-<td>单元格5</td>
-<td>单元格6</td>
-</tr>
-</tbody>
-</table></markdown-accessiblity-table>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>在 Git markdown 中可以直接用更加省略的写法</p>
+</div>
+<pre class="notranslate"><code class="notranslate">| 标题1 | 标题2 | 标题3
+|-|-|-
+| 单元格1 | 单元格2 | 单元格3
+| 单元格4 | 单元格5 | 单元格6
+</code></pre>
 <h2>分隔线</h2>
-<p>使用三个以上的 <code class="notranslate">*</code>、<code class="notranslate">-</code> 或 <code class="notranslate">_</code> 来创建分隔线：</p>
+<p>使用三个以上的 <code class="notranslate">*</code>、<code class="notranslate">-</code> 或 <code class="notranslate">_</code> 来创建分隔线:</p>
 <h2>警报</h2>
 <pre class="notranslate"><code class="notranslate">&gt; [!NOTE]
 &gt; Useful information that users should know, even when skimming content.
@@ -190,12 +434,11 @@ print("Hello World")<br>
 <div class="markdown-alert markdown-alert-caution"><p class="markdown-alert-title"><svg class="octicon octicon-stop mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Caution</p><p>Advises about risks or negative outcomes of certain actions.</p>
 </div>
 <h2>HTML 代码</h2>
-<p>Markdown 支持直接插入 HTML 代码，但某些平台可能会限制这一功能。</p>
+<p>Markdown 支持直接插入 HTML 代码, 但某些平台可能会限制这一功能.</p>
 <h2>转义字符</h2>
-<p>您可以在 Markdown 字符前使用 \ 命令 Markdown 解析器忽略（转义）Markdown 格式：*这不是一个斜体*</p>
-<div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p>根据不同的解析器或平台（如 Github），还可能支持额外的功能或语法。详见<a href="https://docs.github.com/zh/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax">Github Markdown语法官方文档</a></p>
-</div>
-</div>
+<p>您可以在 Markdown 字符前使用 \ 命令 Markdown 解析器忽略（转义）Markdown 格式:*这不是一个斜体*</p>
+<div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p>根据不同的解析器或平台（如 Github）, 还可能支持额外的功能或语法.详见<a href="https://docs.github.com/zh/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax">Github Markdown语法官方文档</a></p>
+</div></div>
 <div style="font-size:small;margin-top:8px;float:right;">🥰转载请注明,谢谢!🥰</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
@@ -294,6 +537,20 @@ function iFrameLoading(){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    const blurText = document.querySelector(".spoilerText");
+    if (blurText) {
+        blurText.addEventListener("click", (event) => {
+            blurText.classList.remove("spoiled");
+            event.stopPropagation();
+        });
+        document.addEventListener("click", () => {
+            blurText.classList.add("spoiled");
+        });
+    } else {
+        console.log("未发现类名'spoilerText'");
+    }
+
     const createClipboardHTML = (codeContent, additionalClasses = '') => `
         <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
         <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">

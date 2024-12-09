@@ -63,22 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		// 防止负值
 		lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 	});
+	
+	document.addEventListener("DOMContentLoaded", () => {
+    const spoilerText = document.getElementById("spoilerText");
 
-    const blurTarget = document.getElementById('blurTarget');
-    
-    // 给所有 <span> 标签添加点击事件
-    document.querySelectorAll('span').forEach(span => {
-        span.addEventListener('click', function(event) {
-            // 防止事件冒泡到 document 上，确保只有点击 span 时才取消模糊
-            event.stopPropagation();
-            
-            // 取消模糊效果
-            blurTarget.classList.remove('blurred');
-        });
+    spoilerText.addEventListener("click", () => {
+        spoilerText.classList.toggle("clear");
     });
-
-    // 点击页面其他地方时恢复模糊效果
-    document.addEventListener('click', function() {
-        blurTarget.classList.add('blurred');
-    });
+});
 });

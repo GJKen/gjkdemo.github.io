@@ -10,35 +10,47 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="Twitter[@sao_anime](https://x.com/sao_anime/status/1854402349412106416)
+<meta name="description" content="Cloudflare Web Analytics CDN 国内加载缓慢的解决方法
 
-2024 年 11 月 7 日 14:55
-游戏已通关——
+# 前言
 
-`Gmeek-imgbox='https://pbs.twimg.com/media/GbwoZNVbcAAHunh?format=jpg&name=orig'`
+最近在访问博客的时候发现个别js加载失败, 检查发现原来是 CloudFlare 的 beacon.min.js 加载失败, 如下图.
 
-其它推文:
+卡顿文件👉`https://static.cloudflareinsights.com/beacon.min.js`
 
-https://x.com/sao_anime/status/1852274390312141212
+`Gmeek-imgbox='https://cdn.img2ipfs.com/ipfs/QmfVdyTJMzA3acSeMMYX3cLq7BoWLQ4pYpjr6u4HYsmhi1'`
 
-`Gmeek-imgbox='https://pbs.twimg.com/media/Gbtc4f-aMAAIYZv?format=jpg&name=orig'`。">
-<meta property="og:title" content="纪念下SAO通关-2024-11-07">
-<meta property="og:description" content="Twitter[@sao_anime](https://x.com/sao_anime/status/1854402349412106416)
+网上找了点教程打算关闭它.
 
-2024 年 11 月 7 日 14:55
-游戏已通关——
+> 引用来源 [ruimian](https://www.ruimian.com/cloudflare-web-analytics-slow-loading)
 
-`Gmeek-imgbox='https://pbs.twimg.com/media/GbwoZNVbcAAHunh?format=jpg&name=orig'`
+## Cloudflare 官方解释:
 
-其它推文:
+> [!TIP]
+> Cloudflare Web Analytics功能，为您的网站提供免费的隐私优先分析，无需更改 DNS 或使用 Cloudflare 的代理。">
+<meta property="og:title" content="Cloudflare Web Analytics 的 beacon.min.js 加载缓慢, 记录它的关闭方法">
+<meta property="og:description" content="Cloudflare Web Analytics CDN 国内加载缓慢的解决方法
 
-https://x.com/sao_anime/status/1852274390312141212
+# 前言
 
-`Gmeek-imgbox='https://pbs.twimg.com/media/Gbtc4f-aMAAIYZv?format=jpg&name=orig'`。">
+最近在访问博客的时候发现个别js加载失败, 检查发现原来是 CloudFlare 的 beacon.min.js 加载失败, 如下图.
+
+卡顿文件👉`https://static.cloudflareinsights.com/beacon.min.js`
+
+`Gmeek-imgbox='https://cdn.img2ipfs.com/ipfs/QmfVdyTJMzA3acSeMMYX3cLq7BoWLQ4pYpjr6u4HYsmhi1'`
+
+网上找了点教程打算关闭它.
+
+> 引用来源 [ruimian](https://www.ruimian.com/cloudflare-web-analytics-slow-loading)
+
+## Cloudflare 官方解释:
+
+> [!TIP]
+> Cloudflare Web Analytics功能，为您的网站提供免费的隐私优先分析，无需更改 DNS 或使用 Cloudflare 的代理。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://GJKen.github.io/demo/post/3.html">
+<meta property="og:url" content="https://GJKen.github.io/demo/post/7.html">
 <meta property="og:image" content="https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp">
-<title>纪念下SAO通关-2024-11-07</title>
+<title>Cloudflare Web Analytics 的 beacon.min.js 加载缓慢, 记录它的关闭方法</title>
 
 
 
@@ -74,13 +86,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 
 </style>
-
+<style>.markdown-alert{padding:0.5rem 1rem;margin-bottom:1rem;border-left:.25em solid var(--borderColor-default,var(--color-border-default));}.markdown-alert .markdown-alert-title {display:flex;font-weight:var(--base-text-weight-medium,500);align-items:center;line-height:1;}.markdown-alert>:first-child {margin-top:0;}.markdown-alert>:last-child {margin-bottom:0;}</style><style>.markdown-alert.markdown-alert-tip {border-left-color:var(--borderColor-success-emphasis, var(--color-success-emphasis));border-radius:6px;background-color:var(--color-success-subtle);}.markdown-alert.markdown-alert-tip .markdown-alert-title {color: var(--fgColor-success,var(--color-success-fg));}</style>
 
 
 
 <body class="article">
     <div id="header" class="article-header">
-<h1 class="postTitle">纪念下SAO通关-2024-11-07</h1>
+<h1 class="postTitle">Cloudflare Web Analytics 的 beacon.min.js 加载缓慢, 记录它的关闭方法</h1>
 <div class="title-right">
     <a href="https://GJKen.github.io/demo" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -88,7 +100,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     
-    <a href="https://github.com/GJKen/demo/issues/3" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/GJKen/demo/issues/7" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -104,13 +116,30 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content" class="article-content">
-<div class="markdown-body" id="postBody"><p>Twitter<a href="https://x.com/sao_anime/status/1854402349412106416" rel="nofollow">@sao_anime</a></p>
-<p>2024 年 11 月 7 日 14:55<br>
-游戏已通关——</p>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://pbs.twimg.com/media/GbwoZNVbcAAHunh?format=jpg&amp;name=orig"></p>
-<p>其它推文:</p>
-<p><a href="https://x.com/sao_anime/status/1852274390312141212" rel="nofollow">https://x.com/sao_anime/status/1852274390312141212</a></p>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://pbs.twimg.com/media/Gbtc4f-aMAAIYZv?format=jpg&amp;name=orig"></p></div>
+<div class="markdown-body" id="postBody"><p>Cloudflare Web Analytics CDN 国内加载缓慢的解决方法</p>
+<h1>前言</h1>
+<p>最近在访问博客的时候发现个别js加载失败, 检查发现原来是 CloudFlare 的 beacon.min.js 加载失败, 如下图.</p>
+<p>卡顿文件👉<code class="notranslate">https://static.cloudflareinsights.com/beacon.min.js</code></p>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://cdn.img2ipfs.com/ipfs/QmfVdyTJMzA3acSeMMYX3cLq7BoWLQ4pYpjr6u4HYsmhi1"></p>
+<p>网上找了点教程打算关闭它.</p>
+<blockquote>
+<p>引用来源 <a href="https://www.ruimian.com/cloudflare-web-analytics-slow-loading" rel="nofollow">ruimian</a></p>
+</blockquote>
+<h2>Cloudflare 官方解释:</h2>
+<div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p>Cloudflare Web Analytics功能，为您的网站提供免费的隐私优先分析，无需更改 DNS 或使用 Cloudflare 的代理。Cloudflare Web Analytics 可帮助您了解网站访问者体验到的网页性能。启用 Cloudflare Web Analytics 所需的只是您的页面上的 Cloudflare 帐户和 JavaScript 代码片段，即可开始获取有关页面浏览量和访问者的信息。JavaScript 代码片段（也称为信标）使用 Performance API 收集指标，该 API 可在所有主流 Web 浏览器中使用。Web Analytics 支持自适应比特率 (ABR)。</p>
+<p>Cloudflare 的服务器将根据数据大小、日期范围、网络连接和其他因素为每个图表或表格选择最佳分辨率。有关更多信息，请参阅解释 Cloudflare 的 ABR Analytics 。</p>
+<p>Web Analytics 显示的数据为真实用户监控（RUM），更多信息请参考真实用户监控。</p>
+<p>Cloudflare Web Analytics 不会收集或使用您的访客的个人数据。</p>
+</div>
+<h1>关闭步骤</h1>
+<ol>
+<li>选择需要管理的站点</li>
+</ol>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://cdn.img2ipfs.com/ipfs/QmVbycbpbDMDnoDCAfFr2kURwgxYpMWToVscPpaQgwArKN"></p>
+<ol start="2">
+<li>按钮关闭即可</li>
+</ol>
+<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://cdn.img2ipfs.com/ipfs/QmZLfDBJjphnRJL46sSco5FFTPey3qSNNi2Rqfq6vjJbYS"></p></div>
 <div style="font-size:small;margin-top:8px;float:right;">🥰转载请注明,谢谢!🥰</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
