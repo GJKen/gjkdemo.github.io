@@ -1,5 +1,3 @@
-`Gmeek-imgbox="https://yuzhi.tech/img/wenyan/10.gif"`
-
 [Gmeek](https://github.com/Meekdai/Gmeek) 博客完全依托 Github, 提供域名, 无需服务器, 比起传统的服务器建站更方便快捷.
 
 # 搭建博客
@@ -1337,3 +1335,5 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 💬 > 评论总数.
 🌺 > 是统计的所有文章的字符数.
 ⏰ > 最后一次 Actions 的时间.
+
+`Gmeek-imgbox="https://yuzhi.tech/img/wenyan/10.gif"`
