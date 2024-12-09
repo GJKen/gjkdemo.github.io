@@ -18952,6 +18952,7 @@ a.tabnav-extra:hover {
 
 .border {
 	border: var(--borderWidth-thin, 1px) solid var(--borderColor-default, var(--color-border-default)) !important
+	
 }
 
 .border-0 {
