@@ -9,55 +9,45 @@ function loadResource(type, attributes) {
 function createTOC() {
 	const tocElement = document.createElement('div');
 	tocElement.className = 'toc';
-	document.body.appendChild(tocElement);// 将目录 <div> 插入到 <body> 中
+	document.body.appendChild(tocElement); // 将目录 <div> 插入到 <body> 中
 
-	const markdownBody = document.querySelector('.markdown-body');
-	const headings = markdownBody.querySelectorAll('h1, h2, h3, h4, h5, h6');
+	const headings = document.querySelectorAll('.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6');
 	headings.forEach(heading => {
 		if (!heading.id) {
 			heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
 		}
 		const link = document.createElement('a');
-		link.href = '#' + heading.id;
+		link.href = `#${heading.id}`;
 		link.textContent = heading.textContent;
-		// 添加公共类名 'toc-link'
-		link.className = 'toc-link';
-		// 根据标题标签动态添加不同的类名
-		link.classList.add('toc-' + heading.tagName.toLowerCase());
-		// 获取标题级别并计算 margin-left
+		link.className = `toc-link toc-${heading.tagName.toLowerCase()}`;
 		if (heading.tagName !== 'H1') {
-		  const level = parseInt(heading.tagName.charAt(1)); // 获取标题级别
-		  link.style.marginLeft = `${(level - 1) * 10}px`;  // 计算缩进
+			const level = parseInt(heading.tagName.charAt(1));
+			link.style.marginLeft = `${(level - 1) * 10}px`;
 		}
 		link.addEventListener('click', function(e) {
 			e.preventDefault();
-			const targetElement = document.getElementById(heading.id);
-			if (targetElement) {
-				targetElement.scrollIntoView({
-					behavior: 'smooth'
-				});
-			}
-			//toggleTOC(); // 点击后关闭目录-已注释
+			document.getElementById(heading.id).scrollIntoView({ behavior: 'smooth' });
 		});
 		tocElement.appendChild(link);
 	});
 }
 
-// 创建目录按钮
 function toggleTOC() {
 	const tocElement = document.querySelector('.toc');
 	const tocIcon = document.querySelector('.ArticleTOC');
-	if (tocElement) {
+	if (tocElement && tocIcon) {
 		tocElement.classList.toggle('show');
 		tocIcon.classList.toggle('active');
-		tocIcon.innerHTML = tocElement.classList.contains('show') ?
-			'<svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>' :
-			'<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+		tocIcon.style.boxShadow = tocIcon.classList.contains('active') ?
+			'6px 6px 14px 0 var(--header-btn-shadowColor) inset, -7px -7px 12px 0 var(--header-btn-shadowColor2) inset' :
+			'';
 	}
 }
 
 document.addEventListener("DOMContentLoaded", function() {
 	createTOC();
+
+	// 添加 CSS 样式
 	const css = `
 		:root {
 			--toc-link-bgColor: #ffffffb8;
@@ -122,46 +112,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		.toc a:hover {
 			background-color: #6be5ff99;
 		}
-		.toc-icon {
-			position: fixed;
-			bottom: 7%;
-			right: 15px;
-			cursor: pointer;
-			background-color: rgba(255, 255, 255, 0.8);
-			color: #333;
-			border-radius: 50%;
-			width: 51px;
-			height: 51px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-			z-index: 1001;
-			transition: all 0.3s ease;
-			user-select: none;
-			-webkit-tap-highlight-color: transparent;
-			outline: none;
-		}
-		.toc-icon:hover {
-			transform: scale(1.1);
-			background-color: #fff;
-		}
-		.toc-icon:active {
-			transform: scale(0.9);
-		}
-		.toc-icon.active {
-			background-color: #fff;
-			color: #333;
-		}
-		.toc-icon svg {
-			width: 24px;
-			height: 24px;
-			fill: none;
-			stroke: currentColor;
-			stroke-width: 2;
-			stroke-linecap: round;
-			stroke-linejoin: round;
-		}
 		.toc-h1{
 			position: relative;
 			padding-left: 10px;
@@ -180,16 +130,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			.toc {
 				width: 200px;
 				max-height: 40vh;
-			}
-			.toc-icon {
-				width: 40px;
-				height: 40px;
-				bottom: 15px;
-				right: 15px;
-			}
-			.toc-icon svg {
-				width: 20px;
-				height: 20px;
 			}
 		}
 
@@ -214,14 +154,14 @@ document.addEventListener("DOMContentLoaded", function() {
 			align-items: center;
 			justify-content: center;
 		}
-		
+
 		.back-to-top.show {
 			transform: translateY(0); /* 恢复正常位置 */
 			opacity: 1;
 			visibility: visible;
 			transition: transform 0.3s ease, opacity 0.3s ease;
 		}
-		
+
 		.back-to-top:hover {
 		 transform: scale(1.1);
 		}
@@ -236,32 +176,26 @@ document.addEventListener("DOMContentLoaded", function() {
 			height: 40px;
 			font-size: 20px;
 		 }
-		 .toc-icon {
-			bottom: 7%;
-		 }
 		}
 		.toc-link.toc-active {
 			background-color: #3db9d399;
 			font-weight: bold;
 		}
 	`;
-	loadResource('style', {
-		css: css
-	});
 
-	const tocIcon = document.createElement('div');
-	tocIcon.className = 'toc-icon';
-	tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
-	tocIcon.onclick = (e) => {
-		e.stopPropagation();
-		toggleTOC();
-	};
-	document.body.appendChild(tocIcon);
+	loadResource('style', { css });
+
+	const tocIcon = document.querySelector('.ArticleTOC');
+	if (tocIcon) {
+		tocIcon.onclick = (e) => {
+			e.stopPropagation();
+			toggleTOC();
+		};
+	}
 
 	document.addEventListener('click', (e) => {
 		const tocElement = document.querySelector('.toc');
-		if (tocElement && tocElement.classList.contains('show') && !tocElement.contains(e.target) && !e
-			.target.classList.contains('toc-icon')) {
+		if (tocElement && tocElement.classList.contains('show') && !tocElement.contains(e.target) && !e.target.classList.contains('toc-icon')) {
 			toggleTOC();
 		}
 	});
@@ -269,58 +203,37 @@ document.addEventListener("DOMContentLoaded", function() {
 	// 创建ToTop按钮
 	const btn = document.createElement('button');
 	btn.className = 'back-to-top';
-	btn.innerHTML =
-		'<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+	btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 	document.body.appendChild(btn);
 
 	// 点击事件处理
-	btn.addEventListener('click', () => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth'
-		});
-	});
+	btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 	// 滚动事件处理
-	function toggleButtonVisibility() {
-		if (window.pageYOffset > 300) {
-			btn.classList.add('show');
-		} else {
-			btn.classList.remove('show');
-		}
-	}
-
-	//监听ToTop按钮执行函数
+	const toggleButtonVisibility = () => {
+		btn.classList.toggle('show', window.pageYOffset > 300);
+	};
 	window.addEventListener('scroll', toggleButtonVisibility);
 	window.addEventListener('resize', toggleButtonVisibility);
+	toggleButtonVisibility(); // 初始化按钮显示
 
-	// 执行函数
-	toggleButtonVisibility();
-	
-	function highlightTOC() {
+	// 高亮目录项
+	const highlightTOC = () => {
 		const tocLinks = document.querySelectorAll('.toc-link');
 		const fromTop = window.scrollY + 10;
 		let currentHeading = null;
 		tocLinks.forEach(link => {
-			const href = link.getAttribute('href'); // 获取 href 属性
-			const sectionId = href.substring(1); // 去掉 # 得到 ID
-			const section = document.getElementById(sectionId); // 根据 ID 获取元素
+			const section = document.getElementById(link.getAttribute('href').substring(1));
 			if (section && section.offsetTop <= fromTop) {
 				currentHeading = link;
 			}
 		});
-	
-		tocLinks.forEach(link => {
-			link.classList.remove('toc-active');
-		});
+
+		tocLinks.forEach(link => link.classList.remove('toc-active'));
 		if (currentHeading) {
 			currentHeading.classList.add('toc-active');
-			// 确保当前高亮的目录项在可视区域的中间
-			currentHeading.scrollIntoView({
-				block: 'center',   // 确保当前高亮项滚动到视图中间位置
-				inline: 'nearest'  // 可选，保持水平滚动条不动
-			});
+			currentHeading.scrollIntoView({ block: 'center', inline: 'nearest' });
 		}
-	}
+	};
 	document.addEventListener('scroll', highlightTOC);
 });

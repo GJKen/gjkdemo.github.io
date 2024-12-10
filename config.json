@@ -11,6 +11,6 @@
     "exlink":{"TG群":"https://t.me/GJK_chat"},
     "urlMode":"issue",
     "bottomText":"🥰转载请注明,谢谢!🥰",
-    "script":"<script src='https://www.gjkblog.us.kg/demo/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://cdn.jsdelivr.net/gh/gyanprabhat7/LazyLoad.JS/lazyImage.js'></script>",
+    "script":"<script src='https://www.gjkblog.us.kg/demo/ArticleJs.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/ArticleToc-header.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://cdn.jsdelivr.net/gh/gyanprabhat7/LazyLoad.JS/lazyImage.js'></script>",
     "GMEEK_VERSION":"main"
 }
