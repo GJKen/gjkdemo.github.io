@@ -5,10 +5,43 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 	</head>
+	<style>
+		@keyframes fadeIn {
+			0% {
+				opacity: 0
+			}
+
+			100% {
+				opacity: 1
+			}
+		}
+
+		@keyframes typing {
+			0% {
+				width: 0
+			}
+
+			100% {
+				width: 100%
+			}
+		}
+
+		@keyframes blink {
+			50% {
+				border-color: transparent
+			}
+
+			100% {
+				border-color: var(--fgColor-default, var(--color-fg-default))
+			}
+		}
+	</style>
 	<body>
 		<div>
 			<a>
-				<img data-fancybox="gallery" data-src="https://lipsum.app/id/2/1024x768" data-caption="Optional caption,&lt;br /&gt;that can contain &lt;em&gt;HTML&lt;/em&gt; code" src="https://lipsum.app/id/2/200x150" />
+				<img data-fancybox="gallery" data-src="https://lipsum.app/id/2/1024x768"
+					data-caption="Optional caption,&lt;br /&gt;that can contain &lt;em&gt;HTML&lt;/em&gt; code"
+					src="https://lipsum.app/id/2/200x150" />
 			</a>
 		</div>
 		<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>

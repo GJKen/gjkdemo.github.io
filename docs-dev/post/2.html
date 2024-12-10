@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css' rel='stylesheet' />
+    <link href='https://gjkblog.us.kg/demo/primer.css' rel='stylesheet' />
     
     <link rel="icon" href="https://pic.imgdb.cn/item/6734c652d29ded1a8cc038aa.jpg"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
@@ -126,44 +126,46 @@ test1.jsdelivr.net
 
 </head>
 <style>
-:root{--header-article-bgColor: #3b3b3b6b;}
-[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor: #ffffff00;}
-body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
-#header{display:flex;flex-direction: column;align-items: center;gap: 10px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 24px;}
-#header.article-header{width: 100%;max-width: inherit;position: fixed;top: 0;left: 50%;transform: translateX(-50%);background: var(--header-articel-bgColor);backdrop-filter: blur(15px);-webkit-backdrop-filter: blur(15px);padding: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, .1);transition: transform 0.6s ease-in-out;-webkit-transition: transform 0.6s ease-in-out;z-index: 99;border-radius: 0 0 15px 15px;gap: 15px;}
+:root{--header-article-bgColor:#3b3b3b6b;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor:#ffffff00;}
+body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padding:45px;font-size:16px;font-family:sans-serif;line-height:1.25;}
+#header{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:24px;}
+#header.article-header{border-bottom:none;width:100%;max-width:inherit;position:fixed;top:0;left:50%;transform:translateX(-50%);background:var(--header-articel-bgColor);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);padding:10px;box-shadow:0 2px 10px rgba(0, 0, 0, .1);transition:transform 0.6s ease-in-out;-webkit-transition:transform 0.6s ease-in-out;z-index:99;border-radius:0 0 15px 15px;gap:15px;}
 #header.article-header.hidden{transform:translate(-50%,-120%);}
-#header h1 a{margin: unset;}
+#header h1 a{margin:unset;}
+.title-right{gap:25px;}
 .article-content{margin-top:90px;}
-#footer{margin-top:64px; text-align: center;font-size: small;}
+#footer{margin-top:64px; text-align:center;font-size:small;}
 
 </style>
 
 <style>
-:root{--postTitle-textshadow: #ffffff80;}
-[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow: #00000080;}
+:root{--postTitle-textshadow:#ffffff80;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow:#00000080;}
 .postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
-.spoiled{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
-.spoilerText{transition:filter .3s ease}
-.title-right .circle{padding: 14px 16px;}
-#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+.spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
+.spoilerText.clear{filter:none;}
+.title-right{display:flex;}
+.title-right a{padding:14px 16px;}
+#postBody{border-bottom:1px solid var(--color-border-default);padding-bottom:36px;}
 #postBody hr{height:2px;}
 #cmButton{height:48px;margin-top:48px;}
 #comments{margin-top:64px;}
 .g-emoji{font-size:24px;}
-@media (max-width: 600px) {
-    body {padding: 8px;}
+@media (max-width:600px) {
+    body {padding:8px;}
     .postTitle{font-size:24px;}
 }
 .copy-feedback {
-    display: none;
-    position: absolute;
-    top: 10px;
-    right: 50px;
-    color: var(--color-fg-on-emphasis);
-    background-color: var(--color-fg-muted);
-    border-radius: 3px;
-    padding: 5px 8px;
-    font-size: 12px;
+    display:none;
+    position:absolute;
+    top:10px;
+    right:50px;
+    color:var(--color-fg-on-emphasis);
+    background-color:var(--color-fg-muted);
+    border-radius:3px;
+    padding:5px 8px;
+    font-size:12px;
 }
 </style>
 <style>.markdown-alert{padding:0.5rem 1rem;margin-bottom:1rem;border-left:.25em solid var(--borderColor-default,var(--color-border-default));}.markdown-alert .markdown-alert-title {display:flex;font-weight:var(--base-text-weight-medium,500);align-items:center;line-height:1;}.markdown-alert>:first-child {margin-top:0;}.markdown-alert>:last-child {margin-bottom:0;}</style><style>.markdown-alert.markdown-alert-important {border-left-color:var(--borderColor-done-emphasis, var(--color-done-emphasis));border-radius:6px;background-color:var(--color-done-subtle);}.markdown-alert.markdown-alert-important .markdown-alert-title {color: var(--fgColor-done,var(--color-done-fg));}</style>
@@ -277,9 +279,9 @@ var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 
 var utterancesLoad=0;
 
 let themeSettings={
-    "dark": ["dark","moon","#00f0ff","dark-blue"],
-    "light": ["light","sun","#ff5000","github-light"],
-    "auto": ["auto","sync","","preferred-color-scheme"]
+    "dark":["dark","moon","#00f0ff","dark-blue"],
+    "light":["light","sun","#ff5000","github-light"],
+    "auto":["auto","sync","","preferred-color-scheme"]
 };
 function changeTheme(mode, icon, color, utheme){
     document.documentElement.setAttribute("data-color-mode",mode);
@@ -289,14 +291,14 @@ function changeTheme(mode, icon, color, utheme){
 }
 function modeSwitch(){
     let currentMode=document.documentElement.getAttribute('data-color-mode');
-    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    let newMode = currentMode === "light" ? "dark" :currentMode === "dark" ? "auto" :"light";
     localStorage.setItem("meek_theme", newMode);
     if(themeSettings[newMode]){
         changeTheme(...themeSettings[newMode]);
     }
 }
 function utterancesTheme(theme){
-    const message={type:'set-theme',theme: theme};
+    const message={type:'set-theme',theme:theme};
     const iframe=document.getElementsByClassName('utterances-frame')[0];
     iframe.contentWindow.postMessage(message,'https://utteranc.es');
 }
@@ -348,23 +350,19 @@ function iFrameLoading(){
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    const blurText = document.querySelector(".spoilerText");
-    if (blurText) {
-        blurText.addEventListener("click", (event) => {
-            blurText.classList.remove("spoiled");
-            event.stopPropagation();
+    const spoilerTexts = document.querySelectorAll(".spoilerText");
+    if (spoilerTexts.length > 0) {
+        spoilerTexts.forEach(spoilerText => {
+            spoilerText.addEventListener("click", () => {
+                spoilerText.classList.toggle("clear");
+            });
         });
-        document.addEventListener("click", () => {
-            blurText.classList.add("spoiled");
-        });
-    } else {
-        console.log("未发现类名'spoilerText'");
     }
 
     const createClipboardHTML = (codeContent, additionalClasses = '') => `
         <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
         <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
-            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display:inherit;">
                 <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
                 <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
             </clipboard-copy>
