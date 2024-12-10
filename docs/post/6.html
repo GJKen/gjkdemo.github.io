@@ -540,15 +540,8 @@ function iFrameLoading(){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-
-    const spoilerTexts = document.querySelectorAll(".spoilerText");
-    if (spoilerTexts.length > 0) {
-        spoilerTexts.forEach(spoilerText => {
-            spoilerText.addEventListener("click", () => {
-                spoilerText.classList.toggle("clear");
-            });
-        });
-    }
+	const spoilers = document.querySelectorAll(".spoilerText");
+	spoilers.length && spoilers.forEach(el => el.onclick = () => el.classList.toggle("clear"));
 
     const createClipboardHTML = (codeContent, additionalClasses = '') => `
         <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
