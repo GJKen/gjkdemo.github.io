@@ -27,7 +27,7 @@
 
 回到 Cloudflare 面板, 进入 dns 记录, 按照下图添加 `CNAME` 和 `A` 记录.
 
-`Gmeek-imgbox="https://cdn.img2ipfs.com/ipfs/QmUFcvcDv8g8Y9G3B81pfE9bSuLMwKrz5mpaa9d2Zn3W9Q?filename=image.png"`
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmUFcvcDv8g8Y9G3B81pfE9bSuLMwKrz5mpaa9d2Zn3W9Q"`
 
 ```
 185.199.108.153

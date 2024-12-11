@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Mon, 09 Dec 2024 17:42:21 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>Cloudflare Web Analytics 的 beacon.min.js 加载缓慢, 记录它的关闭方法</title><link>https://GJKen.github.io/demo/post/7.html</link><description>Cloudflare Web Analytics CDN 国内加载缓慢的解决方法&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Wed, 11 Dec 2024 11:45:44 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>Cloudflare Web Analytics 的 beacon.min.js 加载缓慢, 记录它的关闭方法</title><link>https://GJKen.github.io/demo/post/7.html</link><description>Cloudflare Web Analytics CDN 国内加载缓慢的解决方法&#13;
 &#13;
 # 前言&#13;
 &#13;
@@ -503,7 +503,7 @@ async function loginAccount(account) {&#13;
 &#13;
 回到 Cloudflare 面板, 进入 dns 记录, 按照下图添加 `CNAME` 和 `A` 记录.&#13;
 &#13;
-`Gmeek-imgbox='https://cdn.img2ipfs.com/ipfs/QmUFcvcDv8g8Y9G3B81pfE9bSuLMwKrz5mpaa9d2Zn3W9Q?filename=image.png'`&#13;
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmUFcvcDv8g8Y9G3B81pfE9bSuLMwKrz5mpaa9d2Zn3W9Q'`&#13;
 &#13;
 ```&#13;
 185.199.108.153&#13;
