@@ -1242,9 +1242,9 @@ fork 之后, 转到搭建博客的 github 源码,
 4. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
 
 ```Diff
-+ .title-right .circle{padding: 14px 16px;}
++.title-right .circle{padding: 14px 16px;}
 👆
-- .title-right .circle{padding: 14px 16px;margin-right:8px;}
+-.title-right .circle{padding: 14px 16px;margin-right:8px;}
 ```
 
 5. 头部图标样式.
@@ -1252,9 +1252,9 @@ fork 之后, 转到搭建博客的 github 源码,
 > 给`.title-right`增加子元素 DIV 的样式, 因为我增加了一个 DIV 元素显示文章目录按钮图标, 这里刚好需要 CSS 控制它.
 
 ```Diff
-+ .title-right a, .title-right div{padding:14px 16px;}
++.title-right a, .title-right div{padding:14px 16px;}
 👆
-- .title-right a{padding:14px 16px;}
+-.title-right a{padding:14px 16px;}
 ```
 
 6. 定位`{% block header %}`, 在上方增加类名块.
