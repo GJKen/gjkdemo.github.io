@@ -5462,14 +5462,14 @@
 	--markdown-pre-bgColor: #27282d;
 	--markdown-pre-shadowColor: #00000026;
 	--SideNav-bgColor: #ffffff21;
-	--title-right-svgColor:#00f0ff;
-	--title-right-svgHovercolor:#ff7150;
+	--title-right-svgColor: #00f0ff;
+	--title-right-svgHovercolor: #ff7150;
 	--markdown-h1-bgColor: #7dc2ff7a;
 	--html-bgColor: #151c2f;
-	--header-btn-shadowColor:#00000045;
-	--header-btn-shadowColor2:#9bdfff14;
-	--ImgLazyLoad-circle-shadowColor:#27272745;
-	--ImgLazyLoad-circle-shadowColor2:#28dddf4a;
+	--header-btn-shadowColor: #00000045;
+	--header-btn-shadowColor2: #9bdfff14;
+	--ImgLazyLoad-circle-shadowColor: #27272745;
+	--ImgLazyLoad-circle-shadowColor2: #28dddf4a;
 	--color-canvas-default-transparent: rgba(13, 17, 23, 0);
 	--color-page-header-bg: #0d1117;
 	--color-marketing-icon-primary: #79c0ff;
@@ -13549,7 +13549,7 @@ a.btn-primary:focus-visible {
 	border: 0;
 	border-radius: 6px;
 	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor), -7px -7px 16px 0 var(--header-btn-shadowColor2);
-	transition: box-shadow .4s ease-in-out,filter .4s ease-in-out;
+	transition: box-shadow .4s ease-in-out, filter .4s ease-in-out;
 }
 
 .btn-invisible:hover,
@@ -13557,17 +13557,20 @@ a.btn-primary:focus-visible {
 	color: var(--fgColor-accent, var(--color-accent-fg));
 	background-color: var(--title-right-btnbg-color);
 	outline: none;
-	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor) inset,-7px -7px 12px 0 var(--header-btn-shadowColor2) inset;
+	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor) inset, -7px -7px 12px 0 var(--header-btn-shadowColor2) inset;
 }
+
 /* 图标颜色 */
-.btn-invisible svg path{
+.btn-invisible svg path {
 	fill: var(--title-right-svgColor);
 }
+
 /* 图标hover颜色 */
 .btn-invisible:hover svg path,
-.btn-invisible.zeroclipboard-is-hover svg path{
+.btn-invisible.zeroclipboard-is-hover svg path {
 	fill: var(--title-right-svgHovercolor);
 }
+
 .btn-invisible:active,
 .btn-invisible.selected,
 .btn-invisible[aria-selected=true],
@@ -13723,12 +13726,11 @@ a.btn-primary:focus-visible {
 
 /* 图片懒加载占位css动画 */
 .ImgLazyLoad {
-	width: 1.2px;
-	height: 1.1px;
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
 	border: 6px #f3f3f3 solid;
 	border-top: 6px #8aefff solid;
-	padding: 20px;
 	transition: filter 0.5s ease, opacity 0.5s ease;
 	animation: ImgLazyLoadAni 1.2s infinite;
 	-webkit-animation: ImgLazyLoadAni 1.2s infinite;
@@ -13763,33 +13765,15 @@ a.btn-primary:focus-visible {
 }
 
 /* 图片模糊渐显样式 */
-.ImgLoaded {
-	-webkit-filter: blur(115px);
-	filter: blur(115px);
+[data-fancybox="gallery"] {
 	opacity: 0;
-	-webkit-animation: ImgLoadedAni 0.5s ease forwards;
-	animation: ImgLoadedAni 0.5s ease forwards;
+	filter: blur(20px);
+	transition: opacity 0.5s ease, filter 0.5s ease;
 }
-@-webkit-keyframes ImgLoadedAni {
-	0% {
-		opacity: 0;
-	}
 
-	100% {
-		-webkit-filter: blur(0);
-		filter: blur(0);
-		opacity: 1;
-	}
-}
-@keyframes ImgLoadedAni {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		filter: blur(0);
-		opacity: 1;
-	}
+.ImgLoaded {
+	opacity: 1;
+	filter: blur(0);
 }
 
 .TableObject {
@@ -16324,8 +16308,8 @@ input.FormControl-radio[type=radio]:focus-visible {
 	--body-bgColor: #ffffffde;
 	--body-shadow-color: #50a8e726;
 	--markdown-code-bgColor: #4d4d4d38;
-	--title-right-svgColor:#656d76;
-	--title-right-svgHovercolor:#ff7804;
+	--title-right-svgColor: #656d76;
+	--title-right-svgHovercolor: #ff7804;
 	--SideNav-bgColor: #ffffff99;
 	--SideNav-hover-bgColor: #6ec3ff52;
 	--markdown-h1-bgColor: #c8e5ff7a;
@@ -16335,10 +16319,10 @@ input.FormControl-radio[type=radio]:focus-visible {
 	--markdown-pre-shadowColor: #00000026;
 	--html-bgColor: #fff;
 	--animate-duration: 1s;
-	--header-btn-shadowColor:#fbfbfb26;
-	--header-btn-shadowColor2:#5f5f5f26;
-	--ImgLazyLoad-circle-shadowColor:#0000;
-	--ImgLazyLoad-circle-shadowColor2:#ebfffe
+	--header-btn-shadowColor: #fbfbfb26;
+	--header-btn-shadowColor2: #5f5f5f26;
+	--ImgLazyLoad-circle-shadowColor: #0000;
+	--ImgLazyLoad-circle-shadowColor2: #ebfffe
 }
 
 .PageLayout {
@@ -18957,7 +18941,6 @@ a.tabnav-extra:hover {
 
 .border {
 	border: var(--borderWidth-thin, 1px) solid var(--borderColor-default, var(--color-border-default)) !important
-	
 }
 
 .border-0 {
@@ -27409,7 +27392,7 @@ a.branch-name .octicon {
 	font-size: 1.85em;
 	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
 	border-left: .25em solid #32c7dd;
-    padding-left: .25em;
+	padding-left: .25em;
 }
 
 .markdown-body h2 {
@@ -27589,8 +27572,8 @@ a.branch-name .octicon {
 .markdown-body img {
 	max-width: 100%;
 	box-sizing: content-box;
-	transition: transform 0.3s ease, clip-path 0.3s ease;
-	-webkit-transition: -webkit-transform 0.3s ease, -webkit-clip-path 0.3s ease;
+	/* transition: transform 0.3s ease, clip-path 0.3s ease; */
+	/* -webkit-transition: -webkit-transform 0.3s ease, -webkit-clip-path 0.3s ease; */
 }
 
 .markdown-body img:hover {
@@ -30996,6 +30979,22 @@ html {
 	pointer-events: auto;
 	transition: opacity 0.3s ease, visibility 0s 0s;
 	-webkit-transition: opacity 0.3s ease, visibility 0s 0s
+}
+
+.pl-mi1 {
+	user-select: text;
+}
+
+.pl-mi1>span {
+	user-select: none;
+}
+
+.pl-md {
+	user-select: text;
+}
+
+.pl-md>span {
+	user-select: none;
 }
 
 /*# sourceMappingURL=primer.css.map */

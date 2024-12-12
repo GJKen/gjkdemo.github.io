@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href='../../static/primer.css' rel='stylesheet' />
+    <link href='../../static/primer.min.css' rel='stylesheet' />
     
     <link rel="icon" href="https://pic.imgdb.cn/item/6734c652d29ded1a8cc038aa.jpg"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
@@ -105,7 +105,7 @@ markdown 输入:
 
 </details>
 
-## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
+## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮(引用版)
 
 > 来源: [Github](https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file)
 > 修改-创建`.toc`的位置为body里面.
@@ -118,6 +118,14 @@ markdown 输入:
 图示:
 
 `Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H'`
+
+## [ArticleToc-header.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc-header.js) - 文章增加目录列表+一键返回顶部按钮(header版)
+
+功能和[引用版](#articletoc.js---文章增加目录列表+一键返回顶部按钮(引用版))一致, 这版集成到了文章的`#header`的按钮里面.
+
+按钮位置展示:
+
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/Qme3qiTmKATk8BVvcLj7bC87q3w8MqywJcQTJfHKQTmyvd'`
 
 ## Fancybox.js - 图片浏览器
 
@@ -529,7 +537,8 @@ html {
 `.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
 
 > [!NOTE]
-> 增加阴影.
+> 图标增加阴影.
+> svg 暗黑模式下颜色.
 > 修改图标 hover 样式.
 
 <details><summary>修改前</summary>
@@ -561,13 +570,17 @@ html {
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
     /* 增加 */
+	--SideNav-bgColor: #00f0ff;
+	--title-right-svgHovercolor:#ff7150;
 	--header-btn-shadowColor:#00000045;
-	--header-btn-shadowColor2:#ffffff26;
+	--header-btn-shadowColor2:#9bdfff14;
 }
 :root {
     /* 增加 */
+	--title-right-svgColor:#656d76;
+	--title-right-svgHovercolor: #ff7804;
 	--header-btn-shadowColor:#fbfbfb26;
-	--header-btn-shadowColor2:#9bdfff14;
+	--header-btn-shadowColor2:#5f5f5f26;
 }
 .btn-invisible {
 	color: var(--fgColor-accent, var(--color-accent-fg));
@@ -575,6 +588,7 @@ html {
 	border: 0;
 	border-radius: 6px;
 	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor), -7px -7px 16px 0 var(--header-btn-shadowColor2);
+	transition: box-shadow .4s ease-in-out,filter .4s ease-in-out;
 }
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
@@ -583,10 +597,14 @@ html {
 	outline: none;
 	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor) inset,-7px -7px 12px 0 var(--header-btn-shadowColor2) inset;
 }
-/* 增加 */
-.btn-invisible:hover svg,
-.btn-invisible.zeroclipboard-is-hover svg {
-    fill: var(--title-right-svg-color);
+/* 图标颜色 */
+.btn-invisible svg path{
+	fill: var(--title-right-svgColor);
+}
+/* 图标hover颜色 */
+.btn-invisible:hover svg path,
+.btn-invisible.zeroclipboard-is-hover svg path{
+	fill: var(--title-right-svgHovercolor);
 }
 ```
 
@@ -1118,18 +1136,21 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ### 打开 base.html 文件
 
+> [!Important]
+> base 这个模板文件里增加的代码可以应用到所有页面, 优先级很高.
+
 1. 增加所需的颜色样式.
 
 > 文章头部背景色.
-> 打字效果动画
-> 头部图标渐显动画
+> 打字效果动画.
+> 动画(已引用的地方:#header 打字机光标, #header 图标渐显).
 
 ```CSS
 :root{--header-article-bgColor: #3b3b3b6b;}
 
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor: #ffffff00;}
 
-@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
+@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes blink{50%{opacity:0}100%{opacity:1}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes blink{50%{opacity:0}100%{opacity:1}}
 ```
 
 2. 定位`#header`, 修改样式.
@@ -1138,18 +1159,17 @@ fork 之后, 转到搭建博客的 github 源码,
 #header{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:24px;}
 ```
 
-3. 增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.
+3. 增加新的 header 变化样式, 配合 JS 隐藏时有不同的样式变化.
 
 ```CSS
 #header.article-header{border-bottom:none;width:100%;max-width:inherit;position:fixed;top:0;left:50%;transform:translateX(-50%);background:var(--header-articel-bgColor);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);padding:10px;box-shadow:0 2px 10px rgba(0, 0, 0, .1);transition:transform 0.6s ease-in-out;-webkit-transition:transform 0.6s ease-in-out;z-index:99;border-radius:0 0 15px 15px;gap:15px;}
 
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 ```
-4. 增加文章内容的上边距.
 
-`.article-content{margin-top:90px;}`
+4. 增加类名变量, 这样通过 Actions 时渲染出来的页面有 `homepage` `article` 的关键类名, 有了不同类名就可更方便的使用 CSS 控制不同页面的样式.
 
-5. 大概在第27行, 增加了类名变量, 这样通过 Actions 时渲染出来的页面有 `homepage` `article` 的关键类名, 有了不同类名就可更方便的使用 CSS 控制不同页面的样式.
+定位`<body>`标签, 修改为以下内容:
 
 ```html
 <body class='{% block body_class %}homepage{% endblock %}'>
@@ -1159,7 +1179,11 @@ fork 之后, 转到搭建博客的 github 源码,
 </body>
 ```
 
-6. JS 代码部分, 我写在了 ([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)) 里面, 作用是滚动页面让头部显示或隐藏.
+5. \#header头部滚动时切换显示或隐藏.
+
+增加的 JS 代码部分, 我写在了([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)文件里面, 作用是向下滚动页面让头部隐藏, 向上则显示.
+
+关键内容如下:
 
 <details><summary>Javascript Code</summary>
 
@@ -1184,38 +1208,119 @@ fork 之后, 转到搭建博客的 github 源码,
 
 </details>
 
-7. 头部图标渐显动画.
+6. 头部图标样式.
 
-增加 CSS, `fadeIn`动画已经在打字机动画增加过了.
+> 增加 CSS, `fadeIn`动画已在上文第1步骤添加过.
 
-`.title-right{display:flex;gap:25px;animation:fadeIn 1.2s ease-in 0s forwards;}`
+```CSS
+.title-right{display:flex;gap:25px;animation:fadeIn 1.2s ease-in 0s forwards;}
+```
 
 ### 打开 post.html 文件
+
+> [!Important]
+> post 这个模板文件里增加的代码可以应用到所有文章页面.
 
 1. 增加所需的颜色样式.
 
 ```CSS
-:root{--postTitle-textshadow: #ffffff80;}
-[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow: #00000080;}
+:root{--postTitle-textshadowColor: #ffffff80;}
+
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadowColor: #00000080;}
 ```
 
-2. 定位`.postTitle`, 修改样式(打字机效果.)
+2. 定位`.postTitle`, 修改以及增加样式(打字机效果)
 
-```CSS
-.postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}
+```Diff
++.postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
++.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}
+-.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 ```
+3. 增加文章内容的上边距.
+
+`.article-content{margin-top:90px;}`
 
 4. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
 
-5. 定位`{% block header %}`, 在上方增加类名块.
+```Diff
++ .title-right .circle{padding: 14px 16px;}
+- .title-right .circle{padding: 14px 16px;margin-right:8px;}
+```
 
-> 这是为了用 class 区分`首页`和`文章页`
+5. 头部图标样式.
+
+> 给`.title-right`增加子元素 DIV 的样式, 因为我增加了一个 DIV 元素显示文章目录按钮图标, 这里刚好需要 CSS 控制它.
+
+```Diff
++ .title-right a, .title-right div{padding:14px 16px;}
+- .title-right a{padding:14px 16px;}
+```
+
+6. 定位`{% block header %}`, 在上方增加类名块.
+
+> 这是为了用 class 类名区分`首页`和`文章页`
 
 ```Django
 {% block body_class %}article{% endblock %}
 {% block header_class %}article-header{% endblock %}
 {% block content_class %}article-content{% endblock %}
 ```
+
+7. 增加文章列表按钮.
+
+在文章的头部增加一个文章目录按钮, 详情看👉[ArticleToc-header.js](#ArticleToc-header.js---文章增加目录列表+一键返回顶部按钮(header版))
+
+定位`<div class='title-right'>`, 在标签里面增加以下 HTML 元素.
+
+```html
+    <div class='ArticleTOC btn btn-invisible circle'>
+        <svg viewBox='-30 380 1084 1' xmlns='http://www.w3.org/2000/svg' width='16' height='16'><path d='M973.281 563.992c28.282.049 51.248-22.838 51.295-51.121.049-28.27-22.838-51.232-51.121-51.28l-921.597-1.567C23.59 459.975.627 482.86.578 511.13c-.049 28.284 22.838 51.248 51.107 51.295l921.596 1.568zm.566-332.805c28.283.047 51.248-22.838 51.295-51.105.047-28.284-22.838-51.248-51.122-51.295L52.426 127.22c-28.27-.049-51.234 22.836-51.28 51.12-.05 28.269 22.837 51.233 51.106 51.28l921.595 1.568zm-1.13 665.597c28.283.047 51.247-22.825 51.294-51.107.047-28.281-22.84-51.247-51.122-51.294l-921.594-1.568C23.025 792.768.06 815.653.013 843.935c-.05 28.283 22.838 51.233 51.107 51.282l921.596 1.567z'></path></svg>
+    </div>
+```
+
+8. 添加打字效果 JS 代码.
+
+定位`<script>`标签, 在里面增加以下代码:
+
+```Javascript
+const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
+```
+
+<details><summary>含注释JS</summary>
+
+```Javascript
+// 间隔多少毫秒输入一个字符
+const writeSpeed = 100;
+
+// 获取文本内容
+const textContent = document.querySelector('.postTitle').textContent;
+const textContentLen = textContent.length;
+
+// 获取 .postTitle 元素并初始化为空
+const postTitle = document.querySelector('.postTitle');
+postTitle.textContent = ''; // 初始化文本内容为空
+
+// 要写入字符的索引
+let idx = 0;
+
+// 定时写入字符处理函数
+const writing = () => {
+	postTitle.textContent = textContent.slice(0, idx++);
+	if (idx > textContentLen) {
+		clearInterval(writeTimer); // 完成后停止定时器
+		postTitle.classList.remove('no-blink'); // 恢复动画
+	}
+};
+
+// 启动定时器
+const writeTimer = setInterval(writing, writeSpeed);
+
+// 在开始打字前移除动画
+postTitle.classList.add('no-blink'); // 禁用动画
+```
+
+</details>
+
 
 ### 打开 plist.html 文件
 
@@ -1535,7 +1640,7 @@ markdown 输入:
 
 </details>
 
-## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
+## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮(引用版)
 
 > 来源: [Github](https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file)
 > 修改-创建`.toc`的位置为body里面.
@@ -1548,6 +1653,14 @@ markdown 输入:
 图示:
 
 `Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H'`
+
+## [ArticleToc-header.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc-header.js) - 文章增加目录列表+一键返回顶部按钮(header版)
+
+功能和[引用版](#articletoc.js---文章增加目录列表+一键返回顶部按钮(引用版))一致, 这版集成到了文章的`#header`的按钮里面.
+
+按钮位置展示:
+
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/Qme3qiTmKATk8BVvcLj7bC87q3w8MqywJcQTJfHKQTmyvd'`
 
 ## Fancybox.js - 图片浏览器
 
@@ -1959,7 +2072,8 @@ html {
 `.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
 
 > [!NOTE]
-> 增加阴影.
+> 图标增加阴影.
+> svg 暗黑模式下颜色.
 > 修改图标 hover 样式.
 
 <details><summary>修改前</summary>
@@ -1991,13 +2105,17 @@ html {
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
     /* 增加 */
+	--SideNav-bgColor: #00f0ff;
+	--title-right-svgHovercolor:#ff7150;
 	--header-btn-shadowColor:#00000045;
-	--header-btn-shadowColor2:#ffffff26;
+	--header-btn-shadowColor2:#9bdfff14;
 }
 :root {
     /* 增加 */
+	--title-right-svgColor:#656d76;
+	--title-right-svgHovercolor: #ff7804;
 	--header-btn-shadowColor:#fbfbfb26;
-	--header-btn-shadowColor2:#9bdfff14;
+	--header-btn-shadowColor2:#5f5f5f26;
 }
 .btn-invisible {
 	color: var(--fgColor-accent, var(--color-accent-fg));
@@ -2005,6 +2123,7 @@ html {
 	border: 0;
 	border-radius: 6px;
 	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor), -7px -7px 16px 0 var(--header-btn-shadowColor2);
+	transition: box-shadow .4s ease-in-out,filter .4s ease-in-out;
 }
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
@@ -2013,10 +2132,14 @@ html {
 	outline: none;
 	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor) inset,-7px -7px 12px 0 var(--header-btn-shadowColor2) inset;
 }
-/* 增加 */
-.btn-invisible:hover svg,
-.btn-invisible.zeroclipboard-is-hover svg {
-    fill: var(--title-right-svg-color);
+/* 图标颜色 */
+.btn-invisible svg path{
+	fill: var(--title-right-svgColor);
+}
+/* 图标hover颜色 */
+.btn-invisible:hover svg path,
+.btn-invisible.zeroclipboard-is-hover svg path{
+	fill: var(--title-right-svgHovercolor);
 }
 ```
 
@@ -2548,18 +2671,21 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ### 打开 base.html 文件
 
+> [!Important]
+> base 这个模板文件里增加的代码可以应用到所有页面, 优先级很高.
+
 1. 增加所需的颜色样式.
 
 > 文章头部背景色.
-> 打字效果动画
-> 头部图标渐显动画
+> 打字效果动画.
+> 动画(已引用的地方:#header 打字机光标, #header 图标渐显).
 
 ```CSS
 :root{--header-article-bgColor: #3b3b3b6b;}
 
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor: #ffffff00;}
 
-@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
+@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes blink{50%{opacity:0}100%{opacity:1}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes blink{50%{opacity:0}100%{opacity:1}}
 ```
 
 2. 定位`#header`, 修改样式.
@@ -2568,18 +2694,17 @@ fork 之后, 转到搭建博客的 github 源码,
 #header{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:24px;}
 ```
 
-3. 增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.
+3. 增加新的 header 变化样式, 配合 JS 隐藏时有不同的样式变化.
 
 ```CSS
 #header.article-header{border-bottom:none;width:100%;max-width:inherit;position:fixed;top:0;left:50%;transform:translateX(-50%);background:var(--header-articel-bgColor);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);padding:10px;box-shadow:0 2px 10px rgba(0, 0, 0, .1);transition:transform 0.6s ease-in-out;-webkit-transition:transform 0.6s ease-in-out;z-index:99;border-radius:0 0 15px 15px;gap:15px;}
 
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 ```
-4. 增加文章内容的上边距.
 
-`.article-content{margin-top:90px;}`
+4. 增加类名变量, 这样通过 Actions 时渲染出来的页面有 `homepage` `article` 的关键类名, 有了不同类名就可更方便的使用 CSS 控制不同页面的样式.
 
-5. 大概在第27行, 增加了类名变量, 这样通过 Actions 时渲染出来的页面有 `homepage` `article` 的关键类名, 有了不同类名就可更方便的使用 CSS 控制不同页面的样式.
+定位`<body>`标签, 修改为以下内容:
 
 ```html
 <body class='{% block body_class %}homepage{% endblock %}'>
@@ -2589,7 +2714,11 @@ fork 之后, 转到搭建博客的 github 源码,
 </body>
 ```
 
-6. JS 代码部分, 我写在了 ([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)) 里面, 作用是滚动页面让头部显示或隐藏.
+5. \#header头部滚动时切换显示或隐藏.
+
+增加的 JS 代码部分, 我写在了([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)文件里面, 作用是向下滚动页面让头部隐藏, 向上则显示.
+
+关键内容如下:
 
 <details><summary>Javascript Code</summary>
 
@@ -2614,38 +2743,119 @@ fork 之后, 转到搭建博客的 github 源码,
 
 </details>
 
-7. 头部图标渐显动画.
+6. 头部图标样式.
 
-增加 CSS, `fadeIn`动画已经在打字机动画增加过了.
+> 增加 CSS, `fadeIn`动画已在上文第1步骤添加过.
 
-`.title-right{display:flex;gap:25px;animation:fadeIn 1.2s ease-in 0s forwards;}`
+```CSS
+.title-right{display:flex;gap:25px;animation:fadeIn 1.2s ease-in 0s forwards;}
+```
 
 ### 打开 post.html 文件
+
+> [!Important]
+> post 这个模板文件里增加的代码可以应用到所有文章页面.
 
 1. 增加所需的颜色样式.
 
 ```CSS
-:root{--postTitle-textshadow: #ffffff80;}
-[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow: #00000080;}
+:root{--postTitle-textshadowColor: #ffffff80;}
+
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadowColor: #00000080;}
 ```
 
-2. 定位`.postTitle`, 修改样式(打字机效果.)
+2. 定位`.postTitle`, 修改以及增加样式(打字机效果)
 
-```CSS
-.postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}
+```Diff
++.postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
++.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}
+-.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 ```
+3. 增加文章内容的上边距.
+
+`.article-content{margin-top:90px;}`
 
 4. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
 
-5. 定位`{% block header %}`, 在上方增加类名块.
+```Diff
++ .title-right .circle{padding: 14px 16px;}
+- .title-right .circle{padding: 14px 16px;margin-right:8px;}
+```
 
-> 这是为了用 class 区分`首页`和`文章页`
+5. 头部图标样式.
+
+> 给`.title-right`增加子元素 DIV 的样式, 因为我增加了一个 DIV 元素显示文章目录按钮图标, 这里刚好需要 CSS 控制它.
+
+```Diff
++ .title-right a, .title-right div{padding:14px 16px;}
+- .title-right a{padding:14px 16px;}
+```
+
+6. 定位`{% block header %}`, 在上方增加类名块.
+
+> 这是为了用 class 类名区分`首页`和`文章页`
 
 ```Django
 {% block body_class %}article{% endblock %}
 {% block header_class %}article-header{% endblock %}
 {% block content_class %}article-content{% endblock %}
 ```
+
+7. 增加文章列表按钮.
+
+在文章的头部增加一个文章目录按钮, 详情看👉[ArticleToc-header.js](#ArticleToc-header.js---文章增加目录列表+一键返回顶部按钮(header版))
+
+定位`<div class='title-right'>`, 在标签里面增加以下 HTML 元素.
+
+```html
+    <div class='ArticleTOC btn btn-invisible circle'>
+        <svg viewBox='-30 380 1084 1' xmlns='http://www.w3.org/2000/svg' width='16' height='16'><path d='M973.281 563.992c28.282.049 51.248-22.838 51.295-51.121.049-28.27-22.838-51.232-51.121-51.28l-921.597-1.567C23.59 459.975.627 482.86.578 511.13c-.049 28.284 22.838 51.248 51.107 51.295l921.596 1.568zm.566-332.805c28.283.047 51.248-22.838 51.295-51.105.047-28.284-22.838-51.248-51.122-51.295L52.426 127.22c-28.27-.049-51.234 22.836-51.28 51.12-.05 28.269 22.837 51.233 51.106 51.28l921.595 1.568zm-1.13 665.597c28.283.047 51.247-22.825 51.294-51.107.047-28.281-22.84-51.247-51.122-51.294l-921.594-1.568C23.025 792.768.06 815.653.013 843.935c-.05 28.283 22.838 51.233 51.107 51.282l921.596 1.567z'></path></svg>
+    </div>
+```
+
+8. 添加打字效果 JS 代码.
+
+定位`<script>`标签, 在里面增加以下代码:
+
+```Javascript
+const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
+```
+
+<details><summary>含注释JS</summary>
+
+```Javascript
+// 间隔多少毫秒输入一个字符
+const writeSpeed = 100;
+
+// 获取文本内容
+const textContent = document.querySelector('.postTitle').textContent;
+const textContentLen = textContent.length;
+
+// 获取 .postTitle 元素并初始化为空
+const postTitle = document.querySelector('.postTitle');
+postTitle.textContent = ''; // 初始化文本内容为空
+
+// 要写入字符的索引
+let idx = 0;
+
+// 定时写入字符处理函数
+const writing = () => {
+	postTitle.textContent = textContent.slice(0, idx++);
+	if (idx > textContentLen) {
+		clearInterval(writeTimer); // 完成后停止定时器
+		postTitle.classList.remove('no-blink'); // 恢复动画
+	}
+};
+
+// 启动定时器
+const writeTimer = setInterval(writing, writeSpeed);
+
+// 在开始打字前移除动画
+postTitle.classList.add('no-blink'); // 禁用动画
+```
+
+</details>
+
 
 ### 打开 plist.html 文件
 
@@ -2880,14 +3090,13 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 <style>
 :root{--header-article-bgColor:#3b3b3b6b;}
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor:#ffffff00;}
-@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes blink{50%{opacity:0}100%{opacity:1}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes blink{50%{opacity:0}100%{opacity:1}}
+@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
 body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padding:45px;font-size:16px;font-family:sans-serif;line-height:1.25;}
 #header{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:24px;}
 #header.article-header{border-bottom:none;width:100%;max-width:inherit;position:fixed;top:0;left:50%;transform:translateX(-50%);background:var(--header-articel-bgColor);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);padding:10px;box-shadow:0 2px 10px rgba(0, 0, 0, .1);transition:transform 0.6s ease-in-out;-webkit-transition:transform 0.6s ease-in-out;z-index:99;border-radius:0 0 15px 15px;gap:15px;}
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 #header h1 a{margin:unset;}
 .title-right{display:flex;gap:25px;animation:fadeIn 1.2s ease-in 0s forwards;}
-.article-content{margin-top:90px;}
 #footer{margin-top:64px; text-align:center;font-size:small;}
 
 </style>
@@ -2895,9 +3104,8 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 <style>
 :root{--postTitle-textshadowColor:#ffffff80;}
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow:#00000080;}
-.postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow:0 1px 2px var(--postTitle-textshadowColor);}
-.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;}
-.postTitle.no-blink::after{animation: none;}
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
+.article-content{margin-top:90px;}
 .spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
 .spoilerText.clear{filter:none;}
 .title-right .circle{padding: 14px 16px;}
@@ -2932,27 +3140,21 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 <h1 class="postTitle">Gmeek - 记录使用过程</h1>
 <div class="title-right">
     <a href="https://GJKen.github.io/demo" id="buttonHome" class="btn btn-invisible circle" title="首页">
-        <svg class="octicon" width="16" height="16">
-            <path id="pathHome" fill-rule="evenodd"></path>
-        </svg>
+        <svg class="octicon" width="16" height="16"><path id="pathHome" fill-rule="evenodd"></path></svg>
     </a>
     
     <a href="https://github.com/GJKen/demo/issues/1" target="_blank" class="btn btn-invisible circle" title="Issue">
-        <svg class="octicon" width="16" height="16">
-            <path id="pathIssue" fill-rule="evenodd"></path>
-        </svg>
+        <svg class="octicon" width="16" height="16"><path id="pathIssue" fill-rule="evenodd"></path></svg>
     </a>
     
 
     <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
-        <svg class="octicon" width="16" height="16" >
-            <path id="themeSwitch" fill-rule="evenodd"></path>
-        </svg>
+        <svg class="octicon" width="16" height="16" ><path id="themeSwitch" fill-rule="evenodd"></path></svg>
     </a>
 
-	<div class="ArticleTOC btn btn-invisible circle">
-		<svg viewBox="-30 380 1084 1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M973.281 563.992c28.282.049 51.248-22.838 51.295-51.121.049-28.27-22.838-51.232-51.121-51.28l-921.597-1.567C23.59 459.975.627 482.86.578 511.13c-.049 28.284 22.838 51.248 51.107 51.295l921.596 1.568zm.566-332.805c28.283.047 51.248-22.838 51.295-51.105.047-28.284-22.838-51.248-51.122-51.295L52.426 127.22c-28.27-.049-51.234 22.836-51.28 51.12-.05 28.269 22.837 51.233 51.106 51.28l921.595 1.568zm-1.13 665.597c28.283.047 51.247-22.825 51.294-51.107.047-28.281-22.84-51.247-51.122-51.294l-921.594-1.568C23.025 792.768.06 815.653.013 843.935c-.05 28.283 22.838 51.233 51.107 51.282l921.596 1.567z" fill="#656d76"></path></svg>
-	</div>
+    <div class="ArticleTOC btn btn-invisible circle">
+        <svg viewBox="-30 380 1084 1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M973.281 563.992c28.282.049 51.248-22.838 51.295-51.121.049-28.27-22.838-51.232-51.121-51.28l-921.597-1.567C23.59 459.975.627 482.86.578 511.13c-.049 28.284 22.838 51.248 51.107 51.295l921.596 1.568zm.566-332.805c28.283.047 51.248-22.838 51.295-51.105.047-28.284-22.838-51.248-51.122-51.295L52.426 127.22c-28.27-.049-51.234 22.836-51.28 51.12-.05 28.269 22.837 51.233 51.106 51.28l921.595 1.568zm-1.13 665.597c28.283.047 51.247-22.825 51.294-51.107.047-28.281-22.84-51.247-51.122-51.294l-921.594-1.568C23.025 792.768.06 815.653.013 843.935c-.05 28.283 22.838 51.233 51.107 51.282l921.596 1.567z" fill="#656d76"></path></svg>
+    </div>
 </div>
 </div>
     <div id="content" class="article-content">
@@ -2973,12 +3175,14 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 <p>代码:</p>
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"subTitle"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script&gt;document.getElementById('content').innerHTML = `&lt;div style='text-align: center;'&gt;&lt;p&gt;CV工程师,&lt;/p&gt;&lt;p&gt;一个又菜又爱玩, 喜欢瞎折腾的流浪者.&lt;/p&gt;&lt;/div&gt;`;&lt;/script&gt;<span class="pl-pds">"</span></span>,</pre></div>
 <p>效果图:</p>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
+<p><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/1QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
 <p>从图中可以看到, <code class="notranslate">subTitle</code>字段可用 js 插入 html 实现修改文字.</p>
 <h2>subTitle - 隐藏</h2>
 <p><code class="notranslate">"subTitle":" ",</code></p>
 <p>效果图:</p>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"></p>
+<p><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"></p>
 <p>可以用空白字符的方式, 隐藏<code class="notranslate">subTitle</code>这个必须字段, 无需使用 js 隐藏.</p>
 <h1>记录功能块代码</h1>
 <p>代码摘抄自网络, 有删改, 都存放在仓库, 使用 jsdelivr CDN 加速.</p>
@@ -3005,7 +3209,7 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 <p>图片加载失败则会创建指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.</p>
 <p>大概就是这样的一个流程.</p>
 </details>
-<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js">ArticleToc.js</a> - 文章增加目录列表+一键返回顶部按钮</h2>
+<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js">ArticleToc.js</a> - 文章增加目录列表+一键返回顶部按钮(引用版)</h2>
 <blockquote>
 <p>来源: <a href="https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file">Github</a><br>
 修改-创建<code class="notranslate">.toc</code>的位置为body里面.<br>
@@ -3016,7 +3220,13 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 修改-滚动页面自动显示&amp;隐藏返回顶部按钮.</p>
 </blockquote>
 <p>图示:</p>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H"></p>
+<p><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H"></p>
+<h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc-header.js">ArticleToc-header.js</a> - 文章增加目录列表+一键返回顶部按钮(header版)</h2>
+<p>功能和<a href="#articletoc.js---%E6%96%87%E7%AB%A0%E5%A2%9E%E5%8A%A0%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8+%E4%B8%80%E9%94%AE%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE(%E5%BC%95%E7%94%A8%E7%89%88)">引用版</a>一致, 这版集成到了文章的<code class="notranslate">#header</code>的按钮里面.</p>
+<p>按钮位置展示:</p>
+<p><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/Qme3qiTmKATk8BVvcLj7bC87q3w8MqywJcQTJfHKQTmyvd"></p>
 <h2>Fancybox.js - 图片浏览器</h2>
 <blockquote>
 <p>Fancybox <a href="https://www.fancyapps.com" rel="nofollow">官网</a></p>
@@ -3052,7 +3262,8 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 <p>在 markdown 插入图片:</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2"`</pre></div>
 <p>通过 Actions 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的<code class="notranslate">data-fancybox="gallery"</code>属性.</p>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2"></p>
+<p><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2"></p>
 <h2>图片懒加载</h2>
 <blockquote>
 <p>来源: <a href="https://github.com/liyifanniubi/liyifanniubi.github.io">Github</a></p>
@@ -3338,7 +3549,8 @@ pv 修改成 uv 计数.</p>
 </details>
 <h2>#header 图标样式</h2>
 <p><code class="notranslate">.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover</code></p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>增加阴影.<br>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>图标增加阴影.<br>
+svg 暗黑模式下颜色.<br>
 修改图标 hover 样式.</p>
 </div>
 <details><summary>修改前</summary>
@@ -3364,13 +3576,17 @@ pv 修改成 uv 计数.</p>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span> {
     <span class="pl-c">/* 增加 */</span>
+	<span class="pl-s1">--SideNav-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>00f0ff</span>;
+	<span class="pl-s1">--title-right-svgHovercolor</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>ff7150</span>;
 	<span class="pl-s1">--header-btn-shadowColor</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>00000045</span>;
-	<span class="pl-s1">--header-btn-shadowColor2</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>ffffff26</span>;
+	<span class="pl-s1">--header-btn-shadowColor2</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>9bdfff14</span>;
 }
 <span class="pl-kos">:</span><span class="pl-c1">root</span> {
     <span class="pl-c">/* 增加 */</span>
+	<span class="pl-s1">--title-right-svgColor</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>656d76</span>;
+	<span class="pl-s1">--title-right-svgHovercolor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ff7804</span>;
 	<span class="pl-s1">--header-btn-shadowColor</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>fbfbfb26</span>;
-	<span class="pl-s1">--header-btn-shadowColor2</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>9bdfff14</span>;
+	<span class="pl-s1">--header-btn-shadowColor2</span><span class="pl-kos">:</span><span class="pl-pds"><span class="pl-kos">#</span>5f5f5f26</span>;
 }
 .<span class="pl-c1">btn-invisible</span> {
 	<span class="pl-c1">color</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-accent</span><span class="pl-kos">,</span> <span class="pl-en">var</span>(<span class="pl-s1">--color-accent-fg</span>));
@@ -3378,6 +3594,7 @@ pv 修改成 uv 计数.</p>
 	<span class="pl-c1">border</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;
 	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span>;
 	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-c1">14<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--header-btn-shadowColor</span>)<span class="pl-kos">,</span> <span class="pl-c1">-7<span class="pl-smi">px</span></span> <span class="pl-c1">-7<span class="pl-smi">px</span></span> <span class="pl-c1">16<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--header-btn-shadowColor2</span>);
+	<span class="pl-c1">transition</span><span class="pl-kos">:</span> box-shadow <span class="pl-c1">.4<span class="pl-smi">s</span></span> ease-in-out<span class="pl-kos">,</span>filter <span class="pl-c1">.4<span class="pl-smi">s</span></span> ease-in-out;
 }
 .<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span><span class="pl-kos">,</span>
 .<span class="pl-c1">btn-invisible</span>.<span class="pl-c1">zeroclipboard-is-hover</span> {
@@ -3386,10 +3603,14 @@ pv 修改成 uv 计数.</p>
 	<span class="pl-c1">outline</span><span class="pl-kos">:</span> none;
 	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-c1">14<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--header-btn-shadowColor</span>) inset<span class="pl-kos">,</span><span class="pl-c1">-7<span class="pl-smi">px</span></span> <span class="pl-c1">-7<span class="pl-smi">px</span></span> <span class="pl-c1">12<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--header-btn-shadowColor2</span>) inset;
 }
-<span class="pl-c">/* 增加 */</span>
-.<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> <span class="pl-ent">svg</span><span class="pl-kos">,</span>
-.<span class="pl-c1">btn-invisible</span>.<span class="pl-c1">zeroclipboard-is-hover</span> <span class="pl-ent">svg</span> {
-    <span class="pl-c1">fill</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--title-right-svg-color</span>);
+<span class="pl-c">/* 图标颜色 */</span>
+.<span class="pl-c1">btn-invisible</span> <span class="pl-ent">svg</span> <span class="pl-ent">path</span>{
+	<span class="pl-c1">fill</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--title-right-svgColor</span>);
+}
+<span class="pl-c">/* 图标hover颜色 */</span>
+.<span class="pl-c1">btn-invisible</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> <span class="pl-ent">svg</span> <span class="pl-ent">path</span><span class="pl-kos">,</span>
+.<span class="pl-c1">btn-invisible</span>.<span class="pl-c1">zeroclipboard-is-hover</span> <span class="pl-ent">svg</span> <span class="pl-ent">path</span>{
+	<span class="pl-c1">fill</span><span class="pl-kos">:</span> <span class="pl-en">var</span>(<span class="pl-s1">--title-right-svgHovercolor</span>);
 }</pre></div>
 </details>
 <h2>修改文章主页, 文章的列表样式</h2>
@@ -3728,10 +3949,12 @@ pv 修改成 uv 计数.</p>
 <p>为什么这样做? <span class="spoilerText">自娱自乐.~~</span></p>
 <h2>Fork Gmeek 仓库</h2>
 <p>仓库地址👉 <a href="https://github.com/Meekdai/Gmeek">https://github.com/Meekdai/Gmeek</a></p>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV"></p>
+<p><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV"></p>
 <p>fork 之后, 转到搭建博客的 github 源码,</p>
 <p>打开<code class="notranslate">.github/workflows/Gmeek.yml</code>文件, 修改构建博客仓库的地址为你自己的仓库地址</p>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav"></p>
+<p><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav"></p>
 <p>打开<code class="notranslate">config.json</code>文件, 修改右边字段值为main<code class="notranslate">"GMEEK_VERSION":"main"</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>如果值是<code class="notranslate">last</code>的话, Actions 会失败, 因为默认值<code class="notranslate">last</code>是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.<br>
 <del>创建新的 tag 也可以, 但是挺麻烦.</del></p>
@@ -3744,51 +3967,54 @@ pv 修改成 uv 计数.</p>
 <h2>修改网站下方的文字</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
 <p>下图文字直接修改即可, 不同语言的按需修改.</p>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs"></p>
+<p><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs"></p>
 <h2>修改默认 primer.css 链接</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"></p>
+<p><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"></p>
 <p>这里我直接写改成我存放的链接 <a href="https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css" rel="nofollow">https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css</a></p>
 <h2>修改页面头部样式</h2>
 <h3>打开 base.html 文件</h3>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>base 这个模板文件里增加的代码可以应用到所有页面, 优先级很高.</p>
+</div>
 <ol>
 <li>增加所需的颜色样式.</li>
 </ol>
 <blockquote>
 <p>文章头部背景色.<br>
-打字效果动画<br>
-头部图标渐显动画</p>
+打字效果动画.<br>
+动画(已引用的地方:#header 打字机光标, #header 图标渐显).</p>
 </blockquote>
 <div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">:</span><span class="pl-c1">root</span>{<span class="pl-s1">--header-article-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>3b3b3b6b</span>;}
 
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span>{<span class="pl-s1">--header-article-bgColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ffffff00</span>;}
 
-<span class="pl-k">@keyframes</span> fadeIn{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">1</span>}}<span class="pl-k">@keyframes</span> typing{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">100<span class="pl-smi">%</span></span>}}<span class="pl-k">@keyframes</span> blink{<span class="pl-c1">50<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span>transparent}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span><span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span><span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>))}}<span class="pl-k">@-webkit-keyframes</span> fadeIn{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">1</span>}}<span class="pl-k">@-webkit-keyframes</span> typing{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">100<span class="pl-smi">%</span></span>}}<span class="pl-k">@-webkit-keyframes</span> blink{<span class="pl-c1">50<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span>transparent}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">border-color</span><span class="pl-kos">:</span><span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span><span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>))}}</pre></div>
+<span class="pl-k">@keyframes</span> fadeIn{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">1</span>}}<span class="pl-k">@keyframes</span> blink{<span class="pl-c1">50<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">1</span>}}<span class="pl-k">@-webkit-keyframes</span> fadeIn{<span class="pl-c1">0<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">1</span>}}<span class="pl-k">@-webkit-keyframes</span> blink{<span class="pl-c1">50<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>}<span class="pl-c1">100<span class="pl-smi">%</span></span>{<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">1</span>}}</pre></div>
 <ol start="2">
 <li>定位<code class="notranslate">#header</code>, 修改样式.</li>
 </ol>
 <div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">#</span><span class="pl-c1">header</span>{<span class="pl-c1">display</span><span class="pl-kos">:</span>flex;<span class="pl-c1">flex-direction</span><span class="pl-kos">:</span>column;<span class="pl-c1">align-items</span><span class="pl-kos">:</span>center;<span class="pl-c1">gap</span><span class="pl-kos">:</span><span class="pl-c1">10<span class="pl-smi">px</span></span>;<span class="pl-c1">margin-bottom</span><span class="pl-kos">:</span><span class="pl-c1">24<span class="pl-smi">px</span></span>;}</pre></div>
 <ol start="3">
-<li>增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.</li>
+<li>增加新的 header 变化样式, 配合 JS 隐藏时有不同的样式变化.</li>
 </ol>
 <div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">#</span><span class="pl-c1">header</span>.<span class="pl-c1">article-header</span>{<span class="pl-c1">border-bottom</span><span class="pl-kos">:</span>none;<span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">100<span class="pl-smi">%</span></span>;<span class="pl-c1">max-width</span><span class="pl-kos">:</span>inherit;<span class="pl-c1">position</span><span class="pl-kos">:</span>fixed;<span class="pl-c1">top</span><span class="pl-kos">:</span><span class="pl-c1">0</span>;<span class="pl-c1">left</span><span class="pl-kos">:</span><span class="pl-c1">50<span class="pl-smi">%</span></span>;<span class="pl-c1">transform</span><span class="pl-kos">:</span><span class="pl-en">translateX</span>(<span class="pl-c1">-50<span class="pl-smi">%</span></span>);<span class="pl-c1">background</span><span class="pl-kos">:</span><span class="pl-en">var</span>(<span class="pl-s1">--header-articel-bgColor</span>);<span class="pl-c1">backdrop-filter</span><span class="pl-kos">:</span><span class="pl-en">blur</span>(<span class="pl-c1">15<span class="pl-smi">px</span></span>);<span class="pl-c1">-webkit-backdrop-filter</span><span class="pl-kos">:</span><span class="pl-en">blur</span>(<span class="pl-c1">15<span class="pl-smi">px</span></span>);<span class="pl-c1">padding</span><span class="pl-kos">:</span><span class="pl-c1">10<span class="pl-smi">px</span></span>;<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span><span class="pl-c1">0</span> <span class="pl-c1">2<span class="pl-smi">px</span></span> <span class="pl-c1">10<span class="pl-smi">px</span></span> <span class="pl-en">rgba</span>(<span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-c1">.1</span>);<span class="pl-c1">transition</span><span class="pl-kos">:</span>transform <span class="pl-c1">0.6<span class="pl-smi">s</span></span> ease-in-out;<span class="pl-c1">-webkit-transition</span><span class="pl-kos">:</span>transform <span class="pl-c1">0.6<span class="pl-smi">s</span></span> ease-in-out;<span class="pl-c1">z-index</span><span class="pl-kos">:</span><span class="pl-c1">99</span>;<span class="pl-c1">border-radius</span><span class="pl-kos">:</span><span class="pl-c1">0</span> <span class="pl-c1">0</span> <span class="pl-c1">15<span class="pl-smi">px</span></span> <span class="pl-c1">15<span class="pl-smi">px</span></span>;<span class="pl-c1">gap</span><span class="pl-kos">:</span><span class="pl-c1">15<span class="pl-smi">px</span></span>;}
 
 <span class="pl-kos">#</span><span class="pl-c1">header</span>.<span class="pl-c1">article-header</span>.<span class="pl-c1">hidden</span>{<span class="pl-c1">transform</span><span class="pl-kos">:</span><span class="pl-en">translate</span>(<span class="pl-c1">-50<span class="pl-smi">%</span></span><span class="pl-kos">,</span><span class="pl-c1">-120<span class="pl-smi">%</span></span>);}</pre></div>
 <ol start="4">
-<li>增加文章内容的上边距.</li>
+<li>增加类名变量, 这样通过 Actions 时渲染出来的页面有 <code class="notranslate">homepage</code> <code class="notranslate">article</code> 的关键类名, 有了不同类名就可更方便的使用 CSS 控制不同页面的样式.</li>
 </ol>
-<p><code class="notranslate">.article-content{margin-top:90px;}</code></p>
-<ol start="5">
-<li>大概在第27行, 增加了类名变量, 这样通过 Actions 时渲染出来的页面有 <code class="notranslate">homepage</code> <code class="notranslate">article</code> 的关键类名, 有了不同类名就可更方便的使用 CSS 控制不同页面的样式.</li>
-</ol>
+<p>定位<code class="notranslate">&lt;body&gt;</code>标签, 修改为以下内容:</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">body</span> <span class="pl-c1">class</span>="<span class="pl-s">{% block body_class %}homepage{% endblock %}</span>"<span class="pl-kos">&gt;</span>
     <span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">id</span>="<span class="pl-s">header</span>" <span class="pl-c1">class</span>="<span class="pl-s">{% block header_class %}homepage-header{% endblock %}</span>"<span class="pl-kos">&gt;</span>{% block header %}{% endblock %}<span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span>
     <span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">id</span>="<span class="pl-s">content</span>" <span class="pl-c1">class</span>="<span class="pl-s">{% block content_class %}homepage-content{% endblock %}</span>"<span class="pl-kos">&gt;</span>{% block content %}{% endblock %}<span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span>
     <span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">id</span>="<span class="pl-s">footer</span>"<span class="pl-kos">&gt;</span>{% include 'footer.html' %}<span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span>
 <span class="pl-kos">&lt;/</span><span class="pl-ent">body</span><span class="pl-kos">&gt;</span></pre></div>
-<ol start="6">
-<li>JS 代码部分, 我写在了 (<a href="#articletoc.js---%E6%96%87%E7%AB%A0%E5%A2%9E%E5%8A%A0%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8+%E4%B8%80%E9%94%AE%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE">ArticleJs.js</a>) 里面, 作用是滚动页面让头部显示或隐藏.</li>
+<ol start="5">
+<li>#header头部滚动时切换显示或隐藏.</li>
 </ol>
+<p>增加的 JS 代码部分, 我写在了(<a href="#articletoc.js---%E6%96%87%E7%AB%A0%E5%A2%9E%E5%8A%A0%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8+%E4%B8%80%E9%94%AE%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE">ArticleJs.js</a>文件里面, 作用是向下滚动页面让头部隐藏, 向上则显示.</p>
+<p>关键内容如下:</p>
 <details><summary>Javascript Code</summary>
 <div class="highlight highlight-source-js"><pre class="notranslate">	<span class="pl-c">// 滚动显示或隐藏#header</span>
 	<span class="pl-k">const</span> <span class="pl-s1">header</span> <span class="pl-c1">=</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">querySelector</span><span class="pl-kos">(</span><span class="pl-s">'#header'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
@@ -3807,35 +4033,97 @@ pv 修改成 uv 计数.</p>
 		<span class="pl-s1">lastScrollTop</span> <span class="pl-c1">=</span> <span class="pl-s1">currentScroll</span> <span class="pl-c1">&lt;=</span> <span class="pl-c1">0</span> ? <span class="pl-c1">0</span> : <span class="pl-s1">currentScroll</span><span class="pl-kos">;</span>
 	<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
 </details>
-<ol start="7">
-<li>头部图标渐显动画.</li>
+<ol start="6">
+<li>头部图标样式.</li>
 </ol>
-<p>增加 CSS, <code class="notranslate">fadeIn</code>动画已经在打字机动画增加过了.</p>
-<p><code class="notranslate">.title-right{display:flex;gap:25px;animation:fadeIn 1.2s ease-in 0s forwards;}</code></p>
+<blockquote>
+<p>增加 CSS, <code class="notranslate">fadeIn</code>动画已在上文第1步骤添加过.</p>
+</blockquote>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">title-right</span>{<span class="pl-c1">display</span><span class="pl-kos">:</span>flex;<span class="pl-c1">gap</span><span class="pl-kos">:</span><span class="pl-c1">25<span class="pl-smi">px</span></span>;<span class="pl-c1">animation</span><span class="pl-kos">:</span>fadeIn <span class="pl-c1">1.2<span class="pl-smi">s</span></span> ease-in <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards;}</pre></div>
 <h3>打开 post.html 文件</h3>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>post 这个模板文件里增加的代码可以应用到所有文章页面.</p>
+</div>
 <ol>
 <li>增加所需的颜色样式.</li>
 </ol>
-<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">:</span><span class="pl-c1">root</span>{<span class="pl-s1">--postTitle-textshadow</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ffffff80</span>;}
-[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span>{<span class="pl-s1">--postTitle-textshadow</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>00000080</span>;}</pre></div>
+<div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-kos">:</span><span class="pl-c1">root</span>{<span class="pl-s1">--postTitle-textshadowColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>ffffff80</span>;}
+
+[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span>{<span class="pl-s1">--postTitle-textshadowColor</span><span class="pl-kos">:</span> <span class="pl-pds"><span class="pl-kos">#</span>00000080</span>;}</pre></div>
 <ol start="2">
-<li>定位<code class="notranslate">.postTitle</code>, 修改样式(打字机效果.)</li>
+<li>定位<code class="notranslate">.postTitle</code>, 修改以及增加样式(打字机效果)</li>
 </ol>
-<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">postTitle</span>{<span class="pl-c1">margin</span><span class="pl-kos">:</span>auto <span class="pl-c1">0</span>;<span class="pl-c1">font-size</span><span class="pl-kos">:</span><span class="pl-c1">35<span class="pl-smi">px</span></span>;<span class="pl-c1">text-shadow</span><span class="pl-kos">:</span><span class="pl-c1">0</span> <span class="pl-c1">1<span class="pl-smi">px</span></span> <span class="pl-c1">2<span class="pl-smi">px</span></span> <span class="pl-en">var</span>(<span class="pl-s1">--postTitle-textshadow</span>);<span class="pl-c1">font-weight</span><span class="pl-kos">:</span><span class="pl-c1">700</span>;<span class="pl-c1">display</span><span class="pl-kos">:</span>inline-block;<span class="pl-c1">white-space</span><span class="pl-kos">:</span>nowrap;<span class="pl-c1">overflow</span><span class="pl-kos">:</span>hidden;<span class="pl-c1">width</span><span class="pl-kos">:</span>auto;<span class="pl-c1">max-width</span><span class="pl-kos">:</span>-webkit-fit-content;<span class="pl-c1">max-width</span><span class="pl-kos">:</span>fit-content;<span class="pl-c1">border-right</span><span class="pl-kos">:</span><span class="pl-c1">2<span class="pl-smi">px</span></span> solid <span class="pl-en">var</span>(<span class="pl-s1">--fgColor-default</span><span class="pl-kos">,</span><span class="pl-en">var</span>(<span class="pl-s1">--color-fg-default</span>));<span class="pl-c1">opacity</span><span class="pl-kos">:</span><span class="pl-c1">0</span>;<span class="pl-c1">animation</span><span class="pl-kos">:</span>fadeIn <span class="pl-c1">.3<span class="pl-smi">s</span></span> ease-in <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>typing <span class="pl-c1">2<span class="pl-smi">s</span></span> <span class="pl-en">steps</span>(<span class="pl-c1">20</span>) <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>blink <span class="pl-c1">.75<span class="pl-smi">s</span></span> step-end infinite <span class="pl-c1">1.2<span class="pl-smi">s</span></span>;<span class="pl-c1">-webkit-animation</span><span class="pl-kos">:</span>fadeIn <span class="pl-c1">.3<span class="pl-smi">s</span></span> ease-in <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>typing <span class="pl-c1">2<span class="pl-smi">s</span></span> <span class="pl-en">steps</span>(<span class="pl-c1">20</span>) <span class="pl-c1">0<span class="pl-smi">s</span></span> forwards<span class="pl-kos">,</span>blink <span class="pl-c1">.75<span class="pl-smi">s</span></span> step-end infinite <span class="pl-c1">1.2<span class="pl-smi">s</span></span>}</pre></div>
+<div class="highlight highlight-source-diff"><pre class="notranslate"><span class="pl-mi1"><span class="pl-mi1">+</span>.postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}</span>
+<span class="pl-mi1"><span class="pl-mi1">+</span>.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}</span>
+<span class="pl-md"><span class="pl-md">-</span>.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}</span></pre></div>
+<ol start="3">
+<li>增加文章内容的上边距.</li>
+</ol>
+<p><code class="notranslate">.article-content{margin-top:90px;}</code></p>
 <ol start="4">
-<li>
-<p>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code></p>
-</li>
-<li>
-<p>定位<code class="notranslate">{% block header %}</code>, 在上方增加类名块.</p>
-</li>
+<li>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code></li>
+</ol>
+<div class="highlight highlight-source-diff"><pre class="notranslate"><span class="pl-mi1"><span class="pl-mi1">+</span> .title-right .circle{padding: 14px 16px;}</span>
+<span class="pl-md"><span class="pl-md">-</span> .title-right .circle{padding: 14px 16px;margin-right:8px;}</span></pre></div>
+<ol start="5">
+<li>头部图标样式.</li>
 </ol>
 <blockquote>
-<p>这是为了用 class 区分<code class="notranslate">首页</code>和<code class="notranslate">文章页</code></p>
+<p>给<code class="notranslate">.title-right</code>增加子元素 DIV 的样式, 因为我增加了一个 DIV 元素显示文章目录按钮图标, 这里刚好需要 CSS 控制它.</p>
+</blockquote>
+<div class="highlight highlight-source-diff"><pre class="notranslate"><span class="pl-mi1"><span class="pl-mi1">+</span> .title-right a, .title-right div{padding:14px 16px;}</span>
+<span class="pl-md"><span class="pl-md">-</span> .title-right a{padding:14px 16px;}</span></pre></div>
+<ol start="6">
+<li>定位<code class="notranslate">{% block header %}</code>, 在上方增加类名块.</li>
+</ol>
+<blockquote>
+<p>这是为了用 class 类名区分<code class="notranslate">首页</code>和<code class="notranslate">文章页</code></p>
 </blockquote>
 <div class="highlight highlight-text-html-django"><pre class="notranslate"><span class="pl-e">{%</span> <span class="pl-k">block</span> <span class="pl-s">body_class</span> <span class="pl-e">%}</span>article<span class="pl-e">{%</span> <span class="pl-k">endblock</span> <span class="pl-e">%}</span>
 <span class="pl-e">{%</span> <span class="pl-k">block</span> <span class="pl-s">header_class</span> <span class="pl-e">%}</span>article-header<span class="pl-e">{%</span> <span class="pl-k">endblock</span> <span class="pl-e">%}</span>
 <span class="pl-e">{%</span> <span class="pl-k">block</span> <span class="pl-s">content_class</span> <span class="pl-e">%}</span>article-content<span class="pl-e">{%</span> <span class="pl-k">endblock</span> <span class="pl-e">%}</span></pre></div>
+<ol start="7">
+<li>增加文章列表按钮.</li>
+</ol>
+<p>在文章的头部增加一个文章目录按钮, 详情看👉<a href="#ArticleToc-header.js---%E6%96%87%E7%AB%A0%E5%A2%9E%E5%8A%A0%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8+%E4%B8%80%E9%94%AE%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE(header%E7%89%88)">ArticleToc-header.js</a></p>
+<p>定位<code class="notranslate">&lt;div class="title-right"&gt;</code>, 在标签里面增加以下 HTML 元素.</p>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate">    <span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">class</span>="<span class="pl-s">ArticleTOC btn btn-invisible circle</span>"<span class="pl-kos">&gt;</span>
+        <span class="pl-kos">&lt;</span><span class="pl-ent">svg</span> <span class="pl-c1">viewBox</span>="<span class="pl-s">-30 380 1084 1</span>" <span class="pl-c1">xmlns</span>="<span class="pl-s">http://www.w3.org/2000/svg</span>" <span class="pl-c1">width</span>="<span class="pl-s">16</span>" <span class="pl-c1">height</span>="<span class="pl-s">16</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;</span><span class="pl-ent">path</span> <span class="pl-c1">d</span>="<span class="pl-s">M973.281 563.992c28.282.049 51.248-22.838 51.295-51.121.049-28.27-22.838-51.232-51.121-51.28l-921.597-1.567C23.59 459.975.627 482.86.578 511.13c-.049 28.284 22.838 51.248 51.107 51.295l921.596 1.568zm.566-332.805c28.283.047 51.248-22.838 51.295-51.105.047-28.284-22.838-51.248-51.122-51.295L52.426 127.22c-28.27-.049-51.234 22.836-51.28 51.12-.05 28.269 22.837 51.233 51.106 51.28l921.595 1.568zm-1.13 665.597c28.283.047 51.247-22.825 51.294-51.107.047-28.281-22.84-51.247-51.122-51.294l-921.594-1.568C23.025 792.768.06 815.653.013 843.935c-.05 28.283 22.838 51.233 51.107 51.282l921.596 1.567z</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">path</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">svg</span><span class="pl-kos">&gt;</span>
+    <span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span></pre></div>
+<ol start="8">
+<li>添加打字效果 JS 代码.</li>
+</ol>
+<p>定位<code class="notranslate">&lt;script&gt;</code>标签, 在里面增加以下代码:</p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">const</span> <span class="pl-s1">writeSpeed</span><span class="pl-c1">=</span><span class="pl-c1">100</span><span class="pl-kos">;</span><span class="pl-k">const</span> <span class="pl-s1">textContent</span><span class="pl-c1">=</span><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">querySelector</span><span class="pl-kos">(</span><span class="pl-s">'.postTitle'</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-c1">textContent</span><span class="pl-kos">;</span><span class="pl-k">const</span> <span class="pl-s1">textContentLen</span><span class="pl-c1">=</span><span class="pl-s1">textContent</span><span class="pl-kos">.</span><span class="pl-c1">length</span><span class="pl-kos">;</span><span class="pl-k">const</span> <span class="pl-s1">postTitle</span><span class="pl-c1">=</span><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">querySelector</span><span class="pl-kos">(</span><span class="pl-s">'.postTitle'</span><span class="pl-kos">)</span><span class="pl-kos">;</span><span class="pl-s1">postTitle</span><span class="pl-kos">.</span><span class="pl-c1">textContent</span><span class="pl-c1">=</span><span class="pl-s">''</span><span class="pl-kos">;</span><span class="pl-k">let</span> <span class="pl-s1">idx</span><span class="pl-c1">=</span><span class="pl-c1">0</span><span class="pl-kos">;</span><span class="pl-k">const</span> <span class="pl-en">writing</span><span class="pl-c1">=</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-c1">=&gt;</span><span class="pl-kos">{</span><span class="pl-s1">postTitle</span><span class="pl-kos">.</span><span class="pl-c1">textContent</span><span class="pl-c1">=</span><span class="pl-s1">textContent</span><span class="pl-kos">.</span><span class="pl-en">slice</span><span class="pl-kos">(</span><span class="pl-c1">0</span><span class="pl-kos">,</span><span class="pl-s1">idx</span><span class="pl-c1">++</span><span class="pl-kos">)</span><span class="pl-kos">;</span><span class="pl-k">if</span><span class="pl-kos">(</span><span class="pl-s1">idx</span><span class="pl-c1">&gt;</span><span class="pl-s1">textContentLen</span><span class="pl-kos">)</span><span class="pl-kos">{</span><span class="pl-en">clearInterval</span><span class="pl-kos">(</span><span class="pl-s1">writeTimer</span><span class="pl-kos">)</span><span class="pl-kos">;</span><span class="pl-s1">postTitle</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">remove</span><span class="pl-kos">(</span><span class="pl-s">'no-blink'</span><span class="pl-kos">)</span><span class="pl-kos">;</span><span class="pl-kos">}</span><span class="pl-kos">}</span><span class="pl-kos">;</span><span class="pl-k">const</span> <span class="pl-s1">writeTimer</span><span class="pl-c1">=</span><span class="pl-en">setInterval</span><span class="pl-kos">(</span><span class="pl-en">writing</span><span class="pl-kos">,</span><span class="pl-s1">writeSpeed</span><span class="pl-kos">)</span><span class="pl-kos">;</span><span class="pl-s1">postTitle</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">add</span><span class="pl-kos">(</span><span class="pl-s">'no-blink'</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+<details><summary>含注释JS</summary>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-c">// 间隔多少毫秒输入一个字符</span>
+<span class="pl-k">const</span> <span class="pl-s1">writeSpeed</span> <span class="pl-c1">=</span> <span class="pl-c1">100</span><span class="pl-kos">;</span>
+
+<span class="pl-c">// 获取文本内容</span>
+<span class="pl-k">const</span> <span class="pl-s1">textContent</span> <span class="pl-c1">=</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">querySelector</span><span class="pl-kos">(</span><span class="pl-s">'.postTitle'</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-c1">textContent</span><span class="pl-kos">;</span>
+<span class="pl-k">const</span> <span class="pl-s1">textContentLen</span> <span class="pl-c1">=</span> <span class="pl-s1">textContent</span><span class="pl-kos">.</span><span class="pl-c1">length</span><span class="pl-kos">;</span>
+
+<span class="pl-c">// 获取 .postTitle 元素并初始化为空</span>
+<span class="pl-k">const</span> <span class="pl-s1">postTitle</span> <span class="pl-c1">=</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">querySelector</span><span class="pl-kos">(</span><span class="pl-s">'.postTitle'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-s1">postTitle</span><span class="pl-kos">.</span><span class="pl-c1">textContent</span> <span class="pl-c1">=</span> <span class="pl-s">''</span><span class="pl-kos">;</span> <span class="pl-c">// 初始化文本内容为空</span>
+
+<span class="pl-c">// 要写入字符的索引</span>
+<span class="pl-k">let</span> <span class="pl-s1">idx</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">;</span>
+
+<span class="pl-c">// 定时写入字符处理函数</span>
+<span class="pl-k">const</span> <span class="pl-en">writing</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+	<span class="pl-s1">postTitle</span><span class="pl-kos">.</span><span class="pl-c1">textContent</span> <span class="pl-c1">=</span> <span class="pl-s1">textContent</span><span class="pl-kos">.</span><span class="pl-en">slice</span><span class="pl-kos">(</span><span class="pl-c1">0</span><span class="pl-kos">,</span> <span class="pl-s1">idx</span><span class="pl-c1">++</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+	<span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">idx</span> <span class="pl-c1">&gt;</span> <span class="pl-s1">textContentLen</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+		<span class="pl-en">clearInterval</span><span class="pl-kos">(</span><span class="pl-s1">writeTimer</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 完成后停止定时器</span>
+		<span class="pl-s1">postTitle</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">remove</span><span class="pl-kos">(</span><span class="pl-s">'no-blink'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 恢复动画</span>
+	<span class="pl-kos">}</span>
+<span class="pl-kos">}</span><span class="pl-kos">;</span>
+
+<span class="pl-c">// 启动定时器</span>
+<span class="pl-k">const</span> <span class="pl-s1">writeTimer</span> <span class="pl-c1">=</span> <span class="pl-en">setInterval</span><span class="pl-kos">(</span><span class="pl-en">writing</span><span class="pl-kos">,</span> <span class="pl-s1">writeSpeed</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+<span class="pl-c">// 在开始打字前移除动画</span>
+<span class="pl-s1">postTitle</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">add</span><span class="pl-kos">(</span><span class="pl-s">'no-blink'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 禁用动画</span></pre></div>
+</details>
 <h3>打开 plist.html 文件</h3>
 <ol>
 <li>增加样式.</li>
@@ -3860,9 +4148,11 @@ pv 修改成 uv 计数.</p>
 <blockquote>
 <p>增加圆角6px.</p>
 </blockquote>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS"></p>
+<p><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS"></p>
 <p>效果图:</p>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW"></p>
+<p><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW"></p>
 <h2>页面底部文字增加图标动画</h2>
 <p>爱心图标动画.</p>
 <p>打开<code class="notranslate">footer.html</code></p>
@@ -3989,57 +4279,68 @@ pv 修改成 uv 计数.</p>
 <tr>
 <td>网站</td>
 <td>#218155</td>
-<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=网站&amp;color=218155"></td>
+<td><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=网站&amp;color=218155"></td>
 </tr>
 <tr>
 <td>日常</td>
 <td>#008672</td>
-<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=日常&amp;color=008672"></td>
+<td><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=日常&amp;color=008672"></td>
 </tr>
 <tr>
 <td>教程</td>
 <td>#0075ca</td>
-<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=教程&amp;color=0075ca"></td>
+<td><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=教程&amp;color=0075ca"></td>
 </tr>
 <tr>
 <td>Anime</td>
 <td>#E77AB1</td>
-<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=Anime&amp;color=E77AB1"></td>
+<td><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=Anime&amp;color=E77AB1"></td>
 </tr>
 <tr>
 <td>Win</td>
 <td>#5AB3F3</td>
-<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=Win&amp;color=5AB3F3"></td>
+<td><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=Win&amp;color=5AB3F3"></td>
 </tr>
 <tr>
 <td>VPS</td>
 <td>#5319e7</td>
-<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=VPS&amp;color=5319e7"></td>
+<td><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=VPS&amp;color=5319e7"></td>
 </tr>
 <tr>
 <td>JS</td>
 <td>#AD3152</td>
-<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=JS&amp;color=AD3152"></td>
+<td><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=JS&amp;color=AD3152"></td>
 </tr>
 <tr>
 <td>CSS</td>
 <td>#218155</td>
-<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=CSS&amp;color=218155"></td>
+<td><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=CSS&amp;color=218155"></td>
 </tr>
 <tr>
 <td>Github</td>
 <td>#333333</td>
-<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=Github&amp;color=333333"></td>
+<td><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=Github&amp;color=333333"></td>
 </tr>
 <tr>
 <td>CDN</td>
 <td>#cb222c</td>
-<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=CDN&amp;color=cb222c"></td>
+<td><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=CDN&amp;color=cb222c"></td>
 </tr>
 <tr>
 <td>Bug</td>
 <td>#D73A4A</td>
-<td><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://img.shields.io/static/v1?label=&amp;message=Bug&amp;color=D73A4A"></td>
+<td><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=Bug&amp;color=D73A4A"></td>
 </tr>
 </tbody>
 </table></markdown-accessiblity-table>
@@ -4103,6 +4404,7 @@ if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
 </script>
 
 <script>
+const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 
@@ -4214,39 +4516,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script src='https://www.gjkblog.us.kg/demo/ArticleJs.js'></script><script src='../../static/ArticleToc-header.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://cdn.jsdelivr.net/gh/gyanprabhat7/LazyLoad.JS/lazyImage.js'></script>
-<!-- 
-<script>
-// 间隔多少毫秒输入一个字符
-const writeSpeed = 100;
-
-// 获取文本内容
-const textContent = document.querySelector('.postTitle').textContent;
-const textContentLen = textContent.length;
-
-// 获取 .postTitle 元素并初始化为空
-const postTitle = document.querySelector('.postTitle');
-postTitle.textContent = ''; // 初始化文本内容为空
-
-// 要写入字符的索引
-let idx = 0;
-
-// 定时写入字符处理函数
-const writing = () => {
-	postTitle.textContent = textContent.slice(0, idx++);
-	if (idx > textContentLen) {
-		clearInterval(writeTimer); // 完成后停止定时器
-		postTitle.classList.remove('no-blink'); // 恢复动画
-	}
-};
-
-// 启动定时器
-const writeTimer = setInterval(writing, writeSpeed);
-
-// 在开始打字前移除动画
-postTitle.classList.add('no-blink'); // 禁用动画
-</script> -->
-
-<script>const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');</script>
+<script src='../../static/ArticleJs.min.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/demo/static/ArticleToc-header.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://cdn.jsdelivr.net/gh/gyanprabhat7/LazyLoad.JS/lazyImage.js'></script>
 
 </html>

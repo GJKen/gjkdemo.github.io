@@ -58,14 +58,13 @@
 <style>
 :root{--header-article-bgColor:#3b3b3b6b;}
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor:#ffffff00;}
-@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
+@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
 body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padding:45px;font-size:16px;font-family:sans-serif;line-height:1.25;}
 #header{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:24px;}
 #header.article-header{border-bottom:none;width:100%;max-width:inherit;position:fixed;top:0;left:50%;transform:translateX(-50%);background:var(--header-articel-bgColor);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);padding:10px;box-shadow:0 2px 10px rgba(0, 0, 0, .1);transition:transform 0.6s ease-in-out;-webkit-transition:transform 0.6s ease-in-out;z-index:99;border-radius:0 0 15px 15px;gap:15px;}
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 #header h1 a{margin:unset;}
 .title-right{display:flex;gap:25px;animation:fadeIn 1.2s ease-in 0s forwards;}
-.article-content{margin-top:90px;}
 #footer{margin-top:64px; text-align:center;font-size:small;}
 
 </style>
@@ -73,7 +72,8 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 <style>
 :root{--postTitle-textshadowColor:#ffffff80;}
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow:#00000080;}
-.postTitle{margin: auto 0;font-size:40px;font-weight:bold;text-shadow: 0 1px 2px var(--postTitle-textshadow);transition: all 0.3s ease-in-out;}
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
+.article-content{margin-top:90px;}
 .spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
 .spoilerText.clear{filter:none;}
 .title-right .circle{padding: 14px 16px;}
@@ -98,27 +98,21 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 <h1 class="postTitle">Cloudflare Web Analytics 的 beacon.min.js 加载缓慢, 记录它的关闭方法</h1>
 <div class="title-right">
     <a href="https://GJKen.github.io/demo" id="buttonHome" class="btn btn-invisible circle" title="首页">
-        <svg class="octicon" width="16" height="16">
-            <path id="pathHome" fill-rule="evenodd"></path>
-        </svg>
+        <svg class="octicon" width="16" height="16"><path id="pathHome" fill-rule="evenodd"></path></svg>
     </a>
     
     <a href="https://github.com/GJKen/demo/issues/7" target="_blank" class="btn btn-invisible circle" title="Issue">
-        <svg class="octicon" width="16" height="16">
-            <path id="pathIssue" fill-rule="evenodd"></path>
-        </svg>
+        <svg class="octicon" width="16" height="16"><path id="pathIssue" fill-rule="evenodd"></path></svg>
     </a>
     
 
     <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
-        <svg class="octicon" width="16" height="16" >
-            <path id="themeSwitch" fill-rule="evenodd"></path>
-        </svg>
+        <svg class="octicon" width="16" height="16" ><path id="themeSwitch" fill-rule="evenodd"></path></svg>
     </a>
 
-	<div class="ArticleTOC btn btn-invisible circle">
-		<svg viewBox="-30 380 1084 1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M973.281 563.992c28.282.049 51.248-22.838 51.295-51.121.049-28.27-22.838-51.232-51.121-51.28l-921.597-1.567C23.59 459.975.627 482.86.578 511.13c-.049 28.284 22.838 51.248 51.107 51.295l921.596 1.568zm.566-332.805c28.283.047 51.248-22.838 51.295-51.105.047-28.284-22.838-51.248-51.122-51.295L52.426 127.22c-28.27-.049-51.234 22.836-51.28 51.12-.05 28.269 22.837 51.233 51.106 51.28l921.595 1.568zm-1.13 665.597c28.283.047 51.247-22.825 51.294-51.107.047-28.281-22.84-51.247-51.122-51.294l-921.594-1.568C23.025 792.768.06 815.653.013 843.935c-.05 28.283 22.838 51.233 51.107 51.282l921.596 1.567z" fill="#656d76"></path></svg>
-	</div>
+    <div class="ArticleTOC btn btn-invisible circle">
+        <svg viewBox="-30 380 1084 1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M973.281 563.992c28.282.049 51.248-22.838 51.295-51.121.049-28.27-22.838-51.232-51.121-51.28l-921.597-1.567C23.59 459.975.627 482.86.578 511.13c-.049 28.284 22.838 51.248 51.107 51.295l921.596 1.568zm.566-332.805c28.283.047 51.248-22.838 51.295-51.105.047-28.284-22.838-51.248-51.122-51.295L52.426 127.22c-28.27-.049-51.234 22.836-51.28 51.12-.05 28.269 22.837 51.233 51.106 51.28l921.595 1.568zm-1.13 665.597c28.283.047 51.247-22.825 51.294-51.107.047-28.281-22.84-51.247-51.122-51.294l-921.594-1.568C23.025 792.768.06 815.653.013 843.935c-.05 28.283 22.838 51.233 51.107 51.282l921.596 1.567z" fill="#656d76"></path></svg>
+    </div>
 </div>
 </div>
     <div id="content" class="article-content">
@@ -126,7 +120,8 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 <h1>前言</h1>
 <p>最近在访问博客的时候发现个别js加载失败, 检查发现原来是 CloudFlare 的 beacon.min.js 加载失败, 如下图.</p>
 <p>卡顿文件👉<code class="notranslate">https://static.cloudflareinsights.com/beacon.min.js</code></p>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://cdn.img2ipfs.com/ipfs/QmfVdyTJMzA3acSeMMYX3cLq7BoWLQ4pYpjr6u4HYsmhi1"></p>
+<p><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://cdn.img2ipfs.com/ipfs/QmfVdyTJMzA3acSeMMYX3cLq7BoWLQ4pYpjr6u4HYsmhi1"></p>
 <p>网上找了点教程打算关闭它.</p>
 <blockquote>
 <p>引用来源 <a href="https://www.ruimian.com/cloudflare-web-analytics-slow-loading" rel="nofollow">ruimian</a></p>
@@ -141,11 +136,13 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 <ol>
 <li>选择需要管理的站点</li>
 </ol>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://cdn.img2ipfs.com/ipfs/QmVbycbpbDMDnoDCAfFr2kURwgxYpMWToVscPpaQgwArKN"></p>
+<p><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://cdn.img2ipfs.com/ipfs/QmVbycbpbDMDnoDCAfFr2kURwgxYpMWToVscPpaQgwArKN"></p>
 <ol start="2">
 <li>按钮关闭即可</li>
 </ol>
-<p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://cdn.img2ipfs.com/ipfs/QmZLfDBJjphnRJL46sSco5FFTPey3qSNNi2Rqfq6vjJbYS"></p></div>
+<p><div class="ImgLazyLoad"></div>
+<img data-fancybox="gallery" img-src="https://cdn.img2ipfs.com/ipfs/QmZLfDBJjphnRJL46sSco5FFTPey3qSNNi2Rqfq6vjJbYS"></p></div>
 <div style="font-size:small;margin-top:8px;float:right;">🥰转载请注明,谢谢!🥰</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
@@ -201,6 +198,7 @@ if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
 </script>
 
 <script>
+const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 
