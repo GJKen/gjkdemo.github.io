@@ -65,7 +65,7 @@
 
 ```python
         if '<code class="notranslate">Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>',lambda match: f'<img data-fancybox="gallery" class="ImgLazyLoad" img-src="{match.group(1)}">',post_body, flags=re.DOTALL)
+            post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>',lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">',post_body, flags=re.DOTALL)
 ```
 
 markdown 输入:
@@ -77,17 +77,22 @@ markdown 输入:
 实际转化后的标签如下:
 
 ```html
-<img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://example.com/image.jpg">
+<div class="ImgLazyLoad-circle"></div>
+<img data-fancybox="gallery" img-src="https://example.com/image.jpg">
 
-<!-- 转换后的标签包含图片浏览器所需的`data-fancybox="gallery"`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`. -->
-<!-- `ImgLazyLoad`这个类名的 CSS 动画我写在了`primer.css`里面, 使图片未加载之前有一个加载动画. -->
+<!--
+一个图片未加载时的占位 CSS 动画 DIV, 类名为`ImgLazyLoad`, 这个类名的 CSS 动画我写在了`primer.css`里面.
+一个 img 标签, 包含`fancybox`所需的`data-fancybox="gallery"`值.
+-->
 ```
 
-当页面加载完成后, 脚本会检测标签里面的`img-src="https://example.com/image.jpg"`内容, 并增加`src`值, 这样图片就能显示了.
+当页面加载完成后, 使用 IntersectionObserver 监听图片是否进入视口, 图片会提前 500px 接近视口时加载, 当图片即将进入视口时,
 
-图片加载的同时, 延迟 500 毫秒去掉`ImgLazyLoad`类名, 这样动画就能消失并显示正常的图片.
+脚本会检测标签里面的`img-src="https://example.com/image.jpg"`内容,  给 img 标签增加`src`值, 这样图片就能显示了.
 
-图片加载失败则会创建指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.
+在 CSS 中默认模糊并且透明图片, 脚本会等待图片加载完成后才会正常显示, 在这之前会隐藏掉占位转圈动画, 这样就实现了转圈动画消失并显示正常的图片.
+
+图片加载失败则会创建指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签和占位动画.
 
 大概就是这样的一个流程.
 
@@ -185,56 +190,50 @@ document.addEventListener('DOMContentLoaded', () => {
 <details><summary>Javascript Code</summary>
 
 ```Javascript
+    // 懒加载图片
 	const ob = new IntersectionObserver((entries) => {
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {
 				const img = entry.target;
-				img.src = img.getAttribute('img-src'); // 获取 img-src 属性的值
+				const imgContainer = img.previousElementSibling;
+				const handleError = (isError = false) => {
+					if (imgContainer && imgContainer.classList.contains('ImgLazyLoad')) {
+						imgContainer.style.display = 'none';
+					}
+					if (isError) {
+						const errorContainer = document.createElement('div');
+						errorContainer.classList.add('Imgerror-container');
+						errorContainer.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" style="height:60px;" class="Imgerror" viewBox="0 0 1024 1024"><path fill="#ff5b5b" d="M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z"/></svg><p class="Imgerror-message">图片错误</p>`;
+						img.parentNode.insertBefore(errorContainer, img.nextSibling);
+						img.style.display = 'none';
+					} else {
+						img.classList.remove('ImgLazyLoad');
+						img.classList.add('ImgLoaded');
+					}
+				};
+
+				img.src = img.getAttribute('img-src');
 				ob.unobserve(img);
-				setTimeout(() => {
-					img.classList.remove('ImgLazyLoad'); // 增加图片显示延迟, 延迟过程中图片也是会加载的
-					img.classList.add('ImgLoaded') //增加图片显示后的类名
-				}, 500);
+
+				img.onload = () => handleError(false);
+				img.onerror = () => handleError(true);
 			}
 		});
 	}, {
 		rootMargin: '0px 0px 500px 0px',
 	});
 
-	const imgs = document.querySelectorAll('[img-src]'); // 选择所有具有 img-src 属性的元素
-	imgs.forEach(img => {
-		ob.observe(img);
-		// 图片加载失败时的处理
-		img.onerror = function() {
-			img.classList.remove('ImgLazyLoad'); // 移除 ImgLazyLoad 类名
-			// 创建一个容器 div
-			const errorContainer = document.createElement('div');
-			errorContainer.classList.add('Imgerror-container');
-			// SVG 内容
-			const svgContent =
-				`<svg xmlns="http://www.w3.org/2000/svg" style="height:60px;" class="Imgerror" viewBox="0 0 1024 1024"><path fill="#ff5b5b" d="M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z"/></svg>`;
-			const pContent = `<p class="Imgerror-message">图片错误</p>`;
-
-			// 将 SVG 内容和 <p> 标签插入到 errorContainer div 内
-			errorContainer.innerHTML = svgContent + pContent;
-
-			// 将 errorContainer 插入到 img 元素的同一父元素下
-			img.parentNode.insertBefore(errorContainer, img.nextSibling);
-
-			// 隐藏 img 元素
-			img.style.display = 'none';
-		};
-	});
+	document.querySelectorAll('[img-src]').forEach(img => ob.observe(img));
 ```
 
 </details>
 
 加载动画 CSS, 我把它写到了`primer.css`文件里面.
 
-> [!Important]
-> 👇这个主要样式一定要写在`:root`选择器的前面!
-
 <details><summary>CSS Code</summary>
+
+> [!Important]
+> 这个主要样式一定要写在`:root`选择器的前面!
 
 ```CSS
 [data-color-mode=light][data-light-theme=dark],
@@ -246,13 +245,12 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
 /* 图片懒加载占位css动画 */
-.ImgLazyLoad {
-	width: 1.2px;
-	height: 1.1px;
+.ImgLazyLoad-circle {
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
 	border: 6px #f3f3f3 solid;
 	border-top: 6px #8aefff solid;
-	padding: 20px;
 	transition: filter 0.5s ease, opacity 0.5s ease;
 	animation: ImgLazyLoadAni 1.2s infinite;
 	-webkit-animation: ImgLazyLoadAni 1.2s infinite;
@@ -287,33 +285,14 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
 /* 图片模糊渐显样式 */
+[data-fancybox="gallery"]{
+    opacity: 0;
+    filter: blur(15px);
+    transition: opacity 0.5s ease, filter 0.5s ease;
+}
 .ImgLoaded {
-	-webkit-filter: blur(115px);
-	filter: blur(115px);
-	opacity: 0;
-	-webkit-animation: ImgLoadedAni 0.5s ease forwards;
-	animation: ImgLoadedAni 0.5s ease forwards;
-}
-@-webkit-keyframes ImgLoadedAni {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		-webkit-filter: blur(0);
-		filter: blur(0);
-		opacity: 1;
-	}
-}
-@keyframes ImgLoadedAni {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		filter: blur(0);
-		opacity: 1;
-	}
+	opacity: 1;
+    filter: blur(0);
 }
 
 :root {
@@ -986,6 +965,37 @@ html {
 
 </details>
 
+## 文章diff代码块样式
+
+> 默认的效果可以双击复制到+和-号, 通过 CSS 控制使其无法被选中复制.
+
+直接在`primer.css`里增加代码:
+
+<details><summary>修改后</summary>
+
+```CSS
+.pl-mi1 {
+	user-select: text;
+}
+
+.pl-mi1>span {
+	user-select: none;
+}
+
+.pl-md {
+	user-select: text;
+}
+
+.pl-md>span {
+	user-select: none;
+}
+```
+
+</details>
+
+效果图
+`Gmeek-imgbox=""`
+
 ## 文章一键复制代码按钮样式
 
 > [!NOTE]
@@ -1222,6 +1232,7 @@ fork 之后, 转到搭建博客的 github 源码,
 ```Diff
 +.postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
 +.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}
+👆
 -.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 ```
 3. 增加文章内容的上边距.
@@ -1232,6 +1243,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ```Diff
 + .title-right .circle{padding: 14px 16px;}
+👆
 - .title-right .circle{padding: 14px 16px;margin-right:8px;}
 ```
 
@@ -1241,6 +1253,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ```Diff
 + .title-right a, .title-right div{padding:14px 16px;}
+👆
 - .title-right a{padding:14px 16px;}
 ```
 
@@ -1356,9 +1369,7 @@ postTitle.classList.add('no-blink'); // 禁用动画
 <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" style="margin-right: 4px;height:18px;vertical-align: bottom;fill: #ff5a5a;"class="animate_heartBeatScale"><path d="M1017.152 426.592a263.296 263.296 0 0 0-502.304-133.92 263.328 263.328 0 0 0-502.304 133.92s5.152 259.264 505.536 520.096c500.32-260.832 499.072-520.096 499.072-520.096zM282.016 194.976a43.2 43.2 0 1 1 .096 86.4 43.2 43.2 0 0 1-.096-86.4zm-135.04 323.232a45.12 45.12 0 0 1-55.488-31.328 289.472 289.472 0 0 1-10.816-66.592C76.64 313.824 142.24 261.472 145.504 258.88a45.024 45.024 0 0 1 63.2 8.032c15.168 19.488 11.744 47.36-7.328 62.72-2.336 1.952-30.784 27.52-30.592 82.24.096 14.752 2.208 31.616 7.488 50.784a45.12 45.12 0 0 1-31.296 55.552z"/></svg>
 ```
 
-打开`primer.css`
-
-直接增加动画 CSS 代码.
+打开`primer.css`, 直接增加动画 CSS 代码.
 
 <details><summary>CSS Code</summary>
 
