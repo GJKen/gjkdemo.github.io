@@ -5462,7 +5462,8 @@
 	--markdown-pre-bgColor: #27282d;
 	--markdown-pre-shadowColor: #00000026;
 	--SideNav-bgColor: #ffffff21;
-	--title-right-svg-color: #00f0ff;
+	--title-right-svgColor:#00f0ff;
+	--title-right-svgHovercolor:#ff7150;
 	--markdown-h1-bgColor: #7dc2ff7a;
 	--html-bgColor: #151c2f;
 	--header-btn-shadowColor:#00000045;
@@ -13558,12 +13559,15 @@ a.btn-primary:focus-visible {
 	outline: none;
 	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor) inset,-7px -7px 12px 0 var(--header-btn-shadowColor2) inset;
 }
-
-.btn-invisible:hover svg,
-.btn-invisible.zeroclipboard-is-hover svg {
-	fill: var(--title-right-svg-color);
+/* 图标颜色 */
+.btn-invisible svg path{
+	fill: var(--title-right-svgColor);
 }
-
+/* 图标hover颜色 */
+.btn-invisible:hover svg path,
+.btn-invisible.zeroclipboard-is-hover svg path{
+	fill: var(--title-right-svgHovercolor);
+}
 .btn-invisible:active,
 .btn-invisible.selected,
 .btn-invisible[aria-selected=true],
@@ -16320,7 +16324,8 @@ input.FormControl-radio[type=radio]:focus-visible {
 	--body-bgColor: #ffffffde;
 	--body-shadow-color: #50a8e726;
 	--markdown-code-bgColor: #4d4d4d38;
-	--title-right-svg-color: #71baff;
+	--title-right-svgColor:#656d76;
+	--title-right-svgHovercolor:#ff7804;
 	--SideNav-bgColor: #ffffff99;
 	--SideNav-hover-bgColor: #6ec3ff52;
 	--markdown-h1-bgColor: #c8e5ff7a;
