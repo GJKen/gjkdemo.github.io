@@ -109,7 +109,7 @@ markdown 输入:
 
 ## [ArticleToc-header.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc-header.js) - 文章增加目录列表+一键返回顶部按钮(header版)
 
-功能和[引用版](#articletoc-header.js---文章增加目录列表+一键返回顶部按钮(引用版))一致, 这版集成到了文章的`#header`的按钮里面.
+功能和[引用版](#articletoc.js---文章增加目录列表+一键返回顶部按钮(引用版))一致, 这版集成到了文章的`#header`的按钮里面.
 
 按钮位置展示:
 
@@ -1220,7 +1220,7 @@ fork 之后, 转到搭建博客的 github 源码,
 2. 定位`.postTitle`, 修改以及增加样式(打字机效果)
 
 ```Diff
-+ .postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow:0 1px 2px var(--postTitle-textshadowColor);}
++ .postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
 + .postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}
 - .postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 ```
@@ -1256,7 +1256,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 7. 增加文章列表按钮.
 
-在文章的头部增加一个文章目录按钮, 详情看👉[ArticleToc-header.js](#ArticleToc-header.js---文章增加目录列表+一键返回顶部按钮(引用版))
+在文章的头部增加一个文章目录按钮, 详情看👉[ArticleToc-header.js](#ArticleToc-header.js---文章增加目录列表+一键返回顶部按钮(header版))
 
 定位`<div class="title-right">`, 在标签里面增加以下 HTML 元素.
 

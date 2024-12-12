@@ -121,7 +121,7 @@ markdown 输入:
 
 ## [ArticleToc-header.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc-header.js) - 文章增加目录列表+一键返回顶部按钮(header版)
 
-功能和[引用版](#articletoc-header.js---文章增加目录列表+一键返回顶部按钮(引用版))一致, 这版集成到了文章的`#header`的按钮里面.
+功能和[引用版](#articletoc.js---文章增加目录列表+一键返回顶部按钮(引用版))一致, 这版集成到了文章的`#header`的按钮里面.
 
 按钮位置展示:
 
@@ -1232,7 +1232,7 @@ fork 之后, 转到搭建博客的 github 源码,
 2. 定位`.postTitle`, 修改以及增加样式(打字机效果)
 
 ```Diff
-+ .postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow:0 1px 2px var(--postTitle-textshadowColor);}
++ .postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
 + .postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}
 - .postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 ```
@@ -1268,7 +1268,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 7. 增加文章列表按钮.
 
-在文章的头部增加一个文章目录按钮, 详情看👉[ArticleToc-header.js](#ArticleToc-header.js---文章增加目录列表+一键返回顶部按钮(引用版))
+在文章的头部增加一个文章目录按钮, 详情看👉[ArticleToc-header.js](#ArticleToc-header.js---文章增加目录列表+一键返回顶部按钮(header版))
 
 定位`<div class='title-right'>`, 在标签里面增加以下 HTML 元素.
 
@@ -1656,7 +1656,7 @@ markdown 输入:
 
 ## [ArticleToc-header.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc-header.js) - 文章增加目录列表+一键返回顶部按钮(header版)
 
-功能和[引用版](#articletoc-header.js---文章增加目录列表+一键返回顶部按钮(引用版))一致, 这版集成到了文章的`#header`的按钮里面.
+功能和[引用版](#articletoc.js---文章增加目录列表+一键返回顶部按钮(引用版))一致, 这版集成到了文章的`#header`的按钮里面.
 
 按钮位置展示:
 
@@ -2767,7 +2767,7 @@ fork 之后, 转到搭建博客的 github 源码,
 2. 定位`.postTitle`, 修改以及增加样式(打字机效果)
 
 ```Diff
-+ .postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow:0 1px 2px var(--postTitle-textshadowColor);}
++ .postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
 + .postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}
 - .postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 ```
@@ -2803,7 +2803,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 7. 增加文章列表按钮.
 
-在文章的头部增加一个文章目录按钮, 详情看👉[ArticleToc-header.js](#ArticleToc-header.js---文章增加目录列表+一键返回顶部按钮(引用版))
+在文章的头部增加一个文章目录按钮, 详情看👉[ArticleToc-header.js](#ArticleToc-header.js---文章增加目录列表+一键返回顶部按钮(header版))
 
 定位`<div class='title-right'>`, 在标签里面增加以下 HTML 元素.
 
@@ -3222,7 +3222,7 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 <p>图示:</p>
 <p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H"></p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc-header.js">ArticleToc-header.js</a> - 文章增加目录列表+一键返回顶部按钮(header版)</h2>
-<p>功能和<a href="#articletoc-header.js---%E6%96%87%E7%AB%A0%E5%A2%9E%E5%8A%A0%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8+%E4%B8%80%E9%94%AE%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE(%E5%BC%95%E7%94%A8%E7%89%88)">引用版</a>一致, 这版集成到了文章的<code class="notranslate">#header</code>的按钮里面.</p>
+<p>功能和<a href="#articletoc.js---%E6%96%87%E7%AB%A0%E5%A2%9E%E5%8A%A0%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8+%E4%B8%80%E9%94%AE%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE(%E5%BC%95%E7%94%A8%E7%89%88)">引用版</a>一致, 这版集成到了文章的<code class="notranslate">#header</code>的按钮里面.</p>
 <p>按钮位置展示:</p>
 <p><img data-fancybox="gallery" class="ImgLazyLoad" img-src="https://i0.img2ipfs.com/ipfs/Qme3qiTmKATk8BVvcLj7bC87q3w8MqywJcQTJfHKQTmyvd"></p>
 <h2>Fancybox.js - 图片浏览器</h2>
@@ -4045,7 +4045,7 @@ svg 暗黑模式下颜色.<br>
 <ol start="2">
 <li>定位<code class="notranslate">.postTitle</code>, 修改以及增加样式(打字机效果)</li>
 </ol>
-<div class="highlight highlight-source-diff"><pre class="notranslate"><span class="pl-mi1"><span class="pl-mi1">+</span> .postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow:0 1px 2px var(--postTitle-textshadowColor);}</span>
+<div class="highlight highlight-source-diff"><pre class="notranslate"><span class="pl-mi1"><span class="pl-mi1">+</span> .postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}</span>
 <span class="pl-mi1"><span class="pl-mi1">+</span> .postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}</span>
 <span class="pl-md"><span class="pl-md">-</span> .postTitle{margin: auto 0;font-size:40px;font-weight:bold;}</span></pre></div>
 <ol start="3">
@@ -4077,7 +4077,7 @@ svg 暗黑模式下颜色.<br>
 <ol start="7">
 <li>增加文章列表按钮.</li>
 </ol>
-<p>在文章的头部增加一个文章目录按钮, 详情看👉<a href="#ArticleToc-header.js---%E6%96%87%E7%AB%A0%E5%A2%9E%E5%8A%A0%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8+%E4%B8%80%E9%94%AE%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE(%E5%BC%95%E7%94%A8%E7%89%88)">ArticleToc-header.js</a></p>
+<p>在文章的头部增加一个文章目录按钮, 详情看👉<a href="#ArticleToc-header.js---%E6%96%87%E7%AB%A0%E5%A2%9E%E5%8A%A0%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8+%E4%B8%80%E9%94%AE%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE(header%E7%89%88)">ArticleToc-header.js</a></p>
 <p>定位<code class="notranslate">&lt;div class="title-right"&gt;</code>, 在标签里面增加以下 HTML 元素.</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate">    <span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">class</span>="<span class="pl-s">ArticleTOC btn btn-invisible circle</span>"<span class="pl-kos">&gt;</span>
         <span class="pl-kos">&lt;</span><span class="pl-ent">svg</span> <span class="pl-c1">viewBox</span>="<span class="pl-s">-30 380 1084 1</span>" <span class="pl-c1">xmlns</span>="<span class="pl-s">http://www.w3.org/2000/svg</span>" <span class="pl-c1">width</span>="<span class="pl-s">16</span>" <span class="pl-c1">height</span>="<span class="pl-s">16</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;</span><span class="pl-ent">path</span> <span class="pl-c1">d</span>="<span class="pl-s">M973.281 563.992c28.282.049 51.248-22.838 51.295-51.121.049-28.27-22.838-51.232-51.121-51.28l-921.597-1.567C23.59 459.975.627 482.86.578 511.13c-.049 28.284 22.838 51.248 51.107 51.295l921.596 1.568zm.566-332.805c28.283.047 51.248-22.838 51.295-51.105.047-28.284-22.838-51.248-51.122-51.295L52.426 127.22c-28.27-.049-51.234 22.836-51.28 51.12-.05 28.269 22.837 51.233 51.106 51.28l921.595 1.568zm-1.13 665.597c28.283.047 51.247-22.825 51.294-51.107.047-28.281-22.84-51.247-51.122-51.294l-921.594-1.568C23.025 792.768.06 815.653.013 843.935c-.05 28.283 22.838 51.233 51.107 51.282l921.596 1.567z</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">path</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">svg</span><span class="pl-kos">&gt;</span>
