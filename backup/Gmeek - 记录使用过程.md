@@ -93,7 +93,7 @@ markdown 输入:
 
 </details>
 
-## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮
+## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮(引用版)
 
 > 来源: [Github](https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file)
 > 修改-创建`.toc`的位置为body里面.
@@ -106,6 +106,14 @@ markdown 输入:
 图示:
 
 `Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H"`
+
+## [ArticleToc-header.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc-header.js) - 文章增加目录列表+一键返回顶部按钮(header版)
+
+功能和[引用版](#articletoc-header.js---文章增加目录列表+一键返回顶部按钮(引用版))一致, 这版集成到了文章的`#header`的按钮里面.
+
+按钮位置展示:
+
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/Qme3qiTmKATk8BVvcLj7bC87q3w8MqywJcQTJfHKQTmyvd"`
 
 ## Fancybox.js - 图片浏览器
 
@@ -517,7 +525,8 @@ html {
 `.btn-invisible:hover, .btn-invisible.zeroclipboard-is-hover`
 
 > [!NOTE]
-> 增加阴影.
+> 图标增加阴影.
+> svg 暗黑模式下颜色.
 > 修改图标 hover 样式.
 
 <details><summary>修改前</summary>
@@ -549,13 +558,17 @@ html {
 [data-color-mode=dark][data-dark-theme=dark],
 [data-color-mode=dark][data-dark-theme=dark]::selection {
     /* 增加 */
+	--SideNav-bgColor: #00f0ff;
+	--title-right-svgHovercolor:#ff7150;
 	--header-btn-shadowColor:#00000045;
-	--header-btn-shadowColor2:#ffffff26;
+	--header-btn-shadowColor2:#9bdfff14;
 }
 :root {
     /* 增加 */
+	--title-right-svgColor:#656d76;
+	--title-right-svgHovercolor: #ff7804;
 	--header-btn-shadowColor:#fbfbfb26;
-	--header-btn-shadowColor2:#9bdfff14;
+	--header-btn-shadowColor2:#5f5f5f26;
 }
 .btn-invisible {
 	color: var(--fgColor-accent, var(--color-accent-fg));
@@ -563,6 +576,7 @@ html {
 	border: 0;
 	border-radius: 6px;
 	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor), -7px -7px 16px 0 var(--header-btn-shadowColor2);
+	transition: box-shadow .4s ease-in-out,filter .4s ease-in-out;
 }
 .btn-invisible:hover,
 .btn-invisible.zeroclipboard-is-hover {
@@ -571,10 +585,14 @@ html {
 	outline: none;
 	box-shadow: 6px 6px 14px 0 var(--header-btn-shadowColor) inset,-7px -7px 12px 0 var(--header-btn-shadowColor2) inset;
 }
-/* 增加 */
-.btn-invisible:hover svg,
-.btn-invisible.zeroclipboard-is-hover svg {
-    fill: var(--title-right-svg-color);
+/* 图标颜色 */
+.btn-invisible svg path{
+	fill: var(--title-right-svgColor);
+}
+/* 图标hover颜色 */
+.btn-invisible:hover svg path,
+.btn-invisible.zeroclipboard-is-hover svg path{
+	fill: var(--title-right-svgHovercolor);
 }
 ```
 
@@ -1106,18 +1124,21 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ### 打开 base.html 文件
 
+> [!Important]
+> base 这个模板文件里增加的代码可以应用到所有页面, 优先级很高.
+
 1. 增加所需的颜色样式.
 
 > 文章头部背景色.
-> 打字效果动画
-> 头部图标渐显动画
+> 打字效果动画.
+> 动画(已引用的地方:#header 打字机光标, #header 图标渐显).
 
 ```CSS
 :root{--header-article-bgColor: #3b3b3b6b;}
 
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor: #ffffff00;}
 
-@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes typing{0%{width:0}100%{width:100%}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes typing{0%{width:0}100%{width:100%}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
+@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes blink{50%{opacity:0}100%{opacity:1}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes blink{50%{opacity:0}100%{opacity:1}}
 ```
 
 2. 定位`#header`, 修改样式.
@@ -1126,18 +1147,17 @@ fork 之后, 转到搭建博客的 github 源码,
 #header{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:24px;}
 ```
 
-3. 增加新的 header 变化样式, 用 JS 隐藏时有不同的样式变化.
+3. 增加新的 header 变化样式, 配合 JS 隐藏时有不同的样式变化.
 
 ```CSS
 #header.article-header{border-bottom:none;width:100%;max-width:inherit;position:fixed;top:0;left:50%;transform:translateX(-50%);background:var(--header-articel-bgColor);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);padding:10px;box-shadow:0 2px 10px rgba(0, 0, 0, .1);transition:transform 0.6s ease-in-out;-webkit-transition:transform 0.6s ease-in-out;z-index:99;border-radius:0 0 15px 15px;gap:15px;}
 
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 ```
-4. 增加文章内容的上边距.
 
-`.article-content{margin-top:90px;}`
+4. 增加类名变量, 这样通过 Actions 时渲染出来的页面有 `homepage` `article` 的关键类名, 有了不同类名就可更方便的使用 CSS 控制不同页面的样式.
 
-5. 大概在第27行, 增加了类名变量, 这样通过 Actions 时渲染出来的页面有 `homepage` `article` 的关键类名, 有了不同类名就可更方便的使用 CSS 控制不同页面的样式.
+定位`<body>`标签, 修改为以下内容:
 
 ```html
 <body class="{% block body_class %}homepage{% endblock %}">
@@ -1147,7 +1167,11 @@ fork 之后, 转到搭建博客的 github 源码,
 </body>
 ```
 
-6. JS 代码部分, 我写在了 ([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)) 里面, 作用是滚动页面让头部显示或隐藏.
+5. \#header头部滚动时切换显示或隐藏.
+
+增加的 JS 代码部分, 我写在了([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)文件里面, 作用是向下滚动页面让头部隐藏, 向上则显示.
+
+关键内容如下:
 
 <details><summary>Javascript Code</summary>
 
@@ -1172,38 +1196,119 @@ fork 之后, 转到搭建博客的 github 源码,
 
 </details>
 
-7. 头部图标渐显动画.
+6. 头部图标样式.
 
-增加 CSS, `fadeIn`动画已经在打字机动画增加过了.
+> 增加 CSS, `fadeIn`动画已在上文第1步骤添加过.
 
-`.title-right{display:flex;gap:25px;animation:fadeIn 1.2s ease-in 0s forwards;}`
+```CSS
+.title-right{display:flex;gap:25px;animation:fadeIn 1.2s ease-in 0s forwards;}
+```
 
 ### 打开 post.html 文件
+
+> [!Important]
+> post 这个模板文件里增加的代码可以应用到所有文章页面.
 
 1. 增加所需的颜色样式.
 
 ```CSS
-:root{--postTitle-textshadow: #ffffff80;}
-[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow: #00000080;}
+:root{--postTitle-textshadowColor: #ffffff80;}
+
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadowColor: #00000080;}
 ```
 
-2. 定位`.postTitle`, 修改样式(打字机效果.)
+2. 定位`.postTitle`, 修改以及增加样式(打字机效果)
 
-```CSS
-.postTitle{margin:auto 0;font-size:35px;text-shadow:0 1px 2px var(--postTitle-textshadow);font-weight:700;display:inline-block;white-space:nowrap;overflow:hidden;width:auto;max-width:-webkit-fit-content;max-width:fit-content;border-right:2px solid var(--fgColor-default,var(--color-fg-default));opacity:0;animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s;-webkit-animation:fadeIn .3s ease-in 0s forwards,typing 2s steps(20) 0s forwards,blink .75s step-end infinite 1.2s}
+```Diff
++ .postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow:0 1px 2px var(--postTitle-textshadowColor);}
++ .postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}
+- .postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 ```
+3. 增加文章内容的上边距.
+
+`.article-content{margin-top:90px;}`
 
 4. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
 
-5. 定位`{% block header %}`, 在上方增加类名块.
+```Diff
++ .title-right .circle{padding: 14px 16px;}
+- .title-right .circle{padding: 14px 16px;margin-right:8px;}
+```
 
-> 这是为了用 class 区分`首页`和`文章页`
+5. 头部图标样式.
+
+> 给`.title-right`增加子元素 DIV 的样式, 因为我增加了一个 DIV 元素显示文章目录按钮图标, 这里刚好需要 CSS 控制它.
+
+```Diff
++ .title-right a, .title-right div{padding:14px 16px;}
+- .title-right a{padding:14px 16px;}
+```
+
+6. 定位`{% block header %}`, 在上方增加类名块.
+
+> 这是为了用 class 类名区分`首页`和`文章页`
 
 ```Django
 {% block body_class %}article{% endblock %}
 {% block header_class %}article-header{% endblock %}
 {% block content_class %}article-content{% endblock %}
 ```
+
+7. 增加文章列表按钮.
+
+在文章的头部增加一个文章目录按钮, 详情看👉[ArticleToc-header.js](#ArticleToc-header.js---文章增加目录列表+一键返回顶部按钮(引用版))
+
+定位`<div class="title-right">`, 在标签里面增加以下 HTML 元素.
+
+```html
+    <div class="ArticleTOC btn btn-invisible circle">
+        <svg viewBox="-30 380 1084 1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M973.281 563.992c28.282.049 51.248-22.838 51.295-51.121.049-28.27-22.838-51.232-51.121-51.28l-921.597-1.567C23.59 459.975.627 482.86.578 511.13c-.049 28.284 22.838 51.248 51.107 51.295l921.596 1.568zm.566-332.805c28.283.047 51.248-22.838 51.295-51.105.047-28.284-22.838-51.248-51.122-51.295L52.426 127.22c-28.27-.049-51.234 22.836-51.28 51.12-.05 28.269 22.837 51.233 51.106 51.28l921.595 1.568zm-1.13 665.597c28.283.047 51.247-22.825 51.294-51.107.047-28.281-22.84-51.247-51.122-51.294l-921.594-1.568C23.025 792.768.06 815.653.013 843.935c-.05 28.283 22.838 51.233 51.107 51.282l921.596 1.567z"></path></svg>
+    </div>
+```
+
+8. 添加打字效果 JS 代码.
+
+定位`<script>`标签, 在里面增加以下代码:
+
+```Javascript
+const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
+```
+
+<details><summary>含注释JS</summary>
+
+```Javascript
+// 间隔多少毫秒输入一个字符
+const writeSpeed = 100;
+
+// 获取文本内容
+const textContent = document.querySelector('.postTitle').textContent;
+const textContentLen = textContent.length;
+
+// 获取 .postTitle 元素并初始化为空
+const postTitle = document.querySelector('.postTitle');
+postTitle.textContent = ''; // 初始化文本内容为空
+
+// 要写入字符的索引
+let idx = 0;
+
+// 定时写入字符处理函数
+const writing = () => {
+	postTitle.textContent = textContent.slice(0, idx++);
+	if (idx > textContentLen) {
+		clearInterval(writeTimer); // 完成后停止定时器
+		postTitle.classList.remove('no-blink'); // 恢复动画
+	}
+};
+
+// 启动定时器
+const writeTimer = setInterval(writing, writeSpeed);
+
+// 在开始打字前移除动画
+postTitle.classList.add('no-blink'); // 禁用动画
+```
+
+</details>
+
 
 ### 打开 plist.html 文件
 
