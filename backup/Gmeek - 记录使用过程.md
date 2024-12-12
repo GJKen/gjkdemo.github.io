@@ -1220,9 +1220,9 @@ fork 之后, 转到搭建博客的 github 源码,
 2. 定位`.postTitle`, 修改以及增加样式(打字机效果)
 
 ```Diff
-+ .postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
-+ .postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}
-- .postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
++.postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
++.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}
+-.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 ```
 3. 增加文章内容的上边距.
 
