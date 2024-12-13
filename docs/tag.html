@@ -30,8 +30,9 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 
 <style>
 .tagTitle{margin:auto 0;font-size:40px;font-weight:bold;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
-.title-right{display:flex;margin:auto 0 0 auto;}
-.title-right .circle{padding: 14px 16px;margin-right:8px;}
+.title-right{display:flex;align-items:center;flex-direction: column;}
+.title-right .circle{padding: 14px 16px;}
+.header-TagBtn{}
 
 .subnav-search{width:222px;margin-top:8px;margin-right:8px;}
 .subnav-search-input{width:160px;border-top-right-radius:0px;border-bottom-right-radius:0px;}
@@ -66,16 +67,18 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
             <path id="searchSVG" fill-rule="evenodd"></path>
         </svg>
     </div>
-    <a href="https://GJKen.github.io/demo" id="buttonHome" class="btn btn-invisible circle" title="首页">
-        <svg class="octicon" width="16" height="16">
-            <path id="pathHome" fill-rule="evenodd"></path>
-        </svg>
-    </a>
-    <a class="btn btn-invisible circle" onclick="modeSwitch()" title="切换主题">
-        <svg class="octicon" width="16" height="16" >
-            <path id="themeSwitch" fill-rule="evenodd"></path>
-        </svg>
-    </a>
+	<div class="header-TagBtn">
+		<a href="https://GJKen.github.io/demo" id="buttonHome" class="btn btn-invisible circle" title="首页">
+			<svg class="octicon" width="16" height="16">
+				<path id="pathHome" fill-rule="evenodd"></path>
+			</svg>
+		</a>
+		<a class="btn btn-invisible circle" onclick="modeSwitch()" title="切换主题">
+			<svg class="octicon" width="16" height="16" >
+				<path id="themeSwitch" fill-rule="evenodd"></path>
+			</svg>
+		</a>
+	</div>
 </div>
 </div>
     <div id="content" class="homepage-content">
