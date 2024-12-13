@@ -59,8 +59,10 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 
 <style>
 :root{--postTitle-textshadowColor:#ffffff80;}
-[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow:#00000080;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadowColor:#00000080;}
 .postTitle{margin: auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
+.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}
+.no-blink::after {animation: none;}
 .article-content{margin-top:90px;}
 .spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
 .spoilerText.clear{filter:none;}
@@ -107,11 +109,11 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 <div class="markdown-body" id="postBody"><p>Twitter<a href="https://x.com/sao_anime/status/1854402349412106416" rel="nofollow">@sao_anime</a></p>
 <p>2024 年 11 月 7 日 14:55<br>
 游戏已通关——</p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://pbs.twimg.com/media/GbwoZNVbcAAHunh?format=jpg&amp;name=orig"></p>
 <p>其它推文:</p>
 <p><a href="https://x.com/sao_anime/status/1852274390312141212" rel="nofollow">https://x.com/sao_anime/status/1852274390312141212</a></p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://pbs.twimg.com/media/Gbtc4f-aMAAIYZv?format=jpg&amp;name=orig"></p></div>
 <div style="font-size:small;margin-top:8px;float:right;">🥰转载请注明,谢谢!🥰</div>
 
@@ -168,7 +170,6 @@ if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
 </script>
 
 <script>
-const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 

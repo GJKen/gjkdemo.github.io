@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href='../../static/primer.min.css' rel='stylesheet' />
+    <link href='../../static/primer.css' rel='stylesheet' />
     
     <link rel="icon" href="https://pic.imgdb.cn/item/6734c652d29ded1a8cc038aa.jpg"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
@@ -77,7 +77,7 @@
 
 ```python
         if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox='([^']+)'</code>',lambda match: f'<img data-fancybox='gallery' class='ImgLazyLoad' img-src='{match.group(1)}'>',post_body, flags=re.DOTALL)
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox='([^']+)'</code>',lambda match: f'<div class='ImgLazyLoad-circle'></div>\n<img data-fancybox='gallery' img-src='{match.group(1)}'>',post_body, flags=re.DOTALL)
 ```
 
 markdown 输入:
@@ -89,17 +89,22 @@ markdown 输入:
 实际转化后的标签如下:
 
 ```html
-<img data-fancybox='gallery' class='ImgLazyLoad' img-src='https://example.com/image.jpg'>
+<div class='ImgLazyLoad-circle'></div>
+<img data-fancybox='gallery' img-src='https://example.com/image.jpg'>
 
-<!-- 转换后的标签包含图片浏览器所需的`data-fancybox='gallery'`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`. -->
-<!-- `ImgLazyLoad`这个类名的 CSS 动画我写在了`primer.css`里面, 使图片未加载之前有一个加载动画. -->
+<!--
+一个图片未加载时的占位 CSS 动画 DIV, 类名为`ImgLazyLoad`, 这个类名的 CSS 动画我写在了`primer.css`里面.
+一个 img 标签, 包含`fancybox`所需的`data-fancybox='gallery'`值.
+-->
 ```
 
-当页面加载完成后, 脚本会检测标签里面的`img-src='https://example.com/image.jpg'`内容, 并增加`src`值, 这样图片就能显示了.
+当页面加载完成后, 使用 IntersectionObserver 监听图片是否进入视口, 图片会提前 500px 接近视口时加载, 当图片即将进入视口时,
 
-图片加载的同时, 延迟 500 毫秒去掉`ImgLazyLoad`类名, 这样动画就能消失并显示正常的图片.
+脚本会检测标签里面的`img-src='https://example.com/image.jpg'`内容,  给 img 标签增加`src`值, 这样图片就能显示了.
 
-图片加载失败则会创建指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.
+在 CSS 中默认模糊并且透明图片, 脚本会等待图片加载完成后才会正常显示, 在这之前会隐藏掉占位转圈动画, 这样就实现了转圈动画消失并显示正常的图片.
+
+图片加载失败则会创建指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签和占位动画.
 
 大概就是这样的一个流程.
 
@@ -197,56 +202,50 @@ document.addEventListener('DOMContentLoaded', () => {
 <details><summary>Javascript Code</summary>
 
 ```Javascript
+    // 懒加载图片
 	const ob = new IntersectionObserver((entries) => {
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {
 				const img = entry.target;
-				img.src = img.getAttribute('img-src'); // 获取 img-src 属性的值
+				const imgContainer = img.previousElementSibling;
+				const handleError = (isError = false) => {
+					if (imgContainer && imgContainer.classList.contains('ImgLazyLoad')) {
+						imgContainer.style.display = 'none';
+					}
+					if (isError) {
+						const errorContainer = document.createElement('div');
+						errorContainer.classList.add('Imgerror-container');
+						errorContainer.innerHTML = `<svg xmlns='http://www.w3.org/2000/svg' style='height:60px;' class='Imgerror' viewBox='0 0 1024 1024'><path fill='#ff5b5b' d='M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z'/></svg><p class='Imgerror-message'>图片错误</p>`;
+						img.parentNode.insertBefore(errorContainer, img.nextSibling);
+						img.style.display = 'none';
+					} else {
+						img.classList.remove('ImgLazyLoad');
+						img.classList.add('ImgLoaded');
+					}
+				};
+
+				img.src = img.getAttribute('img-src');
 				ob.unobserve(img);
-				setTimeout(() => {
-					img.classList.remove('ImgLazyLoad'); // 增加图片显示延迟, 延迟过程中图片也是会加载的
-					img.classList.add('ImgLoaded') //增加图片显示后的类名
-				}, 500);
+
+				img.onload = () => handleError(false);
+				img.onerror = () => handleError(true);
 			}
 		});
 	}, {
 		rootMargin: '0px 0px 500px 0px',
 	});
 
-	const imgs = document.querySelectorAll('[img-src]'); // 选择所有具有 img-src 属性的元素
-	imgs.forEach(img => {
-		ob.observe(img);
-		// 图片加载失败时的处理
-		img.onerror = function() {
-			img.classList.remove('ImgLazyLoad'); // 移除 ImgLazyLoad 类名
-			// 创建一个容器 div
-			const errorContainer = document.createElement('div');
-			errorContainer.classList.add('Imgerror-container');
-			// SVG 内容
-			const svgContent =
-				`<svg xmlns='http://www.w3.org/2000/svg' style='height:60px;' class='Imgerror' viewBox='0 0 1024 1024'><path fill='#ff5b5b' d='M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z'/></svg>`;
-			const pContent = `<p class='Imgerror-message'>图片错误</p>`;
-
-			// 将 SVG 内容和 <p> 标签插入到 errorContainer div 内
-			errorContainer.innerHTML = svgContent + pContent;
-
-			// 将 errorContainer 插入到 img 元素的同一父元素下
-			img.parentNode.insertBefore(errorContainer, img.nextSibling);
-
-			// 隐藏 img 元素
-			img.style.display = 'none';
-		};
-	});
+	document.querySelectorAll('[img-src]').forEach(img => ob.observe(img));
 ```
 
 </details>
 
 加载动画 CSS, 我把它写到了`primer.css`文件里面.
 
-> [!Important]
-> 👇这个主要样式一定要写在`:root`选择器的前面!
-
 <details><summary>CSS Code</summary>
+
+> [!Important]
+> 这个主要样式一定要写在`:root`选择器的前面!
 
 ```CSS
 [data-color-mode=light][data-light-theme=dark],
@@ -258,13 +257,12 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
 /* 图片懒加载占位css动画 */
-.ImgLazyLoad {
-	width: 1.2px;
-	height: 1.1px;
+.ImgLazyLoad-circle {
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
 	border: 6px #f3f3f3 solid;
 	border-top: 6px #8aefff solid;
-	padding: 20px;
 	transition: filter 0.5s ease, opacity 0.5s ease;
 	animation: ImgLazyLoadAni 1.2s infinite;
 	-webkit-animation: ImgLazyLoadAni 1.2s infinite;
@@ -299,33 +297,14 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
 /* 图片模糊渐显样式 */
+[data-fancybox='gallery']{
+    opacity: 0;
+    filter: blur(15px);
+    transition: opacity 0.5s ease, filter 0.5s ease;
+}
 .ImgLoaded {
-	-webkit-filter: blur(115px);
-	filter: blur(115px);
-	opacity: 0;
-	-webkit-animation: ImgLoadedAni 0.5s ease forwards;
-	animation: ImgLoadedAni 0.5s ease forwards;
-}
-@-webkit-keyframes ImgLoadedAni {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		-webkit-filter: blur(0);
-		filter: blur(0);
-		opacity: 1;
-	}
-}
-@keyframes ImgLoadedAni {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		filter: blur(0);
-		opacity: 1;
-	}
+	opacity: 1;
+    filter: blur(0);
 }
 
 :root {
@@ -998,6 +977,37 @@ html {
 
 </details>
 
+## 文章diff代码块样式
+
+> 默认的效果可以双击复制到+和-号, 通过 CSS 控制使其无法被选中复制.
+
+直接在`primer.css`里增加代码:
+
+<details><summary>修改后</summary>
+
+```CSS
+.pl-mi1 {
+	user-select: text;
+}
+
+.pl-mi1>span {
+	user-select: none;
+}
+
+.pl-md {
+	user-select: text;
+}
+
+.pl-md>span {
+	user-select: none;
+}
+```
+
+</details>
+
+效果图
+`Gmeek-imgbox=''`
+
 ## 文章一键复制代码按钮样式
 
 > [!NOTE]
@@ -1234,6 +1244,7 @@ fork 之后, 转到搭建博客的 github 源码,
 ```Diff
 +.postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
 +.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}
+👆
 -.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 ```
 3. 增加文章内容的上边距.
@@ -1243,8 +1254,9 @@ fork 之后, 转到搭建博客的 github 源码,
 4. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
 
 ```Diff
-+ .title-right .circle{padding: 14px 16px;}
-- .title-right .circle{padding: 14px 16px;margin-right:8px;}
++.title-right .circle{padding: 14px 16px;}
+👆
+-.title-right .circle{padding: 14px 16px;margin-right:8px;}
 ```
 
 5. 头部图标样式.
@@ -1252,8 +1264,9 @@ fork 之后, 转到搭建博客的 github 源码,
 > 给`.title-right`增加子元素 DIV 的样式, 因为我增加了一个 DIV 元素显示文章目录按钮图标, 这里刚好需要 CSS 控制它.
 
 ```Diff
-+ .title-right a, .title-right div{padding:14px 16px;}
-- .title-right a{padding:14px 16px;}
++.title-right a, .title-right div{padding:14px 16px;}
+👆
+-.title-right a{padding:14px 16px;}
 ```
 
 6. 定位`{% block header %}`, 在上方增加类名块.
@@ -1368,9 +1381,7 @@ postTitle.classList.add('no-blink'); // 禁用动画
 <svg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' style='margin-right: 4px;height:18px;vertical-align: bottom;fill: #ff5a5a;'class='animate_heartBeatScale'><path d='M1017.152 426.592a263.296 263.296 0 0 0-502.304-133.92 263.328 263.328 0 0 0-502.304 133.92s5.152 259.264 505.536 520.096c500.32-260.832 499.072-520.096 499.072-520.096zM282.016 194.976a43.2 43.2 0 1 1 .096 86.4 43.2 43.2 0 0 1-.096-86.4zm-135.04 323.232a45.12 45.12 0 0 1-55.488-31.328 289.472 289.472 0 0 1-10.816-66.592C76.64 313.824 142.24 261.472 145.504 258.88a45.024 45.024 0 0 1 63.2 8.032c15.168 19.488 11.744 47.36-7.328 62.72-2.336 1.952-30.784 27.52-30.592 82.24.096 14.752 2.208 31.616 7.488 50.784a45.12 45.12 0 0 1-31.296 55.552z'/></svg>
 ```
 
-打开`primer.css`
-
-直接增加动画 CSS 代码.
+打开`primer.css`, 直接增加动画 CSS 代码.
 
 <details><summary>CSS Code</summary>
 
@@ -1612,7 +1623,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 
 ```python
         if '<code class='notranslate'>Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox='([^']+)'</code>',lambda match: f'<img data-fancybox='gallery' class='ImgLazyLoad' img-src='{match.group(1)}'>',post_body, flags=re.DOTALL)
+            post_body = re.sub(r'<code class='notranslate'>Gmeek-imgbox='([^']+)'</code>',lambda match: f'<div class='ImgLazyLoad-circle'></div>\n<img data-fancybox='gallery' img-src='{match.group(1)}'>',post_body, flags=re.DOTALL)
 ```
 
 markdown 输入:
@@ -1624,17 +1635,22 @@ markdown 输入:
 实际转化后的标签如下:
 
 ```html
-<img data-fancybox='gallery' class='ImgLazyLoad' img-src='https://example.com/image.jpg'>
+<div class='ImgLazyLoad-circle'></div>
+<img data-fancybox='gallery' img-src='https://example.com/image.jpg'>
 
-<!-- 转换后的标签包含图片浏览器所需的`data-fancybox='gallery'`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`. -->
-<!-- `ImgLazyLoad`这个类名的 CSS 动画我写在了`primer.css`里面, 使图片未加载之前有一个加载动画. -->
+<!--
+一个图片未加载时的占位 CSS 动画 DIV, 类名为`ImgLazyLoad`, 这个类名的 CSS 动画我写在了`primer.css`里面.
+一个 img 标签, 包含`fancybox`所需的`data-fancybox='gallery'`值.
+-->
 ```
 
-当页面加载完成后, 脚本会检测标签里面的`img-src='https://example.com/image.jpg'`内容, 并增加`src`值, 这样图片就能显示了.
+当页面加载完成后, 使用 IntersectionObserver 监听图片是否进入视口, 图片会提前 500px 接近视口时加载, 当图片即将进入视口时,
 
-图片加载的同时, 延迟 500 毫秒去掉`ImgLazyLoad`类名, 这样动画就能消失并显示正常的图片.
+脚本会检测标签里面的`img-src='https://example.com/image.jpg'`内容,  给 img 标签增加`src`值, 这样图片就能显示了.
 
-图片加载失败则会创建指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.
+在 CSS 中默认模糊并且透明图片, 脚本会等待图片加载完成后才会正常显示, 在这之前会隐藏掉占位转圈动画, 这样就实现了转圈动画消失并显示正常的图片.
+
+图片加载失败则会创建指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签和占位动画.
 
 大概就是这样的一个流程.
 
@@ -1732,56 +1748,50 @@ document.addEventListener('DOMContentLoaded', () => {
 <details><summary>Javascript Code</summary>
 
 ```Javascript
+    // 懒加载图片
 	const ob = new IntersectionObserver((entries) => {
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {
 				const img = entry.target;
-				img.src = img.getAttribute('img-src'); // 获取 img-src 属性的值
+				const imgContainer = img.previousElementSibling;
+				const handleError = (isError = false) => {
+					if (imgContainer && imgContainer.classList.contains('ImgLazyLoad')) {
+						imgContainer.style.display = 'none';
+					}
+					if (isError) {
+						const errorContainer = document.createElement('div');
+						errorContainer.classList.add('Imgerror-container');
+						errorContainer.innerHTML = `<svg xmlns='http://www.w3.org/2000/svg' style='height:60px;' class='Imgerror' viewBox='0 0 1024 1024'><path fill='#ff5b5b' d='M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z'/></svg><p class='Imgerror-message'>图片错误</p>`;
+						img.parentNode.insertBefore(errorContainer, img.nextSibling);
+						img.style.display = 'none';
+					} else {
+						img.classList.remove('ImgLazyLoad');
+						img.classList.add('ImgLoaded');
+					}
+				};
+
+				img.src = img.getAttribute('img-src');
 				ob.unobserve(img);
-				setTimeout(() => {
-					img.classList.remove('ImgLazyLoad'); // 增加图片显示延迟, 延迟过程中图片也是会加载的
-					img.classList.add('ImgLoaded') //增加图片显示后的类名
-				}, 500);
+
+				img.onload = () => handleError(false);
+				img.onerror = () => handleError(true);
 			}
 		});
 	}, {
 		rootMargin: '0px 0px 500px 0px',
 	});
 
-	const imgs = document.querySelectorAll('[img-src]'); // 选择所有具有 img-src 属性的元素
-	imgs.forEach(img => {
-		ob.observe(img);
-		// 图片加载失败时的处理
-		img.onerror = function() {
-			img.classList.remove('ImgLazyLoad'); // 移除 ImgLazyLoad 类名
-			// 创建一个容器 div
-			const errorContainer = document.createElement('div');
-			errorContainer.classList.add('Imgerror-container');
-			// SVG 内容
-			const svgContent =
-				`<svg xmlns='http://www.w3.org/2000/svg' style='height:60px;' class='Imgerror' viewBox='0 0 1024 1024'><path fill='#ff5b5b' d='M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z'/></svg>`;
-			const pContent = `<p class='Imgerror-message'>图片错误</p>`;
-
-			// 将 SVG 内容和 <p> 标签插入到 errorContainer div 内
-			errorContainer.innerHTML = svgContent + pContent;
-
-			// 将 errorContainer 插入到 img 元素的同一父元素下
-			img.parentNode.insertBefore(errorContainer, img.nextSibling);
-
-			// 隐藏 img 元素
-			img.style.display = 'none';
-		};
-	});
+	document.querySelectorAll('[img-src]').forEach(img => ob.observe(img));
 ```
 
 </details>
 
 加载动画 CSS, 我把它写到了`primer.css`文件里面.
 
-> [!Important]
-> 👇这个主要样式一定要写在`:root`选择器的前面!
-
 <details><summary>CSS Code</summary>
+
+> [!Important]
+> 这个主要样式一定要写在`:root`选择器的前面!
 
 ```CSS
 [data-color-mode=light][data-light-theme=dark],
@@ -1793,13 +1803,12 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
 /* 图片懒加载占位css动画 */
-.ImgLazyLoad {
-	width: 1.2px;
-	height: 1.1px;
+.ImgLazyLoad-circle {
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
 	border: 6px #f3f3f3 solid;
 	border-top: 6px #8aefff solid;
-	padding: 20px;
 	transition: filter 0.5s ease, opacity 0.5s ease;
 	animation: ImgLazyLoadAni 1.2s infinite;
 	-webkit-animation: ImgLazyLoadAni 1.2s infinite;
@@ -1834,33 +1843,14 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
 /* 图片模糊渐显样式 */
+[data-fancybox='gallery']{
+    opacity: 0;
+    filter: blur(15px);
+    transition: opacity 0.5s ease, filter 0.5s ease;
+}
 .ImgLoaded {
-	-webkit-filter: blur(115px);
-	filter: blur(115px);
-	opacity: 0;
-	-webkit-animation: ImgLoadedAni 0.5s ease forwards;
-	animation: ImgLoadedAni 0.5s ease forwards;
-}
-@-webkit-keyframes ImgLoadedAni {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		-webkit-filter: blur(0);
-		filter: blur(0);
-		opacity: 1;
-	}
-}
-@keyframes ImgLoadedAni {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		filter: blur(0);
-		opacity: 1;
-	}
+	opacity: 1;
+    filter: blur(0);
 }
 
 :root {
@@ -2533,6 +2523,37 @@ html {
 
 </details>
 
+## 文章diff代码块样式
+
+> 默认的效果可以双击复制到+和-号, 通过 CSS 控制使其无法被选中复制.
+
+直接在`primer.css`里增加代码:
+
+<details><summary>修改后</summary>
+
+```CSS
+.pl-mi1 {
+	user-select: text;
+}
+
+.pl-mi1>span {
+	user-select: none;
+}
+
+.pl-md {
+	user-select: text;
+}
+
+.pl-md>span {
+	user-select: none;
+}
+```
+
+</details>
+
+效果图
+`Gmeek-imgbox=''`
+
 ## 文章一键复制代码按钮样式
 
 > [!NOTE]
@@ -2769,6 +2790,7 @@ fork 之后, 转到搭建博客的 github 源码,
 ```Diff
 +.postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
 +.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}
+👆
 -.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 ```
 3. 增加文章内容的上边距.
@@ -2778,8 +2800,9 @@ fork 之后, 转到搭建博客的 github 源码,
 4. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
 
 ```Diff
-+ .title-right .circle{padding: 14px 16px;}
-- .title-right .circle{padding: 14px 16px;margin-right:8px;}
++.title-right .circle{padding: 14px 16px;}
+👆
+-.title-right .circle{padding: 14px 16px;margin-right:8px;}
 ```
 
 5. 头部图标样式.
@@ -2787,8 +2810,9 @@ fork 之后, 转到搭建博客的 github 源码,
 > 给`.title-right`增加子元素 DIV 的样式, 因为我增加了一个 DIV 元素显示文章目录按钮图标, 这里刚好需要 CSS 控制它.
 
 ```Diff
-+ .title-right a, .title-right div{padding:14px 16px;}
-- .title-right a{padding:14px 16px;}
++.title-right a, .title-right div{padding:14px 16px;}
+👆
+-.title-right a{padding:14px 16px;}
 ```
 
 6. 定位`{% block header %}`, 在上方增加类名块.
@@ -2903,9 +2927,7 @@ postTitle.classList.add('no-blink'); // 禁用动画
 <svg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' style='margin-right: 4px;height:18px;vertical-align: bottom;fill: #ff5a5a;'class='animate_heartBeatScale'><path d='M1017.152 426.592a263.296 263.296 0 0 0-502.304-133.92 263.328 263.328 0 0 0-502.304 133.92s5.152 259.264 505.536 520.096c500.32-260.832 499.072-520.096 499.072-520.096zM282.016 194.976a43.2 43.2 0 1 1 .096 86.4 43.2 43.2 0 0 1-.096-86.4zm-135.04 323.232a45.12 45.12 0 0 1-55.488-31.328 289.472 289.472 0 0 1-10.816-66.592C76.64 313.824 142.24 261.472 145.504 258.88a45.024 45.024 0 0 1 63.2 8.032c15.168 19.488 11.744 47.36-7.328 62.72-2.336 1.952-30.784 27.52-30.592 82.24.096 14.752 2.208 31.616 7.488 50.784a45.12 45.12 0 0 1-31.296 55.552z'/></svg>
 ```
 
-打开`primer.css`
-
-直接增加动画 CSS 代码.
+打开`primer.css`, 直接增加动画 CSS 代码.
 
 <details><summary>CSS Code</summary>
 
@@ -3090,7 +3112,7 @@ if '<code class='notranslate'>Gmeek-html' in post_body:
 <style>
 :root{--header-article-bgColor:#3b3b3b6b;}
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--header-article-bgColor:#ffffff00;}
-@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes blink{50%{border-color:transparent}100%{border-color:var(--fgColor-default,var(--color-fg-default))}}
+@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes blink{50%{opacity:0}100%{opacity:1}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes blink{50%{opacity:0}100%{opacity:1}}
 body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padding:45px;font-size:16px;font-family:sans-serif;line-height:1.25;}
 #header{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:24px;}
 #header.article-header{border-bottom:none;width:100%;max-width:inherit;position:fixed;top:0;left:50%;transform:translateX(-50%);background:var(--header-articel-bgColor);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);padding:10px;box-shadow:0 2px 10px rgba(0, 0, 0, .1);transition:transform 0.6s ease-in-out;-webkit-transition:transform 0.6s ease-in-out;z-index:99;border-radius:0 0 15px 15px;gap:15px;}
@@ -3103,8 +3125,10 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 
 <style>
 :root{--postTitle-textshadowColor:#ffffff80;}
-[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow:#00000080;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadowColor:#00000080;}
 .postTitle{margin: auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
+.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}
+.no-blink::after {animation: none;}
 .article-content{margin-top:90px;}
 .spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
 .spoilerText.clear{filter:none;}
@@ -3137,7 +3161,7 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 
 <body class="article">
     <div id="header" class="article-header">
-<h1 class="postTitle">Gmeek - 记录使用过程</h1>
+<h1 class="postTitle">Gmeek - 记录使用过程记录使用过程记录使用过程记录使用过程</h1>
 <div class="title-right">
     <a href="https://GJKen.github.io/demo" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16"><path id="pathHome" fill-rule="evenodd"></path></svg>
@@ -3175,13 +3199,13 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 <p>代码:</p>
 <div class="highlight highlight-source-json"><pre class="notranslate"><span class="pl-ent">"subTitle"</span>:<span class="pl-s"><span class="pl-pds">"</span>&lt;script&gt;document.getElementById('content').innerHTML = `&lt;div style='text-align: center;'&gt;&lt;p&gt;CV工程师,&lt;/p&gt;&lt;p&gt;一个又菜又爱玩, 喜欢瞎折腾的流浪者.&lt;/p&gt;&lt;/div&gt;`;&lt;/script&gt;<span class="pl-pds">"</span></span>,</pre></div>
 <p>效果图:</p>
-<p><div class="ImgLazyLoad"></div>
-<img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/1QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
+<p><div class="ImgLazyLoad-circle"></div>
+<img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmPJLQrhBg9opKvbgNGqQaEopEKJnsH3thbH7wNbocp6VF"></p>
 <p>从图中可以看到, <code class="notranslate">subTitle</code>字段可用 js 插入 html 实现修改文字.</p>
 <h2>subTitle - 隐藏</h2>
 <p><code class="notranslate">"subTitle":" ",</code></p>
 <p>效果图:</p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/Qmei764zAMx9fXgotWbrrwizXRsrk42GGiKor2Zqo8hFgy"></p>
 <p>可以用空白字符的方式, 隐藏<code class="notranslate">subTitle</code>这个必须字段, 无需使用 js 隐藏.</p>
 <h1>记录功能块代码</h1>
@@ -3195,18 +3219,22 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 <p><code class="notranslate">Gmeek-imgbox</code>首先匹配到关键字后转化标签.</p>
 <p><code class="notranslate">Gmeek.py</code>匹配转换的代码如下:</p>
 <div class="highlight highlight-source-python"><pre class="notranslate">        <span class="pl-k">if</span> <span class="pl-s">'&lt;code class="notranslate"&gt;Gmeek-imgbox'</span> <span class="pl-c1">in</span> <span class="pl-s1">post_body</span>: 
-            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-c1">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox="([^"]+)"&lt;/code&gt;'</span>,<span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;img data-fancybox="gallery" class="ImgLazyLoad" img-src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-c1">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>,<span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-c1">DOTALL</span>)</pre></div>
+            <span class="pl-s1">post_body</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-c1">sub</span>(<span class="pl-s">r'&lt;code class="notranslate"&gt;Gmeek-imgbox="([^"]+)"&lt;/code&gt;'</span>,<span class="pl-k">lambda</span> <span class="pl-s1">match</span>: <span class="pl-s">f'&lt;div class="ImgLazyLoad-circle"&gt;&lt;/div&gt;<span class="pl-cce">\n</span>&lt;img data-fancybox="gallery" img-src="<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">match</span>.<span class="pl-c1">group</span>(<span class="pl-c1">1</span>)<span class="pl-kos">}</span></span>"&gt;'</span>,<span class="pl-s1">post_body</span>, <span class="pl-s1">flags</span><span class="pl-c1">=</span><span class="pl-s1">re</span>.<span class="pl-c1">DOTALL</span>)</pre></div>
 <p>markdown 输入:</p>
 <pre class="notranslate"><code class="notranslate">`Gmeek-imgbox="https://example.com/image.jpg"`
 </code></pre>
 <p>实际转化后的标签如下:</p>
-<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">data-fancybox</span>="<span class="pl-s">gallery</span>" <span class="pl-c1">class</span>="<span class="pl-s">ImgLazyLoad</span>" <span class="pl-c1">img-src</span>="<span class="pl-s">https://example.com/image.jpg</span>"<span class="pl-kos">&gt;</span>
+<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">class</span>="<span class="pl-s">ImgLazyLoad-circle</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span>
+<span class="pl-kos">&lt;</span><span class="pl-ent">img</span> <span class="pl-c1">data-fancybox</span>="<span class="pl-s">gallery</span>" <span class="pl-c1">img-src</span>="<span class="pl-s">https://example.com/image.jpg</span>"<span class="pl-kos">&gt;</span>
 
-<span class="pl-c">&lt;!-- 转换后的标签包含图片浏览器所需的`data-fancybox="gallery"`值, 以及图片懒加载的占位 CSS 动画类名`ImgLazyLoad`. --&gt;</span>
-<span class="pl-c">&lt;!-- `ImgLazyLoad`这个类名的 CSS 动画我写在了`primer.css`里面, 使图片未加载之前有一个加载动画. --&gt;</span></pre></div>
-<p>当页面加载完成后, 脚本会检测标签里面的<code class="notranslate">img-src="https://example.com/image.jpg"</code>内容, 并增加<code class="notranslate">src</code>值, 这样图片就能显示了.</p>
-<p>图片加载的同时, 延迟 500 毫秒去掉<code class="notranslate">ImgLazyLoad</code>类名, 这样动画就能消失并显示正常的图片.</p>
-<p>图片加载失败则会创建指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签.</p>
+<span class="pl-c">&lt;!--</span>
+<span class="pl-c">一个图片未加载时的占位 CSS 动画 DIV, 类名为`ImgLazyLoad`, 这个类名的 CSS 动画我写在了`primer.css`里面.</span>
+<span class="pl-c">一个 img 标签, 包含`fancybox`所需的`data-fancybox="gallery"`值.</span>
+<span class="pl-c">--&gt;</span></pre></div>
+<p>当页面加载完成后, 使用 IntersectionObserver 监听图片是否进入视口, 图片会提前 500px 接近视口时加载, 当图片即将进入视口时,</p>
+<p>脚本会检测标签里面的<code class="notranslate">img-src="https://example.com/image.jpg"</code>内容,  给 img 标签增加<code class="notranslate">src</code>值, 这样图片就能显示了.</p>
+<p>在 CSS 中默认模糊并且透明图片, 脚本会等待图片加载完成后才会正常显示, 在这之前会隐藏掉占位转圈动画, 这样就实现了转圈动画消失并显示正常的图片.</p>
+<p>图片加载失败则会创建指定的 SVG 图标以及文字提示, 同时隐藏加载失败的 img 标签和占位动画.</p>
 <p>大概就是这样的一个流程.</p>
 </details>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js">ArticleToc.js</a> - 文章增加目录列表+一键返回顶部按钮(引用版)</h2>
@@ -3220,12 +3248,12 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 修改-滚动页面自动显示&amp;隐藏返回顶部按钮.</p>
 </blockquote>
 <p>图示:</p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmcZLXt281ogUR7bUqReAWRhecnbGaftfaGu2wu2qugV4H"></p>
 <h2><a href="https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc-header.js">ArticleToc-header.js</a> - 文章增加目录列表+一键返回顶部按钮(header版)</h2>
 <p>功能和<a href="#articletoc.js---%E6%96%87%E7%AB%A0%E5%A2%9E%E5%8A%A0%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8+%E4%B8%80%E9%94%AE%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE(%E5%BC%95%E7%94%A8%E7%89%88)">引用版</a>一致, 这版集成到了文章的<code class="notranslate">#header</code>的按钮里面.</p>
 <p>按钮位置展示:</p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/Qme3qiTmKATk8BVvcLj7bC87q3w8MqywJcQTJfHKQTmyvd"></p>
 <h2>Fancybox.js - 图片浏览器</h2>
 <blockquote>
@@ -3262,7 +3290,7 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 <p>在 markdown 插入图片:</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate">`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2"`</pre></div>
 <p>通过 Actions 转换后实际效果如下, html 里面图片标签会增加 fancybox 所需的<code class="notranslate">data-fancybox="gallery"</code>属性.</p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2"></p>
 <h2>图片懒加载</h2>
 <blockquote>
@@ -3271,51 +3299,47 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 <p>代码内容合并到👉<a href="#articlejs.js---%E6%96%87%E7%AB%A0%E8%87%AA%E5%AE%9A%E4%B9%89-js-%E4%BB%A3%E7%A0%81">文章自定义 js 代码</a></p>
 <p>关键内容如下:</p>
 <details><summary>Javascript Code</summary>
-<div class="highlight highlight-source-js"><pre class="notranslate">	<span class="pl-k">const</span> <span class="pl-s1">ob</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">IntersectionObserver</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-s1">entries</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+<div class="highlight highlight-source-js"><pre class="notranslate">    <span class="pl-c">// 懒加载图片</span>
+	<span class="pl-k">const</span> <span class="pl-s1">ob</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">IntersectionObserver</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-s1">entries</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
 		<span class="pl-s1">entries</span><span class="pl-kos">.</span><span class="pl-en">forEach</span><span class="pl-kos">(</span><span class="pl-s1">entry</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
 			<span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">entry</span><span class="pl-kos">.</span><span class="pl-c1">isIntersecting</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
 				<span class="pl-k">const</span> <span class="pl-s1">img</span> <span class="pl-c1">=</span> <span class="pl-s1">entry</span><span class="pl-kos">.</span><span class="pl-c1">target</span><span class="pl-kos">;</span>
-				<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">src</span> <span class="pl-c1">=</span> <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-en">getAttribute</span><span class="pl-kos">(</span><span class="pl-s">'img-src'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 获取 img-src 属性的值</span>
+				<span class="pl-k">const</span> <span class="pl-s1">imgContainer</span> <span class="pl-c1">=</span> <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">previousElementSibling</span><span class="pl-kos">;</span>
+				<span class="pl-k">const</span> <span class="pl-en">handleError</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span><span class="pl-s1">isError</span> <span class="pl-c1">=</span> <span class="pl-c1">false</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+					<span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">imgContainer</span> <span class="pl-c1">&amp;&amp;</span> <span class="pl-s1">imgContainer</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">contains</span><span class="pl-kos">(</span><span class="pl-s">'ImgLazyLoad'</span><span class="pl-kos">)</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+						<span class="pl-s1">imgContainer</span><span class="pl-kos">.</span><span class="pl-c1">style</span><span class="pl-kos">.</span><span class="pl-c1">display</span> <span class="pl-c1">=</span> <span class="pl-s">'none'</span><span class="pl-kos">;</span>
+					<span class="pl-kos">}</span>
+					<span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">isError</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+						<span class="pl-k">const</span> <span class="pl-s1">errorContainer</span> <span class="pl-c1">=</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">createElement</span><span class="pl-kos">(</span><span class="pl-s">'div'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+						<span class="pl-s1">errorContainer</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">add</span><span class="pl-kos">(</span><span class="pl-s">'Imgerror-container'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+						<span class="pl-s1">errorContainer</span><span class="pl-kos">.</span><span class="pl-c1">innerHTML</span> <span class="pl-c1">=</span> <span class="pl-s">`&lt;svg xmlns="http://www.w3.org/2000/svg" style="height:60px;" class="Imgerror" viewBox="0 0 1024 1024"&gt;&lt;path fill="#ff5b5b" d="M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z"/&gt;&lt;/svg&gt;&lt;p class="Imgerror-message"&gt;图片错误&lt;/p&gt;`</span><span class="pl-kos">;</span>
+						<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">parentNode</span><span class="pl-kos">.</span><span class="pl-en">insertBefore</span><span class="pl-kos">(</span><span class="pl-s1">errorContainer</span><span class="pl-kos">,</span> <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">nextSibling</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+						<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">style</span><span class="pl-kos">.</span><span class="pl-c1">display</span> <span class="pl-c1">=</span> <span class="pl-s">'none'</span><span class="pl-kos">;</span>
+					<span class="pl-kos">}</span> <span class="pl-k">else</span> <span class="pl-kos">{</span>
+						<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">remove</span><span class="pl-kos">(</span><span class="pl-s">'ImgLazyLoad'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+						<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">add</span><span class="pl-kos">(</span><span class="pl-s">'ImgLoaded'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+					<span class="pl-kos">}</span>
+				<span class="pl-kos">}</span><span class="pl-kos">;</span>
+
+				<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">src</span> <span class="pl-c1">=</span> <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-en">getAttribute</span><span class="pl-kos">(</span><span class="pl-s">'img-src'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 				<span class="pl-s1">ob</span><span class="pl-kos">.</span><span class="pl-en">unobserve</span><span class="pl-kos">(</span><span class="pl-s1">img</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-				<span class="pl-en">setTimeout</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
-					<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">remove</span><span class="pl-kos">(</span><span class="pl-s">'ImgLazyLoad'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 增加图片显示延迟, 延迟过程中图片也是会加载的</span>
-					<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">add</span><span class="pl-kos">(</span><span class="pl-s">'ImgLoaded'</span><span class="pl-kos">)</span> <span class="pl-c">//增加图片显示后的类名</span>
-				<span class="pl-kos">}</span><span class="pl-kos">,</span> <span class="pl-c1">500</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+				<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-en">onload</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-en">handleError</span><span class="pl-kos">(</span><span class="pl-c1">false</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+				<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-en">onerror</span> <span class="pl-c1">=</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-en">handleError</span><span class="pl-kos">(</span><span class="pl-c1">true</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 			<span class="pl-kos">}</span>
 		<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 	<span class="pl-kos">}</span><span class="pl-kos">,</span> <span class="pl-kos">{</span>
 		<span class="pl-c1">rootMargin</span>: <span class="pl-s">'0px 0px 500px 0px'</span><span class="pl-kos">,</span>
 	<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
-	<span class="pl-k">const</span> <span class="pl-s1">imgs</span> <span class="pl-c1">=</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">querySelectorAll</span><span class="pl-kos">(</span><span class="pl-s">'[img-src]'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 选择所有具有 img-src 属性的元素</span>
-	<span class="pl-s1">imgs</span><span class="pl-kos">.</span><span class="pl-en">forEach</span><span class="pl-kos">(</span><span class="pl-s1">img</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
-		<span class="pl-s1">ob</span><span class="pl-kos">.</span><span class="pl-en">observe</span><span class="pl-kos">(</span><span class="pl-s1">img</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-		<span class="pl-c">// 图片加载失败时的处理</span>
-		<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-en">onerror</span> <span class="pl-c1">=</span> <span class="pl-k">function</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
-			<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">remove</span><span class="pl-kos">(</span><span class="pl-s">'ImgLazyLoad'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// 移除 ImgLazyLoad 类名</span>
-			<span class="pl-c">// 创建一个容器 div</span>
-			<span class="pl-k">const</span> <span class="pl-s1">errorContainer</span> <span class="pl-c1">=</span> <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">createElement</span><span class="pl-kos">(</span><span class="pl-s">'div'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-			<span class="pl-s1">errorContainer</span><span class="pl-kos">.</span><span class="pl-c1">classList</span><span class="pl-kos">.</span><span class="pl-en">add</span><span class="pl-kos">(</span><span class="pl-s">'Imgerror-container'</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-			<span class="pl-c">// SVG 内容</span>
-			<span class="pl-k">const</span> <span class="pl-s1">svgContent</span> <span class="pl-c1">=</span>
-				<span class="pl-s">`&lt;svg xmlns="http://www.w3.org/2000/svg" style="height:60px;" class="Imgerror" viewBox="0 0 1024 1024"&gt;&lt;path fill="#ff5b5b" d="M320 896h-77.833L515.92 622.253a21.333 21.333 0 0 0 3.16-26.133l-89.427-149.053 165.427-330.86A21.333 21.333 0 0 0 576 85.333H96a53.393 53.393 0 0 0-53.333 53.334v746.666A53.393 53.393 0 0 0 96 938.667h224A21.333 21.333 0 0 0 320 896zM96 128h445.48L386.253 438.46a21.333 21.333 0 0 0 .787 20.513L474 603.86l-69.333 69.333-89.62-89.653a53.333 53.333 0 0 0-75.427 0L85.333 737.827v-599.16A10.667 10.667 0 0 1 96 128zM85.333 885.333v-87.166l184.46-184.454a10.667 10.667 0 0 1 15.08 0l89.627 89.62L181.833 896H96a10.667 10.667 0 0 1-10.667-10.667zm192-458.666C336.147 426.667 384 378.813 384 320s-47.853-106.667-106.667-106.667S170.667 261.187 170.667 320s47.853 106.667 106.666 106.667zm0-170.667a64 64 0 1 1-64 64 64.073 64.073 0 0 1 64-64zM928 128H661.333a21.333 21.333 0 0 0-19.08 11.793l-.046.087c-.04.087-.087.173-.127.253L535.587 353.127a21.333 21.333 0 1 0 38.16 19.08l100.773-201.54H928a10.667 10.667 0 0 1 10.667 10.666V652.5L783.713 497.54a53.333 53.333 0 0 0-75.426 0L571.08 634.747a21.333 21.333 0 0 0-3.153 26.153l24.666 41.08-203.646 244.36a21.333 21.333 0 0 0 16.386 34.993H928A53.393 53.393 0 0 0 981.333 928V181.333A53.393 53.393 0 0 0 928 128zm0 810.667H450.88L635.053 717.66a21.333 21.333 0 0 0 1.907-24.667l-23.933-39.886L738.46 527.68a10.667 10.667 0 0 1 15.08 0l185.127 185.153V928A10.667 10.667 0 0 1 928 938.667z"/&gt;&lt;/svg&gt;`</span><span class="pl-kos">;</span>
-			<span class="pl-k">const</span> <span class="pl-s1">pContent</span> <span class="pl-c1">=</span> <span class="pl-s">`&lt;p class="Imgerror-message"&gt;图片错误&lt;/p&gt;`</span><span class="pl-kos">;</span>
-
-			<span class="pl-c">// 将 SVG 内容和 &lt;p&gt; 标签插入到 errorContainer div 内</span>
-			<span class="pl-s1">errorContainer</span><span class="pl-kos">.</span><span class="pl-c1">innerHTML</span> <span class="pl-c1">=</span> <span class="pl-s1">svgContent</span> <span class="pl-c1">+</span> <span class="pl-s1">pContent</span><span class="pl-kos">;</span>
-
-			<span class="pl-c">// 将 errorContainer 插入到 img 元素的同一父元素下</span>
-			<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">parentNode</span><span class="pl-kos">.</span><span class="pl-en">insertBefore</span><span class="pl-kos">(</span><span class="pl-s1">errorContainer</span><span class="pl-kos">,</span> <span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">nextSibling</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-
-			<span class="pl-c">// 隐藏 img 元素</span>
-			<span class="pl-s1">img</span><span class="pl-kos">.</span><span class="pl-c1">style</span><span class="pl-kos">.</span><span class="pl-c1">display</span> <span class="pl-c1">=</span> <span class="pl-s">'none'</span><span class="pl-kos">;</span>
-		<span class="pl-kos">}</span><span class="pl-kos">;</span>
-	<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+	<span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">querySelectorAll</span><span class="pl-kos">(</span><span class="pl-s">'[img-src]'</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">forEach</span><span class="pl-kos">(</span><span class="pl-s1">img</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">ob</span><span class="pl-kos">.</span><span class="pl-en">observe</span><span class="pl-kos">(</span><span class="pl-s1">img</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
 </details>
 <p>加载动画 CSS, 我把它写到了<code class="notranslate">primer.css</code>文件里面.</p>
-<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>👇这个主要样式一定要写在<code class="notranslate">:root</code>选择器的前面!</p>
-</div>
 <details><summary>CSS Code</summary>
+<blockquote>
+<p>[!Important]<br>
+这个主要样式一定要写在<code class="notranslate">:root</code>选择器的前面!</p>
+</blockquote>
 <div class="highlight highlight-source-css"><pre class="notranslate">[<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">light</span>][<span class="pl-c1">data-light-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]::<span class="pl-c1">selection</span><span class="pl-kos">,</span>
 [<span class="pl-c1">data-color-mode</span><span class="pl-c1">=</span><span class="pl-s">dark</span>][<span class="pl-c1">data-dark-theme</span><span class="pl-c1">=</span><span class="pl-s">dark</span>]<span class="pl-kos">,</span>
@@ -3325,13 +3349,12 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 }
 
 <span class="pl-c">/* 图片懒加载占位css动画 */</span>
-.<span class="pl-c1">ImgLazyLoad</span> {
-	<span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">1.2<span class="pl-smi">px</span></span>;
-	<span class="pl-c1">height</span><span class="pl-kos">:</span> <span class="pl-c1">1.1<span class="pl-smi">px</span></span>;
+.<span class="pl-c1">ImgLazyLoad-circle</span> {
+	<span class="pl-c1">width</span><span class="pl-kos">:</span> <span class="pl-c1">40<span class="pl-smi">px</span></span>;
+	<span class="pl-c1">height</span><span class="pl-kos">:</span> <span class="pl-c1">40<span class="pl-smi">px</span></span>;
 	<span class="pl-c1">border-radius</span><span class="pl-kos">:</span> <span class="pl-c1">50<span class="pl-smi">%</span></span>;
 	<span class="pl-c1">border</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-pds"><span class="pl-kos">#</span>f3f3f3</span> solid;
 	<span class="pl-c1">border-top</span><span class="pl-kos">:</span> <span class="pl-c1">6<span class="pl-smi">px</span></span> <span class="pl-pds"><span class="pl-kos">#</span>8aefff</span> solid;
-	<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">20<span class="pl-smi">px</span></span>;
 	<span class="pl-c1">transition</span><span class="pl-kos">:</span> filter <span class="pl-c1">0.5<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> opacity <span class="pl-c1">0.5<span class="pl-smi">s</span></span> ease;
 	<span class="pl-c1">animation</span><span class="pl-kos">:</span> ImgLazyLoadAni <span class="pl-c1">1.2<span class="pl-smi">s</span></span> infinite;
 	<span class="pl-c1">-webkit-animation</span><span class="pl-kos">:</span> ImgLazyLoadAni <span class="pl-c1">1.2<span class="pl-smi">s</span></span> infinite;
@@ -3366,33 +3389,14 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 }
 
 <span class="pl-c">/* 图片模糊渐显样式 */</span>
+[<span class="pl-c1">data-fancybox</span><span class="pl-c1">=</span><span class="pl-s">"gallery"</span>]{
+    <span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;
+    <span class="pl-c1">filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">15<span class="pl-smi">px</span></span>);
+    <span class="pl-c1">transition</span><span class="pl-kos">:</span> opacity <span class="pl-c1">0.5<span class="pl-smi">s</span></span> ease<span class="pl-kos">,</span> filter <span class="pl-c1">0.5<span class="pl-smi">s</span></span> ease;
+}
 .<span class="pl-c1">ImgLoaded</span> {
-	<span class="pl-c1">-webkit-filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">115<span class="pl-smi">px</span></span>);
-	<span class="pl-c1">filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">115<span class="pl-smi">px</span></span>);
-	<span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;
-	<span class="pl-c1">-webkit-animation</span><span class="pl-kos">:</span> ImgLoadedAni <span class="pl-c1">0.5<span class="pl-smi">s</span></span> ease forwards;
-	<span class="pl-c1">animation</span><span class="pl-kos">:</span> ImgLoadedAni <span class="pl-c1">0.5<span class="pl-smi">s</span></span> ease forwards;
-}
-<span class="pl-k">@-webkit-keyframes</span> ImgLoadedAni {
-	<span class="pl-c1">0<span class="pl-smi">%</span></span> {
-		<span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;
-	}
-
-	<span class="pl-c1">100<span class="pl-smi">%</span></span> {
-		<span class="pl-c1">-webkit-filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">0</span>);
-		<span class="pl-c1">filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">0</span>);
-		<span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">1</span>;
-	}
-}
-<span class="pl-k">@keyframes</span> ImgLoadedAni {
-	<span class="pl-c1">0<span class="pl-smi">%</span></span> {
-		<span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">0</span>;
-	}
-
-	<span class="pl-c1">100<span class="pl-smi">%</span></span> {
-		<span class="pl-c1">filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">0</span>);
-		<span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">1</span>;
-	}
+	<span class="pl-c1">opacity</span><span class="pl-kos">:</span> <span class="pl-c1">1</span>;
+    <span class="pl-c1">filter</span><span class="pl-kos">:</span> <span class="pl-en">blur</span>(<span class="pl-c1">0</span>);
 }
 
 <span class="pl-kos">:</span><span class="pl-c1">root</span> {
@@ -3883,6 +3887,30 @@ svg 暗黑模式下颜色.<br>
 	<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">4<span class="pl-smi">px</span></span> <span class="pl-c1">5<span class="pl-smi">px</span></span> <span class="pl-c1">14<span class="pl-smi">px</span></span> <span class="pl-c1">0</span> <span class="pl-en">var</span>(<span class="pl-s1">--markdown-pre-shadowColor</span>) inset;<span class="pl-c">/* 增加 */</span>
 }</pre></div>
 </details>
+<h2>文章diff代码块样式</h2>
+<blockquote>
+<p>默认的效果可以双击复制到+和-号, 通过 CSS 控制使其无法被选中复制.</p>
+</blockquote>
+<p>直接在<code class="notranslate">primer.css</code>里增加代码:</p>
+<details><summary>修改后</summary>
+<div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">pl-mi1</span> {
+	<span class="pl-c1">user-select</span><span class="pl-kos">:</span> text;
+}
+
+.<span class="pl-c1">pl-mi1</span><span class="pl-c1">&gt;</span><span class="pl-ent">span</span> {
+	<span class="pl-c1">user-select</span><span class="pl-kos">:</span> none;
+}
+
+.<span class="pl-c1">pl-md</span> {
+	<span class="pl-c1">user-select</span><span class="pl-kos">:</span> text;
+}
+
+.<span class="pl-c1">pl-md</span><span class="pl-c1">&gt;</span><span class="pl-ent">span</span> {
+	<span class="pl-c1">user-select</span><span class="pl-kos">:</span> none;
+}</pre></div>
+</details>
+<p>效果图<br>
+<code class="notranslate">Gmeek-imgbox=""</code></p>
 <h2>文章一键复制代码按钮样式</h2>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>给按钮增加 hover 动画, 使其显示&amp;隐藏一键复制按钮.<br>
 直接增加下面代码.</p>
@@ -3949,11 +3977,11 @@ svg 暗黑模式下颜色.<br>
 <p>为什么这样做? <span class="spoilerText">自娱自乐.~~</span></p>
 <h2>Fork Gmeek 仓库</h2>
 <p>仓库地址👉 <a href="https://github.com/Meekdai/Gmeek">https://github.com/Meekdai/Gmeek</a></p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmaJMN2pqoQwtA3c8bPbajkwWYAwaAcwbzUqBiXya836PV"></p>
 <p>fork 之后, 转到搭建博客的 github 源码,</p>
 <p>打开<code class="notranslate">.github/workflows/Gmeek.yml</code>文件, 修改构建博客仓库的地址为你自己的仓库地址</p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmNa2H5MrVphqpUwAHWBv7iWw782HmDb7qjZb3JEzdjQav"></p>
 <p>打开<code class="notranslate">config.json</code>文件, 修改右边字段值为main<code class="notranslate">"GMEEK_VERSION":"main"</code></p>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>如果值是<code class="notranslate">last</code>的话, Actions 会失败, 因为默认值<code class="notranslate">last</code>是靠源码仓库(Gmeek)的 tag 来构建的, 改成 main 就不会构建失败.<br>
@@ -3967,11 +3995,11 @@ svg 暗黑模式下颜色.<br>
 <h2>修改网站下方的文字</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
 <p>下图文字直接修改即可, 不同语言的按需修改.</p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmaxN6phAHJsxfB5Q3xLCGdAwpq2CcoNLo4xoFB16DpzAs"></p>
 <h2>修改默认 primer.css 链接</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmWcdviYe3A5bmtjCjhFeFA8VaczcvTQ2HDMB5aUAnkg3v"></p>
 <p>这里我直接写改成我存放的链接 <a href="https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css" rel="nofollow">https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v1.0/static/primer.min.css</a></p>
 <h2>修改页面头部样式</h2>
@@ -4054,6 +4082,7 @@ svg 暗黑模式下颜色.<br>
 </ol>
 <div class="highlight highlight-source-diff"><pre class="notranslate"><span class="pl-mi1"><span class="pl-mi1">+</span>.postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}</span>
 <span class="pl-mi1"><span class="pl-mi1">+</span>.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}</span>
+👆
 <span class="pl-md"><span class="pl-md">-</span>.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}</span></pre></div>
 <ol start="3">
 <li>增加文章内容的上边距.</li>
@@ -4062,16 +4091,18 @@ svg 暗黑模式下颜色.<br>
 <ol start="4">
 <li>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code></li>
 </ol>
-<div class="highlight highlight-source-diff"><pre class="notranslate"><span class="pl-mi1"><span class="pl-mi1">+</span> .title-right .circle{padding: 14px 16px;}</span>
-<span class="pl-md"><span class="pl-md">-</span> .title-right .circle{padding: 14px 16px;margin-right:8px;}</span></pre></div>
+<div class="highlight highlight-source-diff"><pre class="notranslate"><span class="pl-mi1"><span class="pl-mi1">+</span>.title-right .circle{padding: 14px 16px;}</span>
+👆
+<span class="pl-md"><span class="pl-md">-</span>.title-right .circle{padding: 14px 16px;margin-right:8px;}</span></pre></div>
 <ol start="5">
 <li>头部图标样式.</li>
 </ol>
 <blockquote>
 <p>给<code class="notranslate">.title-right</code>增加子元素 DIV 的样式, 因为我增加了一个 DIV 元素显示文章目录按钮图标, 这里刚好需要 CSS 控制它.</p>
 </blockquote>
-<div class="highlight highlight-source-diff"><pre class="notranslate"><span class="pl-mi1"><span class="pl-mi1">+</span> .title-right a, .title-right div{padding:14px 16px;}</span>
-<span class="pl-md"><span class="pl-md">-</span> .title-right a{padding:14px 16px;}</span></pre></div>
+<div class="highlight highlight-source-diff"><pre class="notranslate"><span class="pl-mi1"><span class="pl-mi1">+</span>.title-right a, .title-right div{padding:14px 16px;}</span>
+👆
+<span class="pl-md"><span class="pl-md">-</span>.title-right a{padding:14px 16px;}</span></pre></div>
 <ol start="6">
 <li>定位<code class="notranslate">{% block header %}</code>, 在上方增加类名块.</li>
 </ol>
@@ -4148,18 +4179,17 @@ svg 暗黑模式下颜色.<br>
 <blockquote>
 <p>增加圆角6px.</p>
 </blockquote>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS"></p>
 <p>效果图:</p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmZpTsgv2gCosiy6VRuckx59U1yiLfyTMqxkbXHivWmusW"></p>
 <h2>页面底部文字增加图标动画</h2>
 <p>爱心图标动画.</p>
 <p>打开<code class="notranslate">footer.html</code></p>
 <p>在<code class="notranslate">&lt;span id="runday"&gt;</code>前面插入下面一行 SVG 图标.</p>
 <div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-kos">&lt;</span><span class="pl-ent">svg</span> <span class="pl-c1">viewBox</span>="<span class="pl-s">0 0 1024 1024</span>" <span class="pl-c1">xmlns</span>="<span class="pl-s">http://www.w3.org/2000/svg</span>" <span class="pl-c1">style</span>="<span class="pl-s">margin-right: 4px;height:18px;vertical-align: bottom;fill: #ff5a5a;</span>"<span class="pl-c1">class</span>="<span class="pl-s">animate_heartBeatScale</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;</span><span class="pl-ent">path</span> <span class="pl-c1">d</span>="<span class="pl-s">M1017.152 426.592a263.296 263.296 0 0 0-502.304-133.92 263.328 263.328 0 0 0-502.304 133.92s5.152 259.264 505.536 520.096c500.32-260.832 499.072-520.096 499.072-520.096zM282.016 194.976a43.2 43.2 0 1 1 .096 86.4 43.2 43.2 0 0 1-.096-86.4zm-135.04 323.232a45.12 45.12 0 0 1-55.488-31.328 289.472 289.472 0 0 1-10.816-66.592C76.64 313.824 142.24 261.472 145.504 258.88a45.024 45.024 0 0 1 63.2 8.032c15.168 19.488 11.744 47.36-7.328 62.72-2.336 1.952-30.784 27.52-30.592 82.24.096 14.752 2.208 31.616 7.488 50.784a45.12 45.12 0 0 1-31.296 55.552z</span>"<span class="pl-kos">/&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">svg</span><span class="pl-kos">&gt;</span></pre></div>
-<p>打开<code class="notranslate">primer.css</code></p>
-<p>直接增加动画 CSS 代码.</p>
+<p>打开<code class="notranslate">primer.css</code>, 直接增加动画 CSS 代码.</p>
 <details><summary>CSS Code</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate"><span class="pl-k">@keyframes</span> heartBeatScale  {
     <span class="pl-c1">0<span class="pl-smi">%</span></span> {
@@ -4279,67 +4309,67 @@ svg 暗黑模式下颜色.<br>
 <tr>
 <td>网站</td>
 <td>#218155</td>
-<td><div class="ImgLazyLoad"></div>
+<td><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=网站&amp;color=218155"></td>
 </tr>
 <tr>
 <td>日常</td>
 <td>#008672</td>
-<td><div class="ImgLazyLoad"></div>
+<td><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=日常&amp;color=008672"></td>
 </tr>
 <tr>
 <td>教程</td>
 <td>#0075ca</td>
-<td><div class="ImgLazyLoad"></div>
+<td><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=教程&amp;color=0075ca"></td>
 </tr>
 <tr>
 <td>Anime</td>
 <td>#E77AB1</td>
-<td><div class="ImgLazyLoad"></div>
+<td><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=Anime&amp;color=E77AB1"></td>
 </tr>
 <tr>
 <td>Win</td>
 <td>#5AB3F3</td>
-<td><div class="ImgLazyLoad"></div>
+<td><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=Win&amp;color=5AB3F3"></td>
 </tr>
 <tr>
 <td>VPS</td>
 <td>#5319e7</td>
-<td><div class="ImgLazyLoad"></div>
+<td><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=VPS&amp;color=5319e7"></td>
 </tr>
 <tr>
 <td>JS</td>
 <td>#AD3152</td>
-<td><div class="ImgLazyLoad"></div>
+<td><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=JS&amp;color=AD3152"></td>
 </tr>
 <tr>
 <td>CSS</td>
 <td>#218155</td>
-<td><div class="ImgLazyLoad"></div>
+<td><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=CSS&amp;color=218155"></td>
 </tr>
 <tr>
 <td>Github</td>
 <td>#333333</td>
-<td><div class="ImgLazyLoad"></div>
+<td><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=Github&amp;color=333333"></td>
 </tr>
 <tr>
 <td>CDN</td>
 <td>#cb222c</td>
-<td><div class="ImgLazyLoad"></div>
+<td><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=CDN&amp;color=cb222c"></td>
 </tr>
 <tr>
 <td>Bug</td>
 <td>#D73A4A</td>
-<td><div class="ImgLazyLoad"></div>
+<td><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://img.shields.io/static/v1?label=&amp;message=Bug&amp;color=D73A4A"></td>
 </tr>
 </tbody>
@@ -4404,7 +4434,6 @@ if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
 </script>
 
 <script>
-const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 
@@ -4448,6 +4477,7 @@ function iFrameLoading(){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+	const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
 	const spoilers = document.querySelectorAll(".spoilerText");
 	spoilers.length && spoilers.forEach(el => el.onclick = () => el.classList.toggle("clear"));
 
@@ -4516,6 +4546,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script src='../../static/ArticleJs.min.js'></script><script src='https://fastly.jsdelivr.net/gh/gjken/demo/static/ArticleToc-header.js'></script><script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script><script src='https://cdn.jsdelivr.net/gh/gyanprabhat7/LazyLoad.JS/lazyImage.js'></script>
+<script src='../../static/ArticleJs.js'></script>
+<script src='https://fastly.jsdelivr.net/gh/gjken/demo/static/ArticleToc-header.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>
+<script src='https://cdn.jsdelivr.net/gh/gyanprabhat7/LazyLoad.JS/lazyImage.js'></script>
 
 </html>

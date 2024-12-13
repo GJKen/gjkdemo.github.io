@@ -139,8 +139,10 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 
 <style>
 :root{--postTitle-textshadowColor:#ffffff80;}
-[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow:#00000080;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadowColor:#00000080;}
 .postTitle{margin: auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
+.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}
+.no-blink::after {animation: none;}
 .article-content{margin-top:90px;}
 .spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
 .spoilerText.clear{filter:none;}
@@ -202,20 +204,20 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 </ul>
 <h1>Cloudflare 添加域</h1>
 <p>我们进入 <a href="https://dash.cloudflare.com" rel="nofollow">https://dash.cloudflare.com</a></p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmcFYHqU8iTz77vEzVUkrHkMiQUcJ1mCjBz2u6q9mszmaD"></p>
 <p>输入自己的域名点击继续, 然后选择底部的 Free 计划.</p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmWEwsF7kjqWYZET8AbyPbVizciT3pLDbi6Pjm4xkYZvCS"></p>
 <p>复制 dns 名称服务器.</p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmakCvRG52FLk2NV1XFjmWmz5LZuhPg3oD2SdiTunQH8TU"></p>
 <p>然后转到你的域名提供服务商, 添加 dns 记录.</p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmUN7NYdHmRnLgHEGtFdHF3ygCtkVsR6WyRyhsX9nhDB1a"></p>
 <h1>填写 DNS 记录.</h1>
 <p>回到 Cloudflare 面板, 进入 dns 记录, 按照下图添加 <code class="notranslate">CNAME</code> 和 <code class="notranslate">A</code> 记录.</p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmUFcvcDv8g8Y9G3B81pfE9bSuLMwKrz5mpaa9d2Zn3W9Q"></p>
 <pre class="notranslate"><code class="notranslate">185.199.108.153
 
@@ -226,13 +228,13 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 185.199.111.153
 </code></pre>
 <h1>Github Page 设置自定义域名</h1>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmYfvg3jyxVCusmyicJVGQEyXhTfdVJTatotxVHRRqqE9K"></p>
 <p>填写 Save 之后会提示你等待一会.</p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmYtbdp1WTLPgVdVXJvS5hJCwmUSqN3qCNX3tNjUiCDmYv"></p>
 <p>提示<code class="notranslate">DNS check successful</code>代表完成, 之后就可以通过www+你的域名进行访问了.</p>
-<p><div class="ImgLazyLoad"></div>
+<p><div class="ImgLazyLoad-circle"></div>
 <img data-fancybox="gallery" img-src="https://i0.img2ipfs.com/ipfs/QmUd39gbrv86frzBrjFN5PwHPBnU8hLbfvS7CqpUgjup6M?filename=image.png"></p></div>
 <div style="font-size:small;margin-top:8px;float:right;">🥰转载请注明,谢谢!🥰</div>
 
@@ -289,7 +291,6 @@ if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
 </script>
 
 <script>
-const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 
@@ -333,6 +334,7 @@ function iFrameLoading(){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+	const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
 	const spoilers = document.querySelectorAll(".spoilerText");
 	spoilers.length && spoilers.forEach(el => el.onclick = () => el.classList.toggle("clear"));
 
