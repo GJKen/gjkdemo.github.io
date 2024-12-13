@@ -1398,7 +1398,7 @@ postTitle.classList.add('no-blink'); // 禁用动画
 
 > 增加圆角6px.
 
-`f\'border-radius:6px;\'`
+`f'border-radius:6px;'`
 
 `Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS"`
 
