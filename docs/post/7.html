@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href='https://gjkblog.us.kg/demo/primer.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v2.0/static/primer.min.css' rel='stylesheet' />
     
     <link rel="icon" href="https://pic.imgdb.cn/item/6734c652d29ded1a8cc038aa.jpg"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
@@ -75,7 +75,6 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 .postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow:0 3px 2px var(--postTitle-textshadowColor);transition:all 0.3s ease-in-out;}
 .postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight:normal;}
 .no-blink::after{animation:none;}
-.article-content{margin-top:90px;}
 .spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
 .spoilerText.clear{filter:none;}
 .title-right .circle{padding: 14px 16px;}
@@ -117,7 +116,7 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
     </div>
 </div>
 </div>
-    <div id="content" class="article-content">
+    <div id="content">
 <div class="markdown-body" id="postBody"><p>Cloudflare Web Analytics CDN 国内加载缓慢的解决方法</p>
 <h1>前言</h1>
 <p>最近在访问博客的时候发现个别js加载失败, 检查发现原来是 CloudFlare 的 beacon.min.js 加载失败, 如下图.</p>

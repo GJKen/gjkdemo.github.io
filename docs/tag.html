@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href='https://gjkblog.us.kg/demo/primer.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v2.0/static/primer.min.css' rel='stylesheet' />
     
     <link rel="icon" href="https://pic.imgdb.cn/item/6734c652d29ded1a8cc038aa.jpg"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
@@ -32,14 +32,9 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 .tagTitle{margin:auto 0;font-size:40px;font-weight:bold;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
 .title-right{display:flex;align-items:center;flex-direction: column;}
 .title-right .circle{padding: 14px 16px;}
-<<<<<<< HEAD
-.header-TagBtn{display:flex;gap:25px}
-/* .subnav-search{width:222px;margin-top:8px;margin-right:8px;} */
-=======
 .header-TagBtn{}
 
 .subnav-search{width:222px;margin-top:8px;margin-right:8px;}
->>>>>>> 0d5e210cdc43698c81b705c0a795c148a67e2c85
 .subnav-search-input{width:160px;border-top-right-radius:0px;border-bottom-right-radius:0px;}
 .subnav-search button{padding:5px 8px;border-top-left-radius:0px;border-bottom-left-radius:0px;}
 
@@ -73,20 +68,12 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
         </svg>
     </div>
 	<div class="header-TagBtn">
-<<<<<<< HEAD
-		<a href="{{ blogBase['homeUrl'] }}" id="buttonHome" class="btn btn-invisible circle" title="{{ i18n['home'] }}">
-=======
 		<a href="https://GJKen.github.io/demo" id="buttonHome" class="btn btn-invisible circle" title="首页">
->>>>>>> 0d5e210cdc43698c81b705c0a795c148a67e2c85
 			<svg class="octicon" width="16" height="16">
 				<path id="pathHome" fill-rule="evenodd"></path>
 			</svg>
 		</a>
-<<<<<<< HEAD
-		<a class="btn btn-invisible circle" onclick="modeSwitch()" title="{{ i18n['switchTheme'] }}" {%- if blogBase['themeMode']=='fix' -%}style="display:none;"{%- endif -%}>
-=======
 		<a class="btn btn-invisible circle" onclick="modeSwitch()" title="切换主题">
->>>>>>> 0d5e210cdc43698c81b705c0a795c148a67e2c85
 			<svg class="octicon" width="16" height="16" >
 				<path id="themeSwitch" fill-rule="evenodd"></path>
 			</svg>
@@ -94,7 +81,7 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 	</div>
 </div>
 </div>
-    <div id="content" class="homepage-content">
+    <div id="content">
 <div id="taglabel" style="margin-bottom:8px;"></div>
 <nav class="SideNav"></nav>
 <div class="notFind" style="display:none;font-size:24px;margin:8px;">Not Find</div>
