@@ -1171,13 +1171,29 @@ fork 之后, 转到搭建博客的 github 源码,
 
 定位`<body>`标签, 修改为以下内容:
 
+<details><summary>修改前</summary>
+
 ```html
-<body class="{% block body_class %}homepage{% endblock %}">
-    <div id="header" class="{% block header_class %}homepage-header{% endblock %}">{% block header %}{% endblock %}</div>
-    <div id="content" class="{% block content_class %}homepage-content{% endblock %}">{% block content %}{% endblock %}</div>
+<body>
+    <div id="header">{% block header %}{% endblock %}</div>
+    <div id="content">{% block content %}{% endblock %}</div>
     <div id="footer">{% include 'footer.html' %}</div>
 </body>
 ```
+
+</details>
+
+<details><summary>修改后</summary>
+
+```html
+<body class="{% block body_class %}homepage{% endblock %}">
+    <div id="header" class="{% block header_class %}homepage-header{% endblock %}">{% block header %}{% endblock %}</div>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">{% include 'footer.html' %}</div>
+</body>
+```
+
+</details>
 
 5. **\#header头部滚动时切换显示或隐藏.**
 
@@ -1233,15 +1249,12 @@ fork 之后, 转到搭建博客的 github 源码,
 
 ```Diff
 +.postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow:0 3px 2px var(--postTitle-textshadowColor);transition:all 0.3s ease-in-out;}
-+.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight:normal;}
++.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight:normal;vertical-align: text-top;}
 👆
 -.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 ```
-3. **增加文章内容的上边距.**
 
-`.article-content{margin-top:90px;}`
-
-4. **定位样式`.title-right .circle`, 删除`margin-right:8px;`**
+3. **定位样式`.title-right .circle`, 删除`margin-right:8px;`**
 
 ```Diff
 +.title-right .circle{padding: 14px 16px;}
@@ -1249,7 +1262,7 @@ fork 之后, 转到搭建博客的 github 源码,
 -.title-right .circle{padding: 14px 16px;margin-right:8px;}
 ```
 
-5. **头部图标样式.**
+4. **头部图标样式.**
 
 > 给`.title-right`增加子元素 DIV 的样式, 因为我增加了一个 DIV 元素显示文章目录按钮图标, 这里刚好需要 CSS 控制它.
 
@@ -1259,7 +1272,7 @@ fork 之后, 转到搭建博客的 github 源码,
 -.title-right a{padding:14px 16px;}
 ```
 
-6. **定位`{% block header %}`, 在上方增加类名块.**
+5. **定位`{% block header %}`, 在上方增加类名块.**
 
 > 这是为了用 class 类名区分`首页`和`文章页`
 
@@ -1269,7 +1282,7 @@ fork 之后, 转到搭建博客的 github 源码,
 {% block content_class %}article-content{% endblock %}
 ```
 
-7. **增加文章列表按钮.**
+6. **增加文章列表按钮.**
 
 在文章的头部增加一个文章目录按钮, 详情看👉[ArticleToc-header.js](#ArticleToc-header.js---文章增加目录列表+一键返回顶部按钮(header版))
 
@@ -1281,17 +1294,25 @@ fork 之后, 转到搭建博客的 github 源码,
     </div>
 ```
 
-8. **添加打字效果 JS 代码.**
+7. **添加打字效果 JS 代码.**
 
-定位`document.addEventListener('DOMContentLoaded', () => {`, 在里面增加 JS 代码:
+定位`<script>`标签, 在里面增加 JS 代码:
 
 ```Javascript
-const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
+	const HeaderID=document.getElementById("header");const headerHeight=HeaderID.offsetHeight;document.body.style.marginTop=headerHeight*0.9+"px";header.style.height=headerHeight+"px";const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
 ```
 
 <details><summary>含注释JS</summary>
 
 ```Javascript
+// 获取#header元素
+const HeaderID = document.getElementById("header")
+// 获取#header实际可视高度(未开始打字前的完整高度)
+const headerHeight = HeaderID.offsetHeight;
+// 给body增加上边距.
+document.body.style.marginTop = (headerHeight * 0.9) + "px";
+// 给header设置实际完整高度.
+header.style.height = headerHeight + "px";
 // 间隔多少毫秒输入一个字符
 const writeSpeed = 100;
 
@@ -1376,6 +1397,8 @@ postTitle.classList.add('no-blink'); // 禁用动画
 定位代码`markdown-alert-{alert}`
 
 > 增加圆角6px.
+
+`f\'border-radius:6px;\'`
 
 `Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/Qmen4szA7gJFZYiiXU7xcU2dqTfWyyCdEu619PCJCHtMQS"`
 
@@ -1488,14 +1511,14 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 
 ## 打开 Gmeek.py
 
-1. 增加匹配内容:
+1. **增加匹配内容:**
 
 ```python
         if '<code class="notranslate">Gmeek-spoilertxt' in post_body: 
             post_body = re.sub(r'<code class="notranslate">Gmeek-spoilertxt="([^"]+)"</code>', lambda match: f'<span class="spoilerText">{match.group(1)}</span>', post_body, flags=re.DOTALL)
 ```
 
-2. 实际转化后的标签如下:
+2. **实际转化后的标签如下:**
 
 ```html
 <p>测试剧透 <span class="spoilerText">剧透内容</span></p>
@@ -1503,14 +1526,14 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 
 ## 打开 post.html
 
-1. 增加 CSS 样式:
+1. **增加 CSS 样式:**
 
 ```CSS
 .spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
 .spoilerText.clear{filter: none;}
 ```
 
-2. 定位`document.addEventListener('DOMContentLoaded', () => {`, 在里面增加 JS 代码:
+2. **定位`<script>`标签, 在里面增加 JS 代码:**
 
 <details><summary>Javascript Code</summary>
 
@@ -1527,13 +1550,13 @@ if '<code class="notranslate">Gmeek-html' in post_body:
 
 </details>
 
-3. markdown 输入:
+3. **markdown 输入:**
 
 ```
 测试剧透👉`Gmeek-spoilertxt="666666"`
 ```
 
-4. 实际展示:
+4. **实际展示:**
 
 测试剧透👉`Gmeek-spoilertxt="666666"`.
 
