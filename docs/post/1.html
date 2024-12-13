@@ -984,7 +984,7 @@ html {
 
 直接在`primer.css`里增加代码:
 
-<details><summary>修改后</summary>
+<details><summary>CSS Code</summary>
 
 ```CSS
 .pl-mi1 {
@@ -1345,7 +1345,7 @@ postTitle.classList.add('no-blink'); // 禁用动画
 .title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}
 ```
 
-2. 定位样式`.title-left a`, 删除`margin-left:8px;`(设置 flex 布局之后取消图标多余的间距.)
+2. **定位样式`.title-left a`, 删除`margin-left:8px;`(设置 flex 布局之后取消图标多余的间距.)**
 
 3. **定位样式`.title-right .circle`, 删除`margin-right:8px;`**
 
@@ -1356,6 +1356,30 @@ postTitle.classList.add('no-blink'); // 禁用动画
 ```
 
 **到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.**
+
+## 修改 tag.html 页面样式
+
+### 头部样式
+
+1. 打开`tag.html`修改样式, 用了 Diff 代码块, 看着改吧.
+
+```Diff
++.title-right{display:flex;align-items:center;flex-direction:column;}
++.header-TagBtn{display:flex;gap:25px}
+👆
+-.title-right{display:flex;margin:auto 0 0 auto;}
+-.title-right .circle{padding: 14px 16px;margin-right:8px;}
+-.subnav-search{width:222px;margin-top:8px;margin-right:8px;}
+```
+
+2. 打开`primer.css`, 修改样式
+
+定位`.subnav-search {`, 删除了margin.
+
+```Diff
++.subnav-search {position: relative;s}
+-.subnav-search {position: relative;margin-left: 12px}
+```
 
 ## 修改[警报强调信息]样式
 
@@ -2532,7 +2556,7 @@ html {
 
 直接在`primer.css`里增加代码:
 
-<details><summary>修改后</summary>
+<details><summary>CSS Code</summary>
 
 ```CSS
 .pl-mi1 {
@@ -2893,7 +2917,7 @@ postTitle.classList.add('no-blink'); // 禁用动画
 .title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}
 ```
 
-2. 定位样式`.title-left a`, 删除`margin-left:8px;`(设置 flex 布局之后取消图标多余的间距.)
+2. **定位样式`.title-left a`, 删除`margin-left:8px;`(设置 flex 布局之后取消图标多余的间距.)**
 
 3. **定位样式`.title-right .circle`, 删除`margin-right:8px;`**
 
@@ -2904,6 +2928,30 @@ postTitle.classList.add('no-blink'); // 禁用动画
 ```
 
 **到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.**
+
+## 修改 tag.html 页面样式
+
+### 头部样式
+
+1. 打开`tag.html`修改样式, 用了 Diff 代码块, 看着改吧.
+
+```Diff
++.title-right{display:flex;align-items:center;flex-direction:column;}
++.header-TagBtn{display:flex;gap:25px}
+👆
+-.title-right{display:flex;margin:auto 0 0 auto;}
+-.title-right .circle{padding: 14px 16px;margin-right:8px;}
+-.subnav-search{width:222px;margin-top:8px;margin-right:8px;}
+```
+
+2. 打开`primer.css`, 修改样式
+
+定位`.subnav-search {`, 删除了margin.
+
+```Diff
++.subnav-search {position: relative;s}
+-.subnav-search {position: relative;margin-left: 12px}
+```
 
 ## 修改[警报强调信息]样式
 
@@ -3895,7 +3943,7 @@ svg 暗黑模式下颜色.<br>
 <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>默认的效果可以双击复制到+和-号, 通过 CSS 控制使其无法被选中复制.</p>
 </div>
 <p>直接在<code class="notranslate">primer.css</code>里增加代码:</p>
-<details><summary>修改后</summary>
+<details><summary>CSS Code</summary>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">pl-mi1</span> {
 	<span class="pl-c1">user-select</span><span class="pl-kos">:</span> text;
 }
@@ -4166,7 +4214,7 @@ svg 暗黑模式下颜色.<br>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">title-left</span>{<span class="pl-c1">display</span><span class="pl-kos">:</span> flex;<span class="pl-c1">flex-direction</span><span class="pl-kos">:</span> column;<span class="pl-c1">align-items</span><span class="pl-kos">:</span> center;<span class="pl-c1">gap</span><span class="pl-kos">:</span> <span class="pl-c1">20<span class="pl-smi">px</span></span>;}</pre></div>
 <ol start="2">
 <li>
-<p>定位样式<code class="notranslate">.title-left a</code>, 删除<code class="notranslate">margin-left:8px;</code>(设置 flex 布局之后取消图标多余的间距.)</p>
+<p><strong>定位样式<code class="notranslate">.title-left a</code>, 删除<code class="notranslate">margin-left:8px;</code>(设置 flex 布局之后取消图标多余的间距.)</strong></p>
 </li>
 <li>
 <p><strong>定位样式<code class="notranslate">.title-right .circle</code>, 删除<code class="notranslate">margin-right:8px;</code></strong></p>
@@ -4177,6 +4225,23 @@ svg 暗黑模式下颜色.<br>
 </ol>
 <div class="highlight highlight-source-css"><pre class="notranslate">.<span class="pl-c1">avatar</span><span class="pl-kos">:</span><span class="pl-c1">hover</span> {<span class="pl-c1">transform</span><span class="pl-kos">:</span> <span class="pl-en">scale</span>(<span class="pl-c1">1.5</span>) <span class="pl-en">rotate</span>(<span class="pl-c1">720<span class="pl-smi">deg</span></span>);<span class="pl-c1">box-shadow</span><span class="pl-kos">:</span> <span class="pl-c1">0</span> <span class="pl-c1">0</span> <span class="pl-c1">10<span class="pl-smi">px</span></span> <span class="pl-en">rgb</span>(<span class="pl-c1">45</span> <span class="pl-c1">250</span> <span class="pl-c1">255</span> <span class="pl-c1">/</span> <span class="pl-c1">74<span class="pl-smi">%</span></span>);}</pre></div>
 <p><strong>到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.</strong></p>
+<h2>修改 tag.html 页面样式</h2>
+<h3>头部样式</h3>
+<ol>
+<li>打开<code class="notranslate">tag.html</code>修改样式, 用了 Diff 代码块, 看着改吧.</li>
+</ol>
+<div class="highlight highlight-source-diff"><pre class="notranslate"><span class="pl-mi1"><span class="pl-mi1">+</span>.title-right{display:flex;align-items:center;flex-direction:column;}</span>
+<span class="pl-mi1"><span class="pl-mi1">+</span>.header-TagBtn{display:flex;gap:25px}</span>
+👆
+<span class="pl-md"><span class="pl-md">-</span>.title-right{display:flex;margin:auto 0 0 auto;}</span>
+<span class="pl-md"><span class="pl-md">-</span>.title-right .circle{padding: 14px 16px;margin-right:8px;}</span>
+<span class="pl-md"><span class="pl-md">-</span>.subnav-search{width:222px;margin-top:8px;margin-right:8px;}</span></pre></div>
+<ol start="2">
+<li>打开<code class="notranslate">primer.css</code>, 修改样式</li>
+</ol>
+<p>定位<code class="notranslate">.subnav-search {</code>, 删除了margin.</p>
+<div class="highlight highlight-source-diff"><pre class="notranslate"><span class="pl-mi1"><span class="pl-mi1">+</span>.subnav-search {position: relative;s}</span>
+<span class="pl-md"><span class="pl-md">-</span>.subnav-search {position: relative;margin-left: 12px}</span></pre></div>
 <h2>修改[警报强调信息]样式</h2>
 <p>打开<code class="notranslate">Gmeek.py</code></p>
 <p>定位代码<code class="notranslate">markdown-alert-{alert}</code></p>

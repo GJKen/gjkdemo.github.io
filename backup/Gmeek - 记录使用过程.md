@@ -972,7 +972,7 @@ html {
 
 直接在`primer.css`里增加代码:
 
-<details><summary>修改后</summary>
+<details><summary>CSS Code</summary>
 
 ```CSS
 .pl-mi1 {
@@ -1333,7 +1333,7 @@ postTitle.classList.add('no-blink'); // 禁用动画
 .title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}
 ```
 
-2. 定位样式`.title-left a`, 删除`margin-left:8px;`(设置 flex 布局之后取消图标多余的间距.)
+2. **定位样式`.title-left a`, 删除`margin-left:8px;`(设置 flex 布局之后取消图标多余的间距.)**
 
 3. **定位样式`.title-right .circle`, 删除`margin-right:8px;`**
 
@@ -1344,6 +1344,30 @@ postTitle.classList.add('no-blink'); // 禁用动画
 ```
 
 **到这里我的自定义 header 就修改完成了, 其它的样式可到 primer.css 里修改.**
+
+## 修改 tag.html 页面样式
+
+### 头部样式
+
+1. 打开`tag.html`修改样式, 用了 Diff 代码块, 看着改吧.
+
+```Diff
++.title-right{display:flex;align-items:center;flex-direction:column;}
++.header-TagBtn{display:flex;gap:25px}
+👆
+-.title-right{display:flex;margin:auto 0 0 auto;}
+-.title-right .circle{padding: 14px 16px;margin-right:8px;}
+-.subnav-search{width:222px;margin-top:8px;margin-right:8px;}
+```
+
+2. 打开`primer.css`, 修改样式
+
+定位`.subnav-search {`, 删除了margin.
+
+```Diff
++.subnav-search {position: relative;s}
+-.subnav-search {position: relative;margin-left: 12px}
+```
 
 ## 修改[警报强调信息]样式
 
