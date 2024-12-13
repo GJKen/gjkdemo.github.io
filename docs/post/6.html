@@ -538,7 +538,8 @@ function iFrameLoading(){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-	const HeaderID=document.getElementById("header");const headerHeight=HeaderID.offsetHeight;document.body.style.marginTop=headerHeight*0.9+"px";header.style.height=headerHeight+"px";const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
+	console.log("[debug]进入页面")
+	const HeaderID=document.getElementById("header")console.log("header已获取");const headerHeight=HeaderID.offsetHeight;console.log("header高度已设置" + headerHeight);document.body.style.marginTop=headerHeight*0.9+"px";console.log("body高度已修改")header.style.height=headerHeight+"px";const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
 	const spoilers = document.querySelectorAll(".spoilerText");
 	spoilers.length && spoilers.forEach(el => el.onclick = () => el.classList.toggle("clear"));
 
