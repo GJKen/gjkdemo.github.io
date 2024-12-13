@@ -98,7 +98,7 @@ markdown 输入:
 
 </details>
 
-## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮(引用版)
+## [ArticleToc.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc.js) - 文章增加目录列表+一键返回顶部按钮(v1.0)
 
 > 来源: [Github](https://github.com/cao-gift/cao-gift.github.io?tab=readme-ov-file)
 > 修改-创建`.toc`的位置为body里面.
@@ -114,7 +114,7 @@ markdown 输入:
 
 ## [ArticleToc-header.js](https://github.com/GJKen/gjken.github.io/blob/main/static/ArticleToc-header.js) - 文章增加目录列表+一键返回顶部按钮(header版)
 
-功能和[引用版](#articletoc.js---文章增加目录列表+一键返回顶部按钮(引用版))一致, 这版集成到了文章的`#header`的按钮里面.
+功能和[v.1.0版本](#articletoc.js---文章增加目录列表+一键返回顶部按钮(v1.0))一致, 这版集成到了文章的`#header`的按钮里面.
 
 按钮位置展示:
 
@@ -965,8 +965,9 @@ html {
 
 </details>
 
-## 文章diff代码块样式
+## 文章 diff 代码块样式
 
+> [!NOTE]
 > 默认的效果可以双击复制到+和-号, 通过 CSS 控制使其无法被选中复制.
 
 直接在`primer.css`里增加代码:
@@ -993,8 +994,9 @@ html {
 
 </details>
 
-效果图
-`Gmeek-imgbox=""`
+效果图:
+
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmZS6jSp64Zg1uCQdw4hvACYUyb9cFGKrCgnBNRuf6mPVF"`
 
 ## 文章一键复制代码按钮样式
 
@@ -1061,7 +1063,7 @@ a {
 }
 /* 
 这条在12345行左右出现
-增加
+修改为下面内容
 */
 a {
     background: #90d1ff;
@@ -1137,7 +1139,7 @@ fork 之后, 转到搭建博客的 github 源码,
 > [!Important]
 > base 这个模板文件里增加的代码可以应用到所有页面, 优先级很高.
 
-1. 增加所需的颜色样式.
+1. **增加所需的颜色样式.**
 
 > 文章头部背景色.
 > 打字效果动画.
@@ -1151,13 +1153,13 @@ fork 之后, 转到搭建博客的 github 源码,
 @keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes blink{50%{opacity:0}100%{opacity:1}}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes blink{50%{opacity:0}100%{opacity:1}}
 ```
 
-2. 定位`#header`, 修改样式.
+2. **定位`#header`, 修改样式.**
 
 ```CSS
 #header{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:24px;}
 ```
 
-3. 增加新的 header 变化样式, 配合 JS 隐藏时有不同的样式变化.
+3. **增加新的 header 变化样式, 配合 JS 隐藏时有不同的样式变化.**
 
 ```CSS
 #header.article-header{border-bottom:none;width:100%;max-width:inherit;position:fixed;top:0;left:50%;transform:translateX(-50%);background:var(--header-articel-bgColor);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);padding:10px;box-shadow:0 2px 10px rgba(0, 0, 0, .1);transition:transform 0.6s ease-in-out;-webkit-transition:transform 0.6s ease-in-out;z-index:99;border-radius:0 0 15px 15px;gap:15px;}
@@ -1165,7 +1167,7 @@ fork 之后, 转到搭建博客的 github 源码,
 #header.article-header.hidden{transform:translate(-50%,-120%);}
 ```
 
-4. 增加类名变量, 这样通过 Actions 时渲染出来的页面有 `homepage` `article` 的关键类名, 有了不同类名就可更方便的使用 CSS 控制不同页面的样式.
+4. **增加类名变量, 这样通过 Actions 时渲染出来的页面有 `homepage` `article` 的关键类名, 有了不同类名就可更方便的使用 CSS 控制不同页面的样式.**
 
 定位`<body>`标签, 修改为以下内容:
 
@@ -1177,7 +1179,7 @@ fork 之后, 转到搭建博客的 github 源码,
 </body>
 ```
 
-5. \#header头部滚动时切换显示或隐藏.
+5. **\#header头部滚动时切换显示或隐藏.**
 
 增加的 JS 代码部分, 我写在了([ArticleJs.js](#articletoc.js---文章增加目录列表+一键返回顶部按钮)文件里面, 作用是向下滚动页面让头部隐藏, 向上则显示.
 
@@ -1206,7 +1208,7 @@ fork 之后, 转到搭建博客的 github 源码,
 
 </details>
 
-6. 头部图标样式.
+6. **头部图标样式.**
 
 > 增加 CSS, `fadeIn`动画已在上文第1步骤添加过.
 
@@ -1219,7 +1221,7 @@ fork 之后, 转到搭建博客的 github 源码,
 > [!Important]
 > post 这个模板文件里增加的代码可以应用到所有文章页面.
 
-1. 增加所需的颜色样式.
+1. **增加所需的颜色样式.**
 
 ```CSS
 :root{--postTitle-textshadowColor: #ffffff80;}
@@ -1227,19 +1229,19 @@ fork 之后, 转到搭建博客的 github 源码,
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadowColor: #00000080;}
 ```
 
-2. 定位`.postTitle`, 修改以及增加样式(打字机效果)
+2. **定位`.postTitle`, 修改以及增加样式(打字机效果)**
 
 ```Diff
-+.postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow: 0 3px 2px var(--postTitle-textshadowColor);transition: all 0.3s ease-in-out;}
-+.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight: normal;}
++.postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow:0 3px 2px var(--postTitle-textshadowColor);transition:all 0.3s ease-in-out;}
++.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight:normal;}
 👆
 -.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 ```
-3. 增加文章内容的上边距.
+3. **增加文章内容的上边距.**
 
 `.article-content{margin-top:90px;}`
 
-4. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+4. **定位样式`.title-right .circle`, 删除`margin-right:8px;`**
 
 ```Diff
 +.title-right .circle{padding: 14px 16px;}
@@ -1247,7 +1249,7 @@ fork 之后, 转到搭建博客的 github 源码,
 -.title-right .circle{padding: 14px 16px;margin-right:8px;}
 ```
 
-5. 头部图标样式.
+5. **头部图标样式.**
 
 > 给`.title-right`增加子元素 DIV 的样式, 因为我增加了一个 DIV 元素显示文章目录按钮图标, 这里刚好需要 CSS 控制它.
 
@@ -1257,7 +1259,7 @@ fork 之后, 转到搭建博客的 github 源码,
 -.title-right a{padding:14px 16px;}
 ```
 
-6. 定位`{% block header %}`, 在上方增加类名块.
+6. **定位`{% block header %}`, 在上方增加类名块.**
 
 > 这是为了用 class 类名区分`首页`和`文章页`
 
@@ -1267,7 +1269,7 @@ fork 之后, 转到搭建博客的 github 源码,
 {% block content_class %}article-content{% endblock %}
 ```
 
-7. 增加文章列表按钮.
+7. **增加文章列表按钮.**
 
 在文章的头部增加一个文章目录按钮, 详情看👉[ArticleToc-header.js](#ArticleToc-header.js---文章增加目录列表+一键返回顶部按钮(header版))
 
@@ -1279,9 +1281,9 @@ fork 之后, 转到搭建博客的 github 源码,
     </div>
 ```
 
-8. 添加打字效果 JS 代码.
+8. **添加打字效果 JS 代码.**
 
-定位`<script>`标签, 在里面增加以下代码:
+定位`document.addEventListener('DOMContentLoaded', () => {`, 在里面增加 JS 代码:
 
 ```Javascript
 const writeSpeed=100;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
@@ -1325,7 +1327,7 @@ postTitle.classList.add('no-blink'); // 禁用动画
 
 ### 打开 plist.html 文件
 
-1. 增加样式.
+1. **增加样式.**
 
 ```CSS
 .title-left{display: flex;flex-direction: column;align-items: center;gap: 20px;}
@@ -1333,9 +1335,9 @@ postTitle.classList.add('no-blink'); // 禁用动画
 
 2. 定位样式`.title-left a`, 删除`margin-left:8px;`(设置 flex 布局之后取消图标多余的间距.)
 
-3. 定位样式`.title-right .circle`, 删除`margin-right:8px;`
+3. **定位样式`.title-right .circle`, 删除`margin-right:8px;`**
 
-4. 定位`.avatar:hover`, 修改样式.
+4. **定位`.avatar:hover`, 修改样式.**
 
 ```CSS
 .avatar:hover {transform: scale(1.5) rotate(720deg);box-shadow: 0 0 10px rgb(45 250 255 / 74%);}
