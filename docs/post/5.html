@@ -708,8 +708,8 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 .no-blink::after{animation:none;}
 .spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
 .spoilerText.clear{filter:none;}
-.title-right .circle{padding: 14px 16px;}
-.title-right a, .title-right div{padding:14px 16px;}
+#functionBtn .circle{padding: 14px 16px;}
+#functionBtn a, #functionBtn div{padding:14px 16px;}
 #postBody{border-bottom:1px solid var(--color-border-default);padding-bottom:36px;}
 #postBody hr{height:2px;}
 #cmButton{height:48px;margin-top:48px;}
@@ -739,24 +739,22 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
     <div id="header" class="article-header">
 <h1 class="postTitle">Serv00 - 使用记录</h1>
 </div>
-	<div id="functionBtn">
-<div class="title-right">
-    <a href="https://GJKen.github.io/demo" id="buttonHome" class="btn btn-invisible circle" title="首页">
-        <svg class="octicon" width="16" height="16"><path id="pathHome" fill-rule="evenodd"></path></svg>
-    </a>
-    
-    <a href="https://github.com/GJKen/demo/issues/5" target="_blank" class="btn btn-invisible circle" title="Issue">
-        <svg class="octicon" width="16" height="16"><path id="pathIssue" fill-rule="evenodd"></path></svg>
-    </a>
-    
+    <div id="functionBtn">
+<a href="https://GJKen.github.io/demo" id="buttonHome" class="btn btn-invisible circle" title="首页">
+	<svg class="octicon" width="16" height="16"><path id="pathHome" fill-rule="evenodd"></path></svg>
+</a>
 
-    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
-        <svg class="octicon" width="16" height="16" ><path id="themeSwitch" fill-rule="evenodd"></path></svg>
-    </a>
+<a href="https://github.com/GJKen/demo/issues/5" target="_blank" class="btn btn-invisible circle" title="Issue">
+	<svg class="octicon" width="16" height="16"><path id="pathIssue" fill-rule="evenodd"></path></svg>
+</a>
 
-    <div class="ArticleTOC btn btn-invisible circle">
-        <svg viewBox="-30 380 1084 1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M973.281 563.992c28.282.049 51.248-22.838 51.295-51.121.049-28.27-22.838-51.232-51.121-51.28l-921.597-1.567C23.59 459.975.627 482.86.578 511.13c-.049 28.284 22.838 51.248 51.107 51.295l921.596 1.568zm.566-332.805c28.283.047 51.248-22.838 51.295-51.105.047-28.284-22.838-51.248-51.122-51.295L52.426 127.22c-28.27-.049-51.234 22.836-51.28 51.12-.05 28.269 22.837 51.233 51.106 51.28l921.595 1.568zm-1.13 665.597c28.283.047 51.247-22.825 51.294-51.107.047-28.281-22.84-51.247-51.122-51.294l-921.594-1.568C23.025 792.768.06 815.653.013 843.935c-.05 28.283 22.838 51.233 51.107 51.282l921.596 1.567z" fill="#656d76"></path></svg>
-    </div>
+
+<a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+	<svg class="octicon" width="16" height="16" ><path id="themeSwitch" fill-rule="evenodd"></path></svg>
+</a>
+
+<div class="ArticleTOC btn btn-invisible circle">
+	<svg viewBox="-30 380 1084 1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M973.281 563.992c28.282.049 51.248-22.838 51.295-51.121.049-28.27-22.838-51.232-51.121-51.28l-921.597-1.567C23.59 459.975.627 482.86.578 511.13c-.049 28.284 22.838 51.248 51.107 51.295l921.596 1.568zm.566-332.805c28.283.047 51.248-22.838 51.295-51.105.047-28.284-22.838-51.248-51.122-51.295L52.426 127.22c-28.27-.049-51.234 22.836-51.28 51.12-.05 28.269 22.837 51.233 51.106 51.28l921.595 1.568zm-1.13 665.597c28.283.047 51.247-22.825 51.294-51.107.047-28.281-22.84-51.247-51.122-51.294l-921.594-1.568C23.025 792.768.06 815.653.013 843.935c-.05 28.283 22.838 51.233 51.107 51.282l921.596 1.567z" fill="#656d76"></path></svg>
 </div>
 </div>
     <div id="content">
