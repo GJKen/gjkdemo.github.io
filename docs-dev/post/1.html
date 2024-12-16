@@ -33,8 +33,7 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 </style>
 
 <style>
-	/* background:var(--header-articel-bgColor);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px); */
-#functionBtn.show-flex {
+/* #functionBtn.show-flex {
     position: fixed;
 	margin: 0;padding:20px 0;
 	top:0;left:0;width:100%;min-width:500px;
@@ -43,7 +42,8 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 	box-shadow: #00000078 0 9px 18px -15px;
 	z-index: 100;
 	animation:fadeIn .2s ease-in 0s forwards;
-}
+} */
+#functionBtn.show-flex{position:fixed;margin:0;padding:20px 0;top:0;left:0;width:100%;min-width:500px;background-color:var(--functionBtnFlex-bgColor);backdrop-filter:blur(30px);box-shadow:#00000078 0 9px 18px -15px;z-index:100;animation:fadeIn .2s ease-in 0s forwards}
 #header.article-header{display:flex;justify-content:center;}
 .postTitle{margin:auto 0;font-size:40px;font-weight:bold;}
 .postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight:normal;vertical-align:text-top;}
@@ -1399,10 +1399,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // const observer = new IntersectionObserver((entries) => {
 //   entries.forEach(entry => {
 //     if (entry.isIntersecting) {
-//       // checkBtn 可见，移除 show-flex 类
+//       // checkBtn 可见，移除类
 //       functionBtn.classList.remove('show-flex');
 //     } else {
-//       // checkBtn 不可见，添加 show-flex 类
+//       // checkBtn 不可见，添加类
 //       functionBtn.classList.add('show-flex');
 //     }
 //   });
