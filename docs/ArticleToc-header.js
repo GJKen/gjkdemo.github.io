@@ -111,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		.toc a:hover {
 			background-color: #6be5ff99;
+			transform:translate(1px,1px);
 		}
 		.toc-h1{
 			position: relative;
@@ -180,6 +181,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		.toc-link.toc-active {
 			background-color: #3db9d399;
 			font-weight: bold;
+			box-shadow: inset -2px -2px 6px #ffffff42, inset 2px 2px 6px #00000080;
 		}
 	`;
 
