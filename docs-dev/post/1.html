@@ -34,6 +34,16 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 
 <style>
 	/* background:var(--header-articel-bgColor);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px); */
+#functionBtn.show-flex {
+    position: fixed;
+	margin: 0;padding:20px 0;
+	top:0;left:0;width:100%;min-width:500px;
+	background-color: #ffffff61;
+	backdrop-filter: blur(30px);
+	box-shadow: #00000078 0 9px 18px -15px;
+	z-index: 100;
+	animation:fadeIn .2s ease-in 0s forwards;
+}
 #header.article-header{display:flex;justify-content:center;}
 .postTitle{margin:auto 0;font-size:40px;font-weight:bold;}
 .postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight:normal;vertical-align:text-top;}
@@ -1373,8 +1383,37 @@ if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 	const HeaderID=document.getElementById("header");const headerHeight=HeaderID.offsetHeight;header.style.height=headerHeight+"px";const writeSpeed=80;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
+		const checkBtn=document.createElement('div');checkBtn.id='checkBtn';const functionBtn=document.getElementById('functionBtn');functionBtn.insertAdjacentElement('afterend',checkBtn);const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){functionBtn.classList.remove('show-flex');}else{functionBtn.classList.add('show-flex');}});},{threshold:0});observer.observe(checkBtn);
 	const spoilers = document.querySelectorAll(".spoilerText");
 	spoilers.length && spoilers.forEach(el => el.onclick = () => el.classList.toggle("clear"));
+
+// // 创建 checkBtn 元素
+// const checkBtn = document.createElement('div');
+// // 为 checkBtn 添加 id
+// checkBtn.id = 'checkBtn';
+
+// // 将 checkBtn 添加到 body 中的某个位置，例如在 #functionBtn 后面
+// const functionBtn = document.getElementById('functionBtn');
+// functionBtn.insertAdjacentElement('afterend', checkBtn);
+// // 创建 IntersectionObserver 实例
+// const observer = new IntersectionObserver((entries) => {
+//   entries.forEach(entry => {
+//     if (entry.isIntersecting) {
+//       // checkBtn 可见，移除 show-flex 类
+//       functionBtn.classList.remove('show-flex');
+//     } else {
+//       // checkBtn 不可见，添加 show-flex 类
+//       functionBtn.classList.add('show-flex');
+//     }
+//   });
+// }, {
+//   // 设置观察的阈值，0 表示任何部分可见时触发
+//   threshold: 0
+// });
+
+// // 开始观察 checkBtn
+// observer.observe(checkBtn);
+
 });
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);

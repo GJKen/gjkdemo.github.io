@@ -12352,7 +12352,6 @@ template,
 }
 
 a {
-	background: #90d1ff;
 	background: linear-gradient(#90d1ff, #90d1ff) no-repeat left bottom;
 	background-size: 0 2px;
 	transition: all 0.25s ease;
