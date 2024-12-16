@@ -27389,7 +27389,6 @@ a.branch-name .octicon {
 	background: var(--markdown-h1-bgColor);
 	border-radius: 6px;
 	font-size: 1.85em;
-	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
 	border-left: .25em solid #32c7dd;
 	padding-left: .25em;
 }
@@ -27397,7 +27396,7 @@ a.branch-name .octicon {
 .markdown-body h2 {
 	padding-bottom: .3em;
 	font-size: 1.5em;
-	border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted))
+	box-shadow: rgb(41, 150, 186) 0px 9px 18px -15px;
 }
 
 /*
