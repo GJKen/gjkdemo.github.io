@@ -1,4 +1,5 @@
 function loadResource(type, attributes) {
+	// 插入css的函数
 	if (type === 'style') {
 		const style = document.createElement('style');
 		style.textContent = attributes.css;
@@ -11,6 +12,7 @@ function createTOC() {
 	tocElement.className = 'toc';
 	document.body.appendChild(tocElement); // 将目录 <div> 插入到 <body> 中
 
+	// 获取文章标题并设置排版
 	const headings = document.querySelectorAll('.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6');
 	headings.forEach(heading => {
 		if (!heading.id) {
