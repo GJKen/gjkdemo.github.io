@@ -16307,7 +16307,7 @@ input.FormControl-radio[type=radio]:focus-visible {
 	--body-bgColor: #ffffffde;
 	--body-shadow-color: #50a8e726;
 	--markdown-code-bgColor: #4d4d4d38;
-	--title-right-svgColor: #656d76;
+	--title-right-svgColor: #000;
 	--title-right-svgHovercolor: #ff7804;
 	--SideNav-bgColor: #ffffff99;
 	--SideNav-hover-bgColor: #6ec3ff52;
@@ -30995,5 +30995,23 @@ html {
 .pl-md>span {
 	user-select: none;
 }
+
+        .scroll-btn-wrapper {
+        }
+
+		.percent-btn {
+			position: relative;
+			width: 16px;
+			height: 16px;
+			padding: 0 !important;
+		}
+		.percent-btn::after {
+			position: absolute;
+			content: attr(data-percent) "%";
+			top: 66%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color:var(--title-right-svgColor);
+		}
 
 /*# sourceMappingURL=primer.css.map */
