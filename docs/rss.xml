@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Fri, 13 Dec 2024 17:15:18 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>Cloudflare Web Analytics 的 beacon.min.js 加载缓慢, 记录它的关闭方法</title><link>https://GJKen.github.io/demo/post/7.html</link><description>Cloudflare Web Analytics CDN 国内加载缓慢的解决方法&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Demo</title><link>https://GJKen.github.io/demo</link><description> </description><copyright>Demo</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp</url><title>avatar</title><link>https://GJKen.github.io/demo</link></image><lastBuildDate>Tue, 17 Dec 2024 12:40:36 +0000</lastBuildDate><managingEditor>Demo</managingEditor><ttl>60</ttl><webMaster>Demo</webMaster><item><title>Cloudflare Web Analytics 的 beacon.min.js 加载缓慢, 记录它的关闭方法</title><link>https://GJKen.github.io/demo/post/7.html</link><description>Cloudflare Web Analytics CDN 国内加载缓慢的解决方法.&#13;
 &#13;
 # 前言&#13;
 &#13;
@@ -7,7 +7,7 @@
 &#13;
 卡顿文件👉`https://static.cloudflareinsights.com/beacon.min.js`&#13;
 &#13;
-`Gmeek-imgbox='https://cdn.img2ipfs.com/ipfs/QmfVdyTJMzA3acSeMMYX3cLq7BoWLQ4pYpjr6u4HYsmhi1'`&#13;
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmfVdyTJMzA3acSeMMYX3cLq7BoWLQ4pYpjr6u4HYsmhi1'`&#13;
 &#13;
 网上找了点教程打算关闭它.&#13;
 &#13;
@@ -16,7 +16,25 @@
 ## Cloudflare 官方解释:&#13;
 &#13;
 &gt; [!TIP]&#13;
-&gt; Cloudflare Web Analytics功能，为您的网站提供免费的隐私优先分析，无需更改 DNS 或使用 Cloudflare 的代理。</description><guid isPermaLink="true">https://GJKen.github.io/demo/post/7.html</guid><pubDate>Mon, 09 Dec 2024 07:02:34 +0000</pubDate></item><item><title>Github Markdown 使用笔记</title><link>https://GJKen.github.io/demo/post/6.html</link><description>&gt; [!NOTE]&#13;
+&gt; Cloudflare Web Analytics功能, 为您的网站提供免费的隐私优先分析, 无需更改 DNS 或使用 Cloudflare 的代理. Cloudflare Web Analytics 可帮助您了解网站访问者体验到的网页性能. 启用 Cloudflare Web Analytics 所需的只是您的页面上的 Cloudflare 帐户和 JavaScript 代码片段, 即可开始获取有关页面浏览量和访问者的信息. JavaScript 代码片段(也称为信标)使用 Performance API 收集指标, 该 API 可在所有主流 Web 浏览器中使用.Web Analytics 支持自适应比特率 (ABR).&#13;
+&gt; &#13;
+&gt; Cloudflare 的服务器将根据数据大小、日期范围、网络连接和其他因素为每个图表或表格选择最佳分辨率.有关更多信息, 请参阅解释 Cloudflare 的 ABR Analytics.&#13;
+&gt; &#13;
+&gt; Web Analytics 显示的数据为真实用户监控 (RUM), 更多信息请参考真实用户监控.&#13;
+&gt; &#13;
+&gt; Cloudflare Web Analytics 不会收集或使用您的访客的个人数据.&#13;
+&#13;
+# 关闭步骤&#13;
+&#13;
+1. 选择需要管理的站点.&#13;
+&#13;
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmVbycbpbDMDnoDCAfFr2kURwgxYpMWToVscPpaQgwArKN'`&#13;
+&#13;
+2. 点按钮关闭, 再勾选禁用自动设置.&#13;
+&#13;
+`Gmeek-imgbox='https://i0.img2ipfs.com/ipfs/QmYNFAyEzp9k86J4RkRSWykbVrGyNd8EL7SJe74Ch5Ws15'`&#13;
+&#13;
+设置完成后等 5 分钟后强制刷新网站, 就没有这个 js 的加载了.。</description><guid isPermaLink="true">https://GJKen.github.io/demo/post/7.html</guid><pubDate>Mon, 09 Dec 2024 07:02:34 +0000</pubDate></item><item><title>Github Markdown 使用笔记</title><link>https://GJKen.github.io/demo/post/6.html</link><description>&gt; [!NOTE]&#13;
 &gt; Markdown 是一种轻量级标记语言, 它允许人们使用易读易写的纯文本格式编写文档, 然后转换成结构化的 HTML 代码. Markdown 语法简单, 但功能强大, 广泛应用于博客、笔记、文档编写等方面.  &#13;
 &#13;
 以下是 Markdown 的一些常用语法:&#13;
