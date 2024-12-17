@@ -27396,6 +27396,8 @@ a.branch-name .octicon {
 	padding-bottom: .3em;
 	font-size: 1.5em;
 	box-shadow: rgb(41, 150, 186) 0px 9px 18px -15px;
+	display: inline-block;
+	border-radius: 6px;
 }
 
 /*
