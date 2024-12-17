@@ -4560,7 +4560,7 @@ if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 	const HeaderID=document.getElementById("header");const headerHeight=HeaderID.offsetHeight;header.style.height=headerHeight+"px";const writeSpeed=80;const textContent=document.querySelector('.postTitle').textContent;const textContentLen=textContent.length;const postTitle=document.querySelector('.postTitle');postTitle.textContent='';let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++);if(idx>textContentLen){clearInterval(writeTimer);postTitle.classList.remove('no-blink');}};const writeTimer=setInterval(writing,writeSpeed);postTitle.classList.add('no-blink');
-	const checkBtn=document.createElement('div');checkBtn.id='checkBtn';const functionBtn=document.getElementById('functionBtn');functionBtn.insertAdjacentElement('afterend',checkBtn);const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){functionBtn.classList.remove('show-flex');}else{functionBtn.classList.add('show-flex');}});},{threshold:0});observer.observe(checkBtn);
+	const checkBtn=document.createElement('div');checkBtn.id='checkBtn';const functionBtn=document.getElementById('functionBtn');functionBtn.insertAdjacentElement('afterend',checkBtn);const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){functionBtn.classList.remove('Btn-flex');}else{functionBtn.classList.add('Btn-flex');}});},{threshold:0});observer.observe(checkBtn);
 	const spoilers = document.querySelectorAll(".spoilerText");
 	spoilers.length && spoilers.forEach(el => el.onclick = () => el.classList.toggle("clear"));
 });
@@ -4672,7 +4672,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<script src='../../static/ArticleJs.js'></script>
+<script src='../../static/ArticleJs2.js'></script>
 <script src='../../static/ArticleToc-header.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>
 </html>
