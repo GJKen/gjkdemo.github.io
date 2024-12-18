@@ -337,7 +337,7 @@ body{box-sizing:border-box;min-width:200px;max-width:900px;margin:20px auto;padd
 </a>
 
 <a class="ArticleTOC btn btn-invisible circle" onclick="toggleTOC();" title="文章目录">
-	<svg class="octicon" width="16" height="16"><path id="ArticleTOCSVG" fill-rule="evenodd" d="${IconList['threebars']}"></path></svg>
+	<svg class="octicon" width="16" height="16"><path id="ArticleTOCSVG" fill-rule="evenodd"></path></svg>
 </a>
 
 <!-- <a class="ArticleTOC btn btn-invisible circle" onclick="toggleTOC();" title="文章目录">
@@ -506,7 +506,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	spoilers.length && spoilers.forEach(el => el.onclick = () => el.classList.toggle("clear"));
 });
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
-// document.getElementById("ArticleTOCSVG").setAttribute("d",IconList["threebars"]);
+document.getElementById("ArticleTOCSVG").setAttribute("d",IconList["threebars"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 
 
